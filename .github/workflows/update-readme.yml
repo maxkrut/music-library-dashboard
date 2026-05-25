@@ -1,0 +1,49 @@
+name: Update README
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 5 * * 1"
+  push:
+    paths:
+      - data/tracks.csv
+      - data/genre_rules.csv
+      - scripts/build_readme.py
+      - scripts/export_spotify.py
+      - scripts/apply_genre_rules.py
+      - .github/workflows/update-readme.yml
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+      SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+      SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+      SPOTIFY_REDIRECT_URI: ${{ secrets.SPOTIFY_REDIRECT_URI || 'http://127.0.0.1:8888/callback' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Export Spotify metadata
+        if: env.SPOTIFY_CLIENT_ID != '' && env.SPOTIFY_CLIENT_SECRET != '' && env.SPOTIFY_REFRESH_TOKEN != ''
+        run: python scripts/export_spotify.py --no-interactive --skip-genres
+
+      - name: Apply genre rules
+        run: python scripts/apply_genre_rules.py
+
+      - name: Build README dashboard
+        run: python scripts/build_readme.py
+
+      - name: Commit dashboard changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md assets/banner.svg assets/genres.svg assets/timeline.svg data/tracks.csv data/genre_rules.csv
+          git diff --cached --quiet || git commit -m "Update Spotify library dashboard"
+          git push
