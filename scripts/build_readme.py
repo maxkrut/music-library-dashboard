@@ -113,10 +113,10 @@ def top(counter: Counter[str], limit: int = 12) -> list[tuple[str, int]]:
 
 def write_empty_svg(path: Path, title: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="900" height="140" viewBox="0 0 900 140" role="img" aria-label="{html.escape(title)}">
-  <rect width="900" height="140" fill="#070a12"/>
-  <rect x="16" y="16" width="868" height="108" rx="12" fill="#0d1220" stroke="#00f5ff" stroke-opacity=".55"/>
-  <text x="32" y="58" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f3f7ff">{html.escape(title)}</text>
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="720" height="150" viewBox="0 0 720 150" role="img" aria-label="{html.escape(title)}">
+  <rect width="720" height="150" fill="#eef3ef"/>
+  <rect x="16" y="16" width="688" height="118" rx="10" fill="#fbfaf5" stroke="#c8d4cc"/>
+  <text x="34" y="66" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#1e2f2b">{html.escape(title)}</text>
 </svg>
 """
     path.write_text(svg, encoding="utf-8")
@@ -130,26 +130,28 @@ def write_banner_svg(path: Path, tracks_count: int, artist_count: int, year_rang
     svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220" role="img" aria-label="Maks Krutikov Spotify Library">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0b1020"/>
-      <stop offset=".55" stop-color="#11162a"/>
-      <stop offset="1" stop-color="#19091f"/>
+      <stop offset="0" stop-color="#eef3ef"/>
+      <stop offset=".58" stop-color="#f8f5ee"/>
+      <stop offset="1" stop-color="#e7eef2"/>
     </linearGradient>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#00f5ff"/>
-      <stop offset=".5" stop-color="#ff2bd6"/>
-      <stop offset="1" stop-color="#f5ff00"/>
+      <stop offset="0" stop-color="#5f8f73"/>
+      <stop offset=".52" stop-color="#6d86a6"/>
+      <stop offset="1" stop-color="#b8765f"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="220" rx="18" fill="url(#g)"/>
-  <path d="M0 160 H240 L270 132 H515 L548 166 H810 L842 138 H1200" fill="none" stroke="url(#line)" stroke-width="3" opacity=".9"/>
-  <path d="M0 190 H170 L205 170 H400 L435 192 H660 L700 168 H1200" fill="none" stroke="#00f5ff" stroke-width="1.5" opacity=".35"/>
-  <rect x="32" y="30" width="1136" height="160" rx="14" fill="#070a12" opacity=".58" stroke="#ffffff" stroke-opacity=".12"/>
-  <text x="58" y="86" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#00f5ff">PERSONAL SPOTIFY INDEX</text>
-  <text x="58" y="132" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="800" fill="#f3f7ff">Maks Krutikov Spotify Library</text>
-  <text x="60" y="166" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#b8c7ff">{html.escape(subtitle)}</text>
-  <text x="1004" y="72" font-family="Consolas, monospace" font-size="16" fill="#ff2bd6">README_DASH</text>
-  <text x="1004" y="100" font-family="Consolas, monospace" font-size="16" fill="#f5ff00">CSV_SYNC</text>
-  <text x="1004" y="128" font-family="Consolas, monospace" font-size="16" fill="#00f5ff">WEEKLY_RUN</text>
+  <circle cx="1024" cy="104" r="58" fill="none" stroke="#d2ded7" stroke-width="18" opacity=".72"/>
+  <circle cx="1024" cy="104" r="20" fill="#f8f5ee" stroke="#b7c9bf" stroke-width="2"/>
+  <path d="M0 164 C160 134 250 184 396 154 S650 126 790 150 1020 176 1200 132" fill="none" stroke="url(#line)" stroke-width="4" opacity=".75"/>
+  <path d="M0 190 C210 176 300 202 456 184 S732 160 900 176 1050 196 1200 172" fill="none" stroke="#6d86a6" stroke-width="2" opacity=".34"/>
+  <rect x="32" y="30" width="1136" height="160" rx="14" fill="#fbfaf5" opacity=".9" stroke="#c8d4cc"/>
+  <text x="58" y="84" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#5f8f73">PERSONAL SPOTIFY LIBRARY</text>
+  <text x="58" y="132" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="800" fill="#1e2f2b">Maks Krutikov Spotify Library</text>
+  <text x="60" y="166" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#586b63">{html.escape(subtitle)}</text>
+  <text x="970" y="72" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#5f8f73">CSV archive</text>
+  <text x="970" y="100" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#6d86a6">Genre metadata</text>
+  <text x="970" y="128" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#b8765f">Weekly refresh</text>
 </svg>
 """
     path.write_text(svg, encoding="utf-8")
@@ -160,29 +162,30 @@ def write_bar_svg(path: Path, title: str, rows: list[tuple[str, int]], color: st
         write_empty_svg(path, title)
         return
 
-    width = 900
-    left = 190
-    right = 48
-    row_height = 34
-    top_pad = 74
+    width = 720
+    left = 245
+    right = 56
+    row_height = 44
+    top_pad = 76
     height = top_pad + row_height * len(rows) + 28
     max_value = max(count for _, count in rows) or 1
     bar_width = width - left - right
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="{html.escape(title)}">',
-        f'<rect width="{width}" height="{height}" fill="#070a12"/>',
-        f'<rect x="14" y="14" width="{width - 28}" height="{height - 28}" rx="12" fill="#0d1220" stroke="{color}" stroke-opacity=".35"/>',
-        f'<text x="32" y="42" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#f3f7ff">{html.escape(title)}</text>',
+        f'<rect width="{width}" height="{height}" fill="#eef3ef"/>',
+        f'<rect x="14" y="14" width="{width - 28}" height="{height - 28}" rx="10" fill="#fbfaf5" stroke="{color}" stroke-opacity=".55"/>',
+        f'<text x="32" y="46" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#1e2f2b">{html.escape(title)}</text>',
     ]
     for index, (label, count) in enumerate(rows):
         y = top_pad + index * row_height
         length = int(bar_width * count / max_value)
+        display_label = label if len(label) <= 21 else f"{label[:18].rstrip()}..."
         parts.extend(
             [
-                f'<text x="32" y="{y + 20}" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#dbe7ff">{html.escape(label[:28])}</text>',
-                f'<rect x="{left}" y="{y + 4}" width="{bar_width}" height="20" rx="4" fill="#1a2238"/>',
-                f'<rect x="{left}" y="{y + 4}" width="{max(length, 4)}" height="20" rx="4" fill="{color}"/>',
-                f'<text x="{left + bar_width + 12}" y="{y + 20}" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#f3f7ff">{count}</text>',
+                f'<text x="32" y="{y + 25}" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#1e2f2b">{html.escape(display_label)}</text>',
+                f'<rect x="{left}" y="{y + 7}" width="{bar_width}" height="22" rx="5" fill="#e4e9e3"/>',
+                f'<rect x="{left}" y="{y + 7}" width="{max(length, 5)}" height="22" rx="5" fill="{color}"/>',
+                f'<text x="{left + bar_width + 12}" y="{y + 25}" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#1e2f2b">{count}</text>',
             ]
         )
     parts.append("</svg>")
@@ -223,8 +226,8 @@ def build_dashboard(
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     write_banner_svg(banner_svg, len(tracks), len(artists), year_range)
-    write_bar_svg(genres_svg, "Top genres", top(genres, 10), "#00f5ff")
-    write_bar_svg(timeline_svg, "Tracks by decade", top(decades, 12), "#ff2bd6")
+    write_bar_svg(genres_svg, "Top genres", top(genres, 10), "#5f8f73")
+    write_bar_svg(timeline_svg, "Tracks by decade", top(decades, 12), "#b8765f")
 
     stats_rows: list[list[object]] = [
         ["Tracks", len(tracks)],
@@ -258,7 +261,7 @@ def build_dashboard(
         if not genres:
             lines.extend([image_link("Tracks by decade", timeline_svg, readme_dir), ""])
 
-    lines.extend(["## Signal", "", table([row[0] for row in stats_rows], [[row[1] for row in stats_rows]]), ""])
+    lines.extend(["## Overview", "", table([row[0] for row in stats_rows], [[row[1] for row in stats_rows]]), ""])
 
     if not tracks:
         lines.extend(
@@ -285,7 +288,7 @@ def build_dashboard(
         if genres:
             lines.extend(
                 [
-                "## Frequencies",
+                "## Genre Mix",
                 "",
                 table(["Genre", "Tracks"], top(genres, 15)),
                 "",
@@ -294,7 +297,7 @@ def build_dashboard(
         if primary_genres:
             lines.extend(
                 [
-                "## Primary",
+                "## Primary Genres",
                 "",
                 table(["Primary genre", "Tracks"], top(primary_genres, 15)),
                 "",
@@ -312,7 +315,7 @@ def build_dashboard(
         if decades:
             lines.extend(
                 [
-                "## Decades",
+                "## Timeline",
                 "",
                 table(["Decade", "Tracks"], top(decades, 12)),
                 "",
@@ -346,6 +349,7 @@ def build_dashboard(
                 "",
                 "",
                 "- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists.",
+                "- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.",
                 "- `python scripts/apply_genre_rules.py` fills genres from `data/genre_rules.csv`.",
                 "- `python scripts/build_readme.py` regenerates this README and SVG charts.",
                 "- `python scripts/debug_spotify.py` checks OAuth and first Spotify API pages without writing CSV.",
@@ -372,6 +376,7 @@ def build_dashboard(
             f"- Genre rules: {md_link('data/genre_rules.csv', ROOT / 'data' / 'genre_rules.csv', readme_dir)}",
             f"- README generator: {md_link('scripts/build_readme.py', ROOT / 'scripts' / 'build_readme.py', readme_dir)}",
             f"- Spotify exporter: {md_link('scripts/export_spotify.py', ROOT / 'scripts' / 'export_spotify.py', readme_dir)}",
+            f"- MusicBrainz genre enricher: {md_link('scripts/enrich_genres_musicbrainz.py', ROOT / 'scripts' / 'enrich_genres_musicbrainz.py', readme_dir)}",
             f"- Genre rule applier: {md_link('scripts/apply_genre_rules.py', ROOT / 'scripts' / 'apply_genre_rules.py', readme_dir)}",
             f"- Spotify API debug: {md_link('scripts/debug_spotify.py', ROOT / 'scripts' / 'debug_spotify.py', readme_dir)}",
             "",

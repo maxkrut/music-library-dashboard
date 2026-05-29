@@ -32,7 +32,7 @@ jobs:
 
       - name: Export Spotify metadata
         if: env.SPOTIFY_CLIENT_ID != '' && env.SPOTIFY_CLIENT_SECRET != '' && env.SPOTIFY_REFRESH_TOKEN != ''
-        run: python scripts/export_spotify.py --no-interactive --skip-genres
+        run: python scripts/export_spotify.py --no-interactive --verbose
 
       - name: Apply genre rules
         run: python scripts/apply_genre_rules.py

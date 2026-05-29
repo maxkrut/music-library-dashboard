@@ -8,6 +8,7 @@ from export_spotify import (
     normalize_track,
     parse_args,
     read_json,
+    request_client_credentials_token,
 )
 
 
@@ -34,8 +35,13 @@ def main() -> None:
         print(f"first_track={first_track.get('track_name', '')} - {first_track.get('artist_names', '')}", flush=True)
         artist_id = (first_track.get("artist_ids", "").split(";") + [""])[0].strip()
         cache = read_json(args.log_file.parent / "debug-artists.json", {})
-        genres = fetch_artist_genres(client, artist_id, cache) if artist_id else []
+        genre_token = request_client_credentials_token(args.client_id, args.client_secret)
+        genre_client = SpotifyClient(genre_token, args.client_id, args.client_secret, cache_token=False)
+        genres = fetch_artist_genres(genre_client, artist_id, cache) if artist_id else []
         print(f"first_artist_genres={'; '.join(genres) if genres else 'none'}", flush=True)
+        artist_cache = cache.get(artist_id) or {}
+        if artist_cache.get("genres_available") is False:
+            print("first_artist_genres_field=unavailable", flush=True)
 
     playlist_page = client.request("GET", "/me/playlists", {"limit": 5})
     playlist_items = playlist_page.get("items", [])

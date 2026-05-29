@@ -4,50 +4,51 @@
 
 <img src="assets/genres.svg" width="49%"> <img src="assets/timeline.svg" width="49%">
 
-## Signal
+## Overview
 
 | Tracks | Artists | Albums | Genres | Playlists | Release years | Total duration |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1971 | 1367 | 1676 | 28 | 5 | 1958-2026 | 183h 51m |
+| 1972 | 1367 | 1676 | 563 | 5 | 1958-2026 | 183h 53m |
 
-## Frequencies
+## Genre Mix
 
 | Genre | Tracks |
 | --- | --- |
-| black metal | 95 |
-| progressive metal | 71 |
-| viking metal | 50 |
-| crust punk | 28 |
-| electronic | 26 |
-| death metal | 21 |
-| doom metal | 20 |
-| experimental | 17 |
-| funeral doom | 12 |
-| nordic folk | 12 |
-| dark folk | 12 |
-| stoner doom | 10 |
-| folk metal | 10 |
-| idm | 9 |
-| art rock | 9 |
+| black metal | 348 |
+| doom metal | 240 |
+| progressive metal | 232 |
+| heavy metal | 209 |
+| progressive rock | 208 |
+| hard rock | 196 |
+| psychedelic rock | 161 |
+| death metal | 161 |
+| electronic | 149 |
+| alternative rock | 136 |
+| post-metal | 103 |
+| stoner rock | 102 |
+| ambient | 96 |
+| post-rock | 95 |
+| thrash metal | 90 |
 
-## Primary
+## Primary Genres
 
 | Primary genre | Tracks |
 | --- | --- |
-| black metal | 78 |
-| progressive metal | 21 |
-| experimental | 17 |
-| funeral doom | 12 |
-| nordic folk | 12 |
-| stoner doom | 10 |
-| electronic | 9 |
-| art rock | 9 |
-| psychobilly | 9 |
-| ambient | 8 |
-| doom metal | 8 |
-| blackgaze | 7 |
-| hardcore | 7 |
-| classical | 7 |
+| black metal | 207 |
+| doom metal | 112 |
+| progressive rock | 100 |
+| progressive metal | 80 |
+| heavy metal | 74 |
+| hard rock | 72 |
+| electronic | 65 |
+| alternative rock | 53 |
+| death metal | 47 |
+| psychedelic rock | 43 |
+| atmospheric black metal | 42 |
+| post-rock | 40 |
+| stoner rock | 38 |
+| thrash metal | 38 |
+| rock | 27 |
 
 ## Artists
 
@@ -69,12 +70,12 @@
 | Biohazard | 7 |
 | Carlo Domeniconi | 7 |
 
-## Decades
+## Timeline
 
 | Decade | Tracks |
 | --- | --- |
 | 2010s | 591 |
-| 2020s | 553 |
+| 2020s | 554 |
 | 2000s | 362 |
 | 1990s | 219 |
 | 1980s | 122 |
@@ -86,6 +87,7 @@
 
 | Track | Artists | Year | Added |
 | --- | --- | --- | --- |
+| Further in the Making | Nils Frahm | 2021 | 2026-05-26 |
 | So I Marched To The Sunken Empire | Darkthrone | 2026 | 2026-05-24 |
 | Águas Passadas | Kaatayra | 2026 | 2026-05-15 |
 | Let Us Live | Conjurer | 2025 | 2026-05-15 |
@@ -97,13 +99,13 @@
 | Another Beer (It's What I Need) | BULLDOZER | 1984 | 2026-04-29 |
 | Valley of The Wolf | Üga Büga | 2026 | 2026-04-27 |
 | Bend Towards The Dark | Immolation | 2026 | 2026-04-27 |
-| Ineffable Dimensions | Space Remedy | 2026 | 2026-04-26 |
 
 <details>
 <summary>Workflow</summary>
 
 
 - `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists.
+- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.
 - `python scripts/apply_genre_rules.py` fills genres from `data/genre_rules.csv`.
 - `python scripts/build_readme.py` regenerates this README and SVG charts.
 - `python scripts/debug_spotify.py` checks OAuth and first Spotify API pages without writing CSV.
@@ -125,9 +127,10 @@ Create a Spotify app, run the local OAuth export once, then store the generated 
 - Genre rules: [`data/genre_rules.csv`](data/genre_rules.csv)
 - README generator: [`scripts/build_readme.py`](scripts/build_readme.py)
 - Spotify exporter: [`scripts/export_spotify.py`](scripts/export_spotify.py)
+- MusicBrainz genre enricher: [`scripts/enrich_genres_musicbrainz.py`](scripts/enrich_genres_musicbrainz.py)
 - Genre rule applier: [`scripts/apply_genre_rules.py`](scripts/apply_genre_rules.py)
 - Spotify API debug: [`scripts/debug_spotify.py`](scripts/debug_spotify.py)
 
 </details>
 
-_Generated at 2026-05-25 20:36 UTC._
+_Generated at 2026-05-29 07:56 UTC._

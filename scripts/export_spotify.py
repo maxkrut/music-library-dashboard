@@ -14,6 +14,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import webbrowser
+import socket
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -29,7 +30,9 @@ AUTH_URL = "https://accounts.spotify.com/authorize"
 TOKEN_URL = "https://accounts.spotify.com/api/token"
 DEFAULT_REDIRECT_URI = "http://127.0.0.1:8888/callback"
 DEFAULT_SCOPE = "user-library-read playlist-read-private playlist-read-collaborative"
-MAX_RETRY_AFTER_SECONDS = 60
+MAX_RETRY_AFTER_SECONDS = max(1, int(os.getenv("SPOTIFY_MAX_RETRY_AFTER_SECONDS", "300")))
+MAX_RATE_LIMIT_RETRIES = max(1, int(os.getenv("SPOTIFY_MAX_RATE_LIMIT_RETRIES", "20")))
+ARTIST_BATCH_SIZE = max(1, int(os.getenv("SPOTIFY_ARTIST_BATCH_SIZE", "1")))
 
 MANUAL_FIELDS = ["year", "primary_genre", "genres", "rating", "status", "tags", "notes"]
 FIELDNAMES = [
@@ -190,12 +193,28 @@ def post_form(url: str, data: dict[str, str], client_id: str, client_secret: str
             "Content-Type": "application/x-www-form-urlencoded",
         },
     )
-    try:
-        with urllib.request.urlopen(request, timeout=60) as response:
-            return json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as error:
-        body = error.read().decode("utf-8", errors="replace")
-        raise SpotifyApiError(error.code, body) from error
+    last_network_error: Exception | None = None
+    for attempt in range(MAX_RATE_LIMIT_RETRIES):
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as error:
+            body = error.read().decode("utf-8", errors="replace")
+            if error.code == 429:
+                retry_after = int(error.headers.get("Retry-After", "5"))
+                if retry_after > MAX_RETRY_AFTER_SECONDS:
+                    raise SpotifyApiError(error.code, f"rate limited for {retry_after} seconds") from error
+                time.sleep(max(retry_after, 1) + 1)
+                continue
+            raise SpotifyApiError(error.code, body) from error
+        except (ConnectionError, TimeoutError, socket.timeout, urllib.error.URLError) as error:
+            last_network_error = error
+            time.sleep(min(2 + attempt * 2, 30))
+            continue
+    if last_network_error:
+        reason = getattr(last_network_error, "reason", last_network_error)
+        raise SpotifyApiError(0, str(reason)) from last_network_error
+    raise SpotifyApiError(429, "form retry budget exhausted")
 
 
 def with_expiry(token: dict[str, Any]) -> dict[str, Any]:
@@ -225,6 +244,17 @@ def refresh_access_token(
     if "refresh_token" not in refreshed:
         refreshed["refresh_token"] = refresh_token
     return with_expiry(refreshed)
+
+
+def request_client_credentials_token(client_id: str, client_secret: str) -> dict[str, Any]:
+    token = post_form(
+        TOKEN_URL,
+        {"grant_type": "client_credentials"},
+        client_id,
+        client_secret,
+    )
+    token["grant_type"] = "client_credentials"
+    return with_expiry(token)
 
 
 def request_user_token(
@@ -383,16 +413,22 @@ class SpotifyClient:
         token: dict[str, Any],
         client_id: str,
         client_secret: str,
+        cache_token: bool = True,
     ) -> None:
         self.token = token
         self.client_id = client_id
         self.client_secret = client_secret
+        self.cache_token = cache_token
 
     def ensure_token(self) -> None:
         if token_valid(self.token):
             return
+        if self.token.get("grant_type") == "client_credentials":
+            self.token = request_client_credentials_token(self.client_id, self.client_secret)
+            return
         self.token = refresh_access_token(self.token, self.client_id, self.client_secret)
-        write_json(TOKEN_CACHE, self.token)
+        if self.cache_token:
+            write_json(TOKEN_CACHE, self.token)
 
     def request(
         self,
@@ -400,7 +436,8 @@ class SpotifyClient:
         path_or_url: str,
         params: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
-        for _ in range(5):
+        last_network_error: urllib.error.URLError | None = None
+        for attempt in range(MAX_RATE_LIMIT_RETRIES):
             self.ensure_token()
             url = path_or_url if path_or_url.startswith("http") else f"{API_BASE}{path_or_url}"
             if params:
@@ -419,15 +456,23 @@ class SpotifyClient:
                 body = error.read().decode("utf-8", errors="replace")
                 if error.code == 401 and self.token.get("refresh_token"):
                     self.token = refresh_access_token(self.token, self.client_id, self.client_secret)
-                    write_json(TOKEN_CACHE, self.token)
+                    if self.cache_token:
+                        write_json(TOKEN_CACHE, self.token)
                     continue
                 if error.code == 429:
                     retry_after = int(error.headers.get("Retry-After", "5"))
                     if retry_after > MAX_RETRY_AFTER_SECONDS:
                         raise SpotifyApiError(error.code, f"rate limited for {retry_after} seconds") from error
-                    time.sleep(max(retry_after, 1))
+                    time.sleep(max(retry_after, 1) + 1)
                     continue
                 raise SpotifyApiError(error.code, body) from error
+            except (ConnectionError, TimeoutError, socket.timeout, urllib.error.URLError) as error:
+                last_network_error = error
+                time.sleep(min(2 + attempt * 2, 30))
+                continue
+        if last_network_error:
+            reason = getattr(last_network_error, "reason", last_network_error)
+            raise SpotifyApiError(0, str(reason)) from last_network_error
         raise SpotifyApiError(429, "rate limit retry budget exhausted")
 
     def paginate(
@@ -458,6 +503,22 @@ def join_unique(values: Iterable[str]) -> str:
             seen.add(key)
             result.append(cleaned)
     return "; ".join(result)
+
+
+def unique_values(values: Iterable[str]) -> list[str]:
+    seen: set[str] = set()
+    result: list[str] = []
+    for value in values:
+        cleaned = value.strip()
+        if cleaned and cleaned not in seen:
+            seen.add(cleaned)
+            result.append(cleaned)
+    return result
+
+
+def chunked(values: list[str], size: int) -> Iterable[list[str]]:
+    for index in range(0, len(values), size):
+        yield values[index : index + size]
 
 
 def read_manual_fields(path: Path) -> dict[str, dict[str, str]]:
@@ -639,22 +700,113 @@ def fetch_playlist_tracks_into(
         raise
 
 
+def cache_artist_response(
+    artist_id: str,
+    artist: dict[str, Any] | None,
+    cache: dict[str, Any],
+    source: str,
+    fetched_at: int,
+) -> None:
+    if not artist:
+        cache[artist_id] = {
+            "genres": [],
+            "genres_available": True,
+            "fetched_at": fetched_at,
+            "source": source,
+        }
+        return
+    cache[artist_id] = {
+        "genres": artist.get("genres", []) or [],
+        "genres_available": "genres" in artist,
+        "fetched_at": fetched_at,
+        "source": source,
+    }
+
+
+def cache_missing_genres_field(
+    artist_ids: Iterable[str],
+    cache: dict[str, Any],
+) -> None:
+    fetched_at = int(time.time())
+    for artist_id in artist_ids:
+        cached = cache.get(artist_id) or {}
+        cache[artist_id] = {
+            **cached,
+            "genres": cached.get("genres", []),
+            "genres_available": False,
+            "fetched_at": fetched_at,
+            "source": "spotify_artist_unavailable",
+        }
+
+
 def fetch_artist_genres(client: SpotifyClient, artist_id: str, cache: dict[str, Any]) -> list[str]:
     if not artist_id:
         return []
     cached = cache.get(artist_id)
-    if cached is not None:
+    if cached is not None and not artist_needs_fetch(artist_id, cache):
         return cached.get("genres", [])
     try:
         artist = client.request("GET", f"/artists/{artist_id}")
-        genres = artist.get("genres", []) or []
     except SpotifyApiError as error:
-        if error.status in {403, 404, 429}:
-            genres = []
+        if error.status == 404:
+            artist = None
         else:
             raise
-    cache[artist_id] = {"genres": genres, "fetched_at": int(time.time())}
-    return genres
+    cache_artist_response(artist_id, artist, cache, "spotify_artist", int(time.time()))
+    return (cache.get(artist_id) or {}).get("genres", [])
+
+
+def artist_needs_fetch(artist_id: str, cache: dict[str, Any]) -> bool:
+    cached = cache.get(artist_id)
+    if cached is None:
+        return True
+    if cached.get("genres"):
+        return False
+    if "genres_available" not in cached:
+        return True
+    if cached.get("genres_available") is False:
+        return os.getenv("SPOTIFY_RETRY_MISSING_GENRES", "").strip() == "1"
+    # Older exports could cache an empty genre list after a temporary 429 or 403.
+    return cached.get("source") not in {"spotify_artist", "spotify_artists_batch"}
+
+
+def fetch_artist_genre_batch(
+    client: SpotifyClient,
+    artist_ids: list[str],
+    cache: dict[str, Any],
+) -> None:
+    if not artist_ids:
+        return
+    if len(artist_ids) == 1:
+        fetch_artist_genres(client, artist_ids[0], cache)
+        return
+    try:
+        response = client.request("GET", "/artists", {"ids": ",".join(artist_ids)})
+    except SpotifyApiError as error:
+        if error.status == 403 and len(artist_ids) > 1:
+            for artist_id in artist_ids:
+                fetch_artist_genres(client, artist_id, cache)
+            return
+        if error.status == 404:
+            fetched_at = int(time.time())
+            for artist_id in artist_ids:
+                cache_artist_response(artist_id, None, cache, "spotify_artists_batch", fetched_at)
+            return
+        raise
+
+    fetched_at = int(time.time())
+    returned_ids: set[str] = set()
+    for artist in response.get("artists", []) or []:
+        if not artist:
+            continue
+        artist_id = artist.get("id", "")
+        if not artist_id:
+            continue
+        returned_ids.add(artist_id)
+        cache_artist_response(artist_id, artist, cache, "spotify_artists_batch", fetched_at)
+    for artist_id in artist_ids:
+        if artist_id not in returned_ids:
+            cache_artist_response(artist_id, None, cache, "spotify_artists_batch", fetched_at)
 
 
 def enrich_genres(
@@ -663,17 +815,57 @@ def enrich_genres(
     args: argparse.Namespace | None = None,
 ) -> None:
     cache = read_json(ARTIST_CACHE, {})
-    changed = False
     total = len(tracks)
+    artist_ids = unique_values(
+        artist_id
+        for row in tracks.values()
+        for artist_id in split_semicolon(row.get("artist_ids", ""))
+    )
+    missing_artist_ids = [artist_id for artist_id in artist_ids if artist_needs_fetch(artist_id, cache)]
+    total_missing = len(missing_artist_ids)
+    if args:
+        log_progress(
+            args,
+            f"Fetching Spotify genres for {total_missing}/{len(artist_ids)} artists.",
+        )
+    changed = bool(missing_artist_ids)
+    fetched_count = 0
+    genres_field_available: bool | None = None
+    for batch in chunked(missing_artist_ids, ARTIST_BATCH_SIZE):
+        fetch_artist_genre_batch(client, batch, cache)
+        fetched_count += len(batch)
+        if genres_field_available is None:
+            checked = [cache.get(artist_id) or {} for artist_id in batch]
+            if checked:
+                genres_field_available = any("genres_available" not in item or item.get("genres_available") for item in checked)
+                if not genres_field_available:
+                    remaining_ids = missing_artist_ids[fetched_count:]
+                    cache_missing_genres_field(remaining_ids, cache)
+                    fetched_count = total_missing
+                    if args:
+                        log_progress(
+                            args,
+                            "Spotify artist responses do not include a genres field; skipping remaining artist genre requests.",
+                        )
+                    break
+        if args:
+            log_progress(args, f"Fetched Spotify genres for {fetched_count}/{total_missing} artists.")
+        if fetched_count % (ARTIST_BATCH_SIZE * 10) == 0:
+            write_json(ARTIST_CACHE, cache)
+
     for index, row in enumerate(tracks.values(), start=1):
         genres: list[str] = []
         for artist_id in split_semicolon(row.get("artist_ids", "")):
-            before = artist_id in cache
-            genres.extend(fetch_artist_genres(client, artist_id, cache))
-            changed = changed or not before
+            genres.extend((cache.get(artist_id) or {}).get("genres", []))
         row["spotify_genres"] = join_unique(genres)
         if args and (index == 1 or index % 100 == 0 or index == total):
             log_progress(args, f"Enriched genres for {index}/{total} tracks.")
+    unavailable = sum(1 for artist_id in artist_ids if (cache.get(artist_id) or {}).get("genres_available") is False)
+    if args and unavailable:
+        log_progress(
+            args,
+            f"Spotify artist responses did not include a genres field for {unavailable} artists.",
+        )
     if changed:
         write_json(ARTIST_CACHE, cache)
 
@@ -756,7 +948,14 @@ def main() -> None:
         log_progress(args, "Skipping genre enrichment.")
     else:
         log_progress(args, f"Enriching genres for {len(collected)} tracks.")
-        enrich_genres(client, collected, args)
+        genre_token = request_client_credentials_token(args.client_id, args.client_secret)
+        genre_client = SpotifyClient(
+            genre_token,
+            args.client_id,
+            args.client_secret,
+            cache_token=False,
+        )
+        enrich_genres(genre_client, collected, args)
     apply_manual_fields(collected, manual_rows)
     log_progress(args, f"Writing {len(collected)} tracks to CSV.")
     write_tracks(args.output, collected)
