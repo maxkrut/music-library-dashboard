@@ -133,4 +133,4 @@ Create a Spotify app, run the local OAuth export once, then store the generated 
 
 </details>
 
-_Generated at 2026-05-29 07:58 UTC._
+_Generated at 2026-06-01 10:33 UTC._
