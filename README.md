@@ -72,12 +72,12 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 | Country | Tracks |
 | --- | --- |
-| United States | 617 |
+| United States | 619 |
 | United Kingdom | 291 |
 | Norway | 227 |
 | Sweden | 165 |
 | Germany | 98 |
-| Finland | 73 |
+| Finland | 74 |
 | Canada | 54 |
 | France | 49 |
 | Russia | 47 |
@@ -86,7 +86,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | Italy | 32 |
 | Australia | 28 |
 | Ireland | 22 |
-| Poland | 19 |
+| Poland | 20 |
 | Belgium | 16 |
 | Greece | 15 |
 | Switzerland | 14 |
@@ -182,4 +182,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-03 20:16 UTC._
+_Generated at 2026-06-03 20:18 UTC._

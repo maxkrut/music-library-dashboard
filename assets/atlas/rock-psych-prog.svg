@@ -351,9 +351,9 @@
 <text x="780.3" y="414.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">2</text>
 <text x="692.2" y="427.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Iceland</text>
 <text x="780.3" y="427.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">2</text>
-<text x="692.2" y="440.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Belgium</text>
-<text x="780.3" y="440.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="692.2" y="453.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Norway</text>
+<text x="692.2" y="440.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Poland</text>
+<text x="780.3" y="440.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">2</text>
+<text x="692.2" y="453.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Belgium</text>
 <text x="780.3" y="453.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <rect x="800.0" y="270.0" width="384.0" height="192" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="800.0" y="270.0" width="4" height="192" fill="#526f92"/>
@@ -609,7 +609,7 @@
 <text x="999.7" y="653.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2006</text>
 <text x="1068.6" y="653.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="1084.2" y="536.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United States</text>
-<text x="1172.3" y="536.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">8</text>
+<text x="1172.3" y="536.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">9</text>
 <text x="1084.2" y="549.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Canada</text>
 <text x="1172.3" y="549.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">6</text>
 <text x="1084.2" y="562.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Russia</text>
