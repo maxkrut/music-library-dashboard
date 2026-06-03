@@ -331,6 +331,8 @@ def query_artist(client: MusicBrainzClient, artist_name: str, min_score: int) ->
         "matched": True,
         "query": artist_name,
         "artist_id": selected.get("id", ""),
+        "country": selected.get("country", ""),
+        "area": selected.get("area") or {},
         "score": int(selected.get("score") or 0),
         "name": selected.get("name", ""),
         "disambiguation": selected.get("disambiguation", ""),

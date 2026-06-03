@@ -4,7 +4,9 @@ from __future__ import annotations
 import argparse
 import csv
 import html
+import json
 import os
+import re
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -15,9 +17,111 @@ ROOT = Path(__file__).resolve().parents[1]
 TRACKS_CSV = ROOT / "data" / "tracks.csv"
 README = ROOT / "README.md"
 ASSETS_DIR = ROOT / "assets"
+MUSICBRAINZ_ARTIST_CACHE = ROOT / ".cache" / "musicbrainz-artists.json"
+COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
 BANNER_SVG = ASSETS_DIR / "banner.svg"
 GENRES_SVG = ASSETS_DIR / "genres.svg"
 TIMELINE_SVG = ASSETS_DIR / "timeline.svg"
+
+COUNTRY_CODES = {
+    "AU": "Australia",
+    "AR": "Argentina",
+    "AT": "Austria",
+    "AZ": "Azerbaijan",
+    "BE": "Belgium",
+    "BS": "Bahamas",
+    "BY": "Belarus",
+    "BR": "Brazil",
+    "CA": "Canada",
+    "CL": "Chile",
+    "CO": "Colombia",
+    "CU": "Cuba",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "FI": "Finland",
+    "FO": "Faroe Islands",
+    "FR": "France",
+    "DE": "Germany",
+    "GR": "Greece",
+    "HR": "Croatia",
+    "HU": "Hungary",
+    "IS": "Iceland",
+    "ID": "Indonesia",
+    "IE": "Ireland",
+    "IL": "Israel",
+    "IN": "India",
+    "IT": "Italy",
+    "JP": "Japan",
+    "LT": "Lithuania",
+    "MQ": "Martinique",
+    "MX": "Mexico",
+    "NL": "Netherlands",
+    "NZ": "New Zealand",
+    "NO": "Norway",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RU": "Russia",
+    "RO": "Romania",
+    "ES": "Spain",
+    "SE": "Sweden",
+    "SI": "Slovenia",
+    "SK": "Slovakia",
+    "CH": "Switzerland",
+    "TG": "Togo",
+    "TR": "Turkey",
+    "UA": "Ukraine",
+    "GB": "United Kingdom",
+    "UK": "United Kingdom",
+    "US": "United States",
+    "USA": "United States",
+    "XE": "Europe",
+    "ZA": "South Africa",
+}
+
+COUNTRY_MARKERS = {
+    "american": "United States",
+    "australian": "Australia",
+    "austrian": "Austria",
+    "belgian": "Belgium",
+    "brazilian": "Brazil",
+    "british": "United Kingdom",
+    "canadian": "Canada",
+    "chilean": "Chile",
+    "czech": "Czechia",
+    "danish": "Denmark",
+    "deutsch": "Germany",
+    "dutch": "Netherlands",
+    "english": "United Kingdom",
+    "finnish": "Finland",
+    "french": "France",
+    "german": "Germany",
+    "greek": "Greece",
+    "icelandic": "Iceland",
+    "irish": "Ireland",
+    "italian": "Italy",
+    "japanese": "Japan",
+    "mexican": "Mexico",
+    "new zealand": "New Zealand",
+    "norwegian": "Norway",
+    "polish": "Poland",
+    "portuguese": "Portugal",
+    "russian": "Russia",
+    "scottish": "United Kingdom",
+    "spanish": "Spain",
+    "swedish": "Sweden",
+    "swiss": "Switzerland",
+    "u k": "United Kingdom",
+    "u s": "United States",
+    "uk": "United Kingdom",
+    "ukrainian": "Ukraine",
+    "united kingdom": "United Kingdom",
+    "united states": "United States",
+    "us": "United States",
+    "usa": "United States",
+    "welsh": "United Kingdom",
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -39,8 +143,94 @@ def read_tracks(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(file))
 
 
+def read_json(path: Path) -> dict[str, object]:
+    if not path.exists():
+        return {}
+    with path.open("r", encoding="utf-8") as file:
+        data = json.load(file)
+    return data if isinstance(data, dict) else {}
+
+
+def read_country_overrides(path: Path) -> dict[str, str]:
+    if not path.exists():
+        return {}
+    with path.open("r", encoding="utf-8-sig", newline="") as file:
+        rows = csv.DictReader(file)
+        return {
+            norm(row.get("artist_name", "")): row.get("country", "").strip()
+            for row in rows
+            if row.get("artist_name") and row.get("country")
+        }
+
+
 def split_values(value: str) -> list[str]:
     return [part.strip() for part in value.replace(",", ";").split(";") if part.strip()]
+
+
+def norm(value: str) -> str:
+    return " ".join(value.casefold().strip().split())
+
+
+def marker_text(value: str) -> str:
+    return " ".join(re.sub(r"[^a-z0-9]+", " ", value.casefold()).split())
+
+
+def country_from_marker(value: str) -> str:
+    text = f" {marker_text(value)} "
+    for marker, country in COUNTRY_MARKERS.items():
+        if f" {marker} " in text:
+            return country
+    return ""
+
+
+def country_from_artist_data(data: object) -> str:
+    if not isinstance(data, dict) or not data.get("matched", False):
+        return ""
+
+    country_code = str(data.get("country") or "").strip().upper()
+    if country_code:
+        return COUNTRY_CODES.get(country_code, country_code)
+
+    area = data.get("area")
+    if isinstance(area, dict):
+        area_name = str(area.get("name") or "").strip()
+        if area_name:
+            return COUNTRY_CODES.get(area_name.upper(), area_name)
+
+    begin_area = data.get("begin_area")
+    if isinstance(begin_area, dict):
+        begin_area_name = str(begin_area.get("name") or "").strip()
+        if begin_area_name:
+            return COUNTRY_CODES.get(begin_area_name.upper(), begin_area_name)
+
+    wikidata_origin = str(data.get("wikidata_origin") or "").strip()
+    if wikidata_origin:
+        return COUNTRY_CODES.get(wikidata_origin.upper(), wikidata_origin)
+
+    for tag in data.get("tags", []) or []:
+        if isinstance(tag, dict):
+            country = country_from_marker(str(tag.get("name") or ""))
+            if country:
+                return country
+
+    return country_from_marker(str(data.get("disambiguation") or ""))
+
+
+def track_countries(
+    row: dict[str, str],
+    artist_cache: dict[str, object],
+    country_overrides: dict[str, str] | None = None,
+) -> list[str]:
+    countries: list[str] = []
+    seen: set[str] = set()
+    for artist in all_artists(row):
+        country = (country_overrides or {}).get(norm(artist), "")
+        if not country:
+            country = country_from_artist_data(artist_cache.get(norm(artist)))
+        if country and country not in seen:
+            seen.add(country)
+            countries.append(country)
+    return countries
 
 
 def effective_year(row: dict[str, str]) -> str:
@@ -203,9 +393,14 @@ def build_dashboard(
     genres_svg = assets_dir / "genres.svg"
     timeline_svg = assets_dir / "timeline.svg"
     readme_dir = readme.parent
+    artist_cache = read_json(MUSICBRAINZ_ARTIST_CACHE)
+    country_overrides = read_country_overrides(COUNTRY_OVERRIDES_CSV)
     artists = Counter(artist for row in tracks for artist in all_artists(row))
     genres = Counter(genre.lower() for row in tracks for genre in effective_genres(row))
     primary_genres = Counter(effective_primary_genre(row).lower() for row in tracks if effective_primary_genre(row))
+    countries = Counter(
+        country for row in tracks for country in track_countries(row, artist_cache, country_overrides)
+    )
     years = Counter(effective_year(row) for row in tracks if effective_year(row).isdigit())
     decades = Counter(year_to_decade(effective_year(row)) for row in tracks if year_to_decade(effective_year(row)))
     albums = {
@@ -236,6 +431,8 @@ def build_dashboard(
     ]
     if genres:
         stats_rows.append(["Genres", len(genres)])
+    if countries:
+        stats_rows.append(["Countries", len(countries)])
     if playlists:
         stats_rows.append(["Playlists", len(playlists)])
     if year_range:
@@ -290,7 +487,7 @@ def build_dashboard(
                 [
                 "## Genre Mix",
                 "",
-                table(["Genre", "Tracks"], top(genres, 15)),
+                table(["Genre", "Tracks"], top(genres, 50)),
                 "",
                 ]
             )
@@ -300,6 +497,15 @@ def build_dashboard(
                 "## Primary Genres",
                 "",
                 table(["Primary genre", "Tracks"], top(primary_genres, 15)),
+                "",
+                ]
+            )
+        if countries:
+            lines.extend(
+                [
+                "## Countries",
+                "",
+                table(["Country", "Tracks"], top(countries, 15)),
                 "",
                 ]
             )
@@ -350,6 +556,7 @@ def build_dashboard(
                 "",
                 "- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists.",
                 "- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.",
+                "- `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata where available.",
                 "- `python scripts/apply_genre_rules.py` fills genres from `data/genre_rules.csv`.",
                 "- `python scripts/build_readme.py` regenerates this README and SVG charts.",
                 "- `python scripts/debug_spotify.py` checks OAuth and first Spotify API pages without writing CSV.",
@@ -374,8 +581,10 @@ def build_dashboard(
             "",
             f"- Source table: {md_link(repo_label(tracks_csv), tracks_csv, readme_dir)}",
             f"- Genre rules: {md_link('data/genre_rules.csv', ROOT / 'data' / 'genre_rules.csv', readme_dir)}",
+            f"- Country overrides: {md_link('data/country_overrides.csv', ROOT / 'data' / 'country_overrides.csv', readme_dir)}",
             f"- README generator: {md_link('scripts/build_readme.py', ROOT / 'scripts' / 'build_readme.py', readme_dir)}",
             f"- Spotify exporter: {md_link('scripts/export_spotify.py', ROOT / 'scripts' / 'export_spotify.py', readme_dir)}",
+            f"- MusicBrainz country backfill: {md_link('scripts/backfill_countries_musicbrainz.py', ROOT / 'scripts' / 'backfill_countries_musicbrainz.py', readme_dir)}",
             f"- MusicBrainz genre enricher: {md_link('scripts/enrich_genres_musicbrainz.py', ROOT / 'scripts' / 'enrich_genres_musicbrainz.py', readme_dir)}",
             f"- Genre rule applier: {md_link('scripts/apply_genre_rules.py', ROOT / 'scripts' / 'apply_genre_rules.py', readme_dir)}",
             f"- Spotify API debug: {md_link('scripts/debug_spotify.py', ROOT / 'scripts' / 'debug_spotify.py', readme_dir)}",

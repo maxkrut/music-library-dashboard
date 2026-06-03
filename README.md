@@ -6,9 +6,9 @@
 
 ## Overview
 
-| Tracks | Artists | Albums | Genres | Playlists | Release years | Total duration |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1972 | 1367 | 1676 | 563 | 5 | 1958-2026 | 183h 53m |
+| Tracks | Artists | Albums | Genres | Countries | Playlists | Release years | Total duration |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1972 | 1367 | 1676 | 563 | 52 | 5 | 1958-2026 | 183h 53m |
 
 ## Genre Mix
 
@@ -29,6 +29,41 @@
 | ambient | 96 |
 | post-rock | 95 |
 | thrash metal | 90 |
+| blues rock | 89 |
+| atmospheric black metal | 87 |
+| classic rock | 79 |
+| stoner metal | 78 |
+| viking metal | 75 |
+| sludge metal | 69 |
+| gothic metal | 69 |
+| art rock | 65 |
+| folk metal | 63 |
+| folk rock | 62 |
+| pop rock | 62 |
+| post-punk | 61 |
+| experimental | 61 |
+| shoegaze | 55 |
+| indie rock | 50 |
+| heavy psych | 45 |
+| gothic rock | 44 |
+| dark folk | 42 |
+| melodic death metal | 42 |
+| speed metal | 42 |
+| alternative metal | 41 |
+| experimental rock | 40 |
+| singer-songwriter | 39 |
+| blackgaze | 38 |
+| dungeon synth | 37 |
+| death-doom metal | 36 |
+| rock | 36 |
+| new wave | 35 |
+| crust punk | 33 |
+| dark ambient | 33 |
+| doom | 33 |
+| folk | 33 |
+| jazz fusion | 33 |
+| aor | 32 |
+| grunge | 31 |
 
 ## Primary Genres
 
@@ -49,6 +84,26 @@
 | stoner rock | 38 |
 | thrash metal | 38 |
 | rock | 27 |
+
+## Countries
+
+| Country | Tracks |
+| --- | --- |
+| United States | 620 |
+| United Kingdom | 291 |
+| Norway | 227 |
+| Sweden | 165 |
+| Germany | 98 |
+| Finland | 73 |
+| Canada | 54 |
+| France | 49 |
+| Russia | 47 |
+| Denmark | 38 |
+| Netherlands | 33 |
+| Italy | 33 |
+| Australia | 28 |
+| Ireland | 22 |
+| Poland | 19 |
 
 ## Artists
 
@@ -106,6 +161,7 @@
 
 - `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists.
 - `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.
+- `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata where available.
 - `python scripts/apply_genre_rules.py` fills genres from `data/genre_rules.csv`.
 - `python scripts/build_readme.py` regenerates this README and SVG charts.
 - `python scripts/debug_spotify.py` checks OAuth and first Spotify API pages without writing CSV.
@@ -125,12 +181,14 @@ Create a Spotify app, run the local OAuth export once, then store the generated 
 
 - Source table: [`data/tracks.csv`](data/tracks.csv)
 - Genre rules: [`data/genre_rules.csv`](data/genre_rules.csv)
+- Country overrides: [`data/country_overrides.csv`](data/country_overrides.csv)
 - README generator: [`scripts/build_readme.py`](scripts/build_readme.py)
 - Spotify exporter: [`scripts/export_spotify.py`](scripts/export_spotify.py)
+- MusicBrainz country backfill: [`scripts/backfill_countries_musicbrainz.py`](scripts/backfill_countries_musicbrainz.py)
 - MusicBrainz genre enricher: [`scripts/enrich_genres_musicbrainz.py`](scripts/enrich_genres_musicbrainz.py)
 - Genre rule applier: [`scripts/apply_genre_rules.py`](scripts/apply_genre_rules.py)
 - Spotify API debug: [`scripts/debug_spotify.py`](scripts/debug_spotify.py)
 
 </details>
 
-_Generated at 2026-06-01 10:33 UTC._
+_Generated at 2026-06-03 08:05 UTC._
