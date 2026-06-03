@@ -201,4 +201,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-03 08:33 UTC._
+_Generated at 2026-06-03 08:40 UTC._
