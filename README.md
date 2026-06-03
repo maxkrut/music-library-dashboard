@@ -86,7 +86,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | Italy | 33 |
 | Australia | 28 |
 | Ireland | 22 |
-| Poland | 19 |
+| Poland | 20 |
 | Belgium | 16 |
 | Greece | 15 |
 | Switzerland | 14 |
@@ -182,4 +182,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-03 08:58 UTC._
+_Generated at 2026-06-03 08:59 UTC._
