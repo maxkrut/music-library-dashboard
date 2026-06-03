@@ -4,7 +4,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 | Tracks | Artists | Albums | Tag genres | Assigned genres | Countries | Playlists | Release years | Duration |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1972 | 1367 | 1676 | 563 | 214 | 52 | 5 | 1958-2026 | 183h 53m |
+| 1972 | 1365 | 1676 | 563 | 214 | 52 | 5 | 1958-2026 | 183h 53m |
 
 > Each artist is assigned to exactly one dominant genre. Every genre card below shows top 10 artists, years and countries.
 
@@ -72,7 +72,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 | Country | Tracks |
 | --- | --- |
-| United States | 620 |
+| United States | 617 |
 | United Kingdom | 291 |
 | Norway | 227 |
 | Sweden | 165 |
@@ -83,10 +83,10 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | Russia | 47 |
 | Denmark | 38 |
 | Netherlands | 33 |
-| Italy | 33 |
+| Italy | 32 |
 | Australia | 28 |
 | Ireland | 22 |
-| Poland | 20 |
+| Poland | 19 |
 | Belgium | 16 |
 | Greece | 15 |
 | Switzerland | 14 |
@@ -182,4 +182,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-03 09:07 UTC._
+_Generated at 2026-06-03 20:16 UTC._

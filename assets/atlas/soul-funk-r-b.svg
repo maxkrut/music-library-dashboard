@@ -14,13 +14,14 @@
 <text x="300.2" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
 <line x1="203.7" y1="106" x2="203.7" y2="252" stroke="#cfd6ce"/>
 <line x1="288.2" y1="106" x2="288.2" y2="252" stroke="#cfd6ce"/>
-<text x="28.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">The Derek Trucks Ba…</text>
+<text x="28.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">The Derek Trucks Band</text>
 <text x="186.5" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">4</text>
 <text x="28.0" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Behrosth</text>
 <text x="186.5" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="28.0" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Erykah Badu</text>
 <text x="186.5" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="28.0" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">James Brown &amp; The F…</text>
+<text x="28.0" y="173.0" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="400" fill="#102027" text-anchor="start">James Brown &amp; The</text>
+<text x="28.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="400" fill="#102027" text-anchor="start">Famous Flames</text>
 <text x="186.5" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="28.0" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Legend</text>
 <text x="186.5" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
@@ -61,11 +62,11 @@
 <text x="692.2" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
 <line x1="595.7" y1="106" x2="595.7" y2="252" stroke="#cfd6ce"/>
 <line x1="680.2" y1="106" x2="680.2" y2="252" stroke="#cfd6ce"/>
-<text x="420.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Earth</text>
-<text x="578.5" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">2</text>
-<text x="420.0" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Chaka Khan</text>
+<text x="420.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Chaka Khan</text>
+<text x="578.5" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="420.0" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Earth</text>
 <text x="578.5" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="420.0" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Wind &amp; Fire</text>
+<text x="420.0" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Earth, Wind &amp; Fire</text>
 <text x="578.5" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="420.0" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Loose Change</text>
 <text x="578.5" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
@@ -82,7 +83,7 @@
 <text x="607.7" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1979</text>
 <text x="676.6" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="692.2" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United States</text>
-<text x="780.3" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">6</text>
+<text x="780.3" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">4</text>
 <rect x="800.0" y="70.0" width="384.0" height="192" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="800.0" y="70.0" width="4" height="192" fill="#557e64"/>
 <rect x="804.0" y="70.0" width="380.0" height="28" fill="#edf2ed"/>

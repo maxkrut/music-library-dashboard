@@ -151,11 +151,13 @@
 <line x1="288.2" y1="306" x2="288.2" y2="452" stroke="#cfd6ce"/>
 <text x="28.0" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Death In June</text>
 <text x="186.5" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">3</text>
-<text x="28.0" y="349.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">:Of The Wand And Th…</text>
+<text x="28.0" y="347.0" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="400" fill="#102027" text-anchor="start">:Of The Wand And The</text>
+<text x="28.0" y="354.0" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="400" fill="#102027" text-anchor="start">Moon:</text>
 <text x="186.5" y="349.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="28.0" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Current 93</text>
 <text x="186.5" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="28.0" y="375.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Ivar Bjørnson &amp; Ein…</text>
+<text x="28.0" y="373.0" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="400" fill="#102027" text-anchor="start">Ivar Bjørnson &amp; Einar</text>
+<text x="28.0" y="380.0" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="400" fill="#102027" text-anchor="start">Selvik</text>
 <text x="186.5" y="375.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="215.7" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1992</text>
 <text x="284.6" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">2</text>
@@ -297,7 +299,7 @@
 <text x="300.2" y="718.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
 <line x1="203.7" y1="706" x2="203.7" y2="852" stroke="#cfd6ce"/>
 <line x1="288.2" y1="706" x2="288.2" y2="852" stroke="#cfd6ce"/>
-<text x="28.0" y="736.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Coláiste Árainn Mhó…</text>
+<text x="28.0" y="736.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Coláiste Árainn Mhóir</text>
 <text x="186.5" y="736.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="215.7" y="736.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2011</text>
 <text x="284.6" y="736.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
@@ -414,7 +416,8 @@
 <text x="692.2" y="1118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
 <line x1="595.7" y1="1106" x2="595.7" y2="1252" stroke="#cfd6ce"/>
 <line x1="680.2" y1="1106" x2="680.2" y2="1252" stroke="#cfd6ce"/>
-<text x="420.0" y="1136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Ryan Adams &amp; The Ca…</text>
+<text x="420.0" y="1134.0" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="400" fill="#102027" text-anchor="start">Ryan Adams &amp; The</text>
+<text x="420.0" y="1141.0" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="400" fill="#102027" text-anchor="start">Cardinals</text>
 <text x="578.5" y="1136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="607.7" y="1136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2007</text>
 <text x="676.6" y="1136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>

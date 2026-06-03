@@ -229,6 +229,10 @@ def split_values(value: str) -> list[str]:
     return [part.strip() for part in value.replace(",", ";").split(";") if part.strip()]
 
 
+def split_artist_names(value: str) -> list[str]:
+    return [part.strip() for part in value.split(";") if part.strip()]
+
+
 def norm(value: str) -> str:
     return " ".join(value.casefold().strip().split())
 
@@ -312,7 +316,7 @@ def effective_primary_genre(row: dict[str, str]) -> str:
 
 
 def all_artists(row: dict[str, str]) -> list[str]:
-    return split_values(row.get("artist_names", ""))
+    return split_artist_names(row.get("artist_names", ""))
 
 
 def md_escape(value: object) -> str:
@@ -438,6 +442,65 @@ def trim_text(value: str, limit: int) -> str:
     return value[: max(1, limit - 1)].rstrip() + "…"
 
 
+def estimated_text_width(value: str, size: int, *, weight: int = 400) -> float:
+    base_width = size * (0.58 if weight < 700 else 0.62)
+    total = 0.0
+    for char in value:
+        if char == " ":
+            total += size * 0.32
+        elif char in "il.,'!|":
+            total += size * 0.28
+        elif char in "mwMW@&":
+            total += size * 0.86
+        elif char.isdigit():
+            total += size * 0.52
+        else:
+            total += base_width
+    return total
+
+
+def wrap_text_by_width(value: str, max_width: float, *, size: int, weight: int = 400, max_lines: int = 2) -> list[str]:
+    if estimated_text_width(value, size, weight=weight) <= max_width:
+        return [value]
+
+    words = value.split()
+    if len(words) <= 1:
+        return [trim_text(value, max(4, int(max_width / (size * 0.62))))]
+
+    lines: list[str] = []
+    current = ""
+    for word in words:
+        candidate = f"{current} {word}".strip()
+        if current and estimated_text_width(candidate, size, weight=weight) > max_width:
+            lines.append(current)
+            current = word
+            if len(lines) == max_lines - 1:
+                break
+        else:
+            current = candidate
+
+    remainder = " ".join(words[len(" ".join(lines + ([current] if current else [])).split()):])
+    if remainder:
+        current = f"{current} {remainder}".strip()
+    if current:
+        lines.append(current)
+
+    if len(lines) > max_lines:
+        lines = lines[:max_lines]
+    if lines:
+        lines[-1] = trim_text(lines[-1], max(4, int(max_width / (size * 0.62))))
+    return lines or [value]
+
+
+def fit_text_lines(value: str, max_width: float, *, size: int, weight: int = 400) -> list[str]:
+    estimated_width = estimated_text_width(value, size, weight=weight)
+    if estimated_width <= max_width:
+        return [value]
+    if " " in value and estimated_width <= max_width * 1.42:
+        return wrap_text_by_width(value, max_width, size=size, weight=weight)
+    return [trim_text(value, max(4, int(max_width / (size * 0.58))))]
+
+
 def svg_text(
     x: float,
     y: float,
@@ -489,14 +552,26 @@ def svg_rank_column(
     width: float,
     max_chars: int,
     row_height: int = 13,
+    wrap_names: bool = False,
 ) -> list[str]:
     parts: list[str] = []
+    count_x = x + width - 4
+    name_width = max(20.0, width - 28)
     for index, (name, count) in enumerate(rows[:10]):
         row_y = y + index * row_height
-        parts.append(svg_text(x, row_y, trim_text(name, max_chars), size=10))
+        name_lines = (
+            fit_text_lines(name, name_width, size=10)
+            if wrap_names
+            else [trim_text(name, max_chars)]
+        )
+        text_size = 8 if len(name_lines) > 1 else 10
+        line_gap = 7 if len(name_lines) > 1 else 10
+        text_y = row_y - 2 if len(name_lines) > 1 else row_y
+        for line_index, line in enumerate(name_lines):
+            parts.append(svg_text(x, text_y + line_index * line_gap, line, size=text_size))
         parts.append(
             svg_text(
-                x + width - 4,
+                count_x,
                 row_y,
                 count,
                 size=10,
@@ -587,7 +662,7 @@ def write_genre_group_svg(
             ]
         )
         row_y = y + 66
-        parts.extend(svg_rank_column(artists, x=artists_x, y=row_y, width=card_width * 0.47 - 18, max_chars=20))
+        parts.extend(svg_rank_column(artists, x=artists_x, y=row_y, width=card_width * 0.47 - 18, max_chars=20, wrap_names=True))
         parts.extend(svg_rank_column(years, x=years_x, y=row_y, width=card_width * 0.19, max_chars=4))
         parts.extend(svg_rank_column(countries, x=countries_x, y=row_y, width=card_width * 0.24, max_chars=16))
 
