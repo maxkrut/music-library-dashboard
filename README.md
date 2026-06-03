@@ -874,7 +874,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <tr>
 <td valign="top">KAUAN <strong>4</strong><br>Atoma <strong>2</strong><br>Author &amp; Punisher <strong>2</strong><br>Silent Island <strong>2</strong><br>Dredg <strong>2</strong><br>Esben and the Witch <strong>2</strong><br>I Am Waiting for You Last Summer <strong>2</strong><br>Red Sparowes <strong>2</strong><br>A.A. Williams <strong>1</strong><br>Black Hill <strong>1</strong></td>
 <td valign="top">2021 <strong>6</strong><br>2020 <strong>4</strong><br>2018 <strong>3</strong><br>2025 <strong>3</strong><br>2024 <strong>3</strong><br>2022 <strong>2</strong><br>2002 <strong>2</strong><br>2006 <strong>2</strong><br>2019 <strong>2</strong><br>2013 <strong>2</strong></td>
-<td valign="top">United States <strong>9</strong><br>United Kingdom <strong>7</strong><br>Finland <strong>5</strong><br>Hungary <strong>4</strong><br>Sweden <strong>2</strong><br>Russia <strong>2</strong><br>France <strong>2</strong><br>Iceland <strong>2</strong><br>Belgium <strong>1</strong><br>Norway <strong>1</strong></td>
+<td valign="top">United States <strong>9</strong><br>United Kingdom <strong>7</strong><br>Finland <strong>5</strong><br>Hungary <strong>4</strong><br>Sweden <strong>2</strong><br>Russia <strong>2</strong><br>France <strong>2</strong><br>Iceland <strong>2</strong><br>Poland <strong>2</strong><br>Belgium <strong>1</strong></td>
 </tr>
 </table>
 </td>
@@ -3474,7 +3474,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | Italy | 33 |
 | Australia | 28 |
 | Ireland | 22 |
-| Poland | 19 |
+| Poland | 20 |
 | Belgium | 16 |
 | Greece | 15 |
 | Switzerland | 14 |
@@ -3570,4 +3570,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-03 08:47 UTC._
+_Generated at 2026-06-03 08:48 UTC._
