@@ -16,6 +16,8 @@ from typing import Iterable
 ROOT = Path(__file__).resolve().parents[1]
 TRACKS_CSV = ROOT / "data" / "tracks.csv"
 README = ROOT / "README.md"
+ASSETS_DIR = ROOT / "assets"
+ATLAS_DIR = ASSETS_DIR / "atlas"
 MUSICBRAINZ_ARTIST_CACHE = ROOT / ".cache" / "musicbrainz-artists.json"
 COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
 
@@ -348,14 +350,6 @@ def html_escape(value: object) -> str:
     return html.escape(str(value if value is not None else ""), quote=True)
 
 
-def rank_lines(rows: RankedRows, limit: int = 10) -> str:
-    if not rows:
-        return "&nbsp;"
-    return "<br>".join(
-        f"{html_escape(name)} <strong>{count}</strong>" for name, count in rows[:limit]
-    )
-
-
 def super_genre(genre: str) -> str:
     genre_key = genre.casefold()
     for label, markers in SUPER_GENRE_RULES:
@@ -427,15 +421,41 @@ def assigned_genre_rows(
     return top(counts, len(counts))
 
 
-def genre_card(
-    index: int,
+def slug(value: str) -> str:
+    text = re.sub(r"[^a-z0-9]+", "-", value.casefold()).strip("-")
+    return text or "group"
+
+
+def trim_text(value: str, limit: int) -> str:
+    if len(value) <= limit:
+        return value
+    return value[: max(1, limit - 1)].rstrip() + "…"
+
+
+def svg_text(
+    x: float,
+    y: float,
+    text: object,
+    *,
+    size: int = 11,
+    weight: int = 400,
+    fill: str = "#102027",
+    anchor: str = "start",
+) -> str:
+    return (
+        f'<text x="{x:.1f}" y="{y:.1f}" font-family="Segoe UI, Arial, sans-serif" '
+        f'font-size="{size}" font-weight="{weight}" fill="{fill}" text-anchor="{anchor}">'
+        f"{html_escape(text)}</text>"
+    )
+
+
+def genre_stats(
     genre: str,
-    count: int,
     tracks: list[TrackRow],
     artist_cache: dict[str, object],
     country_overrides: dict[str, str],
     artist_genres: dict[str, str],
-) -> str:
+) -> tuple[RankedRows, RankedRows, RankedRows]:
     rows = [
         row for row in tracks if artists_assigned_to_genre(row, artist_genres, genre)
     ]
@@ -452,20 +472,122 @@ def genre_card(
         for country in [artist_country(artist, artist_cache, country_overrides)]
         if country
     )
-    return f"""
-<td valign="top" width="33%">
-<strong>{index:02d} · {html_escape(genre)}</strong><br>
-<sub>{count} total tracks · top 10</sub>
-<table>
-<tr><th>Artists</th><th>Years</th><th>Countries</th></tr>
-<tr>
-<td valign="top">{rank_lines(top(genre_artists, 10))}</td>
-<td valign="top">{rank_lines(top(genre_years, 10))}</td>
-<td valign="top">{rank_lines(top(genre_countries, 10))}</td>
-</tr>
-</table>
-</td>
-"""
+    return top(genre_artists, 10), top(genre_years, 10), top(genre_countries, 10)
+
+
+def svg_rank_column(
+    rows: RankedRows,
+    *,
+    x: float,
+    y: float,
+    width: float,
+    max_chars: int,
+    row_height: int = 13,
+) -> list[str]:
+    parts: list[str] = []
+    for index, (name, count) in enumerate(rows[:10]):
+        row_y = y + index * row_height
+        parts.append(svg_text(x, row_y, trim_text(name, max_chars), size=10))
+        parts.append(
+            svg_text(
+                x + width - 4,
+                row_y,
+                count,
+                size=10,
+                weight=800,
+                fill="#526f92",
+                anchor="end",
+            )
+        )
+    return parts
+
+
+def write_genre_group_svg(
+    path: Path,
+    group: str,
+    group_rows: RankedRows,
+    group_tracks: int,
+    card_offset: int,
+    tracks: list[TrackRow],
+    artist_cache: dict[str, object],
+    country_overrides: dict[str, str],
+    artist_genres: dict[str, str],
+) -> None:
+    width = 1200
+    margin = 16
+    gap = 8
+    card_width = (width - margin * 2 - gap * 2) / 3
+    card_height = 192
+    header_height = 44
+    row_count = (len(group_rows) + 2) // 3
+    height = margin + header_height + 10 + row_count * card_height + max(0, row_count - 1) * gap + margin
+    colors = ("#557e64", "#526f92", "#a96855")
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="{html_escape(group)} genre atlas">',
+        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
+        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
+        svg_text(margin + 14, margin + 29, group, size=22, weight=800, fill="#ffffff"),
+        svg_text(
+            width - margin - 14,
+            margin + 29,
+            f"{len(group_rows)} genres · {group_tracks} tracks",
+            size=13,
+            weight=800,
+            fill="#dfe8df",
+            anchor="end",
+        ),
+    ]
+
+    for local_index, (genre, count) in enumerate(group_rows):
+        row_index, col_index = divmod(local_index, 3)
+        x = margin + col_index * (card_width + gap)
+        y = margin + header_height + 10 + row_index * (card_height + gap)
+        accent = colors[(card_offset + local_index) % len(colors)]
+        artists, years, countries = genre_stats(
+            genre,
+            tracks,
+            artist_cache,
+            country_overrides,
+            artist_genres,
+        )
+        number = card_offset + local_index + 1
+        artists_x = x + 12
+        years_x = x + card_width * 0.55
+        countries_x = x + card_width * 0.70
+        header_y = y + 48
+
+        parts.extend(
+            [
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="{card_width:.1f}" height="{card_height}" fill="#fffefa" stroke="#c7d0c7"/>',
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{card_height}" fill="{accent}"/>',
+                f'<rect x="{x + 4:.1f}" y="{y:.1f}" width="{card_width - 4:.1f}" height="28" fill="#edf2ed"/>',
+                svg_text(x + 12, y + 19, f"{number:02d}", size=10, weight=800, fill="#a96855"),
+                svg_text(x + 44, y + 20, trim_text(genre, 28), size=15, weight=800),
+                svg_text(
+                    x + card_width - 10,
+                    y + 19,
+                    f"{count} total · top 10",
+                    size=11,
+                    weight=800,
+                    fill="#557e64",
+                    anchor="end",
+                ),
+                svg_text(artists_x, header_y, "ARTISTS", size=10, weight=800, fill="#5d6b62"),
+                svg_text(years_x, header_y, "YEARS", size=10, weight=800, fill="#5d6b62"),
+                svg_text(countries_x, header_y, "COUNTRIES", size=10, weight=800, fill="#5d6b62"),
+                f'<line x1="{years_x - 8:.1f}" y1="{y + 36}" x2="{years_x - 8:.1f}" y2="{y + card_height - 10}" stroke="#cfd6ce"/>',
+                f'<line x1="{countries_x - 8:.1f}" y1="{y + 36}" x2="{countries_x - 8:.1f}" y2="{y + card_height - 10}" stroke="#cfd6ce"/>',
+            ]
+        )
+        row_y = y + 66
+        parts.extend(svg_rank_column(artists, x=artists_x, y=row_y, width=card_width * 0.50 - 18, max_chars=22))
+        parts.extend(svg_rank_column(years, x=years_x, y=row_y, width=card_width * 0.14, max_chars=4))
+        parts.extend(svg_rank_column(countries, x=countries_x, y=row_y, width=card_width * 0.28, max_chars=18))
+
+    parts.append("</svg>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(parts) + "\n", encoding="utf-8")
 
 
 def genre_atlas(
@@ -474,12 +596,17 @@ def genre_atlas(
     country_overrides: dict[str, str],
     genre_rows: RankedRows,
     artist_genres: dict[str, str],
+    readme_dir: Path,
 ) -> list[str]:
+    ATLAS_DIR.mkdir(parents=True, exist_ok=True)
+    for old_svg in ATLAS_DIR.glob("*.svg"):
+        old_svg.unlink()
+
     grouped: dict[str, RankedRows] = {}
     for genre, count in genre_rows:
         grouped.setdefault(super_genre(genre), []).append((genre, count))
 
-    lines: list[str] = []
+    lines: list[str] = ["## Genre Atlas", ""]
     group_order = [label for label, _markers in SUPER_GENRE_RULES] + ["Other"]
     card_index = 0
     for group in group_order:
@@ -487,33 +614,28 @@ def genre_atlas(
         if not group_rows:
             continue
         group_tracks = sum(count for _genre, count in group_rows)
+        path = ATLAS_DIR / f"{slug(group)}.svg"
+        write_genre_group_svg(
+            path,
+            group,
+            group_rows,
+            group_tracks,
+            card_index,
+            tracks,
+            artist_cache,
+            country_overrides,
+            artist_genres,
+        )
+        rel_path = os.path.relpath(path, readme_dir).replace("\\", "/")
         lines.extend(
             [
                 f"## {group}",
                 "",
-                f"**{len(group_rows)} genres · {group_tracks} tracks**",
+                f"![{group} genre atlas]({rel_path})",
                 "",
             ]
         )
-        cards: list[str] = []
-        for genre, count in group_rows:
-            card_index += 1
-            cards.append(
-                genre_card(
-                    card_index,
-                    genre,
-                    count,
-                    tracks,
-                    artist_cache,
-                    country_overrides,
-                    artist_genres,
-                )
-            )
-        for offset in range(0, len(cards), 3):
-            chunk = cards[offset : offset + 3]
-            while len(chunk) < 3:
-                chunk.append('<td valign="top" width="33%">&nbsp;</td>')
-            lines.extend(["<table>", "<tr>", *chunk, "</tr>", "</table>", ""])
+        card_index += len(group_rows)
     return lines
 
 
@@ -607,7 +729,16 @@ def build_dashboard(
                 "",
             ]
         )
-        lines.extend(genre_atlas(tracks, artist_cache, country_overrides, assigned_genres, artist_genres))
+        lines.extend(
+            genre_atlas(
+                tracks,
+                artist_cache,
+                country_overrides,
+                assigned_genres,
+                artist_genres,
+                readme_dir,
+            )
+        )
 
         lines.extend(
             [

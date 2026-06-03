@@ -5,7 +5,7 @@ The full Spotify export is kept out of the public repository.
 
 ## Repository Layout
 
-- Public repository: README, scripts, `data/genre_rules.csv`, `data/country_overrides.csv`.
+- Public repository: README, generated atlas SVG assets, scripts, `data/genre_rules.csv`, `data/country_overrides.csv`.
 - Private data repository: `data/tracks.csv` and optional MusicBrainz caches under `.cache/`.
 
 The public workflow checks out the private data repository into a temporary `.private-data/` folder, copies `data/tracks.csv` into the workspace, rebuilds public artifacts, commits updated private data back to the private repository, then removes private files before committing public changes.
