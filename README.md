@@ -166,20 +166,23 @@
 - `python scripts/build_readme.py` regenerates this README and SVG charts.
 - `python scripts/debug_spotify.py` checks OAuth and first Spotify API pages without writing CSV.
 - Manual fields in `data/tracks.csv` are preserved on export: `year`, `primary_genre`, `genres`, `rating`, `status`, `tags`, `notes`.
+- Weekly GitHub Actions use a private data repository for `data/tracks.csv`; this public repository commits only generated summaries and public rules.
 
 </details>
 
 <details>
 <summary>Repeat this</summary>
 
-Create a Spotify app, run the local OAuth export once, then store the generated refresh token as a GitHub secret. GitHub Actions can refresh the data weekly without using the local `.env` file.
+Create a Spotify app, run the local OAuth export once, store the full `data/tracks.csv` in a private data repository, then set public repository secrets described in `DATA.md`. GitHub Actions can refresh the public dashboard weekly without publishing the full CSV.
 
 </details>
 
 <details>
 <summary>Data</summary>
 
-- Source table: [`data/tracks.csv`](data/tracks.csv)
+- Source table: private `data/tracks.csv` fetched during the weekly workflow and not published in this repository.
+- Data setup: [`DATA.md`](DATA.md)
+- Track CSV example: [`data/tracks.example.csv`](data/tracks.example.csv)
 - Genre rules: [`data/genre_rules.csv`](data/genre_rules.csv)
 - Country overrides: [`data/country_overrides.csv`](data/country_overrides.csv)
 - README generator: [`scripts/build_readme.py`](scripts/build_readme.py)
@@ -191,4 +194,4 @@ Create a Spotify app, run the local OAuth export once, then store the generated 
 
 </details>
 
-_Generated at 2026-06-03 08:05 UTC._
+_Generated at 2026-06-03 08:06 UTC._

@@ -1,4 +1,6 @@
 .env
 .cache/
+.private-data/
 __pycache__/
 *.pyc
+data/tracks.csv

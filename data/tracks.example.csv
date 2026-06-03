@@ -1,0 +1,2 @@
+track_id,track_name,artist_names,album_name,spotify_year,year,spotify_genres,primary_genre,genres,release_date,duration_ms,explicit,popularity,spotify_url,album_id,artist_ids,track_number,disc_number,sources,playlist_names,first_added_at,latest_added_at,rating,status,tags,notes
+example-track-id,Example Track,Example Artist,Example Album,2026,2026,,example genre,example genre,2026-01-01,180000,False,,https://open.spotify.com/track/example,example-album-id,example-artist-id,1,1,liked,,2026-01-01T00:00:00Z,2026-01-01T00:00:00Z,,,,

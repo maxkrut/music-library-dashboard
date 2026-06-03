@@ -1,4 +1,4 @@
-name: Update README
+name: Update public README
 
 on:
   workflow_dispatch:
@@ -6,11 +6,15 @@ on:
     - cron: "17 5 * * 1"
   push:
     paths:
-      - data/tracks.csv
+      - data/country_overrides.csv
       - data/genre_rules.csv
+      - mockups/readme-variants.html
+      - scripts/backfill_countries_musicbrainz.py
       - scripts/build_readme.py
+      - scripts/build_readme_mockups.py
       - scripts/export_spotify.py
       - scripts/apply_genre_rules.py
+      - scripts/enrich_genres_musicbrainz.py
       - .github/workflows/update-readme.yml
 
 jobs:
@@ -19,16 +23,41 @@ jobs:
     permissions:
       contents: write
     env:
+      PRIVATE_DATA_REPO: ${{ secrets.PRIVATE_DATA_REPO }}
+      PRIVATE_DATA_TOKEN: ${{ secrets.PRIVATE_DATA_TOKEN }}
       SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
       SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
       SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
       SPOTIFY_REDIRECT_URI: ${{ secrets.SPOTIFY_REDIRECT_URI || 'http://127.0.0.1:8888/callback' }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout public repository
+        uses: actions/checkout@v4
+
+      - name: Validate private data configuration
+        run: |
+          test -n "$PRIVATE_DATA_REPO" || { echo "Missing PRIVATE_DATA_REPO secret"; exit 1; }
+          test -n "$PRIVATE_DATA_TOKEN" || { echo "Missing PRIVATE_DATA_TOKEN secret"; exit 1; }
+
+      - name: Checkout private data repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.PRIVATE_DATA_REPO }}
+          token: ${{ secrets.PRIVATE_DATA_TOKEN }}
+          path: .private-data
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Restore private track data
+        run: |
+          test -f .private-data/data/tracks.csv || { echo "Private repo must contain data/tracks.csv"; exit 1; }
+          mkdir -p data .cache
+          cp .private-data/data/tracks.csv data/tracks.csv
+          if [ -f .private-data/.cache/musicbrainz-artists.json ]; then cp .private-data/.cache/musicbrainz-artists.json .cache/musicbrainz-artists.json; fi
+          if [ -f .private-data/.cache/musicbrainz-genres.json ]; then cp .private-data/.cache/musicbrainz-genres.json .cache/musicbrainz-genres.json; fi
+          if [ -f .private-data/.cache/musicbrainz-release-groups.json ]; then cp .private-data/.cache/musicbrainz-release-groups.json .cache/musicbrainz-release-groups.json; fi
 
       - name: Export Spotify metadata
         if: env.SPOTIFY_CLIENT_ID != '' && env.SPOTIFY_CLIENT_SECRET != '' && env.SPOTIFY_REFRESH_TOKEN != ''
@@ -37,13 +66,37 @@ jobs:
       - name: Apply genre rules
         run: python scripts/apply_genre_rules.py
 
-      - name: Build README dashboard
-        run: python scripts/build_readme.py
+      - name: Build public artifacts
+        run: |
+          python scripts/build_readme.py
+          python scripts/build_readme_mockups.py
 
-      - name: Commit dashboard changes
+      - name: Commit private data updates
+        run: |
+          mkdir -p .private-data/data .private-data/.cache
+          cp data/tracks.csv .private-data/data/tracks.csv
+          if [ -f .cache/musicbrainz-artists.json ]; then cp .cache/musicbrainz-artists.json .private-data/.cache/musicbrainz-artists.json; fi
+          if [ -f .cache/musicbrainz-genres.json ]; then cp .cache/musicbrainz-genres.json .private-data/.cache/musicbrainz-genres.json; fi
+          if [ -f .cache/musicbrainz-release-groups.json ]; then cp .cache/musicbrainz-release-groups.json .private-data/.cache/musicbrainz-release-groups.json; fi
+          cd .private-data
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/tracks.csv
+          if [ -f .cache/musicbrainz-artists.json ]; then git add -f .cache/musicbrainz-artists.json; fi
+          if [ -f .cache/musicbrainz-genres.json ]; then git add -f .cache/musicbrainz-genres.json; fi
+          if [ -f .cache/musicbrainz-release-groups.json ]; then git add -f .cache/musicbrainz-release-groups.json; fi
+          git diff --cached --quiet || git commit -m "Update private Spotify track data"
+          git push
+
+      - name: Remove private files from public workspace
+        run: |
+          rm -f data/tracks.csv
+          rm -rf .cache .private-data
+
+      - name: Commit public README updates
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/banner.svg assets/genres.svg assets/timeline.svg data/tracks.csv data/genre_rules.csv
-          git diff --cached --quiet || git commit -m "Update Spotify library dashboard"
+          git add README.md assets/banner.svg assets/genres.svg assets/timeline.svg mockups/readme-variants.html data/genre_rules.csv data/country_overrides.csv
+          git diff --cached --quiet || git commit -m "Update public Spotify library dashboard"
           git push
