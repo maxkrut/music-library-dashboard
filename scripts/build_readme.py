@@ -129,6 +129,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input", type=Path, default=TRACKS_CSV)
     parser.add_argument("--output", type=Path, default=README)
     parser.add_argument("--assets-dir", type=Path, default=ASSETS_DIR)
+    parser.add_argument(
+        "--allow-empty",
+        action="store_true",
+        help="Allow a missing input CSV and render setup content instead of failing.",
+    )
     return parser.parse_args()
 
 
@@ -136,9 +141,11 @@ def resolve_repo_path(path: Path) -> Path:
     return path if path.is_absolute() else ROOT / path
 
 
-def read_tracks(path: Path) -> list[dict[str, str]]:
+def read_tracks(path: Path, allow_missing: bool = False) -> list[dict[str, str]]:
     if not path.exists():
-        return []
+        if allow_missing:
+            return []
+        raise FileNotFoundError(f"Track CSV not found: {path}")
     with path.open("r", encoding="utf-8-sig", newline="") as file:
         return list(csv.DictReader(file))
 
@@ -287,6 +294,11 @@ def year_to_decade(year: str) -> str:
     if not year.isdigit():
         return ""
     return f"{int(year) // 10 * 10}s"
+
+
+def date_month(value: str) -> str:
+    date = value[:10]
+    return date[:7] if len(date) >= 7 else ""
 
 
 def duration_label(total_ms: int) -> str:
@@ -476,11 +488,16 @@ def build_dashboard(
             ]
         )
     else:
-        latest = sorted(
-            [row for row in tracks if row.get("latest_added_at")],
-            key=lambda row: row.get("latest_added_at", ""),
-            reverse=True,
-        )[:12]
+        added_months = Counter(
+            date_month(row.get("latest_added_at", ""))
+            for row in tracks
+            if date_month(row.get("latest_added_at", ""))
+        )
+        added_years = Counter(
+            row.get("latest_added_at", "")[:4]
+            for row in tracks
+            if row.get("latest_added_at", "")[:4].isdigit()
+        )
 
         if genres:
             lines.extend(
@@ -527,23 +544,14 @@ def build_dashboard(
                 "",
                 ]
             )
-        if latest:
+        if added_months:
             lines.extend(
                 [
-                "## Latest",
+                "## Recent Adds",
                 "",
-                table(
-                    ["Track", "Artists", "Year", "Added"],
-                    [
-                        [
-                            row.get("track_name", ""),
-                            row.get("artist_names", ""),
-                            effective_year(row),
-                            row.get("latest_added_at", "")[:10],
-                        ]
-                        for row in latest
-                    ],
-                ),
+                table(["Added month", "Tracks"], top(added_months, 12)),
+                "",
+                table(["Added year", "Tracks"], top(added_years, 8)),
                 "",
                 ]
             )
@@ -606,7 +614,7 @@ def main() -> None:
     tracks_csv = resolve_repo_path(args.input)
     readme = resolve_repo_path(args.output)
     assets_dir = resolve_repo_path(args.assets_dir)
-    tracks = read_tracks(tracks_csv)
+    tracks = read_tracks(tracks_csv, allow_missing=args.allow_empty)
     readme.parent.mkdir(parents=True, exist_ok=True)
     readme.write_text(build_dashboard(tracks, tracks_csv, readme, assets_dir), encoding="utf-8")
     print(f"Wrote {readme}")

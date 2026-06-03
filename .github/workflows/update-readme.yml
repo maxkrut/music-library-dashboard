@@ -63,6 +63,12 @@ jobs:
         if: env.SPOTIFY_CLIENT_ID != '' && env.SPOTIFY_CLIENT_SECRET != '' && env.SPOTIFY_REFRESH_TOKEN != ''
         run: python scripts/export_spotify.py --no-interactive --verbose
 
+      - name: Backfill MusicBrainz artist countries
+        run: python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists
+
+      - name: Enrich genres from MusicBrainz cache
+        run: python scripts/enrich_genres_musicbrainz.py --offline
+
       - name: Apply genre rules
         run: python scripts/apply_genre_rules.py
 

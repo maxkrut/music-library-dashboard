@@ -138,22 +138,29 @@
 | 1960s | 18 |
 | 1950s | 1 |
 
-## Latest
+## Recent Adds
 
-| Track | Artists | Year | Added |
-| --- | --- | --- | --- |
-| Further in the Making | Nils Frahm | 2021 | 2026-05-26 |
-| So I Marched To The Sunken Empire | Darkthrone | 2026 | 2026-05-24 |
-| Águas Passadas | Kaatayra | 2026 | 2026-05-15 |
-| Let Us Live | Conjurer | 2025 | 2026-05-15 |
-| Flammifer | Summoning | 2013 | 2026-05-14 |
-| Terrestria III: Wither | Rivers of Nihil | 2018 | 2026-05-14 |
-| Protestantisk Fanatiker (London Fields Darkwave) | heks | 2026 | 2026-05-08 |
-| You Will Never Hold The Key | Spirit Adrift | 2026 | 2026-05-08 |
-| The Great Deceiver | BULLDOZER | 1984 | 2026-04-29 |
-| Another Beer (It's What I Need) | BULLDOZER | 1984 | 2026-04-29 |
-| Valley of The Wolf | Üga Büga | 2026 | 2026-04-27 |
-| Bend Towards The Dark | Immolation | 2026 | 2026-04-27 |
+| Added month | Tracks |
+| --- | --- |
+| 2023-04 | 1119 |
+| 2024-11 | 59 |
+| 2024-07 | 45 |
+| 2025-08 | 39 |
+| 2025-09 | 38 |
+| 2024-09 | 34 |
+| 2024-12 | 34 |
+| 2024-10 | 34 |
+| 2025-07 | 34 |
+| 2025-05 | 33 |
+| 2025-03 | 30 |
+| 2026-03 | 25 |
+
+| Added year | Tracks |
+| --- | --- |
+| 2023 | 1251 |
+| 2024 | 330 |
+| 2025 | 307 |
+| 2026 | 84 |
 
 <details>
 <summary>Workflow</summary>
@@ -194,4 +201,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-03 08:06 UTC._
+_Generated at 2026-06-03 08:18 UTC._

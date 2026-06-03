@@ -102,6 +102,28 @@ def console_text(value: object) -> str:
     return str(value).encode("ascii", errors="backslashreplace").decode("ascii")
 
 
+def country_missing_keys(
+    artist_cache: dict[str, Any], retry_checked: bool, limit: int
+) -> list[str]:
+    keys = [
+        key
+        for key, data in sorted(artist_cache.items())
+        if needs_country(data)
+        and isinstance(data, dict)
+        and data.get("artist_id")
+        and (retry_checked or not data.get("country_checked_at"))
+    ]
+    return keys[:limit] if limit else keys
+
+
+def country_missing_without_id(artist_cache: dict[str, Any]) -> list[str]:
+    return [
+        key
+        for key, data in sorted(artist_cache.items())
+        if needs_country(data) and isinstance(data, dict) and not data.get("artist_id")
+    ]
+
+
 def main() -> None:
     args = parse_args()
     artist_cache_path = resolve_path(args.artist_cache)
@@ -114,21 +136,9 @@ def main() -> None:
         artists = sorted({artist for row in tracks for artist in all_artists(row)}, key=str.casefold)
         absent_artists = [artist for artist in artists if norm(artist) not in artist_cache]
 
-    missing_keys = [
-        key
-        for key, data in sorted(artist_cache.items())
-        if needs_country(data)
-        and isinstance(data, dict)
-        and data.get("artist_id")
-        and (args.retry_checked or not data.get("country_checked_at"))
-    ]
-    missing_without_id = [
-        key
-        for key, data in sorted(artist_cache.items())
-        if needs_country(data) and isinstance(data, dict) and not data.get("artist_id")
-    ]
+    missing_keys = country_missing_keys(artist_cache, args.retry_checked, args.limit)
+    missing_without_id = country_missing_without_id(artist_cache)
     if args.limit:
-        missing_keys = missing_keys[: args.limit]
         absent_artists = absent_artists[: args.limit]
 
     print(f"Artists absent from MusicBrainz cache: {len(absent_artists)}")
@@ -162,6 +172,8 @@ def main() -> None:
 
     if fetched_absent:
         write_json(artist_cache_path, artist_cache)
+        missing_keys = country_missing_keys(artist_cache, args.retry_checked, args.limit)
+        missing_without_id = country_missing_without_id(artist_cache)
 
     changed = 0
     still_missing = 0

@@ -32,7 +32,7 @@ DEFAULT_REDIRECT_URI = "http://127.0.0.1:8888/callback"
 DEFAULT_SCOPE = "user-library-read playlist-read-private playlist-read-collaborative"
 MAX_RETRY_AFTER_SECONDS = max(1, int(os.getenv("SPOTIFY_MAX_RETRY_AFTER_SECONDS", "300")))
 MAX_RATE_LIMIT_RETRIES = max(1, int(os.getenv("SPOTIFY_MAX_RATE_LIMIT_RETRIES", "20")))
-ARTIST_BATCH_SIZE = max(1, int(os.getenv("SPOTIFY_ARTIST_BATCH_SIZE", "1")))
+ARTIST_BATCH_SIZE = min(50, max(1, int(os.getenv("SPOTIFY_ARTIST_BATCH_SIZE", "50"))))
 
 MANUAL_FIELDS = ["year", "primary_genre", "genres", "rating", "status", "tags", "notes"]
 FIELDNAMES = [

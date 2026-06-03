@@ -15,6 +15,7 @@ from build_readme import (
     all_artists,
     country_from_artist_data,
     duration_label,
+    date_month,
     effective_genres,
     effective_primary_genre,
     norm,
@@ -30,6 +31,9 @@ from build_readme import (
 
 
 OUTPUT = ROOT / "mockups" / "readme-variants.html"
+
+TrackRow = dict[str, str]
+RankedRows = list[tuple[str, int]]
 
 SUPER_GENRE_RULES = [
     (
@@ -124,19 +128,19 @@ def esc(value: object) -> str:
     return html.escape(str(value if value is not None else ""), quote=True)
 
 
-def compact_list(rows: list[tuple[str, int]], limit: int = 8) -> str:
+def compact_list(rows: RankedRows, limit: int = 8) -> str:
     return "\n".join(
         f'<li><span>{esc(name)}</span><b>{count}</b></li>' for name, count in rows[:limit]
     )
 
 
-def inline_tags(rows: list[tuple[str, int]], limit: int = 12) -> str:
+def inline_tags(rows: RankedRows, limit: int = 12) -> str:
     return "\n".join(
         f'<span class="tag">{esc(name)} <b>{count}</b></span>' for name, count in rows[:limit]
     )
 
 
-def table(rows: list[tuple[str, int]], label: str, limit: int = 10) -> str:
+def table(rows: RankedRows, label: str, limit: int = 10) -> str:
     body = "\n".join(
         f"<tr><td>{esc(name)}</td><td>{count}</td></tr>" for name, count in rows[:limit]
     )
@@ -150,21 +154,7 @@ def table(rows: list[tuple[str, int]], label: str, limit: int = 10) -> str:
     """
 
 
-def latest_rows(rows: list[dict[str, str]], limit: int = 6) -> str:
-    return "\n".join(
-        f"""
-        <tr>
-          <td>{esc(row.get("track_name", ""))}</td>
-          <td>{esc(row.get("artist_names", ""))}</td>
-          <td>{esc(effective_year(row))}</td>
-          <td>{esc((row.get("latest_added_at", "") or "")[:10])}</td>
-        </tr>
-        """
-        for row in rows[:limit]
-    )
-
-
-def bars(rows: list[tuple[str, int]], limit: int = 8) -> str:
+def bars(rows: RankedRows, limit: int = 8) -> str:
     if not rows:
         return ""
     max_value = max(value for _, value in rows[:limit]) or 1
@@ -187,7 +177,7 @@ def metrics_grid(metrics: list[tuple[str, object]]) -> str:
     )
 
 
-def has_genre(row: dict[str, str], genre: str) -> bool:
+def has_genre(row: TrackRow, genre: str) -> bool:
     genre_key = genre.casefold()
     return any(value.casefold() == genre_key for value in effective_genres(row))
 
@@ -200,16 +190,39 @@ def super_genre(genre: str) -> str:
     return "Other"
 
 
+def dominant_row_genre(row: TrackRow) -> str:
+    primary = effective_primary_genre(row).lower()
+    fallback = effective_genres(row)
+    return primary or (fallback[0].lower() if fallback else "")
+
+
+def artists_assigned_to_genre(
+    row: TrackRow,
+    artist_genres: dict[str, str],
+    genre: str,
+) -> list[str]:
+    return [artist for artist in all_artists(row) if artist_genres.get(artist) == genre]
+
+
+def artist_country(
+    artist: str,
+    artist_cache: dict[str, object],
+    country_overrides: dict[str, str],
+) -> str:
+    artist_key = norm(artist)
+    return country_overrides.get(artist_key, "") or country_from_artist_data(
+        artist_cache.get(artist_key)
+    )
+
+
 def artist_genre_assignments(
-    tracks: list[dict[str, str]],
-    genre_rows: list[tuple[str, int]],
+    tracks: list[TrackRow],
+    genre_rows: RankedRows,
 ) -> dict[str, str]:
     genre_rank = {genre: index for index, (genre, _count) in enumerate(genre_rows)}
     artist_genres: dict[str, Counter[str]] = {}
     for row in tracks:
-        primary = effective_primary_genre(row).lower()
-        fallback = effective_genres(row)
-        genre = primary or (fallback[0].lower() if fallback else "")
+        genre = dominant_row_genre(row)
         if not genre:
             continue
         for artist in all_artists(row):
@@ -225,9 +238,9 @@ def artist_genre_assignments(
 
 
 def assigned_genre_rows(
-    tracks: list[dict[str, str]],
+    tracks: list[TrackRow],
     artist_genres: dict[str, str],
-) -> list[tuple[str, int]]:
+) -> RankedRows:
     counts: Counter[str] = Counter()
     for row in tracks:
         row_genres = {
@@ -240,7 +253,7 @@ def assigned_genre_rows(
     return top(counts, len(counts))
 
 
-def micro_list(label: str, rows: list[tuple[str, int]], limit: int = 10) -> str:
+def micro_list(label: str, rows: RankedRows, limit: int = 10) -> str:
     if not rows:
         return f'<div class="micro-list"><h4>{esc(label)}</h4><p class="empty">No data</p></div>'
     items = "\n".join(
@@ -255,14 +268,14 @@ def micro_list(label: str, rows: list[tuple[str, int]], limit: int = 10) -> str:
 
 
 def genre_breakdown(
-    tracks: list[dict[str, str]],
+    tracks: list[TrackRow],
     artist_cache: dict[str, object],
     country_overrides: dict[str, str],
-    genre_rows: list[tuple[str, int]],
+    genre_rows: RankedRows,
     artist_genres: dict[str, str],
     limit: int = 20,
 ) -> str:
-    grouped: dict[str, list[tuple[str, int]]] = {}
+    grouped: dict[str, RankedRows] = {}
     for genre, count in genre_rows[:limit]:
         grouped.setdefault(super_genre(genre), []).append((genre, count))
 
@@ -280,24 +293,19 @@ def genre_breakdown(
             rows = [
                 row
                 for row in tracks
-                if any(artist_genres.get(artist) == genre for artist in all_artists(row))
+                if artists_assigned_to_genre(row, artist_genres, genre)
             ]
             genre_artists = Counter(
                 artist
                 for row in rows
-                for artist in all_artists(row)
-                if artist_genres.get(artist) == genre
+                for artist in artists_assigned_to_genre(row, artist_genres, genre)
             )
             genre_years = Counter(effective_year(row) for row in rows if effective_year(row).isdigit())
             genre_countries = Counter(
                 country
                 for row in rows
-                for artist in all_artists(row)
-                if artist_genres.get(artist) == genre
-                for country in [
-                    country_overrides.get(norm(artist), "")
-                    or country_from_artist_data(artist_cache.get(norm(artist)))
-                ]
+                for artist in artists_assigned_to_genre(row, artist_genres, genre)
+                for country in [artist_country(artist, artist_cache, country_overrides)]
                 if country
             )
             cards.append(
@@ -331,9 +339,9 @@ def genre_breakdown(
 
 
 def aggregate_tables(
-    countries: list[tuple[str, int]],
-    genres: list[tuple[str, int]],
-    artists: list[tuple[str, int]],
+    countries: RankedRows,
+    genres: RankedRows,
+    artists: RankedRows,
 ) -> str:
     return f"""
       <section class="aggregate-block">
@@ -393,13 +401,21 @@ def build_html() -> str:
         if (row.get("duration_ms") or "").isdigit()
     ]
     known_years = sorted(int(year) for year in years if year.isdigit())
-    latest = sorted(
-        [row for row in tracks if row.get("latest_added_at")],
-        key=lambda row: row.get("latest_added_at", ""),
-        reverse=True,
+    added_months = Counter(
+        month for row in tracks if (month := date_month(row.get("latest_added_at", "")))
     )
-    recent_cutoff = "2026-01-01"
-    added_2026 = sum(1 for row in tracks if row.get("latest_added_at", "")[:10] >= recent_cutoff)
+    added_years = Counter(
+        year for row in tracks if (year := row.get("latest_added_at", "")[:4]) and year.isdigit()
+    )
+    current_year_label = str(datetime.now(timezone.utc).year)
+    added_current_year = added_years.get(current_year_label, 0)
+    recent_genres = Counter(
+        genre
+        for row in tracks
+        if row.get("latest_added_at", "")[:4] == current_year_label
+        for genre in effective_genres(row)
+    )
+    latest_added = max((row.get("latest_added_at", "")[:10] for row in tracks), default="")
     explicit_count = sum(1 for row in tracks if row.get("explicit", "").casefold() == "true")
     genre_coverage = round(sum(1 for row in tracks if effective_genres(row)) / max(len(tracks), 1) * 100)
     country_coverage = round(
@@ -428,7 +444,7 @@ def build_html() -> str:
         ("avg track", duration_label(avg_ms)),
         ("genre coverage", f"{genre_coverage}%"),
         ("country coverage", f"{country_coverage}%"),
-        ("added in 2026", added_2026),
+        (f"added in {current_year_label}", added_current_year),
     ]
     source_metrics = [
         ("liked", sources.get("liked", 0)),
@@ -499,12 +515,12 @@ def build_html() -> str:
             "06. Recent Shelf",
             "Makes the README feel alive by emphasizing newest additions.",
             f"""
-            <div class="metrics three">{metrics_grid([("latest added", latest[0].get("latest_added_at", "")[:10] if latest else ""), ("added in 2026", added_2026), ("playlists", len(playlists))])}</div>
-            <table>
-              <caption>Latest additions</caption>
-              <thead><tr><th>Track</th><th>Artist</th><th>Year</th><th>Added</th></tr></thead>
-              <tbody>{latest_rows(latest, 6)}</tbody>
-            </table>
+            <div class="metrics three">{metrics_grid([("latest added", latest_added), (f"added in {current_year_label}", added_current_year), ("playlists", len(playlists))])}</div>
+            <div class="aggregate-grid">
+              {table(top(added_months, 10), "Added months", 10)}
+              {table(top(added_years, 10), "Added years", 10)}
+              {table(top(recent_genres, 10), f"{current_year_label} genres", 10)}
+            </div>
             """,
         ),
         section(
@@ -1068,7 +1084,8 @@ def build_html() -> str:
 
 def main() -> None:
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(build_html(), encoding="utf-8")
+    html_output = "\n".join(line.rstrip() for line in build_html().splitlines()) + "\n"
+    OUTPUT.write_text(html_output, encoding="utf-8")
     print(f"Wrote {OUTPUT}")
 
 
