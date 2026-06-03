@@ -8,10 +8,8 @@ on:
     paths:
       - data/country_overrides.csv
       - data/genre_rules.csv
-      - mockups/readme-variants.html
       - scripts/backfill_countries_musicbrainz.py
       - scripts/build_readme.py
-      - scripts/build_readme_mockups.py
       - scripts/export_spotify.py
       - scripts/apply_genre_rules.py
       - scripts/enrich_genres_musicbrainz.py
@@ -73,9 +71,7 @@ jobs:
         run: python scripts/apply_genre_rules.py
 
       - name: Build public artifacts
-        run: |
-          python scripts/build_readme.py
-          python scripts/build_readme_mockups.py
+        run: python scripts/build_readme.py
 
       - name: Commit private data updates
         run: |
@@ -103,6 +99,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/banner.svg assets/genres.svg assets/timeline.svg mockups/readme-variants.html data/genre_rules.csv data/country_overrides.csv
+          git add README.md assets/banner.svg assets/genres.svg assets/timeline.svg data/genre_rules.csv data/country_overrides.csv
           git diff --cached --quiet || git commit -m "Update public Spotify library dashboard"
           git push
