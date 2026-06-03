@@ -10,45 +10,45 @@
 <text x="60.0" y="90.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#102027" text-anchor="start">soul</text>
 <text x="390.0" y="89.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="end">10 total · top 10</text>
 <text x="28.0" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">ARTISTS</text>
-<text x="227.2" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
-<text x="284.8" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
-<line x1="219.2" y1="106" x2="219.2" y2="252" stroke="#cfd6ce"/>
-<line x1="276.8" y1="106" x2="276.8" y2="252" stroke="#cfd6ce"/>
-<text x="28.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">The Derek Trucks Band</text>
-<text x="198.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">4</text>
+<text x="215.7" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
+<text x="300.2" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
+<line x1="203.7" y1="106" x2="203.7" y2="252" stroke="#cfd6ce"/>
+<line x1="288.2" y1="106" x2="288.2" y2="252" stroke="#cfd6ce"/>
+<text x="28.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">The Derek Trucks Ba…</text>
+<text x="186.5" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">4</text>
 <text x="28.0" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Behrosth</text>
-<text x="198.0" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="186.5" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="28.0" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Erykah Badu</text>
-<text x="198.0" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="28.0" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">James Brown &amp; The Fam…</text>
-<text x="198.0" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="186.5" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="28.0" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">James Brown &amp; The F…</text>
+<text x="186.5" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="28.0" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Legend</text>
-<text x="198.0" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="186.5" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="28.0" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Terry Callier</text>
-<text x="198.0" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="186.5" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="28.0" y="214.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Toussaint McCall</text>
-<text x="198.0" y="214.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="227.2" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2006</text>
-<text x="277.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">2</text>
-<text x="227.2" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2024</text>
-<text x="277.0" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="227.2" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2000</text>
-<text x="277.0" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="227.2" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1966</text>
-<text x="277.0" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="227.2" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2019</text>
-<text x="277.0" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="227.2" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2009</text>
-<text x="277.0" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="227.2" y="214.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2002</text>
-<text x="277.0" y="214.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="227.2" y="227.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2004</text>
-<text x="277.0" y="227.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="227.2" y="240.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1967</text>
-<text x="277.0" y="240.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="284.8" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United States</text>
+<text x="186.5" y="214.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="215.7" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2006</text>
+<text x="284.6" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">2</text>
+<text x="215.7" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2024</text>
+<text x="284.6" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="215.7" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2000</text>
+<text x="284.6" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="215.7" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1966</text>
+<text x="284.6" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="215.7" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2019</text>
+<text x="284.6" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="215.7" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2009</text>
+<text x="284.6" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="215.7" y="214.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2002</text>
+<text x="284.6" y="214.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="215.7" y="227.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2004</text>
+<text x="284.6" y="227.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="215.7" y="240.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1967</text>
+<text x="284.6" y="240.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="300.2" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United States</text>
 <text x="388.3" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">9</text>
-<text x="284.8" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Russia</text>
+<text x="300.2" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Russia</text>
 <text x="388.3" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <rect x="408.0" y="70.0" width="384.0" height="192" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="408.0" y="70.0" width="4" height="192" fill="#a96855"/>
@@ -57,31 +57,31 @@
 <text x="452.0" y="90.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#102027" text-anchor="start">funk</text>
 <text x="782.0" y="89.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="end">5 total · top 10</text>
 <text x="420.0" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">ARTISTS</text>
-<text x="619.2" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
-<text x="676.8" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
-<line x1="611.2" y1="106" x2="611.2" y2="252" stroke="#cfd6ce"/>
-<line x1="668.8" y1="106" x2="668.8" y2="252" stroke="#cfd6ce"/>
+<text x="607.7" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
+<text x="692.2" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
+<line x1="595.7" y1="106" x2="595.7" y2="252" stroke="#cfd6ce"/>
+<line x1="680.2" y1="106" x2="680.2" y2="252" stroke="#cfd6ce"/>
 <text x="420.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Earth</text>
-<text x="590.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">2</text>
+<text x="578.5" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">2</text>
 <text x="420.0" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Chaka Khan</text>
-<text x="590.0" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="578.5" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="420.0" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Wind &amp; Fire</text>
-<text x="590.0" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="578.5" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="420.0" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Loose Change</text>
-<text x="590.0" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="578.5" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="420.0" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Prince</text>
-<text x="590.0" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="619.2" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2008</text>
-<text x="669.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="619.2" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2017</text>
-<text x="669.0" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="619.2" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1976</text>
-<text x="669.0" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="619.2" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2024</text>
-<text x="669.0" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="619.2" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1979</text>
-<text x="669.0" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="676.8" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United States</text>
+<text x="578.5" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="607.7" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2008</text>
+<text x="676.6" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="607.7" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2017</text>
+<text x="676.6" y="149.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="607.7" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1976</text>
+<text x="676.6" y="162.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="607.7" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2024</text>
+<text x="676.6" y="175.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="607.7" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1979</text>
+<text x="676.6" y="188.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="692.2" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United States</text>
 <text x="780.3" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">6</text>
 <rect x="800.0" y="70.0" width="384.0" height="192" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="800.0" y="70.0" width="4" height="192" fill="#557e64"/>
@@ -90,15 +90,15 @@
 <text x="844.0" y="90.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#102027" text-anchor="start">r&amp;b</text>
 <text x="1174.0" y="89.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="end">1 total · top 10</text>
 <text x="812.0" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">ARTISTS</text>
-<text x="1011.2" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
-<text x="1068.8" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
-<line x1="1003.2" y1="106" x2="1003.2" y2="252" stroke="#cfd6ce"/>
-<line x1="1060.8" y1="106" x2="1060.8" y2="252" stroke="#cfd6ce"/>
+<text x="999.7" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
+<text x="1084.2" y="118.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
+<line x1="987.7" y1="106" x2="987.7" y2="252" stroke="#cfd6ce"/>
+<line x1="1072.2" y1="106" x2="1072.2" y2="252" stroke="#cfd6ce"/>
 <text x="812.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Dexter Wansel</text>
-<text x="982.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="1011.2" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1976</text>
-<text x="1061.0" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="1068.8" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United States</text>
+<text x="970.5" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="999.7" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">1976</text>
+<text x="1068.6" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="1084.2" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United States</text>
 <text x="1172.3" y="136.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <rect x="16.0" y="270.0" width="384.0" height="192" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="16.0" y="270.0" width="4" height="192" fill="#526f92"/>
@@ -107,21 +107,21 @@
 <text x="60.0" y="290.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#102027" text-anchor="start">contemporary r&amp;b</text>
 <text x="390.0" y="289.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="end">1 total · top 10</text>
 <text x="28.0" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">ARTISTS</text>
-<text x="227.2" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
-<text x="284.8" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
-<line x1="219.2" y1="306" x2="219.2" y2="452" stroke="#cfd6ce"/>
-<line x1="276.8" y1="306" x2="276.8" y2="452" stroke="#cfd6ce"/>
+<text x="215.7" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
+<text x="300.2" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
+<line x1="203.7" y1="306" x2="203.7" y2="452" stroke="#cfd6ce"/>
+<line x1="288.2" y1="306" x2="288.2" y2="452" stroke="#cfd6ce"/>
 <text x="28.0" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Jacob Collier</text>
-<text x="198.0" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="186.5" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="28.0" y="349.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Metropole Orkest</text>
-<text x="198.0" y="349.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="186.5" y="349.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <text x="28.0" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Jules Buckley</text>
-<text x="198.0" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="227.2" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2018</text>
-<text x="277.0" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="284.8" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United Kingdom</text>
+<text x="186.5" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="215.7" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2018</text>
+<text x="284.6" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="300.2" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United Kingdom</text>
 <text x="388.3" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">2</text>
-<text x="284.8" y="349.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Netherlands</text>
+<text x="300.2" y="349.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Netherlands</text>
 <text x="388.3" y="349.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <rect x="408.0" y="270.0" width="384.0" height="192" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="408.0" y="270.0" width="4" height="192" fill="#a96855"/>
@@ -130,15 +130,15 @@
 <text x="452.0" y="290.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#102027" text-anchor="start">neo soul</text>
 <text x="782.0" y="289.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="end">1 total · top 10</text>
 <text x="420.0" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">ARTISTS</text>
-<text x="619.2" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
-<text x="676.8" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
-<line x1="611.2" y1="306" x2="611.2" y2="452" stroke="#cfd6ce"/>
-<line x1="668.8" y1="306" x2="668.8" y2="452" stroke="#cfd6ce"/>
+<text x="607.7" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
+<text x="692.2" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
+<line x1="595.7" y1="306" x2="595.7" y2="452" stroke="#cfd6ce"/>
+<line x1="680.2" y1="306" x2="680.2" y2="452" stroke="#cfd6ce"/>
 <text x="420.0" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Kem</text>
-<text x="590.0" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="619.2" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2004</text>
-<text x="669.0" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="676.8" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United States</text>
+<text x="578.5" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="607.7" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2004</text>
+<text x="676.6" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="692.2" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">United States</text>
 <text x="780.3" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 <rect x="800.0" y="270.0" width="384.0" height="192" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="800.0" y="270.0" width="4" height="192" fill="#557e64"/>
@@ -147,14 +147,14 @@
 <text x="844.0" y="290.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#102027" text-anchor="start">cinematic funk</text>
 <text x="1174.0" y="289.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="end">1 total · top 10</text>
 <text x="812.0" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">ARTISTS</text>
-<text x="1011.2" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
-<text x="1068.8" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
-<line x1="1003.2" y1="306" x2="1003.2" y2="452" stroke="#cfd6ce"/>
-<line x1="1060.8" y1="306" x2="1060.8" y2="452" stroke="#cfd6ce"/>
+<text x="999.7" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">YEARS</text>
+<text x="1084.2" y="318.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#5d6b62" text-anchor="start">COUNTRIES</text>
+<line x1="987.7" y1="306" x2="987.7" y2="452" stroke="#cfd6ce"/>
+<line x1="1072.2" y1="306" x2="1072.2" y2="452" stroke="#cfd6ce"/>
 <text x="812.0" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">The Diasonics</text>
-<text x="982.0" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="1011.2" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2025</text>
-<text x="1061.0" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
-<text x="1068.8" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Russia</text>
+<text x="970.5" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="999.7" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">2025</text>
+<text x="1068.6" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
+<text x="1084.2" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#102027" text-anchor="start">Russia</text>
 <text x="1172.3" y="336.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">1</text>
 </svg>

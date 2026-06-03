@@ -21,6 +21,12 @@ ATLAS_DIR = ASSETS_DIR / "atlas"
 MUSICBRAINZ_ARTIST_CACHE = ROOT / ".cache" / "musicbrainz-artists.json"
 COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
 
+
+def write_text_lf(path: Path, content: str) -> None:
+    with path.open("w", encoding="utf-8", newline="\n") as file:
+        file.write(content)
+
+
 COUNTRY_CODES = {
     "AU": "Australia",
     "AR": "Argentina",
@@ -553,8 +559,8 @@ def write_genre_group_svg(
         )
         number = card_offset + local_index + 1
         artists_x = x + 12
-        years_x = x + card_width * 0.55
-        countries_x = x + card_width * 0.70
+        years_x = x + card_width * 0.52
+        countries_x = x + card_width * 0.74
         header_y = y + 48
 
         parts.extend(
@@ -576,18 +582,18 @@ def write_genre_group_svg(
                 svg_text(artists_x, header_y, "ARTISTS", size=10, weight=800, fill="#5d6b62"),
                 svg_text(years_x, header_y, "YEARS", size=10, weight=800, fill="#5d6b62"),
                 svg_text(countries_x, header_y, "COUNTRIES", size=10, weight=800, fill="#5d6b62"),
-                f'<line x1="{years_x - 8:.1f}" y1="{y + 36}" x2="{years_x - 8:.1f}" y2="{y + card_height - 10}" stroke="#cfd6ce"/>',
-                f'<line x1="{countries_x - 8:.1f}" y1="{y + 36}" x2="{countries_x - 8:.1f}" y2="{y + card_height - 10}" stroke="#cfd6ce"/>',
+                f'<line x1="{years_x - 12:.1f}" y1="{y + 36}" x2="{years_x - 12:.1f}" y2="{y + card_height - 10}" stroke="#cfd6ce"/>',
+                f'<line x1="{countries_x - 12:.1f}" y1="{y + 36}" x2="{countries_x - 12:.1f}" y2="{y + card_height - 10}" stroke="#cfd6ce"/>',
             ]
         )
         row_y = y + 66
-        parts.extend(svg_rank_column(artists, x=artists_x, y=row_y, width=card_width * 0.50 - 18, max_chars=22))
-        parts.extend(svg_rank_column(years, x=years_x, y=row_y, width=card_width * 0.14, max_chars=4))
-        parts.extend(svg_rank_column(countries, x=countries_x, y=row_y, width=card_width * 0.28, max_chars=18))
+        parts.extend(svg_rank_column(artists, x=artists_x, y=row_y, width=card_width * 0.47 - 18, max_chars=20))
+        parts.extend(svg_rank_column(years, x=years_x, y=row_y, width=card_width * 0.19, max_chars=4))
+        parts.extend(svg_rank_column(countries, x=countries_x, y=row_y, width=card_width * 0.24, max_chars=16))
 
     parts.append("</svg>")
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("\n".join(parts) + "\n", encoding="utf-8")
+    write_text_lf(path, "\n".join(parts) + "\n")
 
 
 def genre_atlas(
@@ -813,7 +819,7 @@ def main() -> None:
     readme = resolve_repo_path(args.output)
     tracks = read_tracks(tracks_csv, allow_missing=args.allow_empty)
     readme.parent.mkdir(parents=True, exist_ok=True)
-    readme.write_text(build_dashboard(tracks, tracks_csv, readme), encoding="utf-8")
+    write_text_lf(readme, build_dashboard(tracks, tracks_csv, readme))
     print(f"Wrote {readme}")
 
 
