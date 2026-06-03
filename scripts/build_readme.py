@@ -16,12 +16,8 @@ from typing import Iterable
 ROOT = Path(__file__).resolve().parents[1]
 TRACKS_CSV = ROOT / "data" / "tracks.csv"
 README = ROOT / "README.md"
-ASSETS_DIR = ROOT / "assets"
 MUSICBRAINZ_ARTIST_CACHE = ROOT / ".cache" / "musicbrainz-artists.json"
 COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
-BANNER_SVG = ASSETS_DIR / "banner.svg"
-GENRES_SVG = ASSETS_DIR / "genres.svg"
-TIMELINE_SVG = ASSETS_DIR / "timeline.svg"
 
 COUNTRY_CODES = {
     "AU": "Australia",
@@ -123,12 +119,63 @@ COUNTRY_MARKERS = {
     "welsh": "United Kingdom",
 }
 
+TrackRow = dict[str, str]
+RankedRows = list[tuple[str, int]]
+
+SUPER_GENRE_RULES = [
+    ("Metal", ("metal", "doom", "blackgaze", "djent", "deathgrind", "grindcore", "mathcore", "sludge", "thrash")),
+    (
+        "Rock / Psych / Prog",
+        ("rock", "grunge", "shoegaze", "krautrock", "psychobilly", "rockabilly", "psych", "psychedelic", "prog", "jam band"),
+    ),
+    (
+        "Electronic / Ambient",
+        (
+            "electronic",
+            "electronica",
+            "ambient",
+            "techno",
+            "house",
+            "idm",
+            "synth",
+            "trance",
+            "dub",
+            "downtempo",
+            "drone",
+            "dungeon synth",
+            "drum and bass",
+            "jungle",
+            "breakbeat",
+            "breakcore",
+            "chillstep",
+            "vaporwave",
+            "dance",
+            "electro",
+            "dark wave",
+            "darkwave",
+            "coldwave",
+        ),
+    ),
+    ("Punk / Hardcore", ("punk", "hardcore", "crust", "d-beat", "post-hardcore", "emo")),
+    (
+        "Folk / World",
+        ("folk", "americana", "bluegrass", "neofolk", "country", "world", "celtic", "flamenco", "filmi", "junkanoo", "liedermacher"),
+    ),
+    ("Jazz / Blues", ("jazz", "blues", "bossa nova", "post-bop", "swing")),
+    ("Soul / Funk / R&B", ("soul", "funk", "r&b", "rhythm and blues")),
+    ("Reggae / Ska", ("reggae", "ska")),
+    ("Afrobeat / Latin", ("afrobeat", "afro-cuban", "latin")),
+    ("Classical / Score", ("classical", "orchestral", "score", "soundtrack", "chamber", "opera", "choral", "production music")),
+    ("Pop / Songwriter", ("pop", "singer-songwriter", "aor", "new wave")),
+    ("Hip-Hop / Rap", ("hip hop", "rap", "trap")),
+    ("Experimental / Noise", ("experimental", "noise", "avant-garde", "industrial")),
+]
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build README dashboard from a tracks CSV.")
     parser.add_argument("--input", type=Path, default=TRACKS_CSV)
     parser.add_argument("--output", type=Path, default=README)
-    parser.add_argument("--assets-dir", type=Path, default=ASSETS_DIR)
     parser.add_argument(
         "--allow-empty",
         action="store_true",
@@ -270,11 +317,6 @@ def md_link(label: str, target: Path, base_dir: Path) -> str:
     return f"[`{label}`]({rel})"
 
 
-def image_link(label: str, target: Path, base_dir: Path) -> str:
-    rel = os.path.relpath(target, base_dir).replace("\\", "/")
-    return f"![{label}]({rel})"
-
-
 def repo_label(path: Path) -> str:
     try:
         return path.relative_to(ROOT).as_posix()
@@ -290,17 +332,6 @@ def table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
     return "\n".join(rendered)
 
 
-def year_to_decade(year: str) -> str:
-    if not year.isdigit():
-        return ""
-    return f"{int(year) // 10 * 10}s"
-
-
-def date_month(value: str) -> str:
-    date = value[:10]
-    return date[:7] if len(date) >= 7 else ""
-
-
 def duration_label(total_ms: int) -> str:
     total_minutes = total_ms // 60000
     hours, minutes = divmod(total_minutes, 60)
@@ -313,108 +344,193 @@ def top(counter: Counter[str], limit: int = 12) -> list[tuple[str, int]]:
     return [(name, count) for name, count in counter.most_common(limit) if name]
 
 
-def write_empty_svg(path: Path, title: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="720" height="150" viewBox="0 0 720 150" role="img" aria-label="{html.escape(title)}">
-  <rect width="720" height="150" fill="#eef3ef"/>
-  <rect x="16" y="16" width="688" height="118" rx="10" fill="#fbfaf5" stroke="#c8d4cc"/>
-  <text x="34" y="66" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#1e2f2b">{html.escape(title)}</text>
-</svg>
-"""
-    path.write_text(svg, encoding="utf-8")
+def html_escape(value: object) -> str:
+    return html.escape(str(value if value is not None else ""), quote=True)
 
 
-def write_banner_svg(path: Path, tracks_count: int, artist_count: int, year_range: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    subtitle = f"{tracks_count} tracks / {artist_count} artists"
-    if year_range:
-        subtitle += f" / {year_range}"
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220" role="img" aria-label="Maks Krutikov Spotify Library">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#eef3ef"/>
-      <stop offset=".58" stop-color="#f8f5ee"/>
-      <stop offset="1" stop-color="#e7eef2"/>
-    </linearGradient>
-    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#5f8f73"/>
-      <stop offset=".52" stop-color="#6d86a6"/>
-      <stop offset="1" stop-color="#b8765f"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="220" rx="18" fill="url(#g)"/>
-  <circle cx="1024" cy="104" r="58" fill="none" stroke="#d2ded7" stroke-width="18" opacity=".72"/>
-  <circle cx="1024" cy="104" r="20" fill="#f8f5ee" stroke="#b7c9bf" stroke-width="2"/>
-  <path d="M0 164 C160 134 250 184 396 154 S650 126 790 150 1020 176 1200 132" fill="none" stroke="url(#line)" stroke-width="4" opacity=".75"/>
-  <path d="M0 190 C210 176 300 202 456 184 S732 160 900 176 1050 196 1200 172" fill="none" stroke="#6d86a6" stroke-width="2" opacity=".34"/>
-  <rect x="32" y="30" width="1136" height="160" rx="14" fill="#fbfaf5" opacity=".9" stroke="#c8d4cc"/>
-  <text x="58" y="84" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#5f8f73">PERSONAL SPOTIFY LIBRARY</text>
-  <text x="58" y="132" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="800" fill="#1e2f2b">Maks Krutikov Spotify Library</text>
-  <text x="60" y="166" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#586b63">{html.escape(subtitle)}</text>
-  <text x="970" y="72" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#5f8f73">CSV archive</text>
-  <text x="970" y="100" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#6d86a6">Genre metadata</text>
-  <text x="970" y="128" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#b8765f">Weekly refresh</text>
-</svg>
-"""
-    path.write_text(svg, encoding="utf-8")
-
-
-def write_bar_svg(path: Path, title: str, rows: list[tuple[str, int]], color: str) -> None:
+def rank_lines(rows: RankedRows, limit: int = 10) -> str:
     if not rows:
-        write_empty_svg(path, title)
-        return
+        return "&nbsp;"
+    return "<br>".join(
+        f"{html_escape(name)} <strong>{count}</strong>" for name, count in rows[:limit]
+    )
 
-    width = 720
-    left = 245
-    right = 56
-    row_height = 44
-    top_pad = 76
-    height = top_pad + row_height * len(rows) + 28
-    max_value = max(count for _, count in rows) or 1
-    bar_width = width - left - right
-    parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="{html.escape(title)}">',
-        f'<rect width="{width}" height="{height}" fill="#eef3ef"/>',
-        f'<rect x="14" y="14" width="{width - 28}" height="{height - 28}" rx="10" fill="#fbfaf5" stroke="{color}" stroke-opacity=".55"/>',
-        f'<text x="32" y="46" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#1e2f2b">{html.escape(title)}</text>',
+
+def super_genre(genre: str) -> str:
+    genre_key = genre.casefold()
+    for label, markers in SUPER_GENRE_RULES:
+        if any(marker in genre_key for marker in markers):
+            return label
+    return "Other"
+
+
+def dominant_row_genre(row: TrackRow) -> str:
+    primary = effective_primary_genre(row).lower()
+    fallback = effective_genres(row)
+    return primary or (fallback[0].lower() if fallback else "")
+
+
+def artist_country(
+    artist: str,
+    artist_cache: dict[str, object],
+    country_overrides: dict[str, str],
+) -> str:
+    artist_key = norm(artist)
+    return country_overrides.get(artist_key, "") or country_from_artist_data(
+        artist_cache.get(artist_key)
+    )
+
+
+def artist_genre_assignments(
+    tracks: list[TrackRow],
+    genre_rows: RankedRows,
+) -> dict[str, str]:
+    genre_rank = {genre: index for index, (genre, _count) in enumerate(genre_rows)}
+    artist_genres: dict[str, Counter[str]] = {}
+    for row in tracks:
+        genre = dominant_row_genre(row)
+        if not genre:
+            continue
+        for artist in all_artists(row):
+            artist_genres.setdefault(artist, Counter())[genre] += 1
+
+    assignments: dict[str, str] = {}
+    for artist, genre_counts in artist_genres.items():
+        assignments[artist] = min(
+            genre_counts,
+            key=lambda genre: (-genre_counts[genre], genre_rank.get(genre, len(genre_rank)), genre),
+        )
+    return assignments
+
+
+def artists_assigned_to_genre(
+    row: TrackRow,
+    artist_genres: dict[str, str],
+    genre: str,
+) -> list[str]:
+    return [artist for artist in all_artists(row) if artist_genres.get(artist) == genre]
+
+
+def assigned_genre_rows(
+    tracks: list[TrackRow],
+    artist_genres: dict[str, str],
+) -> RankedRows:
+    counts: Counter[str] = Counter()
+    for row in tracks:
+        row_genres = {
+            artist_genres.get(artist)
+            for artist in all_artists(row)
+            if artist_genres.get(artist)
+        }
+        for genre in row_genres:
+            counts[genre] += 1
+    return top(counts, len(counts))
+
+
+def genre_card(
+    index: int,
+    genre: str,
+    count: int,
+    tracks: list[TrackRow],
+    artist_cache: dict[str, object],
+    country_overrides: dict[str, str],
+    artist_genres: dict[str, str],
+) -> str:
+    rows = [
+        row for row in tracks if artists_assigned_to_genre(row, artist_genres, genre)
     ]
-    for index, (label, count) in enumerate(rows):
-        y = top_pad + index * row_height
-        length = int(bar_width * count / max_value)
-        display_label = label if len(label) <= 21 else f"{label[:18].rstrip()}..."
-        parts.extend(
+    genre_artists = Counter(
+        artist
+        for row in rows
+        for artist in artists_assigned_to_genre(row, artist_genres, genre)
+    )
+    genre_years = Counter(effective_year(row) for row in rows if effective_year(row).isdigit())
+    genre_countries = Counter(
+        country
+        for row in rows
+        for artist in artists_assigned_to_genre(row, artist_genres, genre)
+        for country in [artist_country(artist, artist_cache, country_overrides)]
+        if country
+    )
+    return f"""
+<td valign="top" width="33%">
+<strong>{index:02d} · {html_escape(genre)}</strong><br>
+<sub>{count} total tracks · top 10</sub>
+<table>
+<tr><th>Artists</th><th>Years</th><th>Countries</th></tr>
+<tr>
+<td valign="top">{rank_lines(top(genre_artists, 10))}</td>
+<td valign="top">{rank_lines(top(genre_years, 10))}</td>
+<td valign="top">{rank_lines(top(genre_countries, 10))}</td>
+</tr>
+</table>
+</td>
+"""
+
+
+def genre_atlas(
+    tracks: list[TrackRow],
+    artist_cache: dict[str, object],
+    country_overrides: dict[str, str],
+    genre_rows: RankedRows,
+    artist_genres: dict[str, str],
+) -> list[str]:
+    grouped: dict[str, RankedRows] = {}
+    for genre, count in genre_rows:
+        grouped.setdefault(super_genre(genre), []).append((genre, count))
+
+    lines: list[str] = []
+    group_order = [label for label, _markers in SUPER_GENRE_RULES] + ["Other"]
+    card_index = 0
+    for group in group_order:
+        group_rows = grouped.get(group, [])
+        if not group_rows:
+            continue
+        group_tracks = sum(count for _genre, count in group_rows)
+        lines.extend(
             [
-                f'<text x="32" y="{y + 25}" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#1e2f2b">{html.escape(display_label)}</text>',
-                f'<rect x="{left}" y="{y + 7}" width="{bar_width}" height="22" rx="5" fill="#e4e9e3"/>',
-                f'<rect x="{left}" y="{y + 7}" width="{max(length, 5)}" height="22" rx="5" fill="{color}"/>',
-                f'<text x="{left + bar_width + 12}" y="{y + 25}" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#1e2f2b">{count}</text>',
+                f"## {group}",
+                "",
+                f"**{len(group_rows)} genres · {group_tracks} tracks**",
+                "",
             ]
         )
-    parts.append("</svg>")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("\n".join(parts) + "\n", encoding="utf-8")
+        cards: list[str] = []
+        for genre, count in group_rows:
+            card_index += 1
+            cards.append(
+                genre_card(
+                    card_index,
+                    genre,
+                    count,
+                    tracks,
+                    artist_cache,
+                    country_overrides,
+                    artist_genres,
+                )
+            )
+        for offset in range(0, len(cards), 3):
+            chunk = cards[offset : offset + 3]
+            while len(chunk) < 3:
+                chunk.append('<td valign="top" width="33%">&nbsp;</td>')
+            lines.extend(["<table>", "<tr>", *chunk, "</tr>", "</table>", ""])
+    return lines
 
 
 def build_dashboard(
     tracks: list[dict[str, str]],
     tracks_csv: Path,
     readme: Path,
-    assets_dir: Path,
 ) -> str:
-    banner_svg = assets_dir / "banner.svg"
-    genres_svg = assets_dir / "genres.svg"
-    timeline_svg = assets_dir / "timeline.svg"
     readme_dir = readme.parent
     artist_cache = read_json(MUSICBRAINZ_ARTIST_CACHE)
     country_overrides = read_country_overrides(COUNTRY_OVERRIDES_CSV)
     artists = Counter(artist for row in tracks for artist in all_artists(row))
     genres = Counter(genre.lower() for row in tracks for genre in effective_genres(row))
-    primary_genres = Counter(effective_primary_genre(row).lower() for row in tracks if effective_primary_genre(row))
     countries = Counter(
         country for row in tracks for country in track_countries(row, artist_cache, country_overrides)
     )
     years = Counter(effective_year(row) for row in tracks if effective_year(row).isdigit())
-    decades = Counter(year_to_decade(effective_year(row)) for row in tracks if year_to_decade(effective_year(row)))
     albums = {
         row.get("album_id") or f"{row.get('artist_names', '')}|{row.get('album_name', '')}"
         for row in tracks
@@ -432,45 +548,12 @@ def build_dashboard(
     year_range = f"{min(known_years)}-{max(known_years)}" if known_years else ""
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
-    write_banner_svg(banner_svg, len(tracks), len(artists), year_range)
-    write_bar_svg(genres_svg, "Top genres", top(genres, 10), "#5f8f73")
-    write_bar_svg(timeline_svg, "Tracks by decade", top(decades, 12), "#b8765f")
-
-    stats_rows: list[list[object]] = [
-        ["Tracks", len(tracks)],
-        ["Artists", len(artists)],
-        ["Albums", len(albums)],
-    ]
-    if genres:
-        stats_rows.append(["Genres", len(genres)])
-    if countries:
-        stats_rows.append(["Countries", len(countries)])
-    if playlists:
-        stats_rows.append(["Playlists", len(playlists)])
-    if year_range:
-        stats_rows.append(["Release years", year_range])
-    if duration_ms:
-        stats_rows.append(["Total duration", duration_label(duration_ms)])
-
     lines: list[str] = [
-        image_link("Maks Krutikov Spotify Library", banner_svg, readme_dir),
+        "# Maks Krutikov Spotify Library",
         "",
-        "**Maks Krutikov Spotify Library** / personal metadata dashboard. No audio files, only Spotify track data and local CSV edits.",
+        "Personal Spotify metadata dashboard. No audio files, only generated summaries from a private CSV archive.",
         "",
     ]
-    if genres:
-        lines.extend(
-            [
-                f'<img src="{os.path.relpath(genres_svg, readme_dir).replace("\\", "/")}" width="49%"> '
-                f'<img src="{os.path.relpath(timeline_svg, readme_dir).replace("\\", "/")}" width="49%">',
-                "",
-            ]
-        )
-    if decades:
-        if not genres:
-            lines.extend([image_link("Tracks by decade", timeline_svg, readme_dir), ""])
-
-    lines.extend(["## Overview", "", table([row[0] for row in stats_rows], [[row[1] for row in stats_rows]]), ""])
 
     if not tracks:
         lines.extend(
@@ -488,76 +571,60 @@ def build_dashboard(
             ]
         )
     else:
-        added_months = Counter(
-            date_month(row.get("latest_added_at", ""))
-            for row in tracks
-            if date_month(row.get("latest_added_at", ""))
-        )
-        added_years = Counter(
-            row.get("latest_added_at", "")[:4]
-            for row in tracks
-            if row.get("latest_added_at", "")[:4].isdigit()
-        )
-
-        if genres:
-            lines.extend(
-                [
-                "## Genre Mix",
-                "",
-                table(["Genre", "Tracks"], top(genres, 50)),
-                "",
-                ]
-            )
-        if primary_genres:
-            lines.extend(
-                [
-                "## Primary Genres",
-                "",
-                table(["Primary genre", "Tracks"], top(primary_genres, 15)),
-                "",
-                ]
-            )
-        if countries:
-            lines.extend(
-                [
-                "## Countries",
-                "",
-                table(["Country", "Tracks"], top(countries, 15)),
-                "",
-                ]
-            )
-
+        top_genres = top(genres, len(genres))
+        artist_genres = artist_genre_assignments(tracks, top_genres)
+        assigned_genres = assigned_genre_rows(tracks, artist_genres)
         lines.extend(
             [
-                "## Artists",
+                table(
+                    [
+                        "Tracks",
+                        "Artists",
+                        "Albums",
+                        "Tag genres",
+                        "Assigned genres",
+                        "Countries",
+                        "Playlists",
+                        "Release years",
+                        "Duration",
+                    ],
+                    [
+                        [
+                            len(tracks),
+                            len(artists),
+                            len(albums),
+                            len(genres),
+                            len(assigned_genres),
+                            len(countries),
+                            len(playlists),
+                            year_range,
+                            duration_label(duration_ms),
+                        ]
+                    ],
+                ),
                 "",
-                table(["Artist", "Tracks"], top(artists, 15)),
+                "> Each artist is assigned to exactly one dominant genre. Every genre card below shows top 10 artists, years and countries.",
                 "",
             ]
         )
-        if decades:
-            lines.extend(
-                [
-                "## Timeline",
-                "",
-                table(["Decade", "Tracks"], top(decades, 12)),
-                "",
-                ]
-            )
-        if added_months:
-            lines.extend(
-                [
-                "## Recent Adds",
-                "",
-                table(["Added month", "Tracks"], top(added_months, 12)),
-                "",
-                table(["Added year", "Tracks"], top(added_years, 8)),
-                "",
-                ]
-            )
+        lines.extend(genre_atlas(tracks, artist_cache, country_overrides, assigned_genres, artist_genres))
 
         lines.extend(
             [
+                "## Aggregates",
+                "",
+                "### Top 20 Countries",
+                "",
+                table(["Country", "Tracks"], top(countries, 20)),
+                "",
+                "### Top 20 Genres",
+                "",
+                table(["Genre", "Tracks"], assigned_genres[:20]),
+                "",
+                "### Top 20 Groups / Artists",
+                "",
+                table(["Group / artist", "Tracks"], top(artists, 20)),
+                "",
                 "<details>",
                 "<summary>Workflow</summary>",
                 "",
@@ -566,7 +633,7 @@ def build_dashboard(
                 "- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.",
                 "- `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata where available.",
                 "- `python scripts/apply_genre_rules.py` fills genres from `data/genre_rules.csv`.",
-                "- `python scripts/build_readme.py` regenerates this README and SVG charts.",
+                "- `python scripts/build_readme.py` regenerates this README.",
                 "- `python scripts/debug_spotify.py` checks OAuth and first Spotify API pages without writing CSV.",
                 "- Manual fields in `data/tracks.csv` are preserved on export: `year`, `primary_genre`, `genres`, `rating`, `status`, `tags`, `notes`.",
                 "- Weekly GitHub Actions use a private data repository for `data/tracks.csv`; this public repository commits only generated summaries and public rules.",
@@ -613,14 +680,10 @@ def main() -> None:
     args = parse_args()
     tracks_csv = resolve_repo_path(args.input)
     readme = resolve_repo_path(args.output)
-    assets_dir = resolve_repo_path(args.assets_dir)
     tracks = read_tracks(tracks_csv, allow_missing=args.allow_empty)
     readme.parent.mkdir(parents=True, exist_ok=True)
-    readme.write_text(build_dashboard(tracks, tracks_csv, readme, assets_dir), encoding="utf-8")
+    readme.write_text(build_dashboard(tracks, tracks_csv, readme), encoding="utf-8")
     print(f"Wrote {readme}")
-    print(f"Wrote {assets_dir / 'banner.svg'}")
-    print(f"Wrote {assets_dir / 'genres.svg'}")
-    print(f"Wrote {assets_dir / 'timeline.svg'}")
 
 
 if __name__ == "__main__":
