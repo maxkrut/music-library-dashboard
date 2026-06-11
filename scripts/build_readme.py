@@ -811,14 +811,16 @@ def write_genre_group_svg(
         card_stats.append((genre, count, artists, years, countries, card_height))
 
     card_positions: list[tuple[float, float]] = []
-    column_heights = [0.0] * columns
-    for local_index, (*_card, card_height) in enumerate(card_stats):
-        col_index = local_index % columns
+    row_heights = [
+        max(card[-1] for card in card_stats[index : index + columns])
+        for index in range(0, len(card_stats), columns)
+    ]
+    for local_index, _card in enumerate(card_stats):
+        row_index, col_index = divmod(local_index, columns)
         x = margin + col_index * (card_width + gap)
-        y = content_top + column_heights[col_index]
+        y = content_top + sum(row_heights[:row_index]) + row_index * gap
         card_positions.append((x, y))
-        column_heights[col_index] += card_height + gap
-    content_height = max(column_heights) - gap if card_stats else 0
+    content_height = sum(row_heights) + max(0, len(row_heights) - 1) * gap
     height = content_top + content_height + margin
 
     parts = [
