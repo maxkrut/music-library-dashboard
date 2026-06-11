@@ -4,7 +4,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 | Tracks | Artists | Albums | Tag genres | Assigned genres | Countries | Playlists | Release years | Duration |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1972 | 1365 | 1676 | 541 | 182 | 52 | 5 | 1958-2026 | 183h 53m |
+| 1974 | 1367 | 1678 | 522 | 204 | 53 | 5 | 1958-2026 | 184h 0m |
 
 > Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.
 
@@ -62,18 +62,22 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
+## Other
+
+![Other genre atlas](assets/atlas/other.svg)
+
 ## Aggregates
 
 ### Top 20 Countries
 
 | Country | Tracks |
 | --- | --- |
-| United States | 619 |
+| United States | 621 |
 | United Kingdom | 287 |
 | Norway | 227 |
 | Sweden | 165 |
 | Germany | 98 |
-| Finland | 73 |
+| Finland | 74 |
 | Canada | 54 |
 | France | 50 |
 | Russia | 49 |
@@ -82,7 +86,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | Italy | 32 |
 | Australia | 30 |
 | Ireland | 23 |
-| Poland | 19 |
+| Poland | 20 |
 | Belgium | 16 |
 | Greece | 15 |
 | Switzerland | 14 |
@@ -95,24 +99,24 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | --- | --- |
 | black metal | 209 |
 | doom metal | 117 |
-| progressive rock | 101 |
+| progressive rock | 100 |
 | progressive metal | 80 |
-| hard rock | 75 |
 | heavy metal | 74 |
+| hard rock | 74 |
 | electronic | 67 |
-| alternative rock | 56 |
+| alternative rock | 53 |
 | death metal | 47 |
-| psychedelic rock | 46 |
-| post-rock | 42 |
+| psychedelic rock | 44 |
 | atmospheric black metal | 42 |
-| stoner rock | 39 |
+| post-rock | 41 |
+| stoner rock | 38 |
 | thrash metal | 38 |
 | rock | 29 |
 | ambient | 28 |
+| post-metal | 27 |
 | sludge metal | 26 |
-| post-metal | 26 |
-| post-punk | 25 |
-| gothic metal | 25 |
+| gothic metal | 26 |
+| post-punk | 24 |
 
 ### Top 20 Groups / Artists
 
@@ -178,4 +182,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-11 07:20 UTC._
+_Generated at 2026-06-11 07:21 UTC._
