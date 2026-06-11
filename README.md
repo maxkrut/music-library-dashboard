@@ -4,7 +4,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 | Tracks | Artists | Albums | Tag genres | Assigned genres | Countries | Playlists | Release years | Duration |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1974 | 1367 | 1678 | 522 | 204 | 53 | 5 | 1958-2026 | 184h 0m |
+| 1972 | 1365 | 1676 | 541 | 182 | 52 | 5 | 1958-2026 | 183h 53m |
 
 > Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.
 
@@ -62,9 +62,30 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
-## Other
+## Latest 20 Liked Tracks
 
-![Other genre atlas](assets/atlas/other.svg)
+| Added | Artist | Track | Album | Year | Genre |
+| --- | --- | --- | --- | --- | --- |
+| 2026-05-26 | Nils Frahm | [Further in the Making](https://open.spotify.com/track/7uYRmq6tONjvwUh8wn8zvh) | Old Friends New Friends | 2021 | modern classical |
+| 2026-05-24 | Darkthrone | [So I Marched To The Sunken Empire](https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4) | Pre-Historic Metal | 2026 | black metal |
+| 2026-05-15 | Kaatayra | [Águas Passadas](https://open.spotify.com/track/5IoMPCKmcSlTteXdRVCzCs) | Caminhos de Água | 2026 | atmospheric black metal |
+| 2026-05-15 | Conjurer | [Let Us Live](https://open.spotify.com/track/1YXo39c7oKj77QdON48uIA) | Unself | 2025 | sludge metal |
+| 2026-05-14 | Summoning | [Flammifer](https://open.spotify.com/track/2L9TUkStJsBHh3Xtw8oUOP) | Old Mornings Dawn | 2013 | black metal |
+| 2026-05-14 | Rivers of Nihil | [Terrestria III: Wither](https://open.spotify.com/track/5EtFUoimouxAcK1Dwj60Pz) | Where Owls Know My Name | 2018 | death metal |
+| 2026-05-08 | heks | [Protestantisk Fanatiker (London Fields Darkwave)](https://open.spotify.com/track/1Yg1pftEFPMsATyNfkuGYX) | Protestantisk Fanatiker (London Fields Darkwave) | 2026 | electronic |
+| 2026-05-08 | Spirit Adrift | [You Will Never Hold The Key](https://open.spotify.com/track/2lIheKkJlthP8A5oeTpdPX) | Infinite Illumination | 2026 | heavy metal |
+| 2026-04-29 | BULLDOZER | [The Great Deceiver](https://open.spotify.com/track/1hJ4Go14cllZv8YE6YLIFV) | The Exorcism | 1984 | black metal |
+| 2026-04-29 | BULLDOZER | [Another Beer (It's What I Need)](https://open.spotify.com/track/7dsXchfku5959Z14zkzxET) | Fallen Angel / Another Beer (Is What I Need) | 1984 | black metal |
+| 2026-04-27 | Üga Büga | [Valley of The Wolf](https://open.spotify.com/track/1fafmxEOMDxm4db8Oz61hi) | Valley of The Wolf (single) | 2026 | heavy metal |
+| 2026-04-27 | Immolation | [Bend Towards The Dark](https://open.spotify.com/track/6UBbYpErZJMCL0NIimAOTk) | Descent | 2026 | death metal |
+| 2026-04-26 | Space Remedy | [Ineffable Dimensions](https://open.spotify.com/track/4b5szokLXkijlkzBX0aQNj) | Ineffable Dimensions | 2026 | progressive rock |
+| 2026-04-26 | Liminal Sky; Ulver | [A Solitary Future](https://open.spotify.com/track/0ShB8rlcQF9yL01mUmAuLx) | A Solitary Future | 2026 | experimental |
+| 2026-04-21 | OM | [Bedouin's Vigil](https://open.spotify.com/track/2E26Vgc5DTlScIrYkrCeVG) | Bedouin’s Vigil / Assyrian Blood | 2006 | stoner rock |
+| 2026-04-21 | Hanging Garden | [Isle of Bliss](https://open.spotify.com/track/7ez3jbaUX5d4jH9spd3QVu) | Isle of Bliss | 2026 | doom metal |
+| 2026-04-16 | Cough | [Let It Bleed](https://open.spotify.com/track/2k4pS2s7JHRiZrc6LB5Xqu) | Still They Pray | 2016 | doom metal |
+| 2026-04-15 | The Flight of Sleipnir | [Sidereal Course](https://open.spotify.com/track/0b24z2yYjV75L59h2tVaWX) | V | 2014 | stoner doom |
+| 2026-04-15 | Cough | [Crippled Wizard](https://open.spotify.com/track/3KUkcCTl8yPHo0ws2kKwIr) | Ritual Abuse | 2010 | doom metal |
+| 2026-04-09 | Blind Guardian | [Time What Is Time - Remastered 2007](https://open.spotify.com/track/1Gac3BjYY98hH9YgQEl7Lm) | Somewhere Far Beyond (Remastered 2007) | 1992 | power metal |
 
 ## Aggregates
 
@@ -72,12 +93,12 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 | Country | Tracks |
 | --- | --- |
-| United States | 621 |
+| United States | 619 |
 | United Kingdom | 287 |
 | Norway | 227 |
 | Sweden | 165 |
 | Germany | 98 |
-| Finland | 74 |
+| Finland | 73 |
 | Canada | 54 |
 | France | 50 |
 | Russia | 49 |
@@ -86,7 +107,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | Italy | 32 |
 | Australia | 30 |
 | Ireland | 23 |
-| Poland | 20 |
+| Poland | 19 |
 | Belgium | 16 |
 | Greece | 15 |
 | Switzerland | 14 |
@@ -99,24 +120,24 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | --- | --- |
 | black metal | 209 |
 | doom metal | 117 |
-| progressive rock | 100 |
+| progressive rock | 101 |
 | progressive metal | 80 |
+| hard rock | 75 |
 | heavy metal | 74 |
-| hard rock | 74 |
 | electronic | 67 |
-| alternative rock | 53 |
+| alternative rock | 56 |
 | death metal | 47 |
-| psychedelic rock | 44 |
+| psychedelic rock | 46 |
+| post-rock | 42 |
 | atmospheric black metal | 42 |
-| post-rock | 41 |
-| stoner rock | 38 |
+| stoner rock | 39 |
 | thrash metal | 38 |
 | rock | 29 |
 | ambient | 28 |
-| post-metal | 27 |
 | sludge metal | 26 |
-| gothic metal | 26 |
-| post-punk | 24 |
+| post-metal | 26 |
+| post-punk | 25 |
+| gothic metal | 25 |
 
 ### Top 20 Groups / Artists
 
@@ -182,4 +203,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-11 07:21 UTC._
+_Generated at 2026-06-11 10:52 UTC._

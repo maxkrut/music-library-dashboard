@@ -438,6 +438,14 @@ def effective_year(row: dict[str, str]) -> str:
     return (row.get("year") or row.get("spotify_year") or "").strip()
 
 
+def added_date(row: dict[str, str]) -> str:
+    return (row.get("latest_added_at") or row.get("first_added_at") or "").strip()
+
+
+def date_label(value: str) -> str:
+    return value[:10] if len(value) >= 10 else value
+
+
 def effective_genres(row: dict[str, str]) -> list[str]:
     return canonical_genres(split_values(row.get("genres") or row.get("spotify_genres") or ""))
 
@@ -462,6 +470,16 @@ def md_escape(value: object) -> str:
 def md_link(label: str, target: Path, base_dir: Path) -> str:
     rel = os.path.relpath(target, base_dir).replace("\\", "/")
     return f"[`{label}`]({rel})"
+
+
+def external_md_link(label: str, url: str) -> str:
+    text = str(label or "").strip()
+    target = str(url or "").strip()
+    if not target:
+        return text
+    safe_label = text.replace("[", "\\[").replace("]", "\\]")
+    safe_target = target.replace(")", "%29")
+    return f"[{safe_label}]({safe_target})"
 
 
 def repo_label(path: Path) -> str:
@@ -564,6 +582,29 @@ def assigned_genre_rows(
         for genre in row_genres:
             counts[genre] += 1
     return top(counts, len(counts))
+
+
+def recent_liked_rows(tracks: list[TrackRow], limit: int = 20) -> list[list[str]]:
+    liked_tracks = [
+        row
+        for row in tracks
+        if "liked" in {source.casefold() for source in split_values(row.get("sources", ""))}
+    ]
+    liked_tracks.sort(
+        key=lambda row: (added_date(row), row.get("track_name", ""), row.get("artist_names", "")),
+        reverse=True,
+    )
+    return [
+        [
+            date_label(added_date(row)),
+            row.get("artist_names", ""),
+            external_md_link(row.get("track_name", ""), row.get("spotify_url", "")),
+            row.get("album_name", ""),
+            effective_year(row),
+            effective_primary_genre(row),
+        ]
+        for row in liked_tracks[:limit]
+    ]
 
 
 def slug(value: str) -> str:
@@ -697,7 +738,7 @@ def svg_rank_column(
     width: float,
     max_chars: int,
     limit: int = 15,
-    row_height: int = 15,
+    row_height: int = 18,
     wrap_names: bool = False,
 ) -> list[str]:
     parts: list[str] = []
@@ -706,12 +747,12 @@ def svg_rank_column(
     for index, (name, count) in enumerate(rows[:limit]):
         row_y = y + index * row_height
         name_lines = (
-            fit_text_lines(name, name_width, size=11)
+            fit_text_lines(name, name_width, size=13)
             if wrap_names
             else [trim_text(name, max_chars)]
         )
-        text_size = 9 if len(name_lines) > 1 else 11
-        line_gap = 8 if len(name_lines) > 1 else 11
+        text_size = 11 if len(name_lines) > 1 else 13
+        line_gap = 10 if len(name_lines) > 1 else 13
         text_y = row_y - 2 if len(name_lines) > 1 else row_y
         for line_index, line in enumerate(name_lines):
             parts.append(svg_text(x, text_y + line_index * line_gap, line, size=text_size))
@@ -720,7 +761,7 @@ def svg_rank_column(
                 count_x,
                 row_y,
                 count,
-                size=11,
+                size=13,
                 weight=800,
                 fill="#526f92",
                 anchor="end",
@@ -745,7 +786,7 @@ def write_genre_group_svg(
     gap = 8
     columns = 2
     top_limit = 15
-    rank_row_height = 15
+    rank_row_height = 18
     card_width = (width - margin * 2 - gap * (columns - 1)) / columns
     header_height = 48
     content_top = margin + header_height + 12
@@ -766,18 +807,21 @@ def write_genre_group_svg(
             len(years[:top_limit]),
             len(countries[:top_limit]),
         )
-        card_height = max(138, 88 + visible_rows * rank_row_height)
+        card_height = max(158, 98 + visible_rows * rank_row_height)
         card_stats.append((genre, count, artists, years, countries, card_height))
 
     card_positions: list[tuple[float, float]] = []
-    column_y = [float(content_top)] * columns
-    for local_index, card in enumerate(card_stats):
-        col_index = local_index % columns
+    row_heights = [
+        max(card[-1] for card in card_stats[index : index + columns])
+        for index in range(0, len(card_stats), columns)
+    ]
+    for local_index, _card in enumerate(card_stats):
+        row_index, col_index = divmod(local_index, columns)
         x = margin + col_index * (card_width + gap)
-        y = column_y[col_index]
+        y = content_top + sum(row_heights[:row_index]) + row_index * gap
         card_positions.append((x, y))
-        column_y[col_index] += card[-1] + gap
-    height = int(max(column_y) - gap + margin) if card_positions else content_top + margin
+    content_height = sum(row_heights) + max(0, len(row_heights) - 1) * gap
+    height = content_top + content_height + margin
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="{html_escape(group)} genre atlas">',
@@ -808,26 +852,26 @@ def write_genre_group_svg(
             [
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="{card_width:.1f}" height="{card_height}" fill="#fffefa" stroke="#c7d0c7"/>',
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{card_height}" fill="{accent}"/>',
-                f'<rect x="{x + 4:.1f}" y="{y:.1f}" width="{card_width - 4:.1f}" height="34" fill="#edf2ed"/>',
-                svg_text(x + 14, y + 23, f"{number:02d}", size=11, weight=800, fill="#a96855"),
-                svg_text(x + 50, y + 24, trim_text(display_genre(genre, group), 46), size=18, weight=800),
+                f'<rect x="{x + 4:.1f}" y="{y:.1f}" width="{card_width - 4:.1f}" height="40" fill="#edf2ed"/>',
+                svg_text(x + 14, y + 27, f"{number:02d}", size=12, weight=800, fill="#a96855"),
+                svg_text(x + 52, y + 28, trim_text(display_genre(genre, group), 40), size=22, weight=800),
                 svg_text(
                     x + card_width - 12,
-                    y + 22,
+                    y + 26,
                     f"{count} total · top 15",
-                    size=12,
+                    size=13,
                     weight=800,
                     fill="#557e64",
                     anchor="end",
                 ),
-                svg_text(artists_x, header_y, "ARTISTS", size=11, weight=800, fill="#5d6b62"),
-                svg_text(years_x, header_y, "YEARS", size=11, weight=800, fill="#5d6b62"),
-                svg_text(countries_x, header_y, "COUNTRIES", size=11, weight=800, fill="#5d6b62"),
-                f'<line x1="{years_x - 14:.1f}" y1="{y + 44}" x2="{years_x - 14:.1f}" y2="{y + card_height - 12}" stroke="#cfd6ce"/>',
-                f'<line x1="{countries_x - 14:.1f}" y1="{y + 44}" x2="{countries_x - 14:.1f}" y2="{y + card_height - 12}" stroke="#cfd6ce"/>',
+                svg_text(artists_x, header_y, "ARTISTS", size=13, weight=800, fill="#5d6b62"),
+                svg_text(years_x, header_y, "YEARS", size=13, weight=800, fill="#5d6b62"),
+                svg_text(countries_x, header_y, "COUNTRIES", size=13, weight=800, fill="#5d6b62"),
+                f'<line x1="{years_x - 14:.1f}" y1="{y + 50}" x2="{years_x - 14:.1f}" y2="{y + card_height - 12}" stroke="#cfd6ce"/>',
+                f'<line x1="{countries_x - 14:.1f}" y1="{y + 50}" x2="{countries_x - 14:.1f}" y2="{y + card_height - 12}" stroke="#cfd6ce"/>',
             ]
         )
-        row_y = y + 78
+        row_y = y + 88
         parts.extend(
             svg_rank_column(
                 artists,
@@ -1020,6 +1064,13 @@ def build_dashboard(
 
         lines.extend(
             [
+                "## Latest 20 Liked Tracks",
+                "",
+                table(
+                    ["Added", "Artist", "Track", "Album", "Year", "Genre"],
+                    recent_liked_rows(tracks, 20),
+                ),
+                "",
                 "## Aggregates",
                 "",
                 "### Top 20 Countries",
