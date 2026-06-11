@@ -4,7 +4,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 | Tracks | Artists | Albums | Tag genres | Assigned genres | Countries | Playlists | Release years | Duration |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1972 | 1366 | 1677 | 521 | 204 | 53 | 5 | 1958-2026 | 183h 52m |
+| 1972 | 1366 | 1677 | 540 | 182 | 53 | 5 | 1958-2026 | 183h 52m |
 
 > Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.
 
@@ -62,16 +62,12 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
-## Other
-
-![Other genre atlas](assets/atlas/other.svg)
-
 ## Latest 20 Liked Tracks
 
 | Added | Artist | Track | Album | Year | Genre |
 | --- | --- | --- | --- | --- | --- |
 | 2026-06-07 | dungeontroll | [Crypt of Euphoria](https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn) | Into the Castle of the Forbidden Twilight | 2020 | dungeon synth |
-| 2026-06-04 | Healthyliving | [Ghost Limbs](https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16) | Songs of Abundance, Psalms of Grief | 2023 |  |
+| 2026-06-04 | Healthyliving | [Ghost Limbs](https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16) | Songs of Abundance, Psalms of Grief | 2023 | doom metal |
 | 2026-05-26 | Nils Frahm | [Further in the Making](https://open.spotify.com/track/7uYRmq6tONjvwUh8wn8zvh) | Old Friends New Friends | 2021 | modern classical |
 | 2026-05-24 | Darkthrone | [So I Marched To The Sunken Empire](https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4) | Pre-Historic Metal | 2026 | black metal |
 | 2026-05-15 | Kaatayra | [Águas Passadas](https://open.spotify.com/track/5IoMPCKmcSlTteXdRVCzCs) | Caminhos de Água | 2026 | atmospheric black metal |
@@ -97,12 +93,12 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 | Country | Tracks |
 | --- | --- |
-| United States | 621 |
+| United States | 619 |
 | United Kingdom | 286 |
 | Norway | 227 |
 | Sweden | 165 |
 | Germany | 97 |
-| Finland | 74 |
+| Finland | 73 |
 | Canada | 54 |
 | France | 50 |
 | Russia | 49 |
@@ -111,7 +107,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | Italy | 32 |
 | Australia | 30 |
 | Ireland | 23 |
-| Poland | 20 |
+| Poland | 19 |
 | Belgium | 16 |
 | Greece | 15 |
 | Switzerland | 14 |
@@ -123,25 +119,25 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | Genre | Tracks |
 | --- | --- |
 | black metal | 209 |
-| doom metal | 117 |
-| progressive rock | 99 |
+| doom metal | 118 |
+| progressive rock | 100 |
 | progressive metal | 80 |
+| hard rock | 75 |
 | heavy metal | 74 |
-| hard rock | 74 |
 | electronic | 67 |
-| alternative rock | 53 |
+| alternative rock | 56 |
+| psychedelic rock | 46 |
 | death metal | 46 |
-| psychedelic rock | 44 |
+| post-rock | 42 |
 | atmospheric black metal | 42 |
-| post-rock | 41 |
-| stoner rock | 38 |
+| stoner rock | 39 |
 | thrash metal | 38 |
 | rock | 29 |
 | ambient | 28 |
-| post-metal | 27 |
 | sludge metal | 26 |
-| gothic metal | 26 |
-| post-punk | 24 |
+| post-metal | 26 |
+| post-punk | 25 |
+| gothic metal | 25 |
 
 ### Top 20 Groups / Artists
 
@@ -207,4 +203,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-11 10:53 UTC._
+_Generated at 2026-06-11 11:04 UTC._
