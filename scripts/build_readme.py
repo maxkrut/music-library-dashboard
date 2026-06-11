@@ -787,6 +787,7 @@ def write_genre_group_svg(
     columns = 2
     top_limit = 15
     rank_row_height = 18
+    first_row_offset = 76
     card_width = (width - margin * 2 - gap * (columns - 1)) / columns
     header_height = 48
     content_top = margin + header_height + 12
@@ -807,7 +808,7 @@ def write_genre_group_svg(
             len(years[:top_limit]),
             len(countries[:top_limit]),
         )
-        card_height = 98 + visible_rows * rank_row_height
+        card_height = first_row_offset + 10 + visible_rows * rank_row_height
         card_stats.append((genre, count, artists, years, countries, card_height))
 
     card_positions: list[tuple[float, float]] = []
@@ -871,7 +872,7 @@ def write_genre_group_svg(
                 f'<line x1="{countries_x - 14:.1f}" y1="{y + 50}" x2="{countries_x - 14:.1f}" y2="{y + card_height - 12}" stroke="#cfd6ce"/>',
             ]
         )
-        row_y = y + 88
+        row_y = y + first_row_offset
         parts.extend(
             svg_rank_column(
                 artists,
