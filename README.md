@@ -4,9 +4,9 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 | Tracks | Artists | Albums | Tag genres | Assigned genres | Countries | Playlists | Release years | Duration |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1974 | 1367 | 1678 | 563 | 214 | 53 | 5 | 1958-2026 | 184h 0m |
+| 1972 | 1365 | 1676 | 541 | 182 | 52 | 5 | 1958-2026 | 183h 53m |
 
-> Each artist is assigned to exactly one dominant genre. Every genre card below shows top 10 artists, years and countries.
+> Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.
 
 ## Genre Atlas
 
@@ -62,10 +62,6 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
-## Other
-
-![Other genre atlas](assets/atlas/other.svg)
-
 ## Aggregates
 
 ### Top 20 Countries
@@ -73,20 +69,20 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 | Country | Tracks |
 | --- | --- |
 | United States | 619 |
-| United Kingdom | 291 |
+| United Kingdom | 287 |
 | Norway | 227 |
 | Sweden | 165 |
 | Germany | 98 |
-| Finland | 74 |
+| Finland | 73 |
 | Canada | 54 |
-| France | 49 |
-| Russia | 47 |
-| Denmark | 38 |
-| Netherlands | 33 |
+| France | 50 |
+| Russia | 49 |
+| Denmark | 37 |
+| Netherlands | 32 |
 | Italy | 32 |
-| Australia | 28 |
-| Ireland | 22 |
-| Poland | 20 |
+| Australia | 30 |
+| Ireland | 23 |
+| Poland | 19 |
 | Belgium | 16 |
 | Greece | 15 |
 | Switzerland | 14 |
@@ -97,26 +93,26 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 | Genre | Tracks |
 | --- | --- |
-| black metal | 207 |
-| doom metal | 112 |
-| progressive rock | 100 |
+| black metal | 209 |
+| doom metal | 117 |
+| progressive rock | 101 |
 | progressive metal | 80 |
+| hard rock | 75 |
 | heavy metal | 74 |
-| hard rock | 74 |
 | electronic | 67 |
-| alternative rock | 53 |
+| alternative rock | 56 |
 | death metal | 47 |
-| psychedelic rock | 44 |
+| psychedelic rock | 46 |
+| post-rock | 42 |
 | atmospheric black metal | 42 |
-| post-rock | 41 |
-| stoner rock | 38 |
+| stoner rock | 39 |
 | thrash metal | 38 |
+| rock | 29 |
 | ambient | 28 |
-| rock | 27 |
-| gothic metal | 26 |
+| sludge metal | 26 |
 | post-metal | 26 |
-| sludge metal | 25 |
-| post-punk | 24 |
+| post-punk | 25 |
+| gothic metal | 25 |
 
 ### Top 20 Groups / Artists
 
@@ -182,4 +178,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-08 09:57 UTC._
+_Generated at 2026-06-11 07:20 UTC._

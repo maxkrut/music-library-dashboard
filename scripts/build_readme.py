@@ -127,6 +127,80 @@ COUNTRY_MARKERS = {
     "welsh": "United Kingdom",
 }
 
+GENRE_ALIASES = {
+    "80s thrash metal": "thrash metal",
+    "acid-jazz": "acid jazz",
+    "alt-country": "alternative country",
+    "american metal": "metal",
+    "atmospheric sludge": "atmospheric sludge metal",
+    "black-metal": "black metal",
+    "black/punk": "black punk metal",
+    "black metal/punk": "black punk metal",
+    "blackmetal": "black metal",
+    "blues/rock": "blues rock",
+    "classic metal": "heavy metal",
+    "classic pop and rock": "classic rock",
+    "dance and electronica": "electronica",
+    "dark country": "gothic country",
+    "dark wave": "darkwave",
+    "doom": "doom metal",
+    "doom metal ethereal shoegaze": "doomgaze",
+    "death doom": "death-doom metal",
+    "death doom metal": "death-doom metal",
+    "death metal / death 'n' roll": "death 'n' roll metal",
+    "death-doom": "death-doom metal",
+    "death/groove-metal": "death groove metal",
+    "doom death metal": "death-doom metal",
+    "epic doom": "epic doom metal",
+    "fairy-doom metal": "fairy doom metal",
+    "french metal": "metal",
+    "funeral doom": "funeral doom metal",
+    "gothenburg metal": "melodic death metal",
+    "gothic-doom metal": "gothic doom metal",
+    "gratuitous heavy metal umlaut": "heavy metal",
+    "heavy/speed-metal": "heavy speed metal",
+    "hip hop rnb and dance hall": "hip hop",
+    "jazz and blues": "jazz blues",
+    "jazz-rock": "jazz rock",
+    "melodic/death-metal": "melodic death metal",
+    "melodic/death/doom-metal": "melodic death-doom metal",
+    "melodic/death/gothic-metal": "melodic death gothic metal",
+    "melodic death": "melodic death metal",
+    "new metal": "nu metal",
+    "neoclassical dark wave": "neoclassical darkwave",
+    "norwegian black metal": "black metal",
+    "old school death metal": "death metal",
+    "pop/rock": "pop rock",
+    "post black metal": "post-black metal",
+    "post-doom": "post-doom metal",
+    "post metal": "post-metal",
+    "post rock": "post-rock",
+    "post-punk 2k": "post-punk",
+    "progressive/folk-rock": "progressive folk rock",
+    "progressive/post-rock": "progressive post-rock",
+    "progressive death": "progressive death metal",
+    "psychedelic blackmetal": "psychedelic black metal",
+    "rhythm and blues": "r&b",
+    "rock and indie": "rock",
+    "rock/metal": "rock metal",
+    "sludge": "sludge metal",
+    "sludge/doom-metal": "sludge doom metal",
+    "sludge/doom/post-metal": "sludge doom post-metal",
+    "synthpop": "synth-pop",
+    "stoner-doom metal": "stoner doom metal",
+    "swedish death metal": "death metal",
+    "traditional heavy metal": "heavy metal",
+    "traditional doom": "traditional doom metal",
+    "true metal": "heavy metal",
+    "true norwegian black metal": "black metal",
+    "us power metal": "power metal",
+    "viking/black-metal": "viking black metal",
+}
+
+GENRE_PREFIX_ALIASES = (
+    ("epic/atmospheric folk/black metal", "epic atmospheric folk black metal"),
+)
+
 TrackRow = dict[str, str]
 RankedRows = list[tuple[str, int]]
 
@@ -159,21 +233,52 @@ SUPER_GENRE_RULES = [
             "vaporwave",
             "dance",
             "electro",
-            "dark wave",
             "darkwave",
+            "dark wave",
             "coldwave",
+            "ebm",
+            "eurodance",
+            "future bass",
         ),
     ),
     ("Punk / Hardcore", ("punk", "hardcore", "crust", "d-beat", "post-hardcore", "emo")),
     (
         "Folk / World",
-        ("folk", "americana", "bluegrass", "neofolk", "country", "world", "celtic", "flamenco", "filmi", "junkanoo", "liedermacher"),
+        (
+            "folk",
+            "americana",
+            "bluegrass",
+            "neofolk",
+            "country",
+            "world",
+            "celtic",
+            "flamenco",
+            "filmi",
+            "junkanoo",
+            "calypso",
+            "liedermacher",
+        ),
     ),
-    ("Jazz / Blues", ("jazz", "blues", "bossa nova", "post-bop", "swing")),
-    ("Soul / Funk / R&B", ("soul", "funk", "r&b", "rhythm and blues")),
+    ("Jazz / Blues", ("jazz", "blues", "bossa nova", "post-bop", "swing", "dark jazz")),
+    ("Soul / Funk / R&B", ("soul", "funk", "r&b", "rhythm and blues", "doo-wop")),
     ("Reggae / Ska", ("reggae", "ska")),
-    ("Afrobeat / Latin", ("afrobeat", "afro-cuban", "latin")),
-    ("Classical / Score", ("classical", "orchestral", "score", "soundtrack", "chamber", "opera", "choral", "production music")),
+    ("Afrobeat / Latin", ("afrobeat", "afro-cuban", "latin", "son cubano", "cuban")),
+    (
+        "Classical / Score",
+        (
+            "classical",
+            "orchestral",
+            "score",
+            "soundtrack",
+            "chamber",
+            "opera",
+            "choral",
+            "chant",
+            "sacred",
+            "production music",
+            "epic music",
+        ),
+    ),
     ("Pop / Songwriter", ("pop", "singer-songwriter", "aor", "new wave")),
     ("Hip-Hop / Rap", ("hip hop", "rap", "trap")),
     ("Experimental / Noise", ("experimental", "noise", "avant-garde", "industrial")),
@@ -227,6 +332,36 @@ def read_country_overrides(path: Path) -> dict[str, str]:
 
 def split_values(value: str) -> list[str]:
     return [part.strip() for part in value.replace(",", ";").split(";") if part.strip()]
+
+
+def normalize_genre_text(value: str) -> str:
+    text = value.casefold().strip()
+    text = text.replace("’", "'").replace("‐", "-").replace("‑", "-").replace("–", "-").replace("—", "-")
+    text = re.sub(r"\s+", " ", text)
+    text = re.sub(r"\s*/\s*", "/", text)
+    text = re.sub(r"\s*-\s*", "-", text)
+    return text.strip(" -/")
+
+
+def canonical_genre(value: str) -> str:
+    text = normalize_genre_text(value)
+    if not text:
+        return ""
+    for source, target in GENRE_PREFIX_ALIASES:
+        if text == source:
+            return target
+    return GENRE_ALIASES.get(text, text)
+
+
+def canonical_genres(values: Iterable[str]) -> list[str]:
+    genres: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        genre = canonical_genre(value)
+        if genre and genre not in seen:
+            seen.add(genre)
+            genres.append(genre)
+    return genres
 
 
 def split_artist_names(value: str) -> list[str]:
@@ -304,13 +439,13 @@ def effective_year(row: dict[str, str]) -> str:
 
 
 def effective_genres(row: dict[str, str]) -> list[str]:
-    return split_values(row.get("genres") or row.get("spotify_genres") or "")
+    return canonical_genres(split_values(row.get("genres") or row.get("spotify_genres") or ""))
 
 
 def effective_primary_genre(row: dict[str, str]) -> str:
     primary = (row.get("primary_genre") or "").strip()
     if primary:
-        return primary
+        return canonical_genre(primary)
     genres = effective_genres(row)
     return genres[0] if genres else ""
 
@@ -541,7 +676,17 @@ def genre_stats(
         for country in [artist_country(artist, artist_cache, country_overrides)]
         if country
     )
-    return top(genre_artists, 10), top(genre_years, 10), top(genre_countries, 10)
+    return top(genre_artists, 15), top(genre_years, 15), top(genre_countries, 15)
+
+
+def display_genre(genre: str, group: str) -> str:
+    if group != "Metal":
+        return genre
+    label = re.sub(r"\bmetal\b", "", genre)
+    label = re.sub(r"\s+", " ", label)
+    label = label.strip(" -/")
+    label = re.sub(r"-$", "", label).strip()
+    return label or genre
 
 
 def svg_rank_column(
@@ -551,21 +696,22 @@ def svg_rank_column(
     y: float,
     width: float,
     max_chars: int,
-    row_height: int = 13,
+    limit: int = 15,
+    row_height: int = 15,
     wrap_names: bool = False,
 ) -> list[str]:
     parts: list[str] = []
     count_x = x + width - 4
     name_width = max(20.0, width - 28)
-    for index, (name, count) in enumerate(rows[:10]):
+    for index, (name, count) in enumerate(rows[:limit]):
         row_y = y + index * row_height
         name_lines = (
-            fit_text_lines(name, name_width, size=10)
+            fit_text_lines(name, name_width, size=11)
             if wrap_names
             else [trim_text(name, max_chars)]
         )
-        text_size = 8 if len(name_lines) > 1 else 10
-        line_gap = 7 if len(name_lines) > 1 else 10
+        text_size = 9 if len(name_lines) > 1 else 11
+        line_gap = 8 if len(name_lines) > 1 else 11
         text_y = row_y - 2 if len(name_lines) > 1 else row_y
         for line_index, line in enumerate(name_lines):
             parts.append(svg_text(x, text_y + line_index * line_gap, line, size=text_size))
@@ -574,7 +720,7 @@ def svg_rank_column(
                 count_x,
                 row_y,
                 count,
-                size=10,
+                size=11,
                 weight=800,
                 fill="#526f92",
                 anchor="end",
@@ -597,34 +743,16 @@ def write_genre_group_svg(
     width = 1200
     margin = 16
     gap = 8
-    card_width = (width - margin * 2 - gap * 2) / 3
-    card_height = 192
-    header_height = 44
-    row_count = (len(group_rows) + 2) // 3
-    height = margin + header_height + 10 + row_count * card_height + max(0, row_count - 1) * gap + margin
+    columns = 2
+    top_limit = 15
+    rank_row_height = 15
+    card_width = (width - margin * 2 - gap * (columns - 1)) / columns
+    header_height = 48
+    content_top = margin + header_height + 12
     colors = ("#557e64", "#526f92", "#a96855")
 
-    parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="{html_escape(group)} genre atlas">',
-        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
-        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
-        svg_text(margin + 14, margin + 29, group, size=22, weight=800, fill="#ffffff"),
-        svg_text(
-            width - margin - 14,
-            margin + 29,
-            f"{len(group_rows)} genres · {group_tracks} tracks",
-            size=13,
-            weight=800,
-            fill="#dfe8df",
-            anchor="end",
-        ),
-    ]
-
-    for local_index, (genre, count) in enumerate(group_rows):
-        row_index, col_index = divmod(local_index, 3)
-        x = margin + col_index * (card_width + gap)
-        y = margin + header_height + 10 + row_index * (card_height + gap)
-        accent = colors[(card_offset + local_index) % len(colors)]
+    card_stats: list[tuple[str, int, RankedRows, RankedRows, RankedRows, int]] = []
+    for genre, count in group_rows:
         artists, years, countries = genre_stats(
             genre,
             tracks,
@@ -632,39 +760,108 @@ def write_genre_group_svg(
             country_overrides,
             artist_genres,
         )
+        visible_rows = max(
+            1,
+            len(artists[:top_limit]),
+            len(years[:top_limit]),
+            len(countries[:top_limit]),
+        )
+        card_height = max(138, 88 + visible_rows * rank_row_height)
+        card_stats.append((genre, count, artists, years, countries, card_height))
+
+    card_positions: list[tuple[float, float]] = []
+    column_y = [float(content_top)] * columns
+    for local_index, card in enumerate(card_stats):
+        col_index = local_index % columns
+        x = margin + col_index * (card_width + gap)
+        y = column_y[col_index]
+        card_positions.append((x, y))
+        column_y[col_index] += card[-1] + gap
+    height = int(max(column_y) - gap + margin) if card_positions else content_top + margin
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="{html_escape(group)} genre atlas">',
+        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
+        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
+        svg_text(margin + 14, margin + 32, group, size=25, weight=800, fill="#ffffff"),
+        svg_text(
+            width - margin - 14,
+            margin + 32,
+            f"{len(group_rows)} genres · {group_tracks} tracks",
+            size=15,
+            weight=800,
+            fill="#dfe8df",
+            anchor="end",
+        ),
+    ]
+
+    for local_index, (genre, count, artists, years, countries, card_height) in enumerate(card_stats):
+        x, y = card_positions[local_index]
+        accent = colors[(card_offset + local_index) % len(colors)]
         number = card_offset + local_index + 1
-        artists_x = x + 12
-        years_x = x + card_width * 0.52
-        countries_x = x + card_width * 0.74
-        header_y = y + 48
+        artists_x = x + 14
+        years_x = x + card_width * 0.60
+        countries_x = x + card_width * 0.77
+        header_y = y + 56
 
         parts.extend(
             [
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="{card_width:.1f}" height="{card_height}" fill="#fffefa" stroke="#c7d0c7"/>',
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{card_height}" fill="{accent}"/>',
-                f'<rect x="{x + 4:.1f}" y="{y:.1f}" width="{card_width - 4:.1f}" height="28" fill="#edf2ed"/>',
-                svg_text(x + 12, y + 19, f"{number:02d}", size=10, weight=800, fill="#a96855"),
-                svg_text(x + 44, y + 20, trim_text(genre, 28), size=15, weight=800),
+                f'<rect x="{x + 4:.1f}" y="{y:.1f}" width="{card_width - 4:.1f}" height="34" fill="#edf2ed"/>',
+                svg_text(x + 14, y + 23, f"{number:02d}", size=11, weight=800, fill="#a96855"),
+                svg_text(x + 50, y + 24, trim_text(display_genre(genre, group), 46), size=18, weight=800),
                 svg_text(
-                    x + card_width - 10,
-                    y + 19,
-                    f"{count} total · top 10",
-                    size=11,
+                    x + card_width - 12,
+                    y + 22,
+                    f"{count} total · top 15",
+                    size=12,
                     weight=800,
                     fill="#557e64",
                     anchor="end",
                 ),
-                svg_text(artists_x, header_y, "ARTISTS", size=10, weight=800, fill="#5d6b62"),
-                svg_text(years_x, header_y, "YEARS", size=10, weight=800, fill="#5d6b62"),
-                svg_text(countries_x, header_y, "COUNTRIES", size=10, weight=800, fill="#5d6b62"),
-                f'<line x1="{years_x - 12:.1f}" y1="{y + 36}" x2="{years_x - 12:.1f}" y2="{y + card_height - 10}" stroke="#cfd6ce"/>',
-                f'<line x1="{countries_x - 12:.1f}" y1="{y + 36}" x2="{countries_x - 12:.1f}" y2="{y + card_height - 10}" stroke="#cfd6ce"/>',
+                svg_text(artists_x, header_y, "ARTISTS", size=11, weight=800, fill="#5d6b62"),
+                svg_text(years_x, header_y, "YEARS", size=11, weight=800, fill="#5d6b62"),
+                svg_text(countries_x, header_y, "COUNTRIES", size=11, weight=800, fill="#5d6b62"),
+                f'<line x1="{years_x - 14:.1f}" y1="{y + 44}" x2="{years_x - 14:.1f}" y2="{y + card_height - 12}" stroke="#cfd6ce"/>',
+                f'<line x1="{countries_x - 14:.1f}" y1="{y + 44}" x2="{countries_x - 14:.1f}" y2="{y + card_height - 12}" stroke="#cfd6ce"/>',
             ]
         )
-        row_y = y + 66
-        parts.extend(svg_rank_column(artists, x=artists_x, y=row_y, width=card_width * 0.47 - 18, max_chars=20, wrap_names=True))
-        parts.extend(svg_rank_column(years, x=years_x, y=row_y, width=card_width * 0.19, max_chars=4))
-        parts.extend(svg_rank_column(countries, x=countries_x, y=row_y, width=card_width * 0.24, max_chars=16))
+        row_y = y + 78
+        parts.extend(
+            svg_rank_column(
+                artists,
+                x=artists_x,
+                y=row_y,
+                width=card_width * 0.55 - 24,
+                max_chars=30,
+                limit=top_limit,
+                row_height=rank_row_height,
+                wrap_names=True,
+            )
+        )
+        parts.extend(
+            svg_rank_column(
+                years,
+                x=years_x,
+                y=row_y,
+                width=card_width * 0.14,
+                max_chars=4,
+                limit=top_limit,
+                row_height=rank_row_height,
+            )
+        )
+        parts.extend(
+            svg_rank_column(
+                countries,
+                x=countries_x,
+                y=row_y,
+                width=card_width * 0.21,
+                max_chars=20,
+                limit=top_limit,
+                row_height=rank_row_height,
+            )
+        )
 
     parts.append("</svg>")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -806,7 +1003,7 @@ def build_dashboard(
                     ],
                 ),
                 "",
-                "> Each artist is assigned to exactly one dominant genre. Every genre card below shows top 10 artists, years and countries.",
+                "> Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.",
                 "",
             ]
         )
