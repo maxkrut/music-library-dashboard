@@ -67,12 +67,26 @@ def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
         return list(reader.fieldnames or []), list(reader)
 
 
+def rule_priority(rule: dict[str, str]) -> int:
+    value = (rule.get("priority") or "").strip()
+    if not value:
+        return 0
+    try:
+        return int(value)
+    except ValueError as error:
+        match_type = rule.get("match_type", "")
+        pattern = rule.get("pattern", "")
+        raise ValueError(
+            f"Invalid genre rule priority {value!r} for {match_type}:{pattern}"
+        ) from error
+
+
 def read_rules(path: Path) -> list[dict[str, str]]:
     if not path.exists():
         return []
     _, rules = read_csv(path)
     valid = [rule for rule in rules if rule.get("match_type") and rule.get("pattern")]
-    return sorted(valid, key=lambda rule: int(rule.get("priority") or 0), reverse=True)
+    return sorted(valid, key=rule_priority, reverse=True)
 
 
 def apply_rules_to_row(
@@ -96,6 +110,8 @@ def apply_rules_to_row(
             primary = split_values(genres)[0] if split_values(genres) else ""
         if not genres and primary:
             genres = primary
+        if not primary and not genres:
+            continue
 
         changed = False
         if primary and (overwrite or not row.get("primary_genre")):

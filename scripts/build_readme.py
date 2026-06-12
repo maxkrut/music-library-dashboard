@@ -208,7 +208,7 @@ SUPER_GENRE_RULES = [
     ("Metal", ("metal", "doom", "blackgaze", "djent", "deathgrind", "grindcore", "mathcore", "sludge", "thrash")),
     (
         "Rock / Psych / Prog",
-        ("rock", "grunge", "shoegaze", "krautrock", "psychobilly", "rockabilly", "psych", "psychedelic", "prog", "jam band"),
+        ("rock", "grunge", "shoegaze", "krautrock", "psychobilly", "rockabilly", "slowcore", "psych", "psychedelic", "prog", "jam band"),
     ),
     (
         "Electronic / Ambient",
@@ -219,8 +219,11 @@ SUPER_GENRE_RULES = [
             "techno",
             "house",
             "idm",
+            "indietronica",
+            "psybient",
             "synth",
             "trance",
+            "trip hop",
             "dub",
             "downtempo",
             "drone",
@@ -720,6 +723,45 @@ def genre_stats(
     return top(genre_artists, 15), top(genre_years, 15), top(genre_countries, 15)
 
 
+def build_genre_stat_index(
+    tracks: list[TrackRow],
+    artist_cache: dict[str, object],
+    country_overrides: dict[str, str],
+    artist_genres: dict[str, str],
+) -> dict[str, tuple[RankedRows, RankedRows, RankedRows]]:
+    artist_counts: dict[str, Counter[str]] = {}
+    year_counts: dict[str, Counter[str]] = {}
+    country_counts: dict[str, Counter[str]] = {}
+
+    for row in tracks:
+        artists_by_genre: dict[str, list[str]] = {}
+        for artist in all_artists(row):
+            genre = artist_genres.get(artist)
+            if genre:
+                artists_by_genre.setdefault(genre, []).append(artist)
+
+        year = effective_year(row)
+        for genre, artists in artists_by_genre.items():
+            artist_counts.setdefault(genre, Counter()).update(artists)
+            if year.isdigit():
+                year_counts.setdefault(genre, Counter())[year] += 1
+            country_counter = country_counts.setdefault(genre, Counter())
+            for artist in artists:
+                country = artist_country(artist, artist_cache, country_overrides)
+                if country:
+                    country_counter[country] += 1
+
+    genres = set(artist_counts) | set(year_counts) | set(country_counts)
+    return {
+        genre: (
+            top(artist_counts.get(genre, Counter()), 15),
+            top(year_counts.get(genre, Counter()), 15),
+            top(country_counts.get(genre, Counter()), 15),
+        )
+        for genre in genres
+    }
+
+
 def display_genre(genre: str, group: str) -> str:
     if group != "Metal":
         return genre
@@ -776,10 +818,7 @@ def write_genre_group_svg(
     group_rows: RankedRows,
     group_tracks: int,
     card_offset: int,
-    tracks: list[TrackRow],
-    artist_cache: dict[str, object],
-    country_overrides: dict[str, str],
-    artist_genres: dict[str, str],
+    genre_stat_index: dict[str, tuple[RankedRows, RankedRows, RankedRows]],
 ) -> None:
     width = 1200
     margin = 16
@@ -795,13 +834,7 @@ def write_genre_group_svg(
 
     card_stats: list[tuple[str, int, RankedRows, RankedRows, RankedRows, int]] = []
     for genre, count in group_rows:
-        artists, years, countries = genre_stats(
-            genre,
-            tracks,
-            artist_cache,
-            country_overrides,
-            artist_genres,
-        )
+        artists, years, countries = genre_stat_index.get(genre, ([], [], []))
         visible_rows = max(
             1,
             len(artists[:top_limit]),
@@ -816,10 +849,15 @@ def write_genre_group_svg(
         max(card[-1] for card in card_stats[index : index + columns])
         for index in range(0, len(card_stats), columns)
     ]
+    row_offsets: list[float] = []
+    current_y = 0.0
+    for row_height in row_heights:
+        row_offsets.append(current_y)
+        current_y += row_height + gap
     for local_index, _card in enumerate(card_stats):
         row_index, col_index = divmod(local_index, columns)
         x = margin + col_index * (card_width + gap)
-        y = content_top + sum(row_heights[:row_index]) + row_index * gap
+        y = content_top + row_offsets[row_index]
         card_positions.append((x, y))
     content_height = sum(row_heights) + max(0, len(row_heights) - 1) * gap
     height = content_top + content_height + margin
@@ -925,6 +963,13 @@ def genre_atlas(
     for old_svg in ATLAS_DIR.glob("*.svg"):
         old_svg.unlink()
 
+    genre_stat_index = build_genre_stat_index(
+        tracks,
+        artist_cache,
+        country_overrides,
+        artist_genres,
+    )
+
     grouped: dict[str, RankedRows] = {}
     for genre, count in genre_rows:
         grouped.setdefault(super_genre(genre), []).append((genre, count))
@@ -944,10 +989,7 @@ def genre_atlas(
             group_rows,
             group_tracks,
             card_index,
-            tracks,
-            artist_cache,
-            country_overrides,
-            artist_genres,
+            genre_stat_index,
         )
         rel_path = os.path.relpath(path, readme_dir).replace("\\", "/")
         lines.extend(

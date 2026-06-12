@@ -37,3 +37,18 @@ Only `data/tracks.csv` is required. The MusicBrainz caches are optional but make
 ## Public Example
 
 `data/tracks.example.csv` documents the expected CSV shape without publishing the real Spotify export.
+
+## Genre Rules
+
+`data/genre_rules.csv` is applied by `scripts/apply_genre_rules.py` after Spotify export and MusicBrainz enrichment.
+
+| Column | Meaning |
+| --- | --- |
+| `match_type` | One of `artist`, `album`, `track`, `playlist`, or `source`. |
+| `pattern` | Case-insensitive exact match by default; supports `*`, `?`, and `[]` wildcards. |
+| `primary_genre` | Primary genre to fill or replace. |
+| `genres` | Semicolon-separated genre list. If blank, `primary_genre` is used. |
+| `priority` | Higher integer priority runs first; blank defaults to `0`. |
+| `notes` | Free-form note for maintainers. |
+
+Without `--overwrite`, rules only fill missing `primary_genre` or `genres` values. With `--overwrite`, matching rules replace existing values.

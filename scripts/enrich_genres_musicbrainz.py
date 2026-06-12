@@ -267,10 +267,18 @@ class MusicBrainzClient:
         raise RuntimeError(f"MusicBrainz request failed: {last_error}") from last_error
 
 
-def read_musicbrainz_genres(client: MusicBrainzClient, cache_path: Path) -> set[str]:
+def read_musicbrainz_genres(
+    client: MusicBrainzClient,
+    cache_path: Path,
+    *,
+    allow_fetch: bool = True,
+    write_cache: bool = True,
+) -> set[str]:
     cached = read_json(cache_path, {})
     if cached.get("genres"):
         return {norm(genre) for genre in cached["genres"]}
+    if not allow_fetch:
+        return set()
 
     genres: list[str] = []
     offset = 0
@@ -282,7 +290,8 @@ def read_musicbrainz_genres(client: MusicBrainzClient, cache_path: Path) -> set[
         genres.extend(genre.get("name", "") for genre in payload.get("genres", []))
         offset += limit
 
-    write_json(cache_path, {"genres": sorted(set(genres)), "fetched_at": int(time.time())})
+    if write_cache:
+        write_json(cache_path, {"genres": sorted(set(genres)), "fetched_at": int(time.time())})
     return {norm(genre) for genre in genres if genre}
 
 
@@ -485,7 +494,12 @@ def main() -> None:
 
     fieldnames, rows = read_tracks(tracks_path)
     client = MusicBrainzClient(args.user_agent, args.sleep, args.retries)
-    musicbrainz_genres = read_musicbrainz_genres(client, genre_cache_path)
+    musicbrainz_genres = read_musicbrainz_genres(
+        client,
+        genre_cache_path,
+        allow_fetch=not args.offline,
+        write_cache=not args.dry_run,
+    )
     artist_cache = read_json(artist_cache_path, {})
     release_group_cache = read_json(release_group_cache_path, {})
 
@@ -510,13 +524,14 @@ def main() -> None:
             continue
         artist_cache[key] = query_artist(client, artist, args.min_score)
         fetched += 1
-        write_json(artist_cache_path, artist_cache)
+        if not args.dry_run:
+            write_json(artist_cache_path, artist_cache)
         if args.verbose:
             status = "matched" if artist_cache[key].get("matched") else "missed"
             print(f"{fetched}: {status} {artist}", flush=True)
-        if fetched % 25 == 0:
+        if fetched % 25 == 0 and not args.dry_run:
             write_json(artist_cache_path, artist_cache)
-    if fetched:
+    if fetched and not args.dry_run:
         write_json(artist_cache_path, artist_cache)
 
     fetched_release_groups = 0
@@ -538,7 +553,7 @@ def main() -> None:
                 )
                 release_group_cache[release_key] = release_data
                 fetched_release_groups += 1
-                if fetched_release_groups % 25 == 0:
+                if fetched_release_groups % 25 == 0 and not args.dry_run:
                     write_json(release_group_cache_path, release_group_cache)
             if release_data:
                 genres = ranked_genres_from_tags(
