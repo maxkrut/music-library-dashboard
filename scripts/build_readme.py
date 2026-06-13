@@ -880,6 +880,8 @@ def write_genre_group_svg(
 
     for local_index, (genre, count, artists, years, countries, card_height) in enumerate(card_stats):
         x, y = card_positions[local_index]
+        row_index = local_index // columns
+        display_card_height = row_heights[row_index]
         accent = colors[(card_offset + local_index) % len(colors)]
         number = card_offset + local_index + 1
         artists_x = x + 14
@@ -889,8 +891,8 @@ def write_genre_group_svg(
 
         parts.extend(
             [
-                f'<rect x="{x:.1f}" y="{y:.1f}" width="{card_width:.1f}" height="{card_height}" fill="#fffefa" stroke="#c7d0c7"/>',
-                f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{card_height}" fill="{accent}"/>',
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="{card_width:.1f}" height="{display_card_height}" fill="#fffefa" stroke="#c7d0c7"/>',
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{display_card_height}" fill="{accent}"/>',
                 f'<rect x="{x + 4:.1f}" y="{y:.1f}" width="{card_width - 4:.1f}" height="40" fill="#edf2ed"/>',
                 svg_text(x + 14, y + 27, f"{number:02d}", size=12, weight=800, fill="#a96855"),
                 svg_text(x + 52, y + 28, trim_text(display_genre(genre, group), 40), size=22, weight=800),
@@ -906,8 +908,8 @@ def write_genre_group_svg(
                 svg_text(artists_x, header_y, "ARTISTS", size=13, weight=800, fill="#5d6b62"),
                 svg_text(years_x, header_y, "YEARS", size=13, weight=800, fill="#5d6b62"),
                 svg_text(countries_x, header_y, "COUNTRIES", size=13, weight=800, fill="#5d6b62"),
-                f'<line x1="{years_x - 14:.1f}" y1="{y + 50}" x2="{years_x - 14:.1f}" y2="{y + card_height - 12}" stroke="#cfd6ce"/>',
-                f'<line x1="{countries_x - 14:.1f}" y1="{y + 50}" x2="{countries_x - 14:.1f}" y2="{y + card_height - 12}" stroke="#cfd6ce"/>',
+                f'<line x1="{years_x - 14:.1f}" y1="{y + 50}" x2="{years_x - 14:.1f}" y2="{y + display_card_height - 12}" stroke="#cfd6ce"/>',
+                f'<line x1="{countries_x - 14:.1f}" y1="{y + 50}" x2="{countries_x - 14:.1f}" y2="{y + display_card_height - 12}" stroke="#cfd6ce"/>',
             ]
         )
         row_y = y + first_row_offset
