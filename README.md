@@ -2,9 +2,34 @@
 
 Personal Spotify metadata dashboard. No audio files, only generated summaries from a private CSV archive.
 
-| Tracks | Artists | Albums | Tag genres | Assigned genres | Countries | Playlists | Release years | Duration |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1972 | 1366 | 1677 | 521 | 204 | 53 | 5 | 1958-2026 | 183h 52m |
+<table>
+<thead>
+<tr>
+<th><sub>Tracks</sub></th>
+<th><sub>Artists</sub></th>
+<th><sub>Albums</sub></th>
+<th><sub>Tag genres</sub></th>
+<th><sub>Assigned genres</sub></th>
+<th><sub>Countries</sub></th>
+<th><sub>Playlists</sub></th>
+<th><sub>Release years</sub></th>
+<th><sub>Duration</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><sub>1972</sub></td>
+<td><sub>1366</sub></td>
+<td><sub>1677</sub></td>
+<td><sub>543</sub></td>
+<td><sub>186</sub></td>
+<td><sub>53</sub></td>
+<td><sub>5</sub></td>
+<td><sub>1958-2026</sub></td>
+<td><sub>183h 52m</sub></td>
+</tr>
+</tbody>
+</table>
 
 > Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.
 
@@ -62,111 +87,463 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
-## Other
-
-![Other genre atlas](assets/atlas/other.svg)
-
 ## Latest 20 Liked Tracks
 
-| Added | Artist | Track | Album | Year | Genre |
-| --- | --- | --- | --- | --- | --- |
-| 2026-06-07 | dungeontroll | [Crypt of Euphoria](https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn) | Into the Castle of the Forbidden Twilight | 2020 | dungeon synth |
-| 2026-06-04 | Healthyliving | [Ghost Limbs](https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16) | Songs of Abundance, Psalms of Grief | 2023 |  |
-| 2026-05-26 | Nils Frahm | [Further in the Making](https://open.spotify.com/track/7uYRmq6tONjvwUh8wn8zvh) | Old Friends New Friends | 2021 | modern classical |
-| 2026-05-24 | Darkthrone | [So I Marched To The Sunken Empire](https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4) | Pre-Historic Metal | 2026 | black metal |
-| 2026-05-15 | Kaatayra | [Águas Passadas](https://open.spotify.com/track/5IoMPCKmcSlTteXdRVCzCs) | Caminhos de Água | 2026 | atmospheric black metal |
-| 2026-05-15 | Conjurer | [Let Us Live](https://open.spotify.com/track/1YXo39c7oKj77QdON48uIA) | Unself | 2025 | sludge metal |
-| 2026-05-14 | Summoning | [Flammifer](https://open.spotify.com/track/2L9TUkStJsBHh3Xtw8oUOP) | Old Mornings Dawn | 2013 | black metal |
-| 2026-05-14 | Rivers of Nihil | [Terrestria III: Wither](https://open.spotify.com/track/5EtFUoimouxAcK1Dwj60Pz) | Where Owls Know My Name | 2018 | death metal |
-| 2026-05-08 | heks | [Protestantisk Fanatiker (London Fields Darkwave)](https://open.spotify.com/track/1Yg1pftEFPMsATyNfkuGYX) | Protestantisk Fanatiker (London Fields Darkwave) | 2026 | electronic |
-| 2026-05-08 | Spirit Adrift | [You Will Never Hold The Key](https://open.spotify.com/track/2lIheKkJlthP8A5oeTpdPX) | Infinite Illumination | 2026 | heavy metal |
-| 2026-04-29 | BULLDOZER | [The Great Deceiver](https://open.spotify.com/track/1hJ4Go14cllZv8YE6YLIFV) | The Exorcism | 1984 | black metal |
-| 2026-04-29 | BULLDOZER | [Another Beer (It's What I Need)](https://open.spotify.com/track/7dsXchfku5959Z14zkzxET) | Fallen Angel / Another Beer (Is What I Need) | 1984 | black metal |
-| 2026-04-27 | Üga Büga | [Valley of The Wolf](https://open.spotify.com/track/1fafmxEOMDxm4db8Oz61hi) | Valley of The Wolf (single) | 2026 | heavy metal |
-| 2026-04-27 | Immolation | [Bend Towards The Dark](https://open.spotify.com/track/6UBbYpErZJMCL0NIimAOTk) | Descent | 2026 | death metal |
-| 2026-04-26 | Space Remedy | [Ineffable Dimensions](https://open.spotify.com/track/4b5szokLXkijlkzBX0aQNj) | Ineffable Dimensions | 2026 | progressive rock |
-| 2026-04-26 | Liminal Sky; Ulver | [A Solitary Future](https://open.spotify.com/track/0ShB8rlcQF9yL01mUmAuLx) | A Solitary Future | 2026 | experimental |
-| 2026-04-21 | OM | [Bedouin's Vigil](https://open.spotify.com/track/2E26Vgc5DTlScIrYkrCeVG) | Bedouin’s Vigil / Assyrian Blood | 2006 | stoner rock |
-| 2026-04-21 | Hanging Garden | [Isle of Bliss](https://open.spotify.com/track/7ez3jbaUX5d4jH9spd3QVu) | Isle of Bliss | 2026 | doom metal |
-| 2026-04-16 | Cough | [Let It Bleed](https://open.spotify.com/track/2k4pS2s7JHRiZrc6LB5Xqu) | Still They Pray | 2016 | doom metal |
-| 2026-04-15 | The Flight of Sleipnir | [Sidereal Course](https://open.spotify.com/track/0b24z2yYjV75L59h2tVaWX) | V | 2014 | stoner doom |
+<table>
+<thead>
+<tr>
+<th><sub>Added</sub></th>
+<th><sub>Artist</sub></th>
+<th><sub>Track</sub></th>
+<th><sub>Album</sub></th>
+<th><sub>Year</sub></th>
+<th><sub>Genre</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><sub>2026-06-07</sub></td>
+<td><sub>dungeontroll</sub></td>
+<td><sub><a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn">Crypt of Euphoria</a></sub></td>
+<td><sub>Into the Castle of the Forbidden Twilight</sub></td>
+<td><sub>2020</sub></td>
+<td><sub>dungeon synth</sub></td>
+</tr>
+<tr>
+<td><sub>2026-06-04</sub></td>
+<td><sub>Healthyliving</sub></td>
+<td><sub><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost Limbs</a></sub></td>
+<td><sub>Songs of Abundance, Psalms of Grief</sub></td>
+<td><sub>2023</sub></td>
+<td><sub>doom metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-05-26</sub></td>
+<td><sub>Nils Frahm</sub></td>
+<td><sub><a href="https://open.spotify.com/track/7uYRmq6tONjvwUh8wn8zvh">Further in the Making</a></sub></td>
+<td><sub>Old Friends New Friends</sub></td>
+<td><sub>2021</sub></td>
+<td><sub>modern classical</sub></td>
+</tr>
+<tr>
+<td><sub>2026-05-24</sub></td>
+<td><sub>Darkthrone</sub></td>
+<td><sub><a href="https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4">So I Marched To The Sunken Empire</a></sub></td>
+<td><sub>Pre-Historic Metal</sub></td>
+<td><sub>2026</sub></td>
+<td><sub>black metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-05-15</sub></td>
+<td><sub>Kaatayra</sub></td>
+<td><sub><a href="https://open.spotify.com/track/5IoMPCKmcSlTteXdRVCzCs">Águas Passadas</a></sub></td>
+<td><sub>Caminhos de Água</sub></td>
+<td><sub>2026</sub></td>
+<td><sub>atmospheric black metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-05-15</sub></td>
+<td><sub>Conjurer</sub></td>
+<td><sub><a href="https://open.spotify.com/track/1YXo39c7oKj77QdON48uIA">Let Us Live</a></sub></td>
+<td><sub>Unself</sub></td>
+<td><sub>2025</sub></td>
+<td><sub>sludge metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-05-14</sub></td>
+<td><sub>Summoning</sub></td>
+<td><sub><a href="https://open.spotify.com/track/2L9TUkStJsBHh3Xtw8oUOP">Flammifer</a></sub></td>
+<td><sub>Old Mornings Dawn</sub></td>
+<td><sub>2013</sub></td>
+<td><sub>black metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-05-14</sub></td>
+<td><sub>Rivers of Nihil</sub></td>
+<td><sub><a href="https://open.spotify.com/track/5EtFUoimouxAcK1Dwj60Pz">Terrestria III: Wither</a></sub></td>
+<td><sub>Where Owls Know My Name</sub></td>
+<td><sub>2018</sub></td>
+<td><sub>death metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-05-08</sub></td>
+<td><sub>heks</sub></td>
+<td><sub><a href="https://open.spotify.com/track/1Yg1pftEFPMsATyNfkuGYX">Protestantisk Fanatiker (London Fields Darkwave)</a></sub></td>
+<td><sub>Protestantisk Fanatiker (London Fields Darkwave)</sub></td>
+<td><sub>2026</sub></td>
+<td><sub>electronic</sub></td>
+</tr>
+<tr>
+<td><sub>2026-05-08</sub></td>
+<td><sub>Spirit Adrift</sub></td>
+<td><sub><a href="https://open.spotify.com/track/2lIheKkJlthP8A5oeTpdPX">You Will Never Hold The Key</a></sub></td>
+<td><sub>Infinite Illumination</sub></td>
+<td><sub>2026</sub></td>
+<td><sub>heavy metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-04-29</sub></td>
+<td><sub>BULLDOZER</sub></td>
+<td><sub><a href="https://open.spotify.com/track/1hJ4Go14cllZv8YE6YLIFV">The Great Deceiver</a></sub></td>
+<td><sub>The Exorcism</sub></td>
+<td><sub>1984</sub></td>
+<td><sub>black metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-04-29</sub></td>
+<td><sub>BULLDOZER</sub></td>
+<td><sub><a href="https://open.spotify.com/track/7dsXchfku5959Z14zkzxET">Another Beer (It&#x27;s What I Need)</a></sub></td>
+<td><sub>Fallen Angel / Another Beer (Is What I Need)</sub></td>
+<td><sub>1984</sub></td>
+<td><sub>black metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-04-27</sub></td>
+<td><sub>Üga Büga</sub></td>
+<td><sub><a href="https://open.spotify.com/track/1fafmxEOMDxm4db8Oz61hi">Valley of The Wolf</a></sub></td>
+<td><sub>Valley of The Wolf (single)</sub></td>
+<td><sub>2026</sub></td>
+<td><sub>heavy metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-04-27</sub></td>
+<td><sub>Immolation</sub></td>
+<td><sub><a href="https://open.spotify.com/track/6UBbYpErZJMCL0NIimAOTk">Bend Towards The Dark</a></sub></td>
+<td><sub>Descent</sub></td>
+<td><sub>2026</sub></td>
+<td><sub>death metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-04-26</sub></td>
+<td><sub>Space Remedy</sub></td>
+<td><sub><a href="https://open.spotify.com/track/4b5szokLXkijlkzBX0aQNj">Ineffable Dimensions</a></sub></td>
+<td><sub>Ineffable Dimensions</sub></td>
+<td><sub>2026</sub></td>
+<td><sub>progressive rock</sub></td>
+</tr>
+<tr>
+<td><sub>2026-04-26</sub></td>
+<td><sub>Liminal Sky; Ulver</sub></td>
+<td><sub><a href="https://open.spotify.com/track/0ShB8rlcQF9yL01mUmAuLx">A Solitary Future</a></sub></td>
+<td><sub>A Solitary Future</sub></td>
+<td><sub>2026</sub></td>
+<td><sub>experimental</sub></td>
+</tr>
+<tr>
+<td><sub>2026-04-21</sub></td>
+<td><sub>OM</sub></td>
+<td><sub><a href="https://open.spotify.com/track/2E26Vgc5DTlScIrYkrCeVG">Bedouin&#x27;s Vigil</a></sub></td>
+<td><sub>Bedouin’s Vigil / Assyrian Blood</sub></td>
+<td><sub>2006</sub></td>
+<td><sub>stoner rock</sub></td>
+</tr>
+<tr>
+<td><sub>2026-04-21</sub></td>
+<td><sub>Hanging Garden</sub></td>
+<td><sub><a href="https://open.spotify.com/track/7ez3jbaUX5d4jH9spd3QVu">Isle of Bliss</a></sub></td>
+<td><sub>Isle of Bliss</sub></td>
+<td><sub>2026</sub></td>
+<td><sub>doom metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-04-16</sub></td>
+<td><sub>Cough</sub></td>
+<td><sub><a href="https://open.spotify.com/track/2k4pS2s7JHRiZrc6LB5Xqu">Let It Bleed</a></sub></td>
+<td><sub>Still They Pray</sub></td>
+<td><sub>2016</sub></td>
+<td><sub>doom metal</sub></td>
+</tr>
+<tr>
+<td><sub>2026-04-15</sub></td>
+<td><sub>The Flight of Sleipnir</sub></td>
+<td><sub><a href="https://open.spotify.com/track/0b24z2yYjV75L59h2tVaWX">Sidereal Course</a></sub></td>
+<td><sub>V</sub></td>
+<td><sub>2014</sub></td>
+<td><sub>stoner doom</sub></td>
+</tr>
+</tbody>
+</table>
 
 ## Aggregates
 
 ### Top 20 Countries
 
-| Country | Tracks |
-| --- | --- |
-| United States | 621 |
-| United Kingdom | 286 |
-| Norway | 227 |
-| Sweden | 165 |
-| Germany | 97 |
-| Finland | 74 |
-| Canada | 54 |
-| France | 50 |
-| Russia | 49 |
-| Denmark | 37 |
-| Netherlands | 32 |
-| Italy | 32 |
-| Australia | 30 |
-| Ireland | 23 |
-| Poland | 20 |
-| Belgium | 16 |
-| Greece | 15 |
-| Switzerland | 14 |
-| Austria | 12 |
-| Hungary | 11 |
+<table>
+<thead>
+<tr>
+<th><sub>Country</sub></th>
+<th><sub>Tracks</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><sub>United States</sub></td>
+<td><sub>619</sub></td>
+</tr>
+<tr>
+<td><sub>United Kingdom</sub></td>
+<td><sub>286</sub></td>
+</tr>
+<tr>
+<td><sub>Norway</sub></td>
+<td><sub>227</sub></td>
+</tr>
+<tr>
+<td><sub>Sweden</sub></td>
+<td><sub>165</sub></td>
+</tr>
+<tr>
+<td><sub>Germany</sub></td>
+<td><sub>97</sub></td>
+</tr>
+<tr>
+<td><sub>Finland</sub></td>
+<td><sub>73</sub></td>
+</tr>
+<tr>
+<td><sub>Canada</sub></td>
+<td><sub>54</sub></td>
+</tr>
+<tr>
+<td><sub>France</sub></td>
+<td><sub>50</sub></td>
+</tr>
+<tr>
+<td><sub>Russia</sub></td>
+<td><sub>49</sub></td>
+</tr>
+<tr>
+<td><sub>Denmark</sub></td>
+<td><sub>37</sub></td>
+</tr>
+<tr>
+<td><sub>Netherlands</sub></td>
+<td><sub>32</sub></td>
+</tr>
+<tr>
+<td><sub>Italy</sub></td>
+<td><sub>32</sub></td>
+</tr>
+<tr>
+<td><sub>Australia</sub></td>
+<td><sub>30</sub></td>
+</tr>
+<tr>
+<td><sub>Ireland</sub></td>
+<td><sub>23</sub></td>
+</tr>
+<tr>
+<td><sub>Poland</sub></td>
+<td><sub>19</sub></td>
+</tr>
+<tr>
+<td><sub>Belgium</sub></td>
+<td><sub>16</sub></td>
+</tr>
+<tr>
+<td><sub>Greece</sub></td>
+<td><sub>15</sub></td>
+</tr>
+<tr>
+<td><sub>Switzerland</sub></td>
+<td><sub>14</sub></td>
+</tr>
+<tr>
+<td><sub>Austria</sub></td>
+<td><sub>12</sub></td>
+</tr>
+<tr>
+<td><sub>Hungary</sub></td>
+<td><sub>11</sub></td>
+</tr>
+</tbody>
+</table>
 
 ### Top 20 Genres
 
-| Genre | Tracks |
-| --- | --- |
-| black metal | 209 |
-| doom metal | 117 |
-| progressive rock | 99 |
-| progressive metal | 80 |
-| heavy metal | 74 |
-| hard rock | 74 |
-| electronic | 67 |
-| alternative rock | 53 |
-| death metal | 46 |
-| psychedelic rock | 44 |
-| atmospheric black metal | 42 |
-| post-rock | 41 |
-| stoner rock | 38 |
-| thrash metal | 38 |
-| rock | 29 |
-| ambient | 28 |
-| post-metal | 27 |
-| sludge metal | 26 |
-| gothic metal | 26 |
-| post-punk | 24 |
+<table>
+<thead>
+<tr>
+<th><sub>Genre</sub></th>
+<th><sub>Tracks</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><sub>black metal</sub></td>
+<td><sub>207</sub></td>
+</tr>
+<tr>
+<td><sub>progressive rock</sub></td>
+<td><sub>98</sub></td>
+</tr>
+<tr>
+<td><sub>doom metal</sub></td>
+<td><sub>95</sub></td>
+</tr>
+<tr>
+<td><sub>progressive metal</sub></td>
+<td><sub>80</sub></td>
+</tr>
+<tr>
+<td><sub>hard rock</sub></td>
+<td><sub>75</sub></td>
+</tr>
+<tr>
+<td><sub>heavy metal</sub></td>
+<td><sub>74</sub></td>
+</tr>
+<tr>
+<td><sub>psychedelic rock</sub></td>
+<td><sub>56</sub></td>
+</tr>
+<tr>
+<td><sub>electronic</sub></td>
+<td><sub>56</sub></td>
+</tr>
+<tr>
+<td><sub>alternative rock</sub></td>
+<td><sub>54</sub></td>
+</tr>
+<tr>
+<td><sub>atmospheric black metal</sub></td>
+<td><sub>45</sub></td>
+</tr>
+<tr>
+<td><sub>death metal</sub></td>
+<td><sub>41</sub></td>
+</tr>
+<tr>
+<td><sub>post-rock</sub></td>
+<td><sub>40</sub></td>
+</tr>
+<tr>
+<td><sub>stoner rock</sub></td>
+<td><sub>39</sub></td>
+</tr>
+<tr>
+<td><sub>thrash metal</sub></td>
+<td><sub>38</sub></td>
+</tr>
+<tr>
+<td><sub>post-punk</sub></td>
+<td><sub>29</sub></td>
+</tr>
+<tr>
+<td><sub>post-metal</sub></td>
+<td><sub>28</sub></td>
+</tr>
+<tr>
+<td><sub>blues rock</sub></td>
+<td><sub>28</sub></td>
+</tr>
+<tr>
+<td><sub>gothic metal</sub></td>
+<td><sub>27</sub></td>
+</tr>
+<tr>
+<td><sub>sludge metal</sub></td>
+<td><sub>26</sub></td>
+</tr>
+<tr>
+<td><sub>ambient</sub></td>
+<td><sub>24</sub></td>
+</tr>
+</tbody>
+</table>
 
 ### Top 20 Groups / Artists
 
-| Group / artist | Tracks |
-| --- | --- |
-| Enslaved | 50 |
-| Darkthrone | 28 |
-| Opeth | 21 |
-| Ulver | 17 |
-| Shape Of Despair | 12 |
-| Wardruna | 12 |
-| The Flight of Sleipnir | 10 |
-| Clark | 9 |
-| Frank Zappa | 9 |
-| The Quakes | 9 |
-| Lauge | 8 |
-| My Dying Bride | 8 |
-| Alcest | 7 |
-| Biohazard | 7 |
-| Carlo Domeniconi | 7 |
-| Chelsea Wolfe | 7 |
-| Counting Hours | 7 |
-| Dark Suns | 7 |
-| Devin Townsend | 7 |
-| Rush | 7 |
+<table>
+<thead>
+<tr>
+<th><sub>Group / artist</sub></th>
+<th><sub>Tracks</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><sub>Enslaved</sub></td>
+<td><sub>50</sub></td>
+</tr>
+<tr>
+<td><sub>Darkthrone</sub></td>
+<td><sub>28</sub></td>
+</tr>
+<tr>
+<td><sub>Opeth</sub></td>
+<td><sub>21</sub></td>
+</tr>
+<tr>
+<td><sub>Ulver</sub></td>
+<td><sub>17</sub></td>
+</tr>
+<tr>
+<td><sub>Shape Of Despair</sub></td>
+<td><sub>12</sub></td>
+</tr>
+<tr>
+<td><sub>Wardruna</sub></td>
+<td><sub>12</sub></td>
+</tr>
+<tr>
+<td><sub>The Flight of Sleipnir</sub></td>
+<td><sub>10</sub></td>
+</tr>
+<tr>
+<td><sub>Clark</sub></td>
+<td><sub>9</sub></td>
+</tr>
+<tr>
+<td><sub>Frank Zappa</sub></td>
+<td><sub>9</sub></td>
+</tr>
+<tr>
+<td><sub>The Quakes</sub></td>
+<td><sub>9</sub></td>
+</tr>
+<tr>
+<td><sub>Lauge</sub></td>
+<td><sub>8</sub></td>
+</tr>
+<tr>
+<td><sub>My Dying Bride</sub></td>
+<td><sub>8</sub></td>
+</tr>
+<tr>
+<td><sub>Alcest</sub></td>
+<td><sub>7</sub></td>
+</tr>
+<tr>
+<td><sub>Biohazard</sub></td>
+<td><sub>7</sub></td>
+</tr>
+<tr>
+<td><sub>Carlo Domeniconi</sub></td>
+<td><sub>7</sub></td>
+</tr>
+<tr>
+<td><sub>Chelsea Wolfe</sub></td>
+<td><sub>7</sub></td>
+</tr>
+<tr>
+<td><sub>Counting Hours</sub></td>
+<td><sub>7</sub></td>
+</tr>
+<tr>
+<td><sub>Dark Suns</sub></td>
+<td><sub>7</sub></td>
+</tr>
+<tr>
+<td><sub>Devin Townsend</sub></td>
+<td><sub>7</sub></td>
+</tr>
+<tr>
+<td><sub>Rush</sub></td>
+<td><sub>7</sub></td>
+</tr>
+</tbody>
+</table>
 
 <details>
 <summary>Workflow</summary>
@@ -207,4 +584,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-13 07:33 UTC._
+_Generated at 2026-06-13 07:37 UTC._

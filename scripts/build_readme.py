@@ -485,6 +485,14 @@ def external_md_link(label: str, url: str) -> str:
     return f"[{safe_label}]({safe_target})"
 
 
+def external_html_link(label: str, url: str) -> str:
+    text = str(label or "").strip()
+    target = str(url or "").strip()
+    if not target:
+        return html_escape(text)
+    return f'<a href="{html_escape(target)}">{html_escape(text)}</a>'
+
+
 def repo_label(path: Path) -> str:
     try:
         return path.relative_to(ROOT).as_posix()
@@ -497,6 +505,23 @@ def table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
     rendered.append("| " + " | ".join("---" for _ in headers) + " |")
     for row in rows:
         rendered.append("| " + " | ".join(md_escape(value) for value in row) + " |")
+    return "\n".join(rendered)
+
+
+def compact_table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
+    rendered = ["<table>", "<thead>", "<tr>"]
+    for header in headers:
+        rendered.append(f"<th><sub>{html_escape(header)}</sub></th>")
+    rendered.extend(["</tr>", "</thead>", "<tbody>"])
+    for row in rows:
+        rendered.append("<tr>")
+        for value in row:
+            cell = str(value if value is not None else "")
+            if not cell.startswith('<a href="'):
+                cell = html_escape(cell)
+            rendered.append(f"<td><sub>{cell}</sub></td>")
+        rendered.append("</tr>")
+    rendered.extend(["</tbody>", "</table>"])
     return "\n".join(rendered)
 
 
@@ -601,7 +626,7 @@ def recent_liked_rows(tracks: list[TrackRow], limit: int = 20) -> list[list[str]
         [
             date_label(added_date(row)),
             row.get("artist_names", ""),
-            external_md_link(row.get("track_name", ""), row.get("spotify_url", "")),
+            external_html_link(row.get("track_name", ""), row.get("spotify_url", "")),
             row.get("album_name", ""),
             effective_year(row),
             effective_primary_genre(row),
@@ -1065,7 +1090,7 @@ def build_dashboard(
         assigned_genres = assigned_genre_rows(tracks, artist_genres)
         lines.extend(
             [
-                table(
+                compact_table(
                     [
                         "Tracks",
                         "Artists",
@@ -1111,7 +1136,7 @@ def build_dashboard(
             [
                 "## Latest 20 Liked Tracks",
                 "",
-                table(
+                compact_table(
                     ["Added", "Artist", "Track", "Album", "Year", "Genre"],
                     recent_liked_rows(tracks, 20),
                 ),
@@ -1120,15 +1145,15 @@ def build_dashboard(
                 "",
                 "### Top 20 Countries",
                 "",
-                table(["Country", "Tracks"], top(countries, 20)),
+                compact_table(["Country", "Tracks"], top(countries, 20)),
                 "",
                 "### Top 20 Genres",
                 "",
-                table(["Genre", "Tracks"], assigned_genres[:20]),
+                compact_table(["Genre", "Tracks"], assigned_genres[:20]),
                 "",
                 "### Top 20 Groups / Artists",
                 "",
-                table(["Group / artist", "Tracks"], top(artists, 20)),
+                compact_table(["Group / artist", "Tracks"], top(artists, 20)),
                 "",
                 "<details>",
                 "<summary>Workflow</summary>",
