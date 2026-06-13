@@ -21,8 +21,8 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td><sub>1972</sub></td>
 <td><sub>1366</sub></td>
 <td><sub>1677</sub></td>
-<td><sub>543</sub></td>
-<td><sub>186</sub></td>
+<td><sub>521</sub></td>
+<td><sub>204</sub></td>
 <td><sub>53</sub></td>
 <td><sub>5</sub></td>
 <td><sub>1958-2026</sub></td>
@@ -87,6 +87,10 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
+## Other
+
+![Other genre atlas](assets/atlas/other.svg)
+
 ## Latest 20 Liked Tracks
 
 <table>
@@ -115,7 +119,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td><sub><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost Limbs</a></sub></td>
 <td><sub>Songs of Abundance, Psalms of Grief</sub></td>
 <td><sub>2023</sub></td>
-<td><sub>doom metal</sub></td>
+<td><sub></sub></td>
 </tr>
 <tr>
 <td><sub>2026-05-26</sub></td>
@@ -278,7 +282,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <tbody>
 <tr>
 <td><sub>United States</sub></td>
-<td><sub>619</sub></td>
+<td><sub>621</sub></td>
 </tr>
 <tr>
 <td><sub>United Kingdom</sub></td>
@@ -298,7 +302,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td><sub>Finland</sub></td>
-<td><sub>73</sub></td>
+<td><sub>74</sub></td>
 </tr>
 <tr>
 <td><sub>Canada</sub></td>
@@ -334,7 +338,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td><sub>Poland</sub></td>
-<td><sub>19</sub></td>
+<td><sub>20</sub></td>
 </tr>
 <tr>
 <td><sub>Belgium</sub></td>
@@ -371,74 +375,70 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <tbody>
 <tr>
 <td><sub>black metal</sub></td>
-<td><sub>207</sub></td>
-</tr>
-<tr>
-<td><sub>progressive rock</sub></td>
-<td><sub>98</sub></td>
+<td><sub>209</sub></td>
 </tr>
 <tr>
 <td><sub>doom metal</sub></td>
-<td><sub>95</sub></td>
+<td><sub>117</sub></td>
+</tr>
+<tr>
+<td><sub>progressive rock</sub></td>
+<td><sub>99</sub></td>
 </tr>
 <tr>
 <td><sub>progressive metal</sub></td>
 <td><sub>80</sub></td>
 </tr>
 <tr>
-<td><sub>hard rock</sub></td>
-<td><sub>75</sub></td>
-</tr>
-<tr>
 <td><sub>heavy metal</sub></td>
 <td><sub>74</sub></td>
 </tr>
 <tr>
-<td><sub>psychedelic rock</sub></td>
-<td><sub>56</sub></td>
+<td><sub>hard rock</sub></td>
+<td><sub>74</sub></td>
 </tr>
 <tr>
 <td><sub>electronic</sub></td>
-<td><sub>56</sub></td>
+<td><sub>67</sub></td>
 </tr>
 <tr>
 <td><sub>alternative rock</sub></td>
-<td><sub>54</sub></td>
-</tr>
-<tr>
-<td><sub>atmospheric black metal</sub></td>
-<td><sub>45</sub></td>
+<td><sub>53</sub></td>
 </tr>
 <tr>
 <td><sub>death metal</sub></td>
-<td><sub>41</sub></td>
+<td><sub>46</sub></td>
+</tr>
+<tr>
+<td><sub>psychedelic rock</sub></td>
+<td><sub>44</sub></td>
+</tr>
+<tr>
+<td><sub>atmospheric black metal</sub></td>
+<td><sub>42</sub></td>
 </tr>
 <tr>
 <td><sub>post-rock</sub></td>
-<td><sub>40</sub></td>
+<td><sub>41</sub></td>
 </tr>
 <tr>
 <td><sub>stoner rock</sub></td>
-<td><sub>39</sub></td>
+<td><sub>38</sub></td>
 </tr>
 <tr>
 <td><sub>thrash metal</sub></td>
 <td><sub>38</sub></td>
 </tr>
 <tr>
-<td><sub>post-punk</sub></td>
+<td><sub>rock</sub></td>
 <td><sub>29</sub></td>
 </tr>
 <tr>
+<td><sub>ambient</sub></td>
+<td><sub>28</sub></td>
+</tr>
+<tr>
 <td><sub>post-metal</sub></td>
-<td><sub>28</sub></td>
-</tr>
-<tr>
-<td><sub>blues rock</sub></td>
-<td><sub>28</sub></td>
-</tr>
-<tr>
-<td><sub>gothic metal</sub></td>
 <td><sub>27</sub></td>
 </tr>
 <tr>
@@ -446,7 +446,11 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td><sub>26</sub></td>
 </tr>
 <tr>
-<td><sub>ambient</sub></td>
+<td><sub>gothic metal</sub></td>
+<td><sub>26</sub></td>
+</tr>
+<tr>
+<td><sub>post-punk</sub></td>
 <td><sub>24</sub></td>
 </tr>
 </tbody>
@@ -584,4 +588,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-13 07:37 UTC._
+_Generated at 2026-06-13 07:39 UTC._
