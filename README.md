@@ -18,15 +18,15 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </thead>
 <tbody>
 <tr>
-<td><sub>1972</sub></td>
-<td><sub>1366</sub></td>
-<td><sub>1677</sub></td>
+<td><sub>1973</sub></td>
+<td><sub>1367</sub></td>
+<td><sub>1678</sub></td>
 <td><sub>521</sub></td>
 <td><sub>204</sub></td>
 <td><sub>53</sub></td>
 <td><sub>5</sub></td>
 <td><sub>1958-2026</sub></td>
-<td><sub>183h 52m</sub></td>
+<td><sub>183h 57m</sub></td>
 </tr>
 </tbody>
 </table>
@@ -105,6 +105,14 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><sub>2026-06-15</sub></td>
+<td><sub>Magic Man</sub></td>
+<td><sub><a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm">Steppe Grass</a></sub></td>
+<td><sub>Boards of Mongolia</sub></td>
+<td><sub>2026</sub></td>
+<td><sub>ambient</sub></td>
+</tr>
 <tr>
 <td><sub>2026-06-07</sub></td>
 <td><sub>dungeontroll</sub></td>
@@ -257,14 +265,6 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td><sub>2016</sub></td>
 <td><sub>doom metal</sub></td>
 </tr>
-<tr>
-<td><sub>2026-04-15</sub></td>
-<td><sub>The Flight of Sleipnir</sub></td>
-<td><sub><a href="https://open.spotify.com/track/0b24z2yYjV75L59h2tVaWX">Sidereal Course</a></sub></td>
-<td><sub>V</sub></td>
-<td><sub>2014</sub></td>
-<td><sub>stoner doom</sub></td>
-</tr>
 </tbody>
 </table>
 
@@ -338,7 +338,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td><sub>Poland</sub></td>
-<td><sub>20</sub></td>
+<td><sub>21</sub></td>
 </tr>
 <tr>
 <td><sub>Belgium</sub></td>
@@ -435,7 +435,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td><sub>ambient</sub></td>
-<td><sub>28</sub></td>
+<td><sub>29</sub></td>
 </tr>
 <tr>
 <td><sub>post-metal</sub></td>
@@ -588,4 +588,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-13 07:39 UTC._
+_Generated at 2026-06-15 11:24 UTC._
