@@ -19,15 +19,15 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </thead>
 <tbody>
 <tr>
-<td align="center"><sub><sub>1972</sub></sub></td>
-<td align="center"><sub><sub>1366</sub></sub></td>
-<td align="center"><sub><sub>1677</sub></sub></td>
-<td align="center"><sub><sub>546</sub></sub></td>
-<td align="center"><sub><sub>190</sub></sub></td>
+<td align="center"><sub><sub>1973</sub></sub></td>
+<td align="center"><sub><sub>1367</sub></sub></td>
+<td align="center"><sub><sub>1678</sub></sub></td>
+<td align="center"><sub><sub>521</sub></sub></td>
+<td align="center"><sub><sub>204</sub></sub></td>
 <td align="center"><sub><sub>53</sub></sub></td>
 <td align="center"><sub><sub>5</sub></sub></td>
 <td align="center"><sub><sub>1958-2026</sub></sub></td>
-<td align="center"><sub><sub>183h 52m</sub></sub></td>
+<td align="center"><sub><sub>183h 57m</sub></sub></td>
 </tr>
 </tbody>
 </table>
@@ -89,6 +89,10 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
+## Other
+
+![Other genre atlas](assets/atlas/other.svg)
+
 ## Latest 20 Liked Tracks
 
 <div align="center">
@@ -105,6 +109,14 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </thead>
 <tbody>
 <tr>
+<td align="center"><sub><sub>2026-06-15</sub></sub></td>
+<td align="center"><sub><sub>Magic Man</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm">Steppe Grass</a></sub></sub></td>
+<td align="center"><sub><sub>Boards of Mongolia</sub></sub></td>
+<td align="center"><sub><sub>2026</sub></sub></td>
+<td align="center"><sub><sub>ambient</sub></sub></td>
+</tr>
+<tr>
 <td align="center"><sub><sub>2026-06-07</sub></sub></td>
 <td align="center"><sub><sub>dungeontroll</sub></sub></td>
 <td align="center"><sub><sub><a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn">Crypt of Euphoria</a></sub></sub></td>
@@ -118,7 +130,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center"><sub><sub><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost Limbs</a></sub></sub></td>
 <td align="center"><sub><sub>Songs of Abundance, Psalms of Grief</sub></sub></td>
 <td align="center"><sub><sub>2023</sub></sub></td>
-<td align="center"><sub><sub>doom metal</sub></sub></td>
+<td align="center"><sub><sub></sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>2026-05-26</sub></sub></td>
@@ -190,7 +202,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center"><sub><sub><a href="https://open.spotify.com/track/1hJ4Go14cllZv8YE6YLIFV">The Great Deceiver</a></sub></sub></td>
 <td align="center"><sub><sub>The Exorcism</sub></sub></td>
 <td align="center"><sub><sub>1984</sub></sub></td>
-<td align="center"><sub><sub>speed metal</sub></sub></td>
+<td align="center"><sub><sub>black metal</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>2026-04-29</sub></sub></td>
@@ -198,7 +210,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center"><sub><sub><a href="https://open.spotify.com/track/7dsXchfku5959Z14zkzxET">Another Beer (It&#x27;s What I Need)</a></sub></sub></td>
 <td align="center"><sub><sub>Fallen Angel / Another Beer (Is What I Need)</sub></sub></td>
 <td align="center"><sub><sub>1984</sub></sub></td>
-<td align="center"><sub><sub>speed metal</sub></sub></td>
+<td align="center"><sub><sub>black metal</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>2026-04-27</sub></sub></td>
@@ -256,14 +268,6 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center"><sub><sub>2016</sub></sub></td>
 <td align="center"><sub><sub>doom metal</sub></sub></td>
 </tr>
-<tr>
-<td align="center"><sub><sub>2026-04-15</sub></sub></td>
-<td align="center"><sub><sub>The Flight of Sleipnir</sub></sub></td>
-<td align="center"><sub><sub><a href="https://open.spotify.com/track/0b24z2yYjV75L59h2tVaWX">Sidereal Course</a></sub></sub></td>
-<td align="center"><sub><sub>V</sub></sub></td>
-<td align="center"><sub><sub>2014</sub></sub></td>
-<td align="center"><sub><sub>stoner doom</sub></sub></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -283,7 +287,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <tbody>
 <tr>
 <td align="center"><sub><sub>United States</sub></sub></td>
-<td align="center"><sub><sub>619</sub></sub></td>
+<td align="center"><sub><sub>621</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>United Kingdom</sub></sub></td>
@@ -303,7 +307,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td align="center"><sub><sub>Finland</sub></sub></td>
-<td align="center"><sub><sub>73</sub></sub></td>
+<td align="center"><sub><sub>74</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>Canada</sub></sub></td>
@@ -339,7 +343,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td align="center"><sub><sub>Poland</sub></sub></td>
-<td align="center"><sub><sub>19</sub></sub></td>
+<td align="center"><sub><sub>21</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>Belgium</sub></sub></td>
@@ -378,83 +382,83 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <tbody>
 <tr>
 <td align="center"><sub><sub>black metal</sub></sub></td>
-<td align="center"><sub><sub>205</sub></sub></td>
-</tr>
-<tr>
-<td align="center"><sub><sub>progressive rock</sub></sub></td>
-<td align="center"><sub><sub>106</sub></sub></td>
-</tr>
-<tr>
-<td align="center"><sub><sub>progressive metal</sub></sub></td>
-<td align="center"><sub><sub>83</sub></sub></td>
-</tr>
-<tr>
-<td align="center"><sub><sub>heavy metal</sub></sub></td>
-<td align="center"><sub><sub>78</sub></sub></td>
+<td align="center"><sub><sub>209</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>doom metal</sub></sub></td>
-<td align="center"><sub><sub>70</sub></sub></td>
+<td align="center"><sub><sub>117</sub></sub></td>
+</tr>
+<tr>
+<td align="center"><sub><sub>progressive rock</sub></sub></td>
+<td align="center"><sub><sub>99</sub></sub></td>
+</tr>
+<tr>
+<td align="center"><sub><sub>progressive metal</sub></sub></td>
+<td align="center"><sub><sub>80</sub></sub></td>
+</tr>
+<tr>
+<td align="center"><sub><sub>heavy metal</sub></sub></td>
+<td align="center"><sub><sub>74</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>hard rock</sub></sub></td>
-<td align="center"><sub><sub>67</sub></sub></td>
-</tr>
-<tr>
-<td align="center"><sub><sub>psychedelic rock</sub></sub></td>
-<td align="center"><sub><sub>59</sub></sub></td>
+<td align="center"><sub><sub>74</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>electronic</sub></sub></td>
-<td align="center"><sub><sub>53</sub></sub></td>
+<td align="center"><sub><sub>67</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>alternative rock</sub></sub></td>
-<td align="center"><sub><sub>50</sub></sub></td>
-</tr>
-<tr>
-<td align="center"><sub><sub>atmospheric black metal</sub></sub></td>
-<td align="center"><sub><sub>45</sub></sub></td>
+<td align="center"><sub><sub>53</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>death metal</sub></sub></td>
-<td align="center"><sub><sub>41</sub></sub></td>
+<td align="center"><sub><sub>46</sub></sub></td>
+</tr>
+<tr>
+<td align="center"><sub><sub>psychedelic rock</sub></sub></td>
+<td align="center"><sub><sub>44</sub></sub></td>
+</tr>
+<tr>
+<td align="center"><sub><sub>atmospheric black metal</sub></sub></td>
+<td align="center"><sub><sub>42</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>post-rock</sub></sub></td>
-<td align="center"><sub><sub>40</sub></sub></td>
+<td align="center"><sub><sub>41</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>stoner rock</sub></sub></td>
-<td align="center"><sub><sub>39</sub></sub></td>
+<td align="center"><sub><sub>38</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>thrash metal</sub></sub></td>
 <td align="center"><sub><sub>38</sub></sub></td>
 </tr>
 <tr>
-<td align="center"><sub><sub>gothic metal</sub></sub></td>
-<td align="center"><sub><sub>34</sub></sub></td>
+<td align="center"><sub><sub>rock</sub></sub></td>
+<td align="center"><sub><sub>29</sub></sub></td>
 </tr>
 <tr>
-<td align="center"><sub><sub>post-punk</sub></sub></td>
+<td align="center"><sub><sub>ambient</sub></sub></td>
 <td align="center"><sub><sub>29</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>post-metal</sub></sub></td>
-<td align="center"><sub><sub>28</sub></sub></td>
-</tr>
-<tr>
-<td align="center"><sub><sub>blues rock</sub></sub></td>
-<td align="center"><sub><sub>28</sub></sub></td>
-</tr>
-<tr>
-<td align="center"><sub><sub>death-doom metal</sub></sub></td>
-<td align="center"><sub><sub>28</sub></sub></td>
+<td align="center"><sub><sub>27</sub></sub></td>
 </tr>
 <tr>
 <td align="center"><sub><sub>sludge metal</sub></sub></td>
 <td align="center"><sub><sub>26</sub></sub></td>
+</tr>
+<tr>
+<td align="center"><sub><sub>gothic metal</sub></sub></td>
+<td align="center"><sub><sub>26</sub></sub></td>
+</tr>
+<tr>
+<td align="center"><sub><sub>post-punk</sub></sub></td>
+<td align="center"><sub><sub>24</sub></sub></td>
 </tr>
 </tbody>
 </table>
@@ -594,4 +598,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-16 20:52 UTC._
+_Generated at 2026-06-16 20:56 UTC._
