@@ -2,34 +2,36 @@
 
 Personal Spotify metadata dashboard. No audio files, only generated summaries from a private CSV archive.
 
-<table>
+<div align="center">
+<table align="center" cellpadding="1" cellspacing="0">
 <thead>
 <tr>
-<th><sub>Tracks</sub></th>
-<th><sub>Artists</sub></th>
-<th><sub>Albums</sub></th>
-<th><sub>Tag genres</sub></th>
-<th><sub>Assigned genres</sub></th>
-<th><sub>Countries</sub></th>
-<th><sub>Playlists</sub></th>
-<th><sub>Release years</sub></th>
-<th><sub>Duration</sub></th>
+<th align="center"><sub><sub>Tracks</sub></sub></th>
+<th align="center"><sub><sub>Artists</sub></sub></th>
+<th align="center"><sub><sub>Albums</sub></sub></th>
+<th align="center"><sub><sub>Tag genres</sub></sub></th>
+<th align="center"><sub><sub>Assigned genres</sub></sub></th>
+<th align="center"><sub><sub>Countries</sub></sub></th>
+<th align="center"><sub><sub>Playlists</sub></sub></th>
+<th align="center"><sub><sub>Release years</sub></sub></th>
+<th align="center"><sub><sub>Duration</sub></sub></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><sub>1973</sub></td>
-<td><sub>1367</sub></td>
-<td><sub>1678</sub></td>
-<td><sub>521</sub></td>
-<td><sub>204</sub></td>
-<td><sub>53</sub></td>
-<td><sub>5</sub></td>
-<td><sub>1958-2026</sub></td>
-<td><sub>183h 57m</sub></td>
+<td align="center"><sub><sub>1972</sub></sub></td>
+<td align="center"><sub><sub>1366</sub></sub></td>
+<td align="center"><sub><sub>1677</sub></sub></td>
+<td align="center"><sub><sub>546</sub></sub></td>
+<td align="center"><sub><sub>190</sub></sub></td>
+<td align="center"><sub><sub>53</sub></sub></td>
+<td align="center"><sub><sub>5</sub></sub></td>
+<td align="center"><sub><sub>1958-2026</sub></sub></td>
+<td align="center"><sub><sub>183h 52m</sub></sub></td>
 </tr>
 </tbody>
 </table>
+</div>
 
 > Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.
 
@@ -87,467 +89,471 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
-## Other
-
-![Other genre atlas](assets/atlas/other.svg)
-
 ## Latest 20 Liked Tracks
 
-<table>
+<div align="center">
+<table align="center" cellpadding="1" cellspacing="0">
 <thead>
 <tr>
-<th><sub>Added</sub></th>
-<th><sub>Artist</sub></th>
-<th><sub>Track</sub></th>
-<th><sub>Album</sub></th>
-<th><sub>Year</sub></th>
-<th><sub>Genre</sub></th>
+<th align="center"><sub><sub>Added</sub></sub></th>
+<th align="center"><sub><sub>Artist</sub></sub></th>
+<th align="center"><sub><sub>Track</sub></sub></th>
+<th align="center"><sub><sub>Album</sub></sub></th>
+<th align="center"><sub><sub>Year</sub></sub></th>
+<th align="center"><sub><sub>Genre</sub></sub></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><sub>2026-06-15</sub></td>
-<td><sub>Magic Man</sub></td>
-<td><sub><a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm">Steppe Grass</a></sub></td>
-<td><sub>Boards of Mongolia</sub></td>
-<td><sub>2026</sub></td>
-<td><sub>ambient</sub></td>
+<td align="center"><sub><sub>2026-06-07</sub></sub></td>
+<td align="center"><sub><sub>dungeontroll</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn">Crypt of Euphoria</a></sub></sub></td>
+<td align="center"><sub><sub>Into the Castle of the Forbidden Twilight</sub></sub></td>
+<td align="center"><sub><sub>2020</sub></sub></td>
+<td align="center"><sub><sub>dungeon synth</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-06-07</sub></td>
-<td><sub>dungeontroll</sub></td>
-<td><sub><a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn">Crypt of Euphoria</a></sub></td>
-<td><sub>Into the Castle of the Forbidden Twilight</sub></td>
-<td><sub>2020</sub></td>
-<td><sub>dungeon synth</sub></td>
+<td align="center"><sub><sub>2026-06-04</sub></sub></td>
+<td align="center"><sub><sub>Healthyliving</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost Limbs</a></sub></sub></td>
+<td align="center"><sub><sub>Songs of Abundance, Psalms of Grief</sub></sub></td>
+<td align="center"><sub><sub>2023</sub></sub></td>
+<td align="center"><sub><sub>doom metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-06-04</sub></td>
-<td><sub>Healthyliving</sub></td>
-<td><sub><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost Limbs</a></sub></td>
-<td><sub>Songs of Abundance, Psalms of Grief</sub></td>
-<td><sub>2023</sub></td>
-<td><sub></sub></td>
+<td align="center"><sub><sub>2026-05-26</sub></sub></td>
+<td align="center"><sub><sub>Nils Frahm</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/7uYRmq6tONjvwUh8wn8zvh">Further in the Making</a></sub></sub></td>
+<td align="center"><sub><sub>Old Friends New Friends</sub></sub></td>
+<td align="center"><sub><sub>2021</sub></sub></td>
+<td align="center"><sub><sub>modern classical</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-05-26</sub></td>
-<td><sub>Nils Frahm</sub></td>
-<td><sub><a href="https://open.spotify.com/track/7uYRmq6tONjvwUh8wn8zvh">Further in the Making</a></sub></td>
-<td><sub>Old Friends New Friends</sub></td>
-<td><sub>2021</sub></td>
-<td><sub>modern classical</sub></td>
+<td align="center"><sub><sub>2026-05-24</sub></sub></td>
+<td align="center"><sub><sub>Darkthrone</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4">So I Marched To The Sunken Empire</a></sub></sub></td>
+<td align="center"><sub><sub>Pre-Historic Metal</sub></sub></td>
+<td align="center"><sub><sub>2026</sub></sub></td>
+<td align="center"><sub><sub>black metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-05-24</sub></td>
-<td><sub>Darkthrone</sub></td>
-<td><sub><a href="https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4">So I Marched To The Sunken Empire</a></sub></td>
-<td><sub>Pre-Historic Metal</sub></td>
-<td><sub>2026</sub></td>
-<td><sub>black metal</sub></td>
+<td align="center"><sub><sub>2026-05-15</sub></sub></td>
+<td align="center"><sub><sub>Kaatayra</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/5IoMPCKmcSlTteXdRVCzCs">Águas Passadas</a></sub></sub></td>
+<td align="center"><sub><sub>Caminhos de Água</sub></sub></td>
+<td align="center"><sub><sub>2026</sub></sub></td>
+<td align="center"><sub><sub>atmospheric black metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-05-15</sub></td>
-<td><sub>Kaatayra</sub></td>
-<td><sub><a href="https://open.spotify.com/track/5IoMPCKmcSlTteXdRVCzCs">Águas Passadas</a></sub></td>
-<td><sub>Caminhos de Água</sub></td>
-<td><sub>2026</sub></td>
-<td><sub>atmospheric black metal</sub></td>
+<td align="center"><sub><sub>2026-05-15</sub></sub></td>
+<td align="center"><sub><sub>Conjurer</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/1YXo39c7oKj77QdON48uIA">Let Us Live</a></sub></sub></td>
+<td align="center"><sub><sub>Unself</sub></sub></td>
+<td align="center"><sub><sub>2025</sub></sub></td>
+<td align="center"><sub><sub>sludge metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-05-15</sub></td>
-<td><sub>Conjurer</sub></td>
-<td><sub><a href="https://open.spotify.com/track/1YXo39c7oKj77QdON48uIA">Let Us Live</a></sub></td>
-<td><sub>Unself</sub></td>
-<td><sub>2025</sub></td>
-<td><sub>sludge metal</sub></td>
+<td align="center"><sub><sub>2026-05-14</sub></sub></td>
+<td align="center"><sub><sub>Summoning</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/2L9TUkStJsBHh3Xtw8oUOP">Flammifer</a></sub></sub></td>
+<td align="center"><sub><sub>Old Mornings Dawn</sub></sub></td>
+<td align="center"><sub><sub>2013</sub></sub></td>
+<td align="center"><sub><sub>black metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-05-14</sub></td>
-<td><sub>Summoning</sub></td>
-<td><sub><a href="https://open.spotify.com/track/2L9TUkStJsBHh3Xtw8oUOP">Flammifer</a></sub></td>
-<td><sub>Old Mornings Dawn</sub></td>
-<td><sub>2013</sub></td>
-<td><sub>black metal</sub></td>
+<td align="center"><sub><sub>2026-05-14</sub></sub></td>
+<td align="center"><sub><sub>Rivers of Nihil</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/5EtFUoimouxAcK1Dwj60Pz">Terrestria III: Wither</a></sub></sub></td>
+<td align="center"><sub><sub>Where Owls Know My Name</sub></sub></td>
+<td align="center"><sub><sub>2018</sub></sub></td>
+<td align="center"><sub><sub>death metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-05-14</sub></td>
-<td><sub>Rivers of Nihil</sub></td>
-<td><sub><a href="https://open.spotify.com/track/5EtFUoimouxAcK1Dwj60Pz">Terrestria III: Wither</a></sub></td>
-<td><sub>Where Owls Know My Name</sub></td>
-<td><sub>2018</sub></td>
-<td><sub>death metal</sub></td>
+<td align="center"><sub><sub>2026-05-08</sub></sub></td>
+<td align="center"><sub><sub>heks</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/1Yg1pftEFPMsATyNfkuGYX">Protestantisk Fanatiker (London Fields Darkwave)</a></sub></sub></td>
+<td align="center"><sub><sub>Protestantisk Fanatiker (London Fields Darkwave)</sub></sub></td>
+<td align="center"><sub><sub>2026</sub></sub></td>
+<td align="center"><sub><sub>electronic</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-05-08</sub></td>
-<td><sub>heks</sub></td>
-<td><sub><a href="https://open.spotify.com/track/1Yg1pftEFPMsATyNfkuGYX">Protestantisk Fanatiker (London Fields Darkwave)</a></sub></td>
-<td><sub>Protestantisk Fanatiker (London Fields Darkwave)</sub></td>
-<td><sub>2026</sub></td>
-<td><sub>electronic</sub></td>
+<td align="center"><sub><sub>2026-05-08</sub></sub></td>
+<td align="center"><sub><sub>Spirit Adrift</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/2lIheKkJlthP8A5oeTpdPX">You Will Never Hold The Key</a></sub></sub></td>
+<td align="center"><sub><sub>Infinite Illumination</sub></sub></td>
+<td align="center"><sub><sub>2026</sub></sub></td>
+<td align="center"><sub><sub>heavy metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-05-08</sub></td>
-<td><sub>Spirit Adrift</sub></td>
-<td><sub><a href="https://open.spotify.com/track/2lIheKkJlthP8A5oeTpdPX">You Will Never Hold The Key</a></sub></td>
-<td><sub>Infinite Illumination</sub></td>
-<td><sub>2026</sub></td>
-<td><sub>heavy metal</sub></td>
+<td align="center"><sub><sub>2026-04-29</sub></sub></td>
+<td align="center"><sub><sub>BULLDOZER</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/1hJ4Go14cllZv8YE6YLIFV">The Great Deceiver</a></sub></sub></td>
+<td align="center"><sub><sub>The Exorcism</sub></sub></td>
+<td align="center"><sub><sub>1984</sub></sub></td>
+<td align="center"><sub><sub>speed metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-04-29</sub></td>
-<td><sub>BULLDOZER</sub></td>
-<td><sub><a href="https://open.spotify.com/track/1hJ4Go14cllZv8YE6YLIFV">The Great Deceiver</a></sub></td>
-<td><sub>The Exorcism</sub></td>
-<td><sub>1984</sub></td>
-<td><sub>black metal</sub></td>
+<td align="center"><sub><sub>2026-04-29</sub></sub></td>
+<td align="center"><sub><sub>BULLDOZER</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/7dsXchfku5959Z14zkzxET">Another Beer (It&#x27;s What I Need)</a></sub></sub></td>
+<td align="center"><sub><sub>Fallen Angel / Another Beer (Is What I Need)</sub></sub></td>
+<td align="center"><sub><sub>1984</sub></sub></td>
+<td align="center"><sub><sub>speed metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-04-29</sub></td>
-<td><sub>BULLDOZER</sub></td>
-<td><sub><a href="https://open.spotify.com/track/7dsXchfku5959Z14zkzxET">Another Beer (It&#x27;s What I Need)</a></sub></td>
-<td><sub>Fallen Angel / Another Beer (Is What I Need)</sub></td>
-<td><sub>1984</sub></td>
-<td><sub>black metal</sub></td>
+<td align="center"><sub><sub>2026-04-27</sub></sub></td>
+<td align="center"><sub><sub>Üga Büga</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/1fafmxEOMDxm4db8Oz61hi">Valley of The Wolf</a></sub></sub></td>
+<td align="center"><sub><sub>Valley of The Wolf (single)</sub></sub></td>
+<td align="center"><sub><sub>2026</sub></sub></td>
+<td align="center"><sub><sub>heavy metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-04-27</sub></td>
-<td><sub>Üga Büga</sub></td>
-<td><sub><a href="https://open.spotify.com/track/1fafmxEOMDxm4db8Oz61hi">Valley of The Wolf</a></sub></td>
-<td><sub>Valley of The Wolf (single)</sub></td>
-<td><sub>2026</sub></td>
-<td><sub>heavy metal</sub></td>
+<td align="center"><sub><sub>2026-04-27</sub></sub></td>
+<td align="center"><sub><sub>Immolation</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/6UBbYpErZJMCL0NIimAOTk">Bend Towards The Dark</a></sub></sub></td>
+<td align="center"><sub><sub>Descent</sub></sub></td>
+<td align="center"><sub><sub>2026</sub></sub></td>
+<td align="center"><sub><sub>death metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-04-27</sub></td>
-<td><sub>Immolation</sub></td>
-<td><sub><a href="https://open.spotify.com/track/6UBbYpErZJMCL0NIimAOTk">Bend Towards The Dark</a></sub></td>
-<td><sub>Descent</sub></td>
-<td><sub>2026</sub></td>
-<td><sub>death metal</sub></td>
+<td align="center"><sub><sub>2026-04-26</sub></sub></td>
+<td align="center"><sub><sub>Space Remedy</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/4b5szokLXkijlkzBX0aQNj">Ineffable Dimensions</a></sub></sub></td>
+<td align="center"><sub><sub>Ineffable Dimensions</sub></sub></td>
+<td align="center"><sub><sub>2026</sub></sub></td>
+<td align="center"><sub><sub>progressive rock</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-04-26</sub></td>
-<td><sub>Space Remedy</sub></td>
-<td><sub><a href="https://open.spotify.com/track/4b5szokLXkijlkzBX0aQNj">Ineffable Dimensions</a></sub></td>
-<td><sub>Ineffable Dimensions</sub></td>
-<td><sub>2026</sub></td>
-<td><sub>progressive rock</sub></td>
+<td align="center"><sub><sub>2026-04-26</sub></sub></td>
+<td align="center"><sub><sub>Liminal Sky; Ulver</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/0ShB8rlcQF9yL01mUmAuLx">A Solitary Future</a></sub></sub></td>
+<td align="center"><sub><sub>A Solitary Future</sub></sub></td>
+<td align="center"><sub><sub>2026</sub></sub></td>
+<td align="center"><sub><sub>experimental</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-04-26</sub></td>
-<td><sub>Liminal Sky; Ulver</sub></td>
-<td><sub><a href="https://open.spotify.com/track/0ShB8rlcQF9yL01mUmAuLx">A Solitary Future</a></sub></td>
-<td><sub>A Solitary Future</sub></td>
-<td><sub>2026</sub></td>
-<td><sub>experimental</sub></td>
+<td align="center"><sub><sub>2026-04-21</sub></sub></td>
+<td align="center"><sub><sub>OM</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/2E26Vgc5DTlScIrYkrCeVG">Bedouin&#x27;s Vigil</a></sub></sub></td>
+<td align="center"><sub><sub>Bedouin’s Vigil / Assyrian Blood</sub></sub></td>
+<td align="center"><sub><sub>2006</sub></sub></td>
+<td align="center"><sub><sub>stoner rock</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-04-21</sub></td>
-<td><sub>OM</sub></td>
-<td><sub><a href="https://open.spotify.com/track/2E26Vgc5DTlScIrYkrCeVG">Bedouin&#x27;s Vigil</a></sub></td>
-<td><sub>Bedouin’s Vigil / Assyrian Blood</sub></td>
-<td><sub>2006</sub></td>
-<td><sub>stoner rock</sub></td>
+<td align="center"><sub><sub>2026-04-21</sub></sub></td>
+<td align="center"><sub><sub>Hanging Garden</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/7ez3jbaUX5d4jH9spd3QVu">Isle of Bliss</a></sub></sub></td>
+<td align="center"><sub><sub>Isle of Bliss</sub></sub></td>
+<td align="center"><sub><sub>2026</sub></sub></td>
+<td align="center"><sub><sub>doom metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-04-21</sub></td>
-<td><sub>Hanging Garden</sub></td>
-<td><sub><a href="https://open.spotify.com/track/7ez3jbaUX5d4jH9spd3QVu">Isle of Bliss</a></sub></td>
-<td><sub>Isle of Bliss</sub></td>
-<td><sub>2026</sub></td>
-<td><sub>doom metal</sub></td>
+<td align="center"><sub><sub>2026-04-16</sub></sub></td>
+<td align="center"><sub><sub>Cough</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/2k4pS2s7JHRiZrc6LB5Xqu">Let It Bleed</a></sub></sub></td>
+<td align="center"><sub><sub>Still They Pray</sub></sub></td>
+<td align="center"><sub><sub>2016</sub></sub></td>
+<td align="center"><sub><sub>doom metal</sub></sub></td>
 </tr>
 <tr>
-<td><sub>2026-04-16</sub></td>
-<td><sub>Cough</sub></td>
-<td><sub><a href="https://open.spotify.com/track/2k4pS2s7JHRiZrc6LB5Xqu">Let It Bleed</a></sub></td>
-<td><sub>Still They Pray</sub></td>
-<td><sub>2016</sub></td>
-<td><sub>doom metal</sub></td>
+<td align="center"><sub><sub>2026-04-15</sub></sub></td>
+<td align="center"><sub><sub>The Flight of Sleipnir</sub></sub></td>
+<td align="center"><sub><sub><a href="https://open.spotify.com/track/0b24z2yYjV75L59h2tVaWX">Sidereal Course</a></sub></sub></td>
+<td align="center"><sub><sub>V</sub></sub></td>
+<td align="center"><sub><sub>2014</sub></sub></td>
+<td align="center"><sub><sub>stoner doom</sub></sub></td>
 </tr>
 </tbody>
 </table>
+</div>
 
 ## Aggregates
 
 ### Top 20 Countries
 
-<table>
+<div align="center">
+<table align="center" cellpadding="1" cellspacing="0">
 <thead>
 <tr>
-<th><sub>Country</sub></th>
-<th><sub>Tracks</sub></th>
+<th align="center"><sub><sub>Country</sub></sub></th>
+<th align="center"><sub><sub>Tracks</sub></sub></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><sub>United States</sub></td>
-<td><sub>621</sub></td>
+<td align="center"><sub><sub>United States</sub></sub></td>
+<td align="center"><sub><sub>619</sub></sub></td>
 </tr>
 <tr>
-<td><sub>United Kingdom</sub></td>
-<td><sub>286</sub></td>
+<td align="center"><sub><sub>United Kingdom</sub></sub></td>
+<td align="center"><sub><sub>286</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Norway</sub></td>
-<td><sub>227</sub></td>
+<td align="center"><sub><sub>Norway</sub></sub></td>
+<td align="center"><sub><sub>227</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Sweden</sub></td>
-<td><sub>165</sub></td>
+<td align="center"><sub><sub>Sweden</sub></sub></td>
+<td align="center"><sub><sub>165</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Germany</sub></td>
-<td><sub>97</sub></td>
+<td align="center"><sub><sub>Germany</sub></sub></td>
+<td align="center"><sub><sub>97</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Finland</sub></td>
-<td><sub>74</sub></td>
+<td align="center"><sub><sub>Finland</sub></sub></td>
+<td align="center"><sub><sub>73</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Canada</sub></td>
-<td><sub>54</sub></td>
+<td align="center"><sub><sub>Canada</sub></sub></td>
+<td align="center"><sub><sub>54</sub></sub></td>
 </tr>
 <tr>
-<td><sub>France</sub></td>
-<td><sub>50</sub></td>
+<td align="center"><sub><sub>France</sub></sub></td>
+<td align="center"><sub><sub>50</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Russia</sub></td>
-<td><sub>49</sub></td>
+<td align="center"><sub><sub>Russia</sub></sub></td>
+<td align="center"><sub><sub>49</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Denmark</sub></td>
-<td><sub>37</sub></td>
+<td align="center"><sub><sub>Denmark</sub></sub></td>
+<td align="center"><sub><sub>37</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Netherlands</sub></td>
-<td><sub>32</sub></td>
+<td align="center"><sub><sub>Netherlands</sub></sub></td>
+<td align="center"><sub><sub>32</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Italy</sub></td>
-<td><sub>32</sub></td>
+<td align="center"><sub><sub>Italy</sub></sub></td>
+<td align="center"><sub><sub>32</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Australia</sub></td>
-<td><sub>30</sub></td>
+<td align="center"><sub><sub>Australia</sub></sub></td>
+<td align="center"><sub><sub>30</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Ireland</sub></td>
-<td><sub>23</sub></td>
+<td align="center"><sub><sub>Ireland</sub></sub></td>
+<td align="center"><sub><sub>23</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Poland</sub></td>
-<td><sub>21</sub></td>
+<td align="center"><sub><sub>Poland</sub></sub></td>
+<td align="center"><sub><sub>19</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Belgium</sub></td>
-<td><sub>16</sub></td>
+<td align="center"><sub><sub>Belgium</sub></sub></td>
+<td align="center"><sub><sub>16</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Greece</sub></td>
-<td><sub>15</sub></td>
+<td align="center"><sub><sub>Greece</sub></sub></td>
+<td align="center"><sub><sub>15</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Switzerland</sub></td>
-<td><sub>14</sub></td>
+<td align="center"><sub><sub>Switzerland</sub></sub></td>
+<td align="center"><sub><sub>14</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Austria</sub></td>
-<td><sub>12</sub></td>
+<td align="center"><sub><sub>Austria</sub></sub></td>
+<td align="center"><sub><sub>12</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Hungary</sub></td>
-<td><sub>11</sub></td>
+<td align="center"><sub><sub>Hungary</sub></sub></td>
+<td align="center"><sub><sub>11</sub></sub></td>
 </tr>
 </tbody>
 </table>
+</div>
 
 ### Top 20 Genres
 
-<table>
+<div align="center">
+<table align="center" cellpadding="1" cellspacing="0">
 <thead>
 <tr>
-<th><sub>Genre</sub></th>
-<th><sub>Tracks</sub></th>
+<th align="center"><sub><sub>Genre</sub></sub></th>
+<th align="center"><sub><sub>Tracks</sub></sub></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><sub>black metal</sub></td>
-<td><sub>209</sub></td>
+<td align="center"><sub><sub>black metal</sub></sub></td>
+<td align="center"><sub><sub>205</sub></sub></td>
 </tr>
 <tr>
-<td><sub>doom metal</sub></td>
-<td><sub>117</sub></td>
+<td align="center"><sub><sub>progressive rock</sub></sub></td>
+<td align="center"><sub><sub>106</sub></sub></td>
 </tr>
 <tr>
-<td><sub>progressive rock</sub></td>
-<td><sub>99</sub></td>
+<td align="center"><sub><sub>progressive metal</sub></sub></td>
+<td align="center"><sub><sub>83</sub></sub></td>
 </tr>
 <tr>
-<td><sub>progressive metal</sub></td>
-<td><sub>80</sub></td>
+<td align="center"><sub><sub>heavy metal</sub></sub></td>
+<td align="center"><sub><sub>78</sub></sub></td>
 </tr>
 <tr>
-<td><sub>heavy metal</sub></td>
-<td><sub>74</sub></td>
+<td align="center"><sub><sub>doom metal</sub></sub></td>
+<td align="center"><sub><sub>70</sub></sub></td>
 </tr>
 <tr>
-<td><sub>hard rock</sub></td>
-<td><sub>74</sub></td>
+<td align="center"><sub><sub>hard rock</sub></sub></td>
+<td align="center"><sub><sub>67</sub></sub></td>
 </tr>
 <tr>
-<td><sub>electronic</sub></td>
-<td><sub>67</sub></td>
+<td align="center"><sub><sub>psychedelic rock</sub></sub></td>
+<td align="center"><sub><sub>59</sub></sub></td>
 </tr>
 <tr>
-<td><sub>alternative rock</sub></td>
-<td><sub>53</sub></td>
+<td align="center"><sub><sub>electronic</sub></sub></td>
+<td align="center"><sub><sub>53</sub></sub></td>
 </tr>
 <tr>
-<td><sub>death metal</sub></td>
-<td><sub>46</sub></td>
+<td align="center"><sub><sub>alternative rock</sub></sub></td>
+<td align="center"><sub><sub>50</sub></sub></td>
 </tr>
 <tr>
-<td><sub>psychedelic rock</sub></td>
-<td><sub>44</sub></td>
+<td align="center"><sub><sub>atmospheric black metal</sub></sub></td>
+<td align="center"><sub><sub>45</sub></sub></td>
 </tr>
 <tr>
-<td><sub>atmospheric black metal</sub></td>
-<td><sub>42</sub></td>
+<td align="center"><sub><sub>death metal</sub></sub></td>
+<td align="center"><sub><sub>41</sub></sub></td>
 </tr>
 <tr>
-<td><sub>post-rock</sub></td>
-<td><sub>41</sub></td>
+<td align="center"><sub><sub>post-rock</sub></sub></td>
+<td align="center"><sub><sub>40</sub></sub></td>
 </tr>
 <tr>
-<td><sub>stoner rock</sub></td>
-<td><sub>38</sub></td>
+<td align="center"><sub><sub>stoner rock</sub></sub></td>
+<td align="center"><sub><sub>39</sub></sub></td>
 </tr>
 <tr>
-<td><sub>thrash metal</sub></td>
-<td><sub>38</sub></td>
+<td align="center"><sub><sub>thrash metal</sub></sub></td>
+<td align="center"><sub><sub>38</sub></sub></td>
 </tr>
 <tr>
-<td><sub>rock</sub></td>
-<td><sub>29</sub></td>
+<td align="center"><sub><sub>gothic metal</sub></sub></td>
+<td align="center"><sub><sub>34</sub></sub></td>
 </tr>
 <tr>
-<td><sub>ambient</sub></td>
-<td><sub>29</sub></td>
+<td align="center"><sub><sub>post-punk</sub></sub></td>
+<td align="center"><sub><sub>29</sub></sub></td>
 </tr>
 <tr>
-<td><sub>post-metal</sub></td>
-<td><sub>27</sub></td>
+<td align="center"><sub><sub>post-metal</sub></sub></td>
+<td align="center"><sub><sub>28</sub></sub></td>
 </tr>
 <tr>
-<td><sub>sludge metal</sub></td>
-<td><sub>26</sub></td>
+<td align="center"><sub><sub>blues rock</sub></sub></td>
+<td align="center"><sub><sub>28</sub></sub></td>
 </tr>
 <tr>
-<td><sub>gothic metal</sub></td>
-<td><sub>26</sub></td>
+<td align="center"><sub><sub>death-doom metal</sub></sub></td>
+<td align="center"><sub><sub>28</sub></sub></td>
 </tr>
 <tr>
-<td><sub>post-punk</sub></td>
-<td><sub>24</sub></td>
+<td align="center"><sub><sub>sludge metal</sub></sub></td>
+<td align="center"><sub><sub>26</sub></sub></td>
 </tr>
 </tbody>
 </table>
+</div>
 
 ### Top 20 Groups / Artists
 
-<table>
+<div align="center">
+<table align="center" cellpadding="1" cellspacing="0">
 <thead>
 <tr>
-<th><sub>Group / artist</sub></th>
-<th><sub>Tracks</sub></th>
+<th align="center"><sub><sub>Group / artist</sub></sub></th>
+<th align="center"><sub><sub>Tracks</sub></sub></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><sub>Enslaved</sub></td>
-<td><sub>50</sub></td>
+<td align="center"><sub><sub>Enslaved</sub></sub></td>
+<td align="center"><sub><sub>50</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Darkthrone</sub></td>
-<td><sub>28</sub></td>
+<td align="center"><sub><sub>Darkthrone</sub></sub></td>
+<td align="center"><sub><sub>28</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Opeth</sub></td>
-<td><sub>21</sub></td>
+<td align="center"><sub><sub>Opeth</sub></sub></td>
+<td align="center"><sub><sub>21</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Ulver</sub></td>
-<td><sub>17</sub></td>
+<td align="center"><sub><sub>Ulver</sub></sub></td>
+<td align="center"><sub><sub>17</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Shape Of Despair</sub></td>
-<td><sub>12</sub></td>
+<td align="center"><sub><sub>Shape Of Despair</sub></sub></td>
+<td align="center"><sub><sub>12</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Wardruna</sub></td>
-<td><sub>12</sub></td>
+<td align="center"><sub><sub>Wardruna</sub></sub></td>
+<td align="center"><sub><sub>12</sub></sub></td>
 </tr>
 <tr>
-<td><sub>The Flight of Sleipnir</sub></td>
-<td><sub>10</sub></td>
+<td align="center"><sub><sub>The Flight of Sleipnir</sub></sub></td>
+<td align="center"><sub><sub>10</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Clark</sub></td>
-<td><sub>9</sub></td>
+<td align="center"><sub><sub>Clark</sub></sub></td>
+<td align="center"><sub><sub>9</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Frank Zappa</sub></td>
-<td><sub>9</sub></td>
+<td align="center"><sub><sub>Frank Zappa</sub></sub></td>
+<td align="center"><sub><sub>9</sub></sub></td>
 </tr>
 <tr>
-<td><sub>The Quakes</sub></td>
-<td><sub>9</sub></td>
+<td align="center"><sub><sub>The Quakes</sub></sub></td>
+<td align="center"><sub><sub>9</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Lauge</sub></td>
-<td><sub>8</sub></td>
+<td align="center"><sub><sub>Lauge</sub></sub></td>
+<td align="center"><sub><sub>8</sub></sub></td>
 </tr>
 <tr>
-<td><sub>My Dying Bride</sub></td>
-<td><sub>8</sub></td>
+<td align="center"><sub><sub>My Dying Bride</sub></sub></td>
+<td align="center"><sub><sub>8</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Alcest</sub></td>
-<td><sub>7</sub></td>
+<td align="center"><sub><sub>Alcest</sub></sub></td>
+<td align="center"><sub><sub>7</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Biohazard</sub></td>
-<td><sub>7</sub></td>
+<td align="center"><sub><sub>Biohazard</sub></sub></td>
+<td align="center"><sub><sub>7</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Carlo Domeniconi</sub></td>
-<td><sub>7</sub></td>
+<td align="center"><sub><sub>Carlo Domeniconi</sub></sub></td>
+<td align="center"><sub><sub>7</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Chelsea Wolfe</sub></td>
-<td><sub>7</sub></td>
+<td align="center"><sub><sub>Chelsea Wolfe</sub></sub></td>
+<td align="center"><sub><sub>7</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Counting Hours</sub></td>
-<td><sub>7</sub></td>
+<td align="center"><sub><sub>Counting Hours</sub></sub></td>
+<td align="center"><sub><sub>7</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Dark Suns</sub></td>
-<td><sub>7</sub></td>
+<td align="center"><sub><sub>Dark Suns</sub></sub></td>
+<td align="center"><sub><sub>7</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Devin Townsend</sub></td>
-<td><sub>7</sub></td>
+<td align="center"><sub><sub>Devin Townsend</sub></sub></td>
+<td align="center"><sub><sub>7</sub></sub></td>
 </tr>
 <tr>
-<td><sub>Rush</sub></td>
-<td><sub>7</sub></td>
+<td align="center"><sub><sub>Rush</sub></sub></td>
+<td align="center"><sub><sub>7</sub></sub></td>
 </tr>
 </tbody>
 </table>
+</div>
 
 <details>
 <summary>Workflow</summary>
@@ -588,4 +594,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-15 11:24 UTC._
+_Generated at 2026-06-16 20:52 UTC._

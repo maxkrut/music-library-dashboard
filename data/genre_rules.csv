@@ -14,6 +14,31 @@ artist,My Dying Bride,doom metal,doom metal; gothic metal,100,
 artist,Alcest,blackgaze,blackgaze; shoegaze,100,
 artist,Biohazard,hardcore,hardcore; rap metal,100,
 artist,Carlo Domeniconi,classical,classical; guitar,100,
+album,Boards of Mongolia,dungeon synth,dungeon synth; ambient; experimental; synth,130,manual audit
+artist,BULLDOZER,speed metal,speed metal; black metal; thrash metal,130,manual audit
+artist,Century,heavy metal,heavy metal; traditional heavy metal; nwobhm; hard rock; speed metal,130,manual audit
+artist,KATZROAR,psychedelic rock,psychedelic rock; indie psych rock; experimental rock,130,manual audit
+artist,Meshuggah,progressive metal,progressive metal; djent; groove metal; technical metal; math metal; death metal,130,manual audit
+artist,Operation Ivy,ska punk,ska punk; punk rock; hardcore punk; ska,130,manual audit
+track,Party All the Time,synth-pop,synth-pop; funk; disco,130,manual audit
+artist,Sweven,progressive death metal,progressive death metal; psychedelic death metal; progressive metal; psychedelic rock,130,manual audit
+artist,Windows 96,vaporwave,vaporwave; synthwave; chillwave; electronic,130,manual audit
+artist,(Hed) P.E.,rapcore,rapcore; nu metal; rap metal; hard rock,130,manual audit
+album,With Sympathy,synth-pop,synth-pop; new wave; industrial,130,multi-track audit
+artist,The Gathering,gothic metal,gothic metal; doom metal; progressive rock; progressive metal,130,multi-track audit
+artist,Dolphin,alternative hip hop,alternative hip hop; alternative rock; electronic; trip hop,130,multi-track audit
+track,Mystery Mountain,progressive rock,progressive rock; jazz fusion; hard rock,130,multi-track audit
+track,Of a Lifetime,progressive rock,progressive rock; jazz fusion; hard rock,130,multi-track audit
+artist,The Streets,uk garage,uk garage; hip hop; uk hip hop,130,multi-track audit
+artist,Guano Apes,nu metal,nu metal; alternative rock; rap metal; post-grunge,130,multi-track audit
+artist,DIIV,shoegaze,shoegaze; dream pop; indie rock; post-punk,130,multi-track audit
+artist,The Cure,gothic rock,gothic rock; post-punk; new wave; alternative rock,130,multi-track audit
+artist,Captain Beyond,progressive rock,progressive rock; hard rock; heavy psych,130,multi-track audit
+artist,My Dying Bride,death-doom metal,death-doom metal; doom metal; gothic metal,130,multi-track audit
+artist,Saturnus,death-doom metal,death-doom metal; melodic doom metal; doom metal,130,multi-track audit
+artist,Biohazard,rap metal,rap metal; hardcore; crossover thrash,130,multi-track audit
+artist,Brendan Perry,neoclassical darkwave,neoclassical darkwave; world; folk; ambient,130,multi-track audit
+album,The Guitarist,classical guitar,classical guitar; classical,130,multi-track audit
 artist,3weekoldroses,alternative rock,alternative rock; indie rock,80,manual fallback
 artist,Angst Skvadron,black metal,black metal; avant-garde metal,80,manual fallback
 artist,Arc De Soleil,psychedelic rock,psychedelic rock; surf rock; instrumental rock,80,manual fallback
@@ -103,7 +128,7 @@ album,When We Are Death,psychedelic folk rock,psychedelic folk rock; folk rock; 
 artist,Lowen,progressive doom,progressive doom; doom metal; middle eastern folk; progressive metal,120,multi-track audit
 artist,Monolord,stoner doom,stoner doom; doom metal; stoner metal; psychedelic rock,120,multi-track audit
 artist,My Dying Bride,doom metal,doom metal; gothic metal; death-doom metal,120,multi-track audit
-artist,Obscure,doom metal,doom metal; heavy metal,120,multi-track audit
+artist,Obscure,heavy doom metal,heavy doom metal; doom metal; heavy metal; traditional doom metal; stoner doom,130,manual audit
 artist,Panopticon,atmospheric black metal,atmospheric black metal; black metal; americana; bluegrass; contemporary folk,120,multi-track audit
 artist,Primordial,pagan metal,pagan metal; celtic metal; black metal; folk metal,120,multi-track audit
 artist,Sleep,stoner doom,stoner doom; stoner metal; doom metal; stoner rock,120,multi-track audit

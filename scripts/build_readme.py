@@ -204,6 +204,11 @@ GENRE_PREFIX_ALIASES = (
 TrackRow = dict[str, str]
 RankedRows = list[tuple[str, int]]
 
+
+class SafeHtml(str):
+    pass
+
+
 SUPER_GENRE_RULES = [
     ("Metal", ("metal", "doom", "blackgaze", "djent", "deathgrind", "grindcore", "mathcore", "sludge", "thrash")),
     (
@@ -242,6 +247,7 @@ SUPER_GENRE_RULES = [
             "ebm",
             "eurodance",
             "future bass",
+            "garage",
         ),
     ),
     ("Punk / Hardcore", ("punk", "hardcore", "crust", "d-beat", "post-hardcore", "emo")),
@@ -489,8 +495,8 @@ def external_html_link(label: str, url: str) -> str:
     text = str(label or "").strip()
     target = str(url or "").strip()
     if not target:
-        return html_escape(text)
-    return f'<a href="{html_escape(target)}">{html_escape(text)}</a>'
+        return text
+    return SafeHtml(f'<a href="{html_escape(target)}">{html_escape(text)}</a>')
 
 
 def repo_label(path: Path) -> str:
@@ -508,20 +514,29 @@ def table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
     return "\n".join(rendered)
 
 
+def compact_cell(value: object, *, allow_html: bool = False) -> str:
+    cell = str(value if value is not None else "")
+    if not allow_html:
+        cell = html_escape(cell)
+    return f"<sub><sub>{cell}</sub></sub>"
+
+
 def compact_table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
-    rendered = ["<table>", "<thead>", "<tr>"]
+    rendered = [
+        '<div align="center">',
+        '<table align="center" cellpadding="1" cellspacing="0">',
+        "<thead>",
+        "<tr>",
+    ]
     for header in headers:
-        rendered.append(f"<th><sub>{html_escape(header)}</sub></th>")
+        rendered.append(f'<th align="center">{compact_cell(header)}</th>')
     rendered.extend(["</tr>", "</thead>", "<tbody>"])
     for row in rows:
         rendered.append("<tr>")
         for value in row:
-            cell = str(value if value is not None else "")
-            if not cell.startswith('<a href="'):
-                cell = html_escape(cell)
-            rendered.append(f"<td><sub>{cell}</sub></td>")
+            rendered.append(f'<td align="center">{compact_cell(value, allow_html=isinstance(value, SafeHtml))}</td>')
         rendered.append("</tr>")
-    rendered.extend(["</tbody>", "</table>"])
+    rendered.extend(["</tbody>", "</table>", "</div>"])
     return "\n".join(rendered)
 
 
