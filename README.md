@@ -19,15 +19,15 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </thead>
 <tbody>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>1972</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>1366</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>1677</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>546</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>190</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>52</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>1975</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>1368</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>1680</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>531</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>211</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>53</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>5</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>1958&#8209;2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>183h&nbsp;52m</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>184h&nbsp;9m</small></small></small></td>
 </tr>
 </tbody>
 </table>
@@ -89,6 +89,10 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
+## Other
+
+![Other genre atlas](assets/atlas/other.svg)
+
 ## Latest 20 Liked Tracks
 
 <div align="center">
@@ -105,6 +109,30 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </thead>
 <tbody>
 <tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;17</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>This&nbsp;Winter&nbsp;Machine</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/4W6MueOc6KliVlG0ZcZLQN">Reflections</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Clockwork&nbsp;Man</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2023</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>progressive&nbsp;rock</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;17</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Pallbearer</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2SV69wiCCKzoFLDs6NWM5N">I&nbsp;Saw&nbsp;the&nbsp;End</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Heartless</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2017</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;15</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Magic&nbsp;Man</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm">Steppe&nbsp;Grass</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Boards&nbsp;of&nbsp;Mongolia</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>dungeon&nbsp;synth</small></small></small></td>
+</tr>
+<tr>
 <td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;07</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>dungeontroll</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn">Crypt&nbsp;of&nbsp;Euphoria</a></small></small></small></td>
@@ -118,7 +146,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost&nbsp;Limbs</a></small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>Songs&nbsp;of&nbsp;Abundance,&nbsp;Psalms&nbsp;of&nbsp;Grief</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>2023</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small></small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;26</small></small></small></td>
@@ -240,30 +268,6 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center" valign="middle" nowrap><small><small><small>2006</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>stoner&nbsp;rock</small></small></small></td>
 </tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;21</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Hanging&nbsp;Garden</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/7ez3jbaUX5d4jH9spd3QVu">Isle&nbsp;of&nbsp;Bliss</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Isle&nbsp;of&nbsp;Bliss</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;16</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Cough</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2k4pS2s7JHRiZrc6LB5Xqu">Let&nbsp;It&nbsp;Bleed</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Still&nbsp;They&nbsp;Pray</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2016</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;15</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Flight&nbsp;of&nbsp;Sleipnir</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/0b24z2yYjV75L59h2tVaWX">Sidereal&nbsp;Course</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>V</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2014</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>stoner&nbsp;doom</small></small></small></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -283,7 +287,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <tbody>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>United&nbsp;States</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>619</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>622</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>United&nbsp;Kingdom</small></small></small></td>
@@ -303,7 +307,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>Finland</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>73</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>74</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>Canada</small></small></small></td>
@@ -339,7 +343,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>Poland</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>19</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>21</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>Belgium</small></small></small></td>
@@ -398,11 +402,11 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>hard&nbsp;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>67</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>66</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>psychedelic&nbsp;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>59</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>57</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>electronic</small></small></small></td>
@@ -410,7 +414,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>alternative&nbsp;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>50</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>47</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>atmospheric&nbsp;black&nbsp;metal</small></small></small></td>
@@ -422,11 +426,11 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>post&#8209;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>40</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>39</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>stoner&nbsp;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>39</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>38</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>thrash&nbsp;metal</small></small></small></td>
@@ -434,10 +438,10 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>gothic&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>34</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>35</small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>post&#8209;punk</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>post&#8209;metal</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>29</small></small></small></td>
 </tr>
 <tr>
@@ -449,7 +453,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center" valign="middle" nowrap><small><small><small>28</small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>post&#8209;metal</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>post&#8209;punk</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>28</small></small></small></td>
 </tr>
 <tr>
@@ -594,4 +598,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-17 19:11 UTC._
+_Generated at 2026-06-17 19:36 UTC._
