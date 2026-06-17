@@ -68,7 +68,7 @@ jobs:
         run: python scripts/enrich_genres_musicbrainz.py --offline
 
       - name: Apply genre rules
-        run: python scripts/apply_genre_rules.py
+        run: python scripts/apply_genre_rules.py --overwrite
 
       - name: Build public artifacts
         run: python scripts/build_readme.py

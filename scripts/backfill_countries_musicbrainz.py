@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import time
 import urllib.parse
 import urllib.request
@@ -36,10 +37,10 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--artist-cache", type=Path, default=MUSICBRAINZ_ARTIST_CACHE)
     parser.add_argument("--tracks", type=Path, default=TRACKS_CSV)
-    parser.add_argument("--sleep", type=float, default=1.1)
-    parser.add_argument("--retries", type=int, default=20)
+    parser.add_argument("--sleep", type=float, default=float(os.getenv("MUSICBRAINZ_SLEEP", "1.1")))
+    parser.add_argument("--retries", type=int, default=int(os.getenv("MUSICBRAINZ_RETRIES", "20")))
     parser.add_argument("--min-score", type=int, default=90)
-    parser.add_argument("--user-agent", default=DEFAULT_USER_AGENT)
+    parser.add_argument("--user-agent", default=os.getenv("MUSICBRAINZ_USER_AGENT", DEFAULT_USER_AGENT))
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--retry-checked", action="store_true")
     parser.add_argument(
@@ -53,8 +54,20 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def raw_country_available(data: Any) -> bool:
+    if not isinstance(data, dict):
+        return False
+    if str(data.get("country") or "").strip():
+        return True
+    for field in ("area", "begin_area", "begin-area"):
+        area = data.get(field)
+        if isinstance(area, dict) and str(area.get("name") or "").strip():
+            return True
+    return bool(str(data.get("wikidata_origin") or "").strip())
+
+
 def needs_country(data: Any) -> bool:
-    return isinstance(data, dict) and data.get("matched") and not country_from_artist_data(data)
+    return isinstance(data, dict) and data.get("matched") and not raw_country_available(data)
 
 
 def artist_path(artist_id: str) -> str:
@@ -70,7 +83,7 @@ def wikidata_id_from_relations(relations: list[dict[str, Any]]) -> str:
     return ""
 
 
-def wikidata_country(entity_id: str) -> str:
+def wikidata_country(entity_id: str, user_agent: str) -> str:
     if not entity_id:
         return ""
     query = f"""
@@ -86,7 +99,7 @@ LIMIT 1
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": DEFAULT_USER_AGENT,
+            "User-Agent": user_agent,
             "Accept": "application/sparql-results+json",
         },
     )
@@ -183,10 +196,12 @@ def main() -> None:
         payload = client.request(artist_path(artist_id), {"inc": "url-rels"})
         wikidata_id = wikidata_id_from_relations(payload.get("relations", []) or [])
         wikidata_origin = ""
+        wikidata_failed = False
         if wikidata_id and not (payload.get("country") or payload.get("area")):
             try:
-                wikidata_origin = wikidata_country(wikidata_id)
+                wikidata_origin = wikidata_country(wikidata_id, args.user_agent)
             except Exception as error:  # noqa: BLE001
+                wikidata_failed = True
                 if args.verbose:
                     print(console_text(f"Wikidata failed for {key}: {error}"), flush=True)
         updated = {
@@ -198,8 +213,11 @@ def main() -> None:
             "life_span": payload.get("life-span") or data.get("life_span") or {},
             "wikidata_id": wikidata_id or data.get("wikidata_id", ""),
             "wikidata_origin": wikidata_origin or data.get("wikidata_origin", ""),
-            "country_checked_at": int(time.time()),
         }
+        if wikidata_failed:
+            updated["country_check_error_at"] = int(time.time())
+        else:
+            updated["country_checked_at"] = int(time.time())
         artist_cache[key] = updated
         if country_from_artist_data(updated):
             changed += 1

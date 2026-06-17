@@ -6,6 +6,7 @@ import csv
 import json
 import os
 import socket
+import tempfile
 import time
 import urllib.error
 import urllib.parse
@@ -206,11 +207,26 @@ def read_tracks(path: Path) -> tuple[list[str], list[dict[str, str]]]:
 
 def write_tracks(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writeheader()
-        for row in rows:
-            writer.writerow({field: row.get(field, "") for field in fieldnames})
+    fd, tmp_name = tempfile.mkstemp(
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+        dir=path.parent,
+    )
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            for row in rows:
+                writer.writerow({field: row.get(field, "") for field in fieldnames})
+            file.flush()
+            os.fsync(file.fileno())
+        os.replace(tmp_name, path)
+    except Exception:
+        try:
+            os.unlink(tmp_name)
+        except FileNotFoundError:
+            pass
+        raise
 
 
 def split_values(value: str) -> list[str]:
@@ -226,6 +242,20 @@ def join_unique(values: Iterable[str]) -> str:
             seen.add(cleaned)
             result.append(cleaned)
     return "; ".join(result)
+
+
+def complete_existing_genres(row: dict[str, str]) -> bool:
+    primary = (row.get("primary_genre") or "").strip()
+    genres = (row.get("genres") or "").strip()
+    if primary and not genres:
+        row["genres"] = primary
+        return True
+    if genres and not primary:
+        values = split_values(genres)
+        if values:
+            row["primary_genre"] = values[0]
+            return True
+    return False
 
 
 def norm(value: str) -> str:
@@ -451,7 +481,7 @@ def artist_names_from_rows(rows: list[dict[str, str]], overwrite: bool) -> list[
     seen: set[str] = set()
     artists: list[str] = []
     for row in rows:
-        if not overwrite and row.get("primary_genre") and row.get("genres"):
+        if not overwrite and (row.get("primary_genre") or row.get("genres")):
             continue
         for artist in split_values(row.get("artist_names", "")):
             key = norm(artist)
@@ -537,8 +567,12 @@ def main() -> None:
     fetched_release_groups = 0
     changed = 0
     for row in rows:
-        if not args.overwrite and row.get("primary_genre") and row.get("genres"):
-            continue
+        if not args.overwrite:
+            if complete_existing_genres(row):
+                changed += 1
+                continue
+            if row.get("primary_genre") and row.get("genres"):
+                continue
         genres = row_genres(row, artist_cache, musicbrainz_genres, args.max_genres)
         if not genres:
             release_key = release_group_cache_key(row)

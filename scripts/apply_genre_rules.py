@@ -4,12 +4,23 @@ from __future__ import annotations
 import argparse
 import csv
 import fnmatch
+import os
+import tempfile
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 TRACKS_CSV = ROOT / "data" / "tracks.csv"
 RULES_CSV = ROOT / "data" / "genre_rules.csv"
+VALID_MATCH_TYPES = {"artist", "album", "track", "playlist", "source"}
+REQUIRED_RULE_FIELDS = {
+    "match_type",
+    "pattern",
+    "primary_genre",
+    "genres",
+    "priority",
+    "notes",
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -67,6 +78,28 @@ def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
         return list(reader.fieldnames or []), list(reader)
 
 
+def rule_has_content(rule: dict[str, str]) -> bool:
+    return any((value or "").strip() for value in rule.values())
+
+
+def validate_rule_schema(fieldnames: list[str], path: Path) -> None:
+    missing = sorted(REQUIRED_RULE_FIELDS.difference(fieldnames))
+    if missing:
+        raise ValueError(f"{path} is missing required column(s): {', '.join(missing)}")
+
+
+def validate_rule(rule: dict[str, str], line_number: int) -> None:
+    match_type = norm(rule.get("match_type", ""))
+    pattern = (rule.get("pattern") or "").strip()
+    if not rule_has_content(rule):
+        return
+    if not match_type or not pattern:
+        raise ValueError(f"Invalid genre rule on line {line_number}: match_type and pattern are required")
+    if match_type not in VALID_MATCH_TYPES:
+        valid = ", ".join(sorted(VALID_MATCH_TYPES))
+        raise ValueError(f"Invalid genre rule match_type {match_type!r} on line {line_number}; expected one of: {valid}")
+
+
 def rule_priority(rule: dict[str, str]) -> int:
     value = (rule.get("priority") or "").strip()
     if not value:
@@ -84,9 +117,26 @@ def rule_priority(rule: dict[str, str]) -> int:
 def read_rules(path: Path) -> list[dict[str, str]]:
     if not path.exists():
         return []
-    _, rules = read_csv(path)
+    fieldnames, rules = read_csv(path)
+    validate_rule_schema(fieldnames, path)
+    for line_number, rule in enumerate(rules, start=2):
+        validate_rule(rule, line_number)
     valid = [rule for rule in rules if rule.get("match_type") and rule.get("pattern")]
     return sorted(valid, key=rule_priority, reverse=True)
+
+
+def complete_existing_genres(row: dict[str, str]) -> bool:
+    primary = (row.get("primary_genre") or "").strip()
+    genres = (row.get("genres") or "").strip()
+    if primary and not genres:
+        row["genres"] = primary
+        return True
+    if genres and not primary:
+        values = split_values(genres)
+        if values:
+            row["primary_genre"] = values[0]
+            return True
+    return False
 
 
 def apply_rules_to_row(
@@ -94,6 +144,8 @@ def apply_rules_to_row(
     rules: list[dict[str, str]],
     overwrite: bool,
 ) -> bool:
+    if not overwrite and complete_existing_genres(row):
+        return True
     if not overwrite and row.get("primary_genre") and row.get("genres"):
         return False
 
@@ -127,11 +179,26 @@ def apply_rules_to_row(
 
 def write_tracks(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writeheader()
-        for row in rows:
-            writer.writerow({field: row.get(field, "") for field in fieldnames})
+    fd, tmp_name = tempfile.mkstemp(
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+        dir=path.parent,
+    )
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            for row in rows:
+                writer.writerow({field: row.get(field, "") for field in fieldnames})
+            file.flush()
+            os.fsync(file.fileno())
+        os.replace(tmp_name, path)
+    except Exception:
+        try:
+            os.unlink(tmp_name)
+        except FileNotFoundError:
+            pass
+        raise
 
 
 def main() -> None:

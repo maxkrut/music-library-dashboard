@@ -4,10 +4,13 @@ from __future__ import annotations
 import argparse
 import base64
 import csv
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 import hashlib
 import http.server
 import json
 import os
+import tempfile
 import sys
 import time
 import urllib.error
@@ -78,6 +81,11 @@ def parse_args() -> argparse.Namespace:
         description="Export Spotify track metadata to data/tracks.csv."
     )
     parser.add_argument("--output", type=Path, default=DATA_PATH)
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Allow debug or empty exports to overwrite the default data/tracks.csv.",
+    )
     parser.add_argument("--client-id", default=os.getenv("SPOTIFY_CLIENT_ID"))
     parser.add_argument("--client-secret", default=os.getenv("SPOTIFY_CLIENT_SECRET"))
     parser.add_argument(
@@ -181,6 +189,29 @@ def resolve_path(path: Path) -> Path:
     return path if path.is_absolute() else ROOT / path
 
 
+def is_default_output(path: Path) -> bool:
+    return resolve_path(path).resolve() == DATA_PATH.resolve()
+
+
+def retry_after_seconds(raw_value: object, default: int = 5) -> int:
+    raw = str(raw_value or "").strip()
+    if not raw:
+        return default
+    try:
+        return max(int(raw), 1)
+    except ValueError:
+        pass
+
+    try:
+        retry_at = parsedate_to_datetime(raw)
+    except (TypeError, ValueError):
+        return default
+    if retry_at.tzinfo is None:
+        retry_at = retry_at.replace(tzinfo=timezone.utc)
+    seconds = int((retry_at - datetime.now(timezone.utc)).total_seconds())
+    return max(seconds, 1)
+
+
 def post_form(url: str, data: dict[str, str], client_id: str, client_secret: str) -> dict[str, Any]:
     encoded = urllib.parse.urlencode(data).encode("utf-8")
     basic = base64.b64encode(f"{client_id}:{client_secret}".encode("utf-8")).decode("ascii")
@@ -201,7 +232,7 @@ def post_form(url: str, data: dict[str, str], client_id: str, client_secret: str
         except urllib.error.HTTPError as error:
             body = error.read().decode("utf-8", errors="replace")
             if error.code == 429:
-                retry_after = int(error.headers.get("Retry-After", "5"))
+                retry_after = retry_after_seconds(error.headers.get("Retry-After"), 5)
                 if retry_after > MAX_RETRY_AFTER_SECONDS:
                     raise SpotifyApiError(error.code, f"rate limited for {retry_after} seconds") from error
                 time.sleep(max(retry_after, 1) + 1)
@@ -460,7 +491,7 @@ class SpotifyClient:
                         write_json(TOKEN_CACHE, self.token)
                     continue
                 if error.code == 429:
-                    retry_after = int(error.headers.get("Retry-After", "5"))
+                    retry_after = retry_after_seconds(error.headers.get("Retry-After"), 5)
                     if retry_after > MAX_RETRY_AFTER_SECONDS:
                         raise SpotifyApiError(error.code, f"rate limited for {retry_after} seconds") from error
                     time.sleep(max(retry_after, 1) + 1)
@@ -877,12 +908,40 @@ def apply_manual_fields(
     for track_id, row in tracks.items():
         manual = manual_rows.get(track_id)
         if manual is None:
-            row["year"] = row.get("spotify_year", "")
-            row["genres"] = row.get("spotify_genres", "")
-            row["primary_genre"] = split_semicolon(row.get("spotify_genres", ""))[0] if row.get("spotify_genres") else ""
+            apply_metadata_fallbacks(row)
             continue
         for field in MANUAL_FIELDS:
             row[field] = manual.get(field, "")
+        apply_metadata_fallbacks(row)
+
+
+def apply_metadata_fallbacks(row: dict[str, str]) -> None:
+    if not row.get("year"):
+        row["year"] = row.get("spotify_year", "")
+    if not row.get("genres"):
+        row["genres"] = row.get("spotify_genres", "")
+    if not row.get("primary_genre"):
+        genres = split_semicolon(row.get("genres", ""))
+        row["primary_genre"] = genres[0] if genres else ""
+    if row.get("primary_genre") and not row.get("genres"):
+        row["genres"] = row["primary_genre"]
+
+
+def guard_default_output(args: argparse.Namespace, tracks: dict[str, dict[str, str]]) -> None:
+    if args.force or not is_default_output(args.output):
+        return
+    if args.limit:
+        raise SystemExit(
+            "--limit is a debugging option; pass --output or --force to overwrite data/tracks.csv."
+        )
+    if args.no_saved and args.no_playlists and not args.playlist_id:
+        raise SystemExit(
+            "No Spotify sources selected; pass --output or --force to overwrite data/tracks.csv."
+        )
+    if not tracks:
+        raise SystemExit(
+            "Spotify export collected 0 tracks; pass --output or --force to overwrite data/tracks.csv."
+        )
 
 
 def write_tracks(path: Path, tracks: dict[str, dict[str, str]]) -> None:
@@ -897,15 +956,31 @@ def write_tracks(path: Path, tracks: dict[str, dict[str, str]]) -> None:
             row.get("track_name", "").lower(),
         ),
     )
-    with path.open("w", encoding="utf-8", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=FIELDNAMES)
-        writer.writeheader()
-        for row in rows:
-            writer.writerow({field: row.get(field, "") for field in FIELDNAMES})
+    fd, tmp_name = tempfile.mkstemp(
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+        dir=path.parent,
+    )
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=FIELDNAMES)
+            writer.writeheader()
+            for row in rows:
+                writer.writerow({field: row.get(field, "") for field in FIELDNAMES})
+            file.flush()
+            os.fsync(file.fileno())
+        os.replace(tmp_name, path)
+    except Exception:
+        try:
+            os.unlink(tmp_name)
+        except FileNotFoundError:
+            pass
+        raise
 
 
 def main() -> None:
     args = parse_args()
+    output_path = resolve_path(args.output)
     if args.verbose:
         log_file = resolve_path(args.log_file)
         log_file.parent.mkdir(parents=True, exist_ok=True)
@@ -913,7 +988,7 @@ def main() -> None:
         log_progress(args, "Starting Spotify export.")
     token = load_token(args)
     client = SpotifyClient(token, args.client_id, args.client_secret)
-    manual_rows = read_manual_fields(args.output)
+    manual_rows = read_manual_fields(output_path)
 
     collected: dict[str, dict[str, str]] = {}
 
@@ -944,6 +1019,7 @@ def main() -> None:
         log_progress(args, f"Fetching playlist: {playlist_name or playlist_id}.")
         fetch_playlist_tracks_into(client, playlist_id, playlist_name, args.market, collected, args)
 
+    guard_default_output(args, collected)
     if args.skip_genres:
         log_progress(args, "Skipping genre enrichment.")
     else:
@@ -958,8 +1034,8 @@ def main() -> None:
         enrich_genres(genre_client, collected, args)
     apply_manual_fields(collected, manual_rows)
     log_progress(args, f"Writing {len(collected)} tracks to CSV.")
-    write_tracks(args.output, collected)
-    print(f"Wrote {len(collected)} tracks to {args.output}")
+    write_tracks(output_path, collected)
+    print(f"Wrote {len(collected)} tracks to {output_path}")
 
 
 if __name__ == "__main__":

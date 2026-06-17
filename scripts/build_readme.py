@@ -7,6 +7,10 @@ import html
 import json
 import os
 import re
+import shutil
+import stat
+import tempfile
+import time
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -82,6 +86,11 @@ COUNTRY_CODES = {
     "USA": "United States",
     "XE": "Europe",
     "ZA": "South Africa",
+}
+
+COUNTRY_VALUE_ALIASES = {
+    "praha": "Czechia",
+    "prague": "Czechia",
 }
 
 COUNTRY_MARKERS = {
@@ -210,10 +219,39 @@ class SafeHtml(str):
 
 
 SUPER_GENRE_RULES = [
-    ("Metal", ("metal", "doom", "blackgaze", "djent", "deathgrind", "grindcore", "mathcore", "sludge", "thrash")),
+    (
+        "Metal",
+        (
+            "metal",
+            "metalcore",
+            "deathcore",
+            "doom",
+            "doomgaze",
+            "blackgaze",
+            "djent",
+            "deathgrind",
+            "grindcore",
+            "mathcore",
+            "sludge",
+            "thrash",
+        ),
+    ),
     (
         "Rock / Psych / Prog",
-        ("rock", "grunge", "shoegaze", "krautrock", "psychobilly", "rockabilly", "slowcore", "psych", "psychedelic", "prog", "jam band"),
+        (
+            "rock",
+            "grunge",
+            "shoegaze",
+            "krautrock",
+            "psychobilly",
+            "rockabilly",
+            "slowcore",
+            "psych",
+            "psychedelic",
+            "prog",
+            "progressive",
+            "jam band",
+        ),
     ),
     (
         "Electronic / Ambient",
@@ -227,6 +265,8 @@ SUPER_GENRE_RULES = [
             "indietronica",
             "psybient",
             "synth",
+            "synthwave",
+            "chillwave",
             "trance",
             "trip hop",
             "dub",
@@ -289,7 +329,7 @@ SUPER_GENRE_RULES = [
         ),
     ),
     ("Pop / Songwriter", ("pop", "singer-songwriter", "aor", "new wave")),
-    ("Hip-Hop / Rap", ("hip hop", "rap", "trap")),
+    ("Hip-Hop / Rap", ("hip hop", "rap", "rapcore", "trap")),
     ("Experimental / Noise", ("experimental", "noise", "avant-garde", "industrial")),
 ]
 
@@ -333,7 +373,7 @@ def read_country_overrides(path: Path) -> dict[str, str]:
     with path.open("r", encoding="utf-8-sig", newline="") as file:
         rows = csv.DictReader(file)
         return {
-            norm(row.get("artist_name", "")): row.get("country", "").strip()
+            norm(row.get("artist_name", "")): normalize_country_value(row.get("country", ""))
             for row in rows
             if row.get("artist_name") and row.get("country")
         }
@@ -381,6 +421,16 @@ def norm(value: str) -> str:
     return " ".join(value.casefold().strip().split())
 
 
+def normalize_country_value(value: str) -> str:
+    text = str(value or "").strip()
+    if not text:
+        return ""
+    alias = COUNTRY_VALUE_ALIASES.get(norm(text))
+    if alias:
+        return alias
+    return COUNTRY_CODES.get(text.upper(), text)
+
+
 def marker_text(value: str) -> str:
     return " ".join(re.sub(r"[^a-z0-9]+", " ", value.casefold()).split())
 
@@ -399,23 +449,23 @@ def country_from_artist_data(data: object) -> str:
 
     country_code = str(data.get("country") or "").strip().upper()
     if country_code:
-        return COUNTRY_CODES.get(country_code, country_code)
+        return normalize_country_value(country_code)
 
     area = data.get("area")
     if isinstance(area, dict):
         area_name = str(area.get("name") or "").strip()
         if area_name:
-            return COUNTRY_CODES.get(area_name.upper(), area_name)
+            return normalize_country_value(area_name)
 
     begin_area = data.get("begin_area")
     if isinstance(begin_area, dict):
         begin_area_name = str(begin_area.get("name") or "").strip()
         if begin_area_name:
-            return COUNTRY_CODES.get(begin_area_name.upper(), begin_area_name)
+            return normalize_country_value(begin_area_name)
 
     wikidata_origin = str(data.get("wikidata_origin") or "").strip()
     if wikidata_origin:
-        return COUNTRY_CODES.get(wikidata_origin.upper(), wikidata_origin)
+        return normalize_country_value(wikidata_origin)
 
     for tag in data.get("tags", []) or []:
         if isinstance(tag, dict):
@@ -477,7 +527,10 @@ def md_escape(value: object) -> str:
 
 
 def md_link(label: str, target: Path, base_dir: Path) -> str:
-    rel = os.path.relpath(target, base_dir).replace("\\", "/")
+    try:
+        rel = os.path.relpath(target, base_dir).replace("\\", "/")
+    except ValueError:
+        rel = target.as_posix()
     return f"[`{label}`]({rel})"
 
 
@@ -496,7 +549,7 @@ def external_html_link(label: str, url: str) -> str:
     target = str(url or "").strip()
     if not target:
         return text
-    return SafeHtml(f'<a href="{html_escape(target)}">{html_escape(text)}</a>')
+    return SafeHtml(f'<a href="{html_escape(target)}">{compact_html_text(text)}</a>')
 
 
 def repo_label(path: Path) -> str:
@@ -514,27 +567,37 @@ def table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
     return "\n".join(rendered)
 
 
+def compact_html_text(value: object) -> str:
+    return (
+        html_escape(value)
+        .replace(" ", "&nbsp;")
+        .replace("-", "&#8209;")
+    )
+
+
 def compact_cell(value: object, *, allow_html: bool = False) -> str:
     cell = str(value if value is not None else "")
     if not allow_html:
-        cell = html_escape(cell)
-    return f"<sub><sub>{cell}</sub></sub>"
+        cell = compact_html_text(cell)
+    return f"<small><small><small>{cell}</small></small></small>"
 
 
 def compact_table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
     rendered = [
         '<div align="center">',
-        '<table align="center" cellpadding="1" cellspacing="0">',
+        '<table align="center" cellpadding="0" cellspacing="0">',
         "<thead>",
         "<tr>",
     ]
     for header in headers:
-        rendered.append(f'<th align="center">{compact_cell(header)}</th>')
+        rendered.append(f'<th align="center" valign="middle" nowrap>{compact_cell(header)}</th>')
     rendered.extend(["</tr>", "</thead>", "<tbody>"])
     for row in rows:
         rendered.append("<tr>")
         for value in row:
-            rendered.append(f'<td align="center">{compact_cell(value, allow_html=isinstance(value, SafeHtml))}</td>')
+            rendered.append(
+                f'<td align="center" valign="middle" nowrap>{compact_cell(value, allow_html=isinstance(value, SafeHtml))}</td>'
+            )
         rendered.append("</tr>")
     rendered.extend(["</tbody>", "</table>", "</div>"])
     return "\n".join(rendered)
@@ -548,18 +611,32 @@ def duration_label(total_ms: int) -> str:
     return f"{minutes}m"
 
 
+def ranked_counter_rows(counter: Counter[str]) -> list[tuple[str, int]]:
+    return sorted(
+        ((name, count) for name, count in counter.items() if name),
+        key=lambda item: (-item[1], item[0].casefold()),
+    )
+
+
 def top(counter: Counter[str], limit: int = 12) -> list[tuple[str, int]]:
-    return [(name, count) for name, count in counter.most_common(limit) if name]
+    return ranked_counter_rows(counter)[:limit]
 
 
 def html_escape(value: object) -> str:
     return html.escape(str(value if value is not None else ""), quote=True)
 
 
+def genre_marker_matches(genre: str, marker: str) -> bool:
+    genre_text = marker_text(genre)
+    marker_text_value = marker_text(marker)
+    if not genre_text or not marker_text_value:
+        return False
+    return bool(re.search(rf"(?:^| ){re.escape(marker_text_value)}(?: |$)", genre_text))
+
+
 def super_genre(genre: str) -> str:
-    genre_key = genre.casefold()
     for label, markers in SUPER_GENRE_RULES:
-        if any(marker in genre_key for marker in markers):
+        if any(genre_marker_matches(genre, marker) for marker in markers):
             return label
     return "Other"
 
@@ -661,6 +738,22 @@ def trim_text(value: str, limit: int) -> str:
     return value[: max(1, limit - 1)].rstrip() + "…"
 
 
+def trim_text_to_width(value: str, max_width: float, *, size: int, weight: int = 400) -> str:
+    if estimated_text_width(value, size, weight=weight) <= max_width:
+        return value
+    ellipsis = "…"
+    low = 0
+    high = len(value)
+    while low < high:
+        mid = (low + high + 1) // 2
+        candidate = value[:mid].rstrip() + ellipsis
+        if estimated_text_width(candidate, size, weight=weight) <= max_width:
+            low = mid
+        else:
+            high = mid - 1
+    return (value[:low].rstrip() + ellipsis) if low else ellipsis
+
+
 def estimated_text_width(value: str, size: int, *, weight: int = 400) -> float:
     base_width = size * (0.58 if weight < 700 else 0.62)
     total = 0.0
@@ -717,7 +810,7 @@ def fit_text_lines(value: str, max_width: float, *, size: int, weight: int = 400
         return [value]
     if " " in value and estimated_width <= max_width * 1.42:
         return wrap_text_by_width(value, max_width, size=size, weight=weight)
-    return [trim_text(value, max(4, int(max_width / (size * 0.58))))]
+    return [trim_text_to_width(value, max_width, size=size, weight=weight)]
 
 
 def svg_text(
@@ -831,7 +924,7 @@ def svg_rank_column(
         name_lines = (
             fit_text_lines(name, name_width, size=13)
             if wrap_names
-            else [trim_text(name, max_chars)]
+            else [trim_text_to_width(trim_text(name, max_chars), name_width, size=13)]
         )
         text_size = 11 if len(name_lines) > 1 else 13
         line_gap = 10 if len(name_lines) > 1 else 13
@@ -993,6 +1086,45 @@ def write_genre_group_svg(
     write_text_lf(path, "\n".join(parts) + "\n")
 
 
+def replace_directory_after_success(target: Path, source: Path) -> None:
+    target.parent.mkdir(parents=True, exist_ok=True)
+    for stale_backup in target.parent.glob(f".{target.name}.backup*"):
+        remove_tree_best_effort(stale_backup)
+    backup = target.parent / f".{target.name}.backup-{os.getpid()}"
+    target_was_moved = False
+    try:
+        if target.exists():
+            target.rename(backup)
+            target_was_moved = True
+        source.rename(target)
+    except Exception:
+        if target_was_moved and backup.exists() and not target.exists():
+            backup.rename(target)
+        raise
+    finally:
+        remove_tree_best_effort(backup)
+
+
+def remove_tree_best_effort(path: Path) -> None:
+    def clear_readonly(function: object, item_path: str, _error: object) -> None:
+        try:
+            os.chmod(item_path, stat.S_IWRITE)
+            function(item_path)
+        except OSError:
+            return
+
+    for attempt in range(4):
+        if not path.exists():
+            return
+        try:
+            shutil.rmtree(path, onexc=clear_readonly)
+            return
+        except OSError:
+            if attempt == 3:
+                return
+            time.sleep(0.25)
+
+
 def genre_atlas(
     tracks: list[TrackRow],
     artist_cache: dict[str, object],
@@ -1000,50 +1132,69 @@ def genre_atlas(
     genre_rows: RankedRows,
     artist_genres: dict[str, str],
     readme_dir: Path,
+    atlas_dir: Path,
 ) -> list[str]:
-    ATLAS_DIR.mkdir(parents=True, exist_ok=True)
-    for old_svg in ATLAS_DIR.glob("*.svg"):
-        old_svg.unlink()
-
-    genre_stat_index = build_genre_stat_index(
-        tracks,
-        artist_cache,
-        country_overrides,
-        artist_genres,
+    atlas_dir.parent.mkdir(parents=True, exist_ok=True)
+    staging_dir = Path(
+        tempfile.mkdtemp(prefix=f".{atlas_dir.name}.", dir=atlas_dir.parent)
     )
+    staging_active = True
 
-    grouped: dict[str, RankedRows] = {}
-    for genre, count in genre_rows:
-        grouped.setdefault(super_genre(genre), []).append((genre, count))
+    try:
+        genre_stat_index = build_genre_stat_index(
+            tracks,
+            artist_cache,
+            country_overrides,
+            artist_genres,
+        )
 
-    lines: list[str] = ["## Genre Atlas", ""]
-    group_order = [label for label, _markers in SUPER_GENRE_RULES] + ["Other"]
-    card_index = 0
-    for group in group_order:
-        group_rows = grouped.get(group, [])
-        if not group_rows:
-            continue
-        group_tracks = sum(count for _genre, count in group_rows)
-        path = ATLAS_DIR / f"{slug(group)}.svg"
-        write_genre_group_svg(
-            path,
-            group,
-            group_rows,
-            group_tracks,
-            card_index,
-            genre_stat_index,
-        )
-        rel_path = os.path.relpath(path, readme_dir).replace("\\", "/")
-        lines.extend(
-            [
-                f"## {group}",
-                "",
-                f"![{group} genre atlas]({rel_path})",
-                "",
-            ]
-        )
-        card_index += len(group_rows)
-    return lines
+        grouped: dict[str, RankedRows] = {}
+        for genre, count in genre_rows:
+            grouped.setdefault(super_genre(genre), []).append((genre, count))
+
+        lines: list[str] = ["## Genre Atlas", ""]
+        group_order = [label for label, _markers in SUPER_GENRE_RULES] + ["Other"]
+        card_index = 0
+        generated_files: list[Path] = []
+        for group in group_order:
+            group_rows = grouped.get(group, [])
+            if not group_rows:
+                continue
+            group_tracks = sum(count for _genre, count in group_rows)
+            file_name = f"{slug(group)}.svg"
+            staging_path = staging_dir / file_name
+            final_path = atlas_dir / file_name
+            write_genre_group_svg(
+                staging_path,
+                group,
+                group_rows,
+                group_tracks,
+                card_index,
+                genre_stat_index,
+            )
+            generated_files.append(staging_path)
+            rel_path = os.path.relpath(final_path, readme_dir).replace("\\", "/")
+            lines.extend(
+                [
+                    f"## {group}",
+                    "",
+                    f"![{group} genre atlas]({rel_path})",
+                    "",
+                ]
+            )
+            card_index += len(group_rows)
+
+        missing_files = [path for path in generated_files if not path.exists()]
+        if missing_files:
+            missing = ", ".join(path.name for path in missing_files)
+            raise RuntimeError(f"Atlas generation did not create expected SVG(s): {missing}")
+
+        replace_directory_after_success(atlas_dir, staging_dir)
+        staging_active = False
+        return lines
+    finally:
+        if staging_active and staging_dir.exists():
+            shutil.rmtree(staging_dir)
 
 
 def build_dashboard(
@@ -1052,6 +1203,7 @@ def build_dashboard(
     readme: Path,
 ) -> str:
     readme_dir = readme.parent
+    atlas_dir = readme_dir / "assets" / "atlas"
     artist_cache = read_json(MUSICBRAINZ_ARTIST_CACHE)
     country_overrides = read_country_overrides(COUNTRY_OVERRIDES_CSV)
     artists = Counter(artist for row in tracks for artist in all_artists(row))
@@ -1144,6 +1296,7 @@ def build_dashboard(
                 assigned_genres,
                 artist_genres,
                 readme_dir,
+                atlas_dir,
             )
         )
 
@@ -1177,7 +1330,7 @@ def build_dashboard(
                 "- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists.",
                 "- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.",
                 "- `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata where available.",
-                "- `python scripts/apply_genre_rules.py` fills genres from `data/genre_rules.csv`.",
+                "- `python scripts/apply_genre_rules.py --overwrite` applies curated genres from `data/genre_rules.csv`.",
                 "- `python scripts/build_readme.py` regenerates this README.",
                 "- `python scripts/debug_spotify.py` checks OAuth and first Spotify API pages without writing CSV.",
                 "- Manual fields in `data/tracks.csv` are preserved on export: `year`, `primary_genre`, `genres`, `rating`, `status`, `tags`, `notes`.",
