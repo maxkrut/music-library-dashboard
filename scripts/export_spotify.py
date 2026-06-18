@@ -27,12 +27,14 @@ DATA_PATH = ROOT / "data" / "tracks.csv"
 CACHE_DIR = ROOT / ".cache"
 TOKEN_CACHE = CACHE_DIR / "spotify-token.json"
 ARTIST_CACHE = CACHE_DIR / "spotify-artists.json"
+TOP_ITEMS_CACHE = CACHE_DIR / "spotify-top-items.json"
+RECENTLY_PLAYED_CACHE = CACHE_DIR / "spotify-recently-played.json"
 
 API_BASE = "https://api.spotify.com/v1"
 AUTH_URL = "https://accounts.spotify.com/authorize"
 TOKEN_URL = "https://accounts.spotify.com/api/token"
 DEFAULT_REDIRECT_URI = "http://127.0.0.1:8888/callback"
-DEFAULT_SCOPE = "user-library-read playlist-read-private playlist-read-collaborative"
+DEFAULT_SCOPE = "user-library-read playlist-read-private playlist-read-collaborative user-top-read user-read-recently-played"
 MAX_RETRY_AFTER_SECONDS = max(1, int(os.getenv("SPOTIFY_MAX_RETRY_AFTER_SECONDS", "300")))
 MAX_RATE_LIMIT_RETRIES = max(1, int(os.getenv("SPOTIFY_MAX_RATE_LIMIT_RETRIES", "20")))
 ARTIST_BATCH_SIZE = min(50, max(1, int(os.getenv("SPOTIFY_ARTIST_BATCH_SIZE", "50"))))
@@ -122,6 +124,16 @@ def parse_args() -> argparse.Namespace:
         help="Skip owned/collaborative playlists.",
     )
     parser.add_argument(
+        "--no-top-items",
+        action="store_true",
+        help="Skip writing .cache/spotify-top-items.json.",
+    )
+    parser.add_argument(
+        "--no-recently-played",
+        action="store_true",
+        help="Skip writing .cache/spotify-recently-played.json.",
+    )
+    parser.add_argument(
         "--no-interactive",
         action="store_true",
         help="Fail instead of asking for a pasted OAuth callback URL.",
@@ -130,6 +142,21 @@ def parse_args() -> argparse.Namespace:
         "--manual-oauth",
         action="store_true",
         help="Print the OAuth URL and ask for the redirected URL instead of opening a local callback server.",
+    )
+    parser.add_argument(
+        "--reauthorize",
+        action="store_true",
+        help="Ignore cached refresh tokens and run the Spotify authorization flow again.",
+    )
+    parser.add_argument(
+        "--print-auth-url",
+        action="store_true",
+        help="Print a Spotify authorization URL for manual reauthorization and exit.",
+    )
+    parser.add_argument(
+        "--callback-url",
+        default="",
+        help="Exchange a pasted Spotify redirect URL for a fresh user token.",
     )
     parser.add_argument(
         "--skip-genres",
@@ -326,23 +353,37 @@ def request_client_credentials_token(client_id: str, client_secret: str) -> dict
     return with_expiry(token)
 
 
+def spotify_authorization_url(
+    client_id: str,
+    redirect_uri: str,
+    scope: str,
+    state: str | None = None,
+) -> str:
+    params = {
+        "response_type": "code",
+        "client_id": client_id,
+        "scope": scope,
+        "redirect_uri": redirect_uri,
+        "state": state or hashlib.sha256(os.urandom(16)).hexdigest()[:16],
+    }
+    return f"{AUTH_URL}?{urllib.parse.urlencode(params)}"
+
+
 def request_user_token(
     client_id: str,
     client_secret: str,
     redirect_uri: str,
     scope: str,
     manual_oauth: bool,
+    callback_url: str = "",
 ) -> dict[str, Any]:
     state = hashlib.sha256(os.urandom(16)).hexdigest()[:16]
-    params = {
-        "response_type": "code",
-        "client_id": client_id,
-        "scope": scope,
-        "redirect_uri": redirect_uri,
-        "state": state,
-    }
-    auth_url = f"{AUTH_URL}?{urllib.parse.urlencode(params)}"
-    query = None if manual_oauth else receive_local_callback(auth_url, redirect_uri, timeout_seconds=300)
+    auth_url = spotify_authorization_url(client_id, redirect_uri, scope, state)
+    if callback_url:
+        parsed = urllib.parse.urlparse(callback_url)
+        query = urllib.parse.parse_qs(parsed.query)
+    else:
+        query = None if manual_oauth else receive_local_callback(auth_url, redirect_uri, timeout_seconds=300)
     if query is None:
         print("Open this URL in your browser and approve access:")
         print(auth_url)
@@ -350,7 +391,7 @@ def request_user_token(
         parsed = urllib.parse.urlparse(callback_url)
         query = urllib.parse.parse_qs(parsed.query)
 
-    if query.get("state", [""])[0] != state:
+    if not callback_url and query.get("state", [""])[0] != state:
         raise SystemExit("OAuth state mismatch. Try again.")
     if "error" in query:
         raise SystemExit(f"Spotify authorization failed: {query['error'][0]}")
@@ -448,9 +489,21 @@ def load_token(args: argparse.Namespace) -> dict[str, Any]:
             "Set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET, or pass --client-id and --client-secret."
         )
 
-    token = read_json(TOKEN_CACHE, {})
+    token = {} if args.reauthorize else read_json(TOKEN_CACHE, {})
     if os.getenv("SPOTIFY_REFRESH_TOKEN") and not token.get("refresh_token"):
         token["refresh_token"] = os.getenv("SPOTIFY_REFRESH_TOKEN")
+
+    if args.callback_url:
+        token = request_user_token(
+            args.client_id,
+            args.client_secret,
+            args.redirect_uri,
+            args.scope,
+            args.manual_oauth,
+            args.callback_url,
+        )
+        write_json(TOKEN_CACHE, token)
+        return token
 
     if token_valid(token):
         return token
@@ -478,6 +531,7 @@ def load_token(args: argparse.Namespace) -> dict[str, Any]:
         args.redirect_uri,
         args.scope,
         args.manual_oauth,
+        args.callback_url,
     )
     write_json(TOKEN_CACHE, token)
     return token
@@ -782,6 +836,119 @@ def fetch_playlist_tracks_into(
         raise
 
 
+TOP_ITEM_RANGES = ("short_term", "medium_term", "long_term")
+
+
+def compact_artist_payload(artist: dict[str, Any]) -> dict[str, Any]:
+    images = artist.get("images") or []
+    image_url = ""
+    if images and isinstance(images[0], dict):
+        image_url = images[0].get("url", "")
+    return {
+        "id": artist.get("id", ""),
+        "name": artist.get("name", ""),
+        "genres": artist.get("genres", []) or [],
+        "popularity": artist.get("popularity", ""),
+        "spotify_url": (artist.get("external_urls") or {}).get("spotify", ""),
+        "image_url": image_url,
+    }
+
+
+def compact_track_payload(track: dict[str, Any]) -> dict[str, Any]:
+    album = track.get("album") or {}
+    images = album.get("images") or []
+    image_url = ""
+    if images and isinstance(images[0], dict):
+        image_url = images[0].get("url", "")
+    return {
+        "id": track.get("id", ""),
+        "name": track.get("name", ""),
+        "artist_names": join_unique(
+            artist.get("name", "")
+            for artist in track.get("artists", []) or []
+            if artist.get("name")
+        ),
+        "album_name": album.get("name", ""),
+        "album_id": album.get("id", ""),
+        "release_date": album.get("release_date", ""),
+        "popularity": track.get("popularity", ""),
+        "spotify_url": (track.get("external_urls") or {}).get("spotify", ""),
+        "image_url": image_url,
+    }
+
+
+def fetch_top_items_snapshot(client: SpotifyClient, args: argparse.Namespace) -> None:
+    snapshot: dict[str, Any] = {
+        "fetched_at": datetime.now(timezone.utc).isoformat(),
+        "artists": {},
+        "tracks": {},
+    }
+    try:
+        for kind in ("artists", "tracks"):
+            for time_range in TOP_ITEM_RANGES:
+                response = client.request(
+                    "GET",
+                    f"/me/top/{kind}",
+                    {"limit": 20, "time_range": time_range},
+                )
+                items = response.get("items", []) or []
+                if kind == "artists":
+                    snapshot[kind][time_range] = [
+                        compact_artist_payload(item)
+                        for item in items
+                        if isinstance(item, dict)
+                    ]
+                else:
+                    snapshot[kind][time_range] = [
+                        compact_track_payload(item)
+                        for item in items
+                        if isinstance(item, dict)
+                    ]
+    except SpotifyApiError as error:
+        if error.status == 403:
+            log_progress(args, "Skipping Spotify top items: token lacks user-top-read scope.")
+            return
+        raise
+
+    write_json(TOP_ITEMS_CACHE, snapshot)
+    log_progress(args, f"Wrote Spotify top items snapshot to {TOP_ITEMS_CACHE}.")
+
+
+def fetch_recently_played_snapshot(client: SpotifyClient, args: argparse.Namespace) -> None:
+    try:
+        response = client.request("GET", "/me/player/recently-played", {"limit": 50})
+    except SpotifyApiError as error:
+        if error.status == 403:
+            log_progress(
+                args,
+                "Skipping Spotify recently played: token lacks user-read-recently-played scope.",
+            )
+            return
+        raise
+
+    items: list[dict[str, Any]] = []
+    for item in response.get("items", []) or []:
+        if not isinstance(item, dict):
+            continue
+        track = item.get("track")
+        if not isinstance(track, dict):
+            continue
+        items.append(
+            {
+                "played_at": item.get("played_at", ""),
+                "track": compact_track_payload(track),
+            }
+        )
+    write_json(
+        RECENTLY_PLAYED_CACHE,
+        {
+            "fetched_at": datetime.now(timezone.utc).isoformat(),
+            "items": items,
+        },
+    )
+    log_progress(args, f"Wrote Spotify recently played snapshot to {RECENTLY_PLAYED_CACHE}.")
+
+
 def cache_artist_response(
     artist_id: str,
     artist: dict[str, Any] | None,
@@ -1032,6 +1199,11 @@ def write_tracks(path: Path, tracks: dict[str, dict[str, str]]) -> None:
 def main() -> None:
     args = parse_args()
     output_path = resolve_path(args.output)
+    if args.print_auth_url:
+        if not args.client_id:
+            raise SystemExit("Set SPOTIFY_CLIENT_ID or pass --client-id.")
+        print(spotify_authorization_url(args.client_id, args.redirect_uri, args.scope))
+        return
     if args.verbose:
         log_file = resolve_path(args.log_file)
         log_file.parent.mkdir(parents=True, exist_ok=True)
@@ -1071,6 +1243,12 @@ def main() -> None:
         fetch_playlist_tracks_into(client, playlist_id, playlist_name, args.market, collected, args)
 
     guard_default_output(args, collected)
+    if not args.no_top_items:
+        log_progress(args, "Fetching Spotify top items snapshot.")
+        fetch_top_items_snapshot(client, args)
+    if not args.no_recently_played:
+        log_progress(args, "Fetching Spotify recently played snapshot.")
+        fetch_recently_played_snapshot(client, args)
     if args.skip_genres:
         log_progress(args, "Skipping genre enrichment.")
     else:

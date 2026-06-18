@@ -6,7 +6,7 @@ The full Spotify export is kept out of the public repository.
 ## Repository Layout
 
 - Public repository: README, generated atlas SVG assets, scripts, `data/genre_rules.csv`, `data/country_overrides.csv`.
-- Private data repository: `data/tracks.csv` and optional MusicBrainz caches under `.cache/`.
+- Private data repository: `data/tracks.csv` and optional MusicBrainz/Spotify caches under `.cache/`.
 
 The public workflow checks out the private data repository into a temporary `.private-data/` folder, copies `data/tracks.csv` into the workspace, rebuilds public artifacts, commits updated private data back to the private repository, then removes private files before committing public changes.
 
@@ -23,7 +23,7 @@ Set these secrets in the public repository:
 
 ## Spotify Refresh Token Rotation
 
-Spotify user refresh tokens expire after six months. When the weekly workflow logs an `invalid_grant` refresh error, reauthorize locally:
+Spotify user refresh tokens expire after six months. When the weekly workflow logs an `invalid_grant` refresh error, or when adding the newer `user-top-read` / `user-read-recently-played` scopes, reauthorize locally:
 
 ```bash
 python scripts/export_spotify.py --verbose
@@ -40,9 +40,11 @@ data/tracks.csv
 .cache/musicbrainz-artists.json
 .cache/musicbrainz-genres.json
 .cache/musicbrainz-release-groups.json
+.cache/spotify-top-items.json
+.cache/spotify-recently-played.json
 ```
 
-Only `data/tracks.csv` is required. The MusicBrainz caches are optional but make weekly runs faster and more reproducible.
+Only `data/tracks.csv` is required. The MusicBrainz caches make weekly runs faster and more reproducible. The Spotify top/recent caches feed the optional Top Items and Saved vs Played dashboard modules.
 
 ## Public Example
 

@@ -23,6 +23,8 @@ README = ROOT / "README.md"
 ASSETS_DIR = ROOT / "assets"
 ATLAS_DIR = ASSETS_DIR / "atlas"
 MUSICBRAINZ_ARTIST_CACHE = ROOT / ".cache" / "musicbrainz-artists.json"
+SPOTIFY_TOP_ITEMS_CACHE = ROOT / ".cache" / "spotify-top-items.json"
+SPOTIFY_RECENTLY_PLAYED_CACHE = ROOT / ".cache" / "spotify-recently-played.json"
 COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
 
 
@@ -501,8 +503,30 @@ def added_date(row: dict[str, str]) -> str:
     return (row.get("latest_added_at") or row.get("first_added_at") or "").strip()
 
 
+def parse_iso_date(value: str) -> datetime | None:
+    text = value.strip()
+    if len(text) < 10:
+        return None
+    try:
+        return datetime.fromisoformat(text[:10])
+    except ValueError:
+        return None
+
+
 def date_label(value: str) -> str:
     return value[:10] if len(value) >= 10 else value
+
+
+def month_label(value: str) -> str:
+    text = value.strip()
+    return text[:7] if len(text) >= 7 and text[:4].isdigit() and text[5:7].isdigit() else ""
+
+
+def decade_label(value: str) -> str:
+    if not value.isdigit():
+        return ""
+    year = int(value)
+    return f"{year // 10 * 10}s"
 
 
 def effective_genres(row: dict[str, str]) -> list[str]:
@@ -521,6 +545,27 @@ def all_artists(row: dict[str, str]) -> list[str]:
     return split_artist_names(row.get("artist_names", ""))
 
 
+def row_assigned_genre(row: TrackRow, artist_genres: dict[str, str]) -> str:
+    for artist in all_artists(row):
+        genre = artist_genres.get(artist)
+        if genre:
+            return genre
+    return dominant_row_genre(row)
+
+
+def row_super_genre(row: TrackRow, artist_genres: dict[str, str]) -> str:
+    genre = row_assigned_genre(row, artist_genres)
+    return super_genre(genre) if genre else "Other"
+
+
+def count_rows_by_artist(rows: Iterable[TrackRow]) -> RankedRows:
+    return top(Counter(artist for row in rows for artist in all_artists(row)), 20)
+
+
+def track_lookup(tracks: list[TrackRow]) -> dict[str, TrackRow]:
+    return {row.get("track_id", ""): row for row in tracks if row.get("track_id")}
+
+
 def md_escape(value: object) -> str:
     text = str(value if value is not None else "")
     return text.replace("|", "\\|").replace("\n", " ").strip()
@@ -532,6 +577,15 @@ def md_link(label: str, target: Path, base_dir: Path) -> str:
     except ValueError:
         rel = target.as_posix()
     return f"[`{label}`]({rel})"
+
+
+def md_image(label: str, target: Path, base_dir: Path) -> str:
+    try:
+        rel = os.path.relpath(target, base_dir).replace("\\", "/")
+    except ValueError:
+        rel = target.as_posix()
+    safe_label = label.replace("[", "\\[").replace("]", "\\]")
+    return f"![{safe_label}]({rel})"
 
 
 def external_md_link(label: str, url: str) -> str:
@@ -905,6 +959,235 @@ def display_genre(genre: str, group: str) -> str:
     return label or genre
 
 
+GROUP_COLORS = {
+    "Metal": "#557e64",
+    "Rock / Psych / Prog": "#526f92",
+    "Electronic / Ambient": "#a96855",
+    "Punk / Hardcore": "#8b5d5d",
+    "Folk / World": "#7d744e",
+    "Jazz / Blues": "#5b7891",
+    "Soul / Funk / R&B": "#9a6a3f",
+    "Reggae / Ska": "#6f8a58",
+    "Afrobeat / Latin": "#b07a45",
+    "Classical / Score": "#6f6f88",
+    "Pop / Songwriter": "#9a715d",
+    "Hip-Hop / Rap": "#6e668a",
+    "Experimental / Noise": "#6f7772",
+    "Other": "#8a8078",
+}
+
+
+def group_color(group: str, index: int = 0) -> str:
+    if group in GROUP_COLORS:
+        return GROUP_COLORS[group]
+    fallback = ("#557e64", "#526f92", "#a96855", "#7d744e", "#6f7772")
+    return fallback[index % len(fallback)]
+
+
+def group_short_label(group: str) -> str:
+    return {
+        "Rock / Psych / Prog": "Rock",
+        "Electronic / Ambient": "Electronic",
+        "Punk / Hardcore": "Punk",
+        "Folk / World": "Folk",
+        "Jazz / Blues": "Jazz",
+        "Soul / Funk / R&B": "Soul",
+        "Reggae / Ska": "Reggae",
+        "Afrobeat / Latin": "Afrobeat",
+        "Classical / Score": "Classical",
+        "Pop / Songwriter": "Pop",
+        "Hip-Hop / Rap": "Hip-Hop",
+        "Experimental / Noise": "Noise",
+    }.get(group, group)
+
+
+def genre_weather_profile(genre: str) -> tuple[str, str, str]:
+    text = marker_text(genre)
+    if any(marker in text for marker in ("doom", "death", "sludge", "thrash", "heavy", "grind", "hardcore")):
+        return "STORM", "heavy", "#557e64"
+    if any(marker in text for marker in ("black", "folk", "ritual", "pagan", "neofolk", "dungeon")):
+        return "MOON", "ritual", "#7d744e"
+    if any(marker in text for marker in ("ambient", "drone", "electronic", "synth", "classical", "score")):
+        return "FOG", "ambient", "#526f92"
+    if any(marker in text for marker in ("pop", "soul", "funk", "reggae", "ska", "latin", "jazz")):
+        return "SUN", "bright", "#a96855"
+    if any(marker in text for marker in ("noise", "industrial", "punk", "experimental")):
+        return "STATIC", "raw", "#6f7772"
+    return "CLOUD", "mixed", "#8a8078"
+
+
+def taste_drift_data(
+    tracks: list[TrackRow],
+    artist_genres: dict[str, str],
+    *,
+    month_limit: int = 18,
+    group_limit: int = 5,
+) -> tuple[list[str], list[str], dict[str, list[int]]]:
+    monthly: dict[str, Counter[str]] = {}
+    for row in tracks:
+        month = month_label(added_date(row))
+        if not month:
+            continue
+        monthly.setdefault(month, Counter())[row_super_genre(row, artist_genres)] += 1
+
+    months = sorted(monthly)[-month_limit:]
+    totals = Counter(
+        group
+        for month in months
+        for group, count in monthly.get(month, Counter()).items()
+        for _ in range(count)
+    )
+    groups = [group for group, _count in top(totals, group_limit)]
+    series = {group: [monthly.get(month, Counter()).get(group, 0) for month in months] for group in groups}
+    return months, groups, series
+
+
+def country_decade_data(
+    tracks: list[TrackRow],
+    artist_cache: dict[str, object],
+    country_overrides: dict[str, str],
+    *,
+    country_limit: int = 12,
+) -> tuple[list[str], list[str], dict[tuple[str, str], int]]:
+    counts: Counter[str] = Counter()
+    matrix: Counter[tuple[str, str]] = Counter()
+    decades: set[str] = set()
+    for row in tracks:
+        decade = decade_label(effective_year(row))
+        if not decade:
+            continue
+        row_countries = track_countries(row, artist_cache, country_overrides)
+        if not row_countries:
+            continue
+        decades.add(decade)
+        for country in row_countries:
+            counts[country] += 1
+            matrix[(country, decade)] += 1
+
+    countries = [country for country, _count in top(counts, country_limit)]
+    ordered_decades = sorted(decades, key=lambda label: int(label[:4]))
+    return countries, ordered_decades, dict(matrix)
+
+
+def album_mosaic_data(
+    tracks: list[TrackRow],
+    artist_genres: dict[str, str],
+    *,
+    limit: int = 48,
+) -> list[dict[str, object]]:
+    counts: Counter[str] = Counter()
+    metadata: dict[str, dict[str, object]] = {}
+    for row in tracks:
+        album_name = row.get("album_name", "").strip()
+        if not album_name:
+            continue
+        key = row.get("album_id") or f"{row.get('artist_names', '')}|{album_name}"
+        counts[key] += 1
+        metadata.setdefault(
+            key,
+            {
+                "album": album_name,
+                "artist": row.get("artist_names", ""),
+                "group": row_super_genre(row, artist_genres),
+                "year": effective_year(row),
+            },
+        )
+
+    rows: list[dict[str, object]] = []
+    for key, count in ranked_counter_rows(counts)[:limit]:
+        rows.append({**metadata.get(key, {}), "key": key, "count": count})
+    return rows
+
+
+def fallback_top_ranges(tracks: list[TrackRow]) -> tuple[str, dict[str, RankedRows]]:
+    dated_rows = [(parse_iso_date(added_date(row)), row) for row in tracks]
+    dated = [(date, row) for date, row in dated_rows if date is not None]
+    latest_date = max((date for date, _row in dated), default=None)
+    if latest_date is None:
+        return "library fallback", {
+            "short_term": count_rows_by_artist(tracks[:50]),
+            "medium_term": count_rows_by_artist(tracks[:250]),
+            "long_term": count_rows_by_artist(tracks),
+        }
+
+    short_rows = [row for date, row in dated if (latest_date - date).days <= 90]
+    medium_rows = [row for date, row in dated if (latest_date - date).days <= 365]
+    return "added-date fallback", {
+        "short_term": count_rows_by_artist(short_rows),
+        "medium_term": count_rows_by_artist(medium_rows),
+        "long_term": count_rows_by_artist(tracks),
+    }
+
+
+def cached_top_ranges(cache: dict[str, object]) -> dict[str, RankedRows]:
+    artists = cache.get("artists")
+    if not isinstance(artists, dict):
+        return {}
+    ranges: dict[str, RankedRows] = {}
+    for time_range in ("short_term", "medium_term", "long_term"):
+        raw_items = artists.get(time_range)
+        if not isinstance(raw_items, list):
+            continue
+        rows: RankedRows = []
+        for index, item in enumerate(raw_items[:20]):
+            if not isinstance(item, dict):
+                continue
+            name = str(item.get("name") or "").strip()
+            if name:
+                rows.append((name, 20 - index))
+        if rows:
+            ranges[time_range] = rows
+    return ranges
+
+
+def top_ranges_data(tracks: list[TrackRow], cache: dict[str, object]) -> tuple[str, dict[str, RankedRows]]:
+    cached = cached_top_ranges(cache)
+    if all(cached.get(time_range) for time_range in ("short_term", "medium_term", "long_term")):
+        return "Spotify top artists", cached
+    return fallback_top_ranges(tracks)
+
+
+def recently_played_track_ids(cache: dict[str, object]) -> list[str]:
+    items = cache.get("items")
+    if not isinstance(items, list):
+        return []
+    track_ids: list[str] = []
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        track = item.get("track")
+        if not isinstance(track, dict):
+            continue
+        track_id = str(track.get("id") or "").strip()
+        if track_id:
+            track_ids.append(track_id)
+    return track_ids
+
+
+def saved_vs_played_data(
+    tracks: list[TrackRow],
+    artist_genres: dict[str, str],
+    recently_played_cache: dict[str, object],
+) -> tuple[str, RankedRows, RankedRows, int, int]:
+    saved_counts = Counter(row_super_genre(row, artist_genres) for row in tracks)
+    lookup = track_lookup(tracks)
+    recent_ids = recently_played_track_ids(recently_played_cache)
+    source = "Spotify recently played" if recent_ids else "latest saved fallback"
+    if recent_ids:
+        recent_rows = [lookup[track_id] for track_id in recent_ids if track_id in lookup]
+        outside_library = sum(1 for track_id in recent_ids if track_id not in lookup)
+    else:
+        recent_rows = sorted(tracks, key=lambda row: added_date(row), reverse=True)[:50]
+        outside_library = 0
+
+    played_counts = Counter(row_super_genre(row, artist_genres) for row in recent_rows)
+    if outside_library:
+        played_counts["Outside library"] += outside_library
+    rediscovered = len({row.get("track_id", "") for row in recent_rows if row.get("track_id")})
+    ignored = max(0, len(tracks) - rediscovered)
+    return source, top(saved_counts, 8), top(played_counts, 8), rediscovered, ignored
+
+
 def svg_rank_column(
     rows: RankedRows,
     *,
@@ -943,6 +1226,598 @@ def svg_rank_column(
             )
         )
     return parts
+
+
+def svg_fitted_text(
+    x: float,
+    y: float,
+    text: object,
+    *,
+    max_width: float,
+    size: int,
+    min_size: int = 12,
+    weight: int = 800,
+    fill: str = "#102027",
+    anchor: str = "start",
+) -> str:
+    value = str(text if text is not None else "")
+    fitted_size = size
+    while (
+        fitted_size > min_size
+        and estimated_text_width(value, fitted_size, weight=weight) > max_width
+    ):
+        fitted_size -= 1
+    return svg_text(
+        x,
+        y,
+        trim_text_to_width(value, max_width, size=fitted_size, weight=weight),
+        size=fitted_size,
+        weight=weight,
+        fill=fill,
+        anchor=anchor,
+    )
+
+
+def svg_bar_rows(
+    rows: RankedRows,
+    *,
+    x: float,
+    y: float,
+    width: float,
+    accent: str,
+    limit: int = 20,
+    row_height: int = 24,
+) -> list[str]:
+    visible_rows = rows[:limit]
+    if not visible_rows:
+        return [svg_text(x, y, "No data", size=13, fill="#7a827b")]
+
+    parts: list[str] = []
+    max_count = max(count for _name, count in visible_rows)
+    rank_x = x
+    name_x = x + 34
+    count_x = x + width - 4
+    bar_x = name_x
+    bar_width_max = max(24.0, width - 86)
+    name_width = max(40.0, width - 104)
+
+    for index, (name, count) in enumerate(visible_rows, start=1):
+        row_y = y + (index - 1) * row_height
+        bar_width = bar_width_max * count / max_count if max_count else 0
+        parts.extend(
+            [
+                f'<rect x="{bar_x:.1f}" y="{row_y - 14:.1f}" width="{bar_width:.1f}" height="16" fill="{accent}" fill-opacity="0.18"/>',
+                svg_text(rank_x, row_y, f"{index:02d}", size=10, weight=800, fill=accent),
+                svg_text(
+                    name_x,
+                    row_y,
+                    trim_text_to_width(name, name_width, size=12),
+                    size=12,
+                ),
+                svg_text(count_x, row_y, count, size=12, weight=800, fill=accent, anchor="end"),
+            ]
+        )
+    return parts
+
+
+def write_overview_svg(path: Path, metrics: list[tuple[str, object]]) -> None:
+    width = 1200
+    margin = 16
+    gap = 8
+    columns = 3
+    header_height = 54
+    card_height = 92
+    content_top = margin + header_height + 12
+    rows = (len(metrics) + columns - 1) // columns
+    card_width = (width - margin * 2 - gap * (columns - 1)) / columns
+    height = content_top + rows * card_height + max(0, rows - 1) * gap + margin
+    colors = ("#557e64", "#526f92", "#a96855")
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Spotify library overview">',
+        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
+        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
+        svg_text(margin + 16, margin + 35, "Library Overview", size=28, weight=800, fill="#ffffff"),
+        svg_text(
+            width - margin - 16,
+            margin + 35,
+            "Spotify metadata dashboard",
+            size=15,
+            weight=800,
+            fill="#dfe8df",
+            anchor="end",
+        ),
+    ]
+
+    for index, (label, value) in enumerate(metrics):
+        row_index, col_index = divmod(index, columns)
+        x = margin + col_index * (card_width + gap)
+        y = content_top + row_index * (card_height + gap)
+        accent = colors[index % len(colors)]
+        parts.extend(
+            [
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="{card_width:.1f}" height="{card_height}" fill="#fffefa" stroke="#c7d0c7"/>',
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{card_height}" fill="{accent}"/>',
+                svg_text(x + 18, y + 30, str(label).upper(), size=13, weight=800, fill=accent),
+                svg_fitted_text(
+                    x + 18,
+                    y + 72,
+                    value,
+                    max_width=card_width - 36,
+                    size=34,
+                    min_size=20,
+                    weight=800,
+                ),
+            ]
+        )
+
+    parts.append("</svg>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    write_text_lf(path, "\n".join(parts) + "\n")
+
+
+def write_aggregates_svg(
+    path: Path,
+    country_rows: RankedRows,
+    genre_rows: RankedRows,
+    artist_rows: RankedRows,
+) -> None:
+    width = 1200
+    margin = 16
+    gap = 8
+    columns = 3
+    header_height = 54
+    row_height = 24
+    row_limit = 20
+    card_top = margin + header_height + 12
+    card_width = (width - margin * 2 - gap * (columns - 1)) / columns
+    card_height = 72 + row_limit * row_height + 18
+    height = card_top + card_height + margin
+    sections = [
+        ("Top Countries", country_rows, "#557e64"),
+        ("Assigned Genres", genre_rows, "#526f92"),
+        ("Groups / Artists", artist_rows, "#a96855"),
+    ]
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Spotify aggregate top lists">',
+        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
+        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
+        svg_text(margin + 16, margin + 35, "Aggregate Top Lists", size=28, weight=800, fill="#ffffff"),
+        svg_text(
+            width - margin - 16,
+            margin + 35,
+            "Countries, genres and artists",
+            size=15,
+            weight=800,
+            fill="#dfe8df",
+            anchor="end",
+        ),
+    ]
+
+    for index, (title, rows, accent) in enumerate(sections):
+        x = margin + index * (card_width + gap)
+        y = card_top
+        top_count = min(row_limit, len(rows))
+        parts.extend(
+            [
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="{card_width:.1f}" height="{card_height}" fill="#fffefa" stroke="#c7d0c7"/>',
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{card_height}" fill="{accent}"/>',
+                f'<rect x="{x + 4:.1f}" y="{y:.1f}" width="{card_width - 4:.1f}" height="48" fill="#edf2ed"/>',
+                svg_fitted_text(
+                    x + 16,
+                    y + 31,
+                    title,
+                    max_width=card_width - 118,
+                    size=22,
+                    min_size=16,
+                    weight=800,
+                ),
+                svg_text(
+                    x + card_width - 14,
+                    y + 30,
+                    f"top {top_count}",
+                    size=13,
+                    weight=800,
+                    fill=accent,
+                    anchor="end",
+                ),
+            ]
+        )
+        parts.extend(
+            svg_bar_rows(
+                rows,
+                x=x + 16,
+                y=y + 74,
+                width=card_width - 32,
+                accent=accent,
+                limit=row_limit,
+                row_height=row_height,
+            )
+        )
+
+    parts.append("</svg>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    write_text_lf(path, "\n".join(parts) + "\n")
+
+
+def write_taste_drift_svg(
+    path: Path,
+    months: list[str],
+    groups: list[str],
+    series: dict[str, list[int]],
+) -> None:
+    width = 1200
+    height = 430
+    margin = 16
+    header_height = 54
+    chart_x = 72
+    chart_y = 108
+    chart_width = 1048
+    chart_height = 230
+    chart_bottom = chart_y + chart_height
+    max_total = max((sum(values) for values in zip(*(series.get(group, []) for group in groups))), default=0)
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Taste drift by month">',
+        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
+        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
+        svg_text(margin + 16, margin + 35, "Taste Drift", size=28, weight=800, fill="#ffffff"),
+        svg_text(width - margin - 16, margin + 35, "Genre mix by added month", size=15, weight=800, fill="#dfe8df", anchor="end"),
+        f'<rect x="{chart_x}" y="{chart_y}" width="{chart_width}" height="{chart_height}" fill="#fffefa" stroke="#c7d0c7"/>',
+    ]
+
+    if not months or not groups or max_total <= 0:
+        parts.append(svg_text(width / 2, 235, "Not enough dated tracks yet", size=18, weight=800, fill="#6f7772", anchor="middle"))
+    else:
+        x_positions = [
+            chart_x + (chart_width * index / max(1, len(months) - 1))
+            for index in range(len(months))
+        ]
+        scale = chart_height / max_total
+        cumulative = [0] * len(months)
+        for group_index, group in enumerate(groups):
+            values = series.get(group, [0] * len(months))
+            upper_points: list[tuple[float, float]] = []
+            lower_points: list[tuple[float, float]] = []
+            for index, value in enumerate(values):
+                lower = cumulative[index]
+                cumulative[index] += value
+                upper_points.append((x_positions[index], chart_bottom - cumulative[index] * scale))
+                lower_points.append((x_positions[index], chart_bottom - lower * scale))
+            points = " ".join(
+                f"{x:.1f},{y:.1f}" for x, y in upper_points + list(reversed(lower_points))
+            )
+            parts.append(
+                f'<polygon points="{points}" fill="{group_color(group, group_index)}" fill-opacity="0.78"/>'
+            )
+
+        tick_step = max(1, len(months) // 6)
+        for index, month in enumerate(months):
+            x = x_positions[index]
+            if index % tick_step == 0 or index == len(months) - 1:
+                parts.extend(
+                    [
+                        f'<line x1="{x:.1f}" y1="{chart_bottom}" x2="{x:.1f}" y2="{chart_bottom + 6}" stroke="#7a827b"/>',
+                        svg_text(x, chart_bottom + 24, f"{month[5:7]}/{month[2:4]}", size=11, fill="#5d6b62", anchor="middle"),
+                    ]
+                )
+        parts.append(svg_text(chart_x - 12, chart_y + 5, max_total, size=12, weight=800, fill="#526f92", anchor="end"))
+        parts.append(svg_text(chart_x - 12, chart_bottom, "0", size=12, fill="#5d6b62", anchor="end"))
+        parts.append(f'<line x1="{chart_x}" y1="{chart_bottom}" x2="{chart_x + chart_width}" y2="{chart_bottom}" stroke="#7a827b"/>')
+
+        peak_index = max(range(len(months)), key=lambda index: sum(series[group][index] for group in groups))
+        peak_x = x_positions[peak_index]
+        peak_total = sum(series[group][peak_index] for group in groups)
+        peak_y = chart_bottom - peak_total * scale
+        parts.extend(
+            [
+                f'<circle cx="{peak_x:.1f}" cy="{peak_y:.1f}" r="5" fill="#a96855"/>',
+                svg_text(min(peak_x + 10, chart_x + chart_width - 140), max(chart_y + 18, peak_y - 8), f"peak {months[peak_index]}: {peak_total}", size=12, weight=800, fill="#a96855"),
+            ]
+        )
+
+        legend_x = chart_x
+        legend_y = 386
+        for group_index, group in enumerate(groups):
+            x = legend_x + group_index * 210
+            parts.extend(
+                [
+                    f'<rect x="{x:.1f}" y="{legend_y - 13}" width="14" height="14" fill="{group_color(group, group_index)}"/>',
+                    svg_text(x + 22, legend_y, group_short_label(group), size=13, weight=800, fill="#102027"),
+                ]
+            )
+
+    parts.append("</svg>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    write_text_lf(path, "\n".join(parts) + "\n")
+
+
+def write_genre_weather_svg(path: Path, genre_rows: RankedRows) -> None:
+    width = 1200
+    margin = 16
+    gap = 8
+    columns = 4
+    tile_width = (width - margin * 2 - gap * (columns - 1)) / columns
+    tile_height = 94
+    header_height = 54
+    rows = (min(24, len(genre_rows)) + columns - 1) // columns
+    content_top = margin + header_height + 12
+    height = content_top + rows * tile_height + max(0, rows - 1) * gap + margin
+    visible = genre_rows[:24]
+    max_count = max((count for _genre, count in visible), default=1)
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Genre weather map">',
+        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
+        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
+        svg_text(margin + 16, margin + 35, "Genre Weather", size=28, weight=800, fill="#ffffff"),
+        svg_text(width - margin - 16, margin + 35, "Mood intensity from assigned genres", size=15, weight=800, fill="#dfe8df", anchor="end"),
+    ]
+
+    for index, (genre, count) in enumerate(visible):
+        row_index, col_index = divmod(index, columns)
+        x = margin + col_index * (tile_width + gap)
+        y = content_top + row_index * (tile_height + gap)
+        icon, mood, accent = genre_weather_profile(genre)
+        intensity = max(1, min(5, round(count / max_count * 5)))
+        parts.extend(
+            [
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="{tile_width:.1f}" height="{tile_height}" fill="#fffefa" stroke="#c7d0c7"/>',
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{tile_height}" fill="{accent}"/>',
+                svg_text(x + 16, y + 25, icon, size=12, weight=800, fill=accent),
+                svg_text(x + 76, y + 25, mood.upper(), size=12, weight=800, fill=accent),
+                svg_text(x + tile_width - 14, y + 25, count, size=13, weight=800, fill=accent, anchor="end"),
+                svg_fitted_text(x + 16, y + 56, genre, max_width=tile_width - 32, size=18, min_size=12, weight=800),
+            ]
+        )
+        for bar_index in range(5):
+            bar_x = x + 16 + bar_index * 28
+            fill = accent if bar_index < intensity else "#d9ded7"
+            parts.append(f'<rect x="{bar_x:.1f}" y="{y + 72}" width="20" height="8" fill="{fill}"/>')
+
+    parts.append("</svg>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    write_text_lf(path, "\n".join(parts) + "\n")
+
+
+def write_country_decade_svg(
+    path: Path,
+    countries: list[str],
+    decades: list[str],
+    matrix: dict[tuple[str, str], int],
+) -> None:
+    width = 1200
+    margin = 16
+    header_height = 54
+    left = 170
+    top_y = margin + header_height + 54
+    row_height = 30
+    cell_gap = 4
+    cell_width = (width - left - margin - cell_gap * max(0, len(decades) - 1)) / max(1, len(decades))
+    height = top_y + len(countries) * row_height + 42
+    max_count = max(matrix.values(), default=1)
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Countries by decade heatmap">',
+        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
+        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
+        svg_text(margin + 16, margin + 35, "Country x Decade", size=28, weight=800, fill="#ffffff"),
+        svg_text(width - margin - 16, margin + 35, "Origin heatmap by release year", size=15, weight=800, fill="#dfe8df", anchor="end"),
+    ]
+
+    if not countries or not decades:
+        parts.append(svg_text(width / 2, 180, "Country or year data is still too sparse", size=18, weight=800, fill="#6f7772", anchor="middle"))
+    else:
+        for col_index, decade in enumerate(decades):
+            x = left + col_index * (cell_width + cell_gap)
+            parts.append(svg_text(x + cell_width / 2, top_y - 14, decade, size=12, weight=800, fill="#5d6b62", anchor="middle"))
+        for row_index, country in enumerate(countries):
+            y = top_y + row_index * row_height
+            parts.append(svg_text(left - 14, y + 18, trim_text_to_width(country, 140, size=13), size=13, fill="#102027", anchor="end"))
+            for col_index, decade in enumerate(decades):
+                x = left + col_index * (cell_width + cell_gap)
+                count = matrix.get((country, decade), 0)
+                opacity = 0.08 + (0.84 * count / max_count if count else 0)
+                parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{cell_width:.1f}" height="24" fill="#557e64" fill-opacity="{opacity:.2f}"/>')
+                if count:
+                    parts.append(svg_text(x + cell_width / 2, y + 17, count, size=10, weight=800, fill="#102027", anchor="middle"))
+        parts.extend(
+            [
+                svg_text(left, height - 14, "lighter", size=11, fill="#5d6b62"),
+                f'<rect x="{left + 52}" y="{height - 24}" width="44" height="10" fill="#557e64" fill-opacity="0.16"/>',
+                f'<rect x="{left + 100}" y="{height - 24}" width="44" height="10" fill="#557e64" fill-opacity="0.42"/>',
+                f'<rect x="{left + 148}" y="{height - 24}" width="44" height="10" fill="#557e64" fill-opacity="0.78"/>',
+                svg_text(left + 204, height - 14, "denser", size=11, fill="#5d6b62"),
+            ]
+        )
+
+    parts.append("</svg>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    write_text_lf(path, "\n".join(parts) + "\n")
+
+
+def write_cover_mosaic_svg(path: Path, albums: list[dict[str, object]]) -> None:
+    width = 1200
+    margin = 16
+    header_height = 54
+    columns = 8
+    gap = 8
+    tile_width = (width - margin * 2 - gap * (columns - 1)) / columns
+    tile_height = 140
+    visible = albums[:48]
+    rows = (len(visible) + columns - 1) // columns
+    content_top = margin + header_height + 12
+    height = content_top + rows * tile_height + max(0, rows - 1) * gap + margin
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Abstract cover mosaic">',
+        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
+        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
+        svg_text(margin + 16, margin + 35, "Cover Mosaic", size=28, weight=800, fill="#ffffff"),
+        svg_text(width - margin - 16, margin + 35, "Abstract album tiles, not original cover art", size=15, weight=800, fill="#dfe8df", anchor="end"),
+    ]
+
+    for index, album in enumerate(visible):
+        row_index, col_index = divmod(index, columns)
+        x = margin + col_index * (tile_width + gap)
+        y = content_top + row_index * (tile_height + gap)
+        group = str(album.get("group") or "Other")
+        accent = group_color(group, index)
+        seed = sum(ord(char) for char in str(album.get("key") or album.get("album") or index))
+        alt = ("#526f92", "#a96855", "#557e64", "#7d744e")[seed % 4]
+        parts.extend(
+            [
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="{tile_width:.1f}" height="{tile_height}" fill="#fffefa" stroke="#c7d0c7"/>',
+                f'<rect x="{x + 8:.1f}" y="{y + 8:.1f}" width="{tile_width - 16:.1f}" height="82" fill="{accent}"/>',
+                f'<circle cx="{x + 32 + seed % 68:.1f}" cy="{y + 28 + seed % 42:.1f}" r="{18 + seed % 22}" fill="{alt}" fill-opacity="0.74"/>',
+                f'<path d="M{x + 8:.1f},{y + 90:.1f} L{x + tile_width - 8:.1f},{y + 8:.1f} L{x + tile_width - 8:.1f},{y + 90:.1f} Z" fill="#102027" fill-opacity="0.22"/>',
+                f'<rect x="{x + tile_width - 40:.1f}" y="{y + 14:.1f}" width="24" height="18" fill="#fffefa" fill-opacity="0.88"/>',
+                svg_text(x + tile_width - 28, y + 28, album.get("count", ""), size=10, weight=800, fill="#102027", anchor="middle"),
+                svg_text(x + 10, y + 108, trim_text_to_width(str(album.get("album") or ""), tile_width - 20, size=11, weight=800), size=11, weight=800),
+                svg_text(x + 10, y + 126, trim_text_to_width(str(album.get("artist") or ""), tile_width - 20, size=10), size=10, fill="#5d6b62"),
+            ]
+        )
+
+    parts.append("</svg>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    write_text_lf(path, "\n".join(parts) + "\n")
+
+
+def range_delta_label(name: str, current: RankedRows, previous: RankedRows) -> str:
+    if not previous:
+        return "all"
+    current_rank = {item_name: index for index, (item_name, _score) in enumerate(current, start=1)}
+    previous_rank = {item_name: index for index, (item_name, _score) in enumerate(previous, start=1)}
+    if name not in previous_rank:
+        return "new"
+    delta = previous_rank[name] - current_rank.get(name, previous_rank[name])
+    if delta > 0:
+        return f"up {delta}"
+    if delta < 0:
+        return f"down {abs(delta)}"
+    return "same"
+
+
+def write_top_ranges_svg(path: Path, source: str, ranges: dict[str, RankedRows]) -> None:
+    width = 1200
+    height = 608
+    margin = 16
+    gap = 8
+    header_height = 54
+    columns = 3
+    card_width = (width - margin * 2 - gap * (columns - 1)) / columns
+    card_height = 510
+    content_top = margin + header_height + 12
+    specs = [
+        ("short_term", "Short Term", "#557e64"),
+        ("medium_term", "Medium Term", "#526f92"),
+        ("long_term", "Long Term", "#a96855"),
+    ]
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Top artists across Spotify ranges">',
+        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
+        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
+        svg_text(margin + 16, margin + 35, "Top Items: Short / Medium / Long", size=28, weight=800, fill="#ffffff"),
+        svg_text(width - margin - 16, margin + 35, source, size=15, weight=800, fill="#dfe8df", anchor="end"),
+    ]
+
+    previous_rows: RankedRows = []
+    for index, (key, title, accent) in enumerate(specs):
+        rows = ranges.get(key, [])[:15]
+        x = margin + index * (card_width + gap)
+        y = content_top
+        parts.extend(
+            [
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="{card_width:.1f}" height="{card_height}" fill="#fffefa" stroke="#c7d0c7"/>',
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{card_height}" fill="{accent}"/>',
+                f'<rect x="{x + 4:.1f}" y="{y:.1f}" width="{card_width - 4:.1f}" height="46" fill="#edf2ed"/>',
+                svg_text(x + 16, y + 30, title, size=21, weight=800),
+            ]
+        )
+        if not rows:
+            parts.append(svg_text(x + 18, y + 92, "No range data yet", size=14, fill="#6f7772"))
+        for row_index, (name, _score) in enumerate(rows, start=1):
+            row_y = y + 70 + (row_index - 1) * 28
+            tag = range_delta_label(name, rows, previous_rows)
+            parts.extend(
+                [
+                    svg_text(x + 18, row_y, f"{row_index:02d}", size=10, weight=800, fill=accent),
+                    svg_text(x + 56, row_y, trim_text_to_width(name, card_width - 126, size=13), size=13),
+                    svg_text(x + card_width - 14, row_y, tag, size=10, weight=800, fill=accent, anchor="end"),
+                ]
+            )
+        previous_rows = rows
+
+    parts.append("</svg>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    write_text_lf(path, "\n".join(parts) + "\n")
+
+
+def write_saved_vs_played_svg(
+    path: Path,
+    source: str,
+    saved_rows: RankedRows,
+    played_rows: RankedRows,
+    rediscovered: int,
+    ignored: int,
+) -> None:
+    width = 1200
+    height = 500
+    margin = 16
+    header_height = 54
+    chart_x = 180
+    chart_y = 126
+    row_height = 42
+    bar_width = 410
+    gap = 20
+    saved = dict(saved_rows)
+    played = dict(played_rows)
+    groups = [group for group, _count in top(Counter(saved) + Counter(played), 8)]
+    max_count = max(list(saved.values()) + list(played.values()) + [1])
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Saved library versus recently played">',
+        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
+        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
+        svg_text(margin + 16, margin + 35, "Saved vs Played", size=28, weight=800, fill="#ffffff"),
+        svg_text(width - margin - 16, margin + 35, source, size=15, weight=800, fill="#dfe8df", anchor="end"),
+        svg_text(chart_x, 104, "saved library", size=13, weight=800, fill="#557e64"),
+        svg_text(chart_x + bar_width + gap, 104, "recent plays", size=13, weight=800, fill="#526f92"),
+    ]
+
+    for index, group in enumerate(groups):
+        y = chart_y + index * row_height
+        saved_count = saved.get(group, 0)
+        played_count = played.get(group, 0)
+        saved_width = bar_width * saved_count / max_count
+        played_width = bar_width * played_count / max_count
+        parts.extend(
+            [
+                svg_text(chart_x - 14, y + 15, trim_text_to_width(group_short_label(group), 140, size=12), size=12, anchor="end"),
+                f'<rect x="{chart_x:.1f}" y="{y:.1f}" width="{bar_width}" height="18" fill="#d9ded7"/>',
+                f'<rect x="{chart_x:.1f}" y="{y:.1f}" width="{saved_width:.1f}" height="18" fill="#557e64" fill-opacity="0.78"/>',
+                f'<rect x="{chart_x + bar_width + gap:.1f}" y="{y:.1f}" width="{bar_width}" height="18" fill="#d9ded7"/>',
+                f'<rect x="{chart_x + bar_width + gap:.1f}" y="{y:.1f}" width="{played_width:.1f}" height="18" fill="#526f92" fill-opacity="0.78"/>',
+                svg_text(chart_x + bar_width + 6, y + 15, saved_count, size=11, weight=800, fill="#557e64"),
+                svg_text(chart_x + bar_width + gap + played_width + 6, y + 15, played_count, size=11, weight=800, fill="#526f92"),
+            ]
+        )
+
+    callout_y = height - 54
+    parts.extend(
+        [
+            f'<rect x="{margin}" y="{callout_y - 24}" width="568" height="42" fill="#fffefa" stroke="#c7d0c7"/>',
+            f'<rect x="{616}" y="{callout_y - 24}" width="568" height="42" fill="#fffefa" stroke="#c7d0c7"/>',
+            svg_text(margin + 16, callout_y + 2, f"rediscovered: {rediscovered} recent library tracks", size=14, weight=800, fill="#557e64"),
+            svg_text(632, callout_y + 2, f"ignored favorites: {ignored} saved tracks outside this snapshot", size=14, weight=800, fill="#a96855"),
+        ]
+    )
+
+    parts.append("</svg>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    write_text_lf(path, "\n".join(parts) + "\n")
 
 
 def write_genre_group_svg(
@@ -1197,6 +2072,62 @@ def genre_atlas(
             shutil.rmtree(staging_dir)
 
 
+def listening_maps(
+    tracks: list[TrackRow],
+    artist_cache: dict[str, object],
+    country_overrides: dict[str, str],
+    genre_rows: RankedRows,
+    artist_genres: dict[str, str],
+    readme_dir: Path,
+) -> list[str]:
+    listening_dir = readme_dir / "assets" / "listening"
+    taste_path = listening_dir / "taste-drift.svg"
+    weather_path = listening_dir / "genre-weather.svg"
+    country_decade_path = listening_dir / "country-decade.svg"
+    mosaic_path = listening_dir / "cover-mosaic.svg"
+    top_ranges_path = listening_dir / "top-ranges.svg"
+    saved_played_path = listening_dir / "saved-vs-played.svg"
+
+    months, groups, drift_series = taste_drift_data(tracks, artist_genres)
+    write_taste_drift_svg(taste_path, months, groups, drift_series)
+    write_genre_weather_svg(weather_path, genre_rows[:24])
+    countries, decades, matrix = country_decade_data(tracks, artist_cache, country_overrides)
+    write_country_decade_svg(country_decade_path, countries, decades, matrix)
+    write_cover_mosaic_svg(mosaic_path, album_mosaic_data(tracks, artist_genres))
+    top_source, top_ranges = top_ranges_data(tracks, read_json(SPOTIFY_TOP_ITEMS_CACHE))
+    write_top_ranges_svg(top_ranges_path, top_source, top_ranges)
+    played_source, saved_rows, played_rows, rediscovered, ignored = saved_vs_played_data(
+        tracks,
+        artist_genres,
+        read_json(SPOTIFY_RECENTLY_PLAYED_CACHE),
+    )
+    write_saved_vs_played_svg(
+        saved_played_path,
+        played_source,
+        saved_rows,
+        played_rows,
+        rediscovered,
+        ignored,
+    )
+
+    return [
+        "## Listening Maps",
+        "",
+        md_image("Taste drift by month", taste_path, readme_dir),
+        "",
+        md_image("Genre weather map", weather_path, readme_dir),
+        "",
+        md_image("Countries by decade heatmap", country_decade_path, readme_dir),
+        "",
+        md_image("Abstract cover mosaic", mosaic_path, readme_dir),
+        "",
+        md_image("Top items across time ranges", top_ranges_path, readme_dir),
+        "",
+        md_image("Saved library versus recently played", saved_played_path, readme_dir),
+        "",
+    ]
+
+
 def build_dashboard(
     tracks: list[dict[str, str]],
     tracks_csv: Path,
@@ -1204,6 +2135,8 @@ def build_dashboard(
 ) -> str:
     readme_dir = readme.parent
     atlas_dir = readme_dir / "assets" / "atlas"
+    overview_path = readme_dir / "assets" / "overview.svg"
+    aggregates_path = readme_dir / "assets" / "aggregates.svg"
     artist_cache = read_json(MUSICBRAINZ_ARTIST_CACHE)
     country_overrides = read_country_overrides(COUNTRY_OVERRIDES_CSV)
     artists = Counter(artist for row in tracks for artist in all_artists(row))
@@ -1255,38 +2188,46 @@ def build_dashboard(
         top_genres = top(genres, len(genres))
         artist_genres = artist_genre_assignments(tracks, top_genres)
         assigned_genres = assigned_genre_rows(tracks, artist_genres)
+        top_countries = top(countries, 20)
+        top_assigned_genres = assigned_genres[:20]
+        top_artists = top(artists, 20)
+        write_overview_svg(
+            overview_path,
+            [
+                ("Tracks", len(tracks)),
+                ("Artists", len(artists)),
+                ("Albums", len(albums)),
+                ("Tag genres", len(genres)),
+                ("Assigned genres", len(assigned_genres)),
+                ("Countries", len(countries)),
+                ("Playlists", len(playlists)),
+                ("Release years", year_range),
+                ("Duration", duration_label(duration_ms)),
+            ],
+        )
+        write_aggregates_svg(
+            aggregates_path,
+            top_countries,
+            top_assigned_genres,
+            top_artists,
+        )
         lines.extend(
             [
-                compact_table(
-                    [
-                        "Tracks",
-                        "Artists",
-                        "Albums",
-                        "Tag genres",
-                        "Assigned genres",
-                        "Countries",
-                        "Playlists",
-                        "Release years",
-                        "Duration",
-                    ],
-                    [
-                        [
-                            len(tracks),
-                            len(artists),
-                            len(albums),
-                            len(genres),
-                            len(assigned_genres),
-                            len(countries),
-                            len(playlists),
-                            year_range,
-                            duration_label(duration_ms),
-                        ]
-                    ],
-                ),
+                md_image("Spotify library overview", overview_path, readme_dir),
                 "",
                 "> Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.",
                 "",
             ]
+        )
+        lines.extend(
+            listening_maps(
+                tracks,
+                artist_cache,
+                country_overrides,
+                assigned_genres,
+                artist_genres,
+                readme_dir,
+            )
         )
         lines.extend(
             genre_atlas(
@@ -1311,23 +2252,13 @@ def build_dashboard(
                 "",
                 "## Aggregates",
                 "",
-                "### Top 20 Countries",
-                "",
-                compact_table(["Country", "Tracks"], top(countries, 20)),
-                "",
-                "### Top 20 Genres",
-                "",
-                compact_table(["Genre", "Tracks"], assigned_genres[:20]),
-                "",
-                "### Top 20 Groups / Artists",
-                "",
-                compact_table(["Group / artist", "Tracks"], top(artists, 20)),
+                md_image("Spotify aggregate top lists", aggregates_path, readme_dir),
                 "",
                 "<details>",
                 "<summary>Workflow</summary>",
                 "",
                 "",
-                "- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists.",
+                "- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists, plus optional Spotify top/recent snapshots.",
                 "- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.",
                 "- `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata where available.",
                 "- `python scripts/apply_genre_rules.py --overwrite` applies curated genres from `data/genre_rules.csv`.",
@@ -1346,7 +2277,7 @@ def build_dashboard(
             "<details>",
             "<summary>Repeat this</summary>",
             "",
-            "Create a Spotify app, run the local OAuth export once, store the full `data/tracks.csv` in a private data repository, then set public repository secrets described in `DATA.md`. GitHub Actions can refresh the public dashboard weekly without publishing the full CSV.",
+            "Create a Spotify app, run the local OAuth export once, store the full `data/tracks.csv` in a private data repository, then set public repository secrets described in `DATA.md`. GitHub Actions can refresh the public dashboard weekly without publishing the full CSV. Spotify user refresh tokens expire after six months; when the workflow reports `invalid_grant`, or after adding `user-top-read` / `user-read-recently-played`, reauthorize locally and update the `SPOTIFY_REFRESH_TOKEN` secret.",
             "",
             "</details>",
             "",

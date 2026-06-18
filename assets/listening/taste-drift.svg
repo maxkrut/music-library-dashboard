@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-label="Taste drift by month">
+<rect width="1200" height="430" fill="#f7f6f0"/>
+<rect x="16" y="16" width="1168" height="54" fill="#22382d"/>
+<text x="32.0" y="51.0" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="800" fill="#ffffff" text-anchor="start">Taste Drift</text>
+<text x="1168.0" y="51.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#dfe8df" text-anchor="end">Genre mix by added month</text>
+<rect x="72" y="108" width="1048" height="230" fill="#fffefa" stroke="#c7d0c7"/>
+<polygon points="72.0,265.4 133.6,253.3 195.3,204.8 256.9,253.3 318.6,241.2 380.2,271.4 441.9,283.5 503.5,186.7 565.2,216.9 626.8,277.5 688.5,259.3 750.1,301.7 811.8,271.4 873.4,301.7 935.1,247.2 996.7,283.5 1058.4,301.7 1120.0,331.9 1120.0,338.0 1058.4,338.0 996.7,338.0 935.1,338.0 873.4,338.0 811.8,338.0 750.1,338.0 688.5,338.0 626.8,338.0 565.2,338.0 503.5,338.0 441.9,338.0 380.2,338.0 318.6,338.0 256.9,338.0 195.3,338.0 133.6,338.0 72.0,338.0" fill="#557e64" fill-opacity="0.78"/>
+<polygon points="72.0,253.3 133.6,253.3 195.3,186.7 256.9,229.1 318.6,186.7 380.2,247.2 441.9,210.9 503.5,144.3 565.2,162.5 626.8,247.2 688.5,229.1 750.1,271.4 811.8,223.0 873.4,283.5 935.1,235.1 996.7,271.4 1058.4,301.7 1120.0,331.9 1120.0,331.9 1058.4,301.7 996.7,283.5 935.1,247.2 873.4,301.7 811.8,271.4 750.1,301.7 688.5,259.3 626.8,277.5 565.2,216.9 503.5,186.7 441.9,283.5 380.2,271.4 318.6,241.2 256.9,253.3 195.3,204.8 133.6,253.3 72.0,265.4" fill="#526f92" fill-opacity="0.78"/>
+<polygon points="72.0,223.0 133.6,241.2 195.3,162.5 256.9,223.0 318.6,150.4 380.2,241.2 441.9,162.5 503.5,126.2 565.2,120.1 626.8,235.1 688.5,210.9 750.1,259.3 811.8,204.8 873.4,271.4 935.1,204.8 996.7,271.4 1058.4,295.6 1120.0,325.9 1120.0,331.9 1058.4,301.7 996.7,271.4 935.1,235.1 873.4,283.5 811.8,223.0 750.1,271.4 688.5,229.1 626.8,247.2 565.2,162.5 503.5,144.3 441.9,210.9 380.2,247.2 318.6,186.7 256.9,229.1 195.3,186.7 133.6,253.3 72.0,253.3" fill="#a96855" fill-opacity="0.78"/>
+<polygon points="72.0,223.0 133.6,241.2 195.3,162.5 256.9,223.0 318.6,144.3 380.2,241.2 441.9,138.3 503.5,108.0 565.2,114.1 626.8,235.1 688.5,210.9 750.1,259.3 811.8,198.8 873.4,271.4 935.1,198.8 996.7,271.4 1058.4,295.6 1120.0,325.9 1120.0,325.9 1058.4,295.6 996.7,271.4 935.1,204.8 873.4,271.4 811.8,204.8 750.1,259.3 688.5,210.9 626.8,235.1 565.2,120.1 503.5,126.2 441.9,162.5 380.2,241.2 318.6,150.4 256.9,223.0 195.3,162.5 133.6,241.2 72.0,223.0" fill="#8b5d5d" fill-opacity="0.78"/>
+<polygon points="72.0,223.0 133.6,241.2 195.3,162.5 256.9,223.0 318.6,144.3 380.2,241.2 441.9,138.3 503.5,108.0 565.2,114.1 626.8,235.1 688.5,210.9 750.1,247.2 811.8,198.8 873.4,259.3 935.1,186.7 996.7,271.4 1058.4,289.6 1120.0,325.9 1120.0,325.9 1058.4,295.6 996.7,271.4 935.1,198.8 873.4,271.4 811.8,198.8 750.1,259.3 688.5,210.9 626.8,235.1 565.2,114.1 503.5,108.0 441.9,138.3 380.2,241.2 318.6,144.3 256.9,223.0 195.3,162.5 133.6,241.2 72.0,223.0" fill="#6f6f88" fill-opacity="0.78"/>
+<line x1="72.0" y1="338" x2="72.0" y2="344" stroke="#7a827b"/>
+<text x="72.0" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#5d6b62" text-anchor="middle">01/25</text>
+<line x1="256.9" y1="338" x2="256.9" y2="344" stroke="#7a827b"/>
+<text x="256.9" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#5d6b62" text-anchor="middle">04/25</text>
+<line x1="441.9" y1="338" x2="441.9" y2="344" stroke="#7a827b"/>
+<text x="441.9" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#5d6b62" text-anchor="middle">07/25</text>
+<line x1="626.8" y1="338" x2="626.8" y2="344" stroke="#7a827b"/>
+<text x="626.8" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#5d6b62" text-anchor="middle">10/25</text>
+<line x1="811.8" y1="338" x2="811.8" y2="344" stroke="#7a827b"/>
+<text x="811.8" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#5d6b62" text-anchor="middle">01/26</text>
+<line x1="996.7" y1="338" x2="996.7" y2="344" stroke="#7a827b"/>
+<text x="996.7" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#5d6b62" text-anchor="middle">04/26</text>
+<line x1="1120.0" y1="338" x2="1120.0" y2="344" stroke="#7a827b"/>
+<text x="1120.0" y="362.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#5d6b62" text-anchor="middle">06/26</text>
+<text x="60.0" y="113.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="end">38</text>
+<text x="60.0" y="338.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#5d6b62" text-anchor="end">0</text>
+<line x1="72" y1="338" x2="1120" y2="338" stroke="#7a827b"/>
+<circle cx="503.5" cy="108.0" r="5" fill="#a96855"/>
+<text x="513.5" y="126.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#a96855" text-anchor="start">peak 2025-08: 38</text>
+<rect x="72.0" y="373" width="14" height="14" fill="#557e64"/>
+<text x="94.0" y="386.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#102027" text-anchor="start">Metal</text>
+<rect x="282.0" y="373" width="14" height="14" fill="#526f92"/>
+<text x="304.0" y="386.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#102027" text-anchor="start">Rock</text>
+<rect x="492.0" y="373" width="14" height="14" fill="#a96855"/>
+<text x="514.0" y="386.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#102027" text-anchor="start">Electronic</text>
+<rect x="702.0" y="373" width="14" height="14" fill="#8b5d5d"/>
+<text x="724.0" y="386.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#102027" text-anchor="start">Punk</text>
+<rect x="912.0" y="373" width="14" height="14" fill="#6f6f88"/>
+<text x="934.0" y="386.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#102027" text-anchor="start">Classical</text>
+</svg>

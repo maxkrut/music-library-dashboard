@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390" role="img" aria-label="Spotify library overview">
+<rect width="1200" height="390" fill="#f7f6f0"/>
+<rect x="16" y="16" width="1168" height="54" fill="#22382d"/>
+<text x="32.0" y="51.0" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="800" fill="#ffffff" text-anchor="start">Library Overview</text>
+<text x="1168.0" y="51.0" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" fill="#dfe8df" text-anchor="end">Spotify metadata dashboard</text>
+<rect x="16.0" y="82.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
+<rect x="16.0" y="82.0" width="4" height="92" fill="#557e64"/>
+<text x="34.0" y="112.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#557e64" text-anchor="start">TRACKS</text>
+<text x="34.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1972</text>
+<rect x="408.0" y="82.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
+<rect x="408.0" y="82.0" width="4" height="92" fill="#526f92"/>
+<text x="426.0" y="112.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#526f92" text-anchor="start">ARTISTS</text>
+<text x="426.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1366</text>
+<rect x="800.0" y="82.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
+<rect x="800.0" y="82.0" width="4" height="92" fill="#a96855"/>
+<text x="818.0" y="112.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#a96855" text-anchor="start">ALBUMS</text>
+<text x="818.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1677</text>
+<rect x="16.0" y="182.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
+<rect x="16.0" y="182.0" width="4" height="92" fill="#557e64"/>
+<text x="34.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#557e64" text-anchor="start">TAG GENRES</text>
+<text x="34.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">546</text>
+<rect x="408.0" y="182.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
+<rect x="408.0" y="182.0" width="4" height="92" fill="#526f92"/>
+<text x="426.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#526f92" text-anchor="start">ASSIGNED GENRES</text>
+<text x="426.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">190</text>
+<rect x="800.0" y="182.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
+<rect x="800.0" y="182.0" width="4" height="92" fill="#a96855"/>
+<text x="818.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#a96855" text-anchor="start">COUNTRIES</text>
+<text x="818.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">52</text>
+<rect x="16.0" y="282.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
+<rect x="16.0" y="282.0" width="4" height="92" fill="#557e64"/>
+<text x="34.0" y="312.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#557e64" text-anchor="start">PLAYLISTS</text>
+<text x="34.0" y="354.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">5</text>
+<rect x="408.0" y="282.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
+<rect x="408.0" y="282.0" width="4" height="92" fill="#526f92"/>
+<text x="426.0" y="312.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#526f92" text-anchor="start">RELEASE YEARS</text>
+<text x="426.0" y="354.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1958-2026</text>
+<rect x="800.0" y="282.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
+<rect x="800.0" y="282.0" width="4" height="92" fill="#a96855"/>
+<text x="818.0" y="312.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#a96855" text-anchor="start">DURATION</text>
+<text x="818.0" y="354.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">183h 52m</text>
+</svg>

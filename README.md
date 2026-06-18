@@ -2,38 +2,23 @@
 
 Personal Spotify metadata dashboard. No audio files, only generated summaries from a private CSV archive.
 
-<div align="center">
-<table align="center" cellpadding="0" cellspacing="0">
-<thead>
-<tr>
-<th align="center" valign="middle" nowrap><small><small><small>Tracks</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Artists</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Albums</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Tag&nbsp;genres</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Assigned&nbsp;genres</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Countries</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Playlists</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Release&nbsp;years</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Duration</small></small></small></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>1975</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>1368</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>1680</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>531</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>211</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>53</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>5</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>1958&#8209;2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>184h&nbsp;9m</small></small></small></td>
-</tr>
-</tbody>
-</table>
-</div>
+![Spotify library overview](assets/overview.svg)
 
 > Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.
+
+## Listening Maps
+
+![Taste drift by month](assets/listening/taste-drift.svg)
+
+![Genre weather map](assets/listening/genre-weather.svg)
+
+![Countries by decade heatmap](assets/listening/country-decade.svg)
+
+![Abstract cover mosaic](assets/listening/cover-mosaic.svg)
+
+![Top items across time ranges](assets/listening/top-ranges.svg)
+
+![Saved library versus recently played](assets/listening/saved-vs-played.svg)
 
 ## Genre Atlas
 
@@ -89,10 +74,6 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
-## Other
-
-![Other genre atlas](assets/atlas/other.svg)
-
 ## Latest 20 Liked Tracks
 
 <div align="center">
@@ -109,30 +90,6 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </thead>
 <tbody>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;17</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>This&nbsp;Winter&nbsp;Machine</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/4W6MueOc6KliVlG0ZcZLQN">Reflections</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Clockwork&nbsp;Man</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2023</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>progressive&nbsp;rock</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;17</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Pallbearer</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2SV69wiCCKzoFLDs6NWM5N">I&nbsp;Saw&nbsp;the&nbsp;End</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Heartless</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2017</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;15</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Magic&nbsp;Man</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm">Steppe&nbsp;Grass</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Boards&nbsp;of&nbsp;Mongolia</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>dungeon&nbsp;synth</small></small></small></td>
-</tr>
-<tr>
 <td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;07</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>dungeontroll</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn">Crypt&nbsp;of&nbsp;Euphoria</a></small></small></small></td>
@@ -146,7 +103,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost&nbsp;Limbs</a></small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>Songs&nbsp;of&nbsp;Abundance,&nbsp;Psalms&nbsp;of&nbsp;Grief</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>2023</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;26</small></small></small></td>
@@ -268,302 +225,43 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center" valign="middle" nowrap><small><small><small>2006</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>stoner&nbsp;rock</small></small></small></td>
 </tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;21</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Hanging&nbsp;Garden</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/7ez3jbaUX5d4jH9spd3QVu">Isle&nbsp;of&nbsp;Bliss</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Isle&nbsp;of&nbsp;Bliss</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;16</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Cough</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2k4pS2s7JHRiZrc6LB5Xqu">Let&nbsp;It&nbsp;Bleed</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Still&nbsp;They&nbsp;Pray</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2016</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;15</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Flight&nbsp;of&nbsp;Sleipnir</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/0b24z2yYjV75L59h2tVaWX">Sidereal&nbsp;Course</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>V</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2014</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>stoner&nbsp;doom</small></small></small></td>
+</tr>
 </tbody>
 </table>
 </div>
 
 ## Aggregates
 
-### Top 20 Countries
-
-<div align="center">
-<table align="center" cellpadding="0" cellspacing="0">
-<thead>
-<tr>
-<th align="center" valign="middle" nowrap><small><small><small>Country</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Tracks</small></small></small></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>United&nbsp;States</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>622</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>United&nbsp;Kingdom</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>286</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Norway</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>227</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Sweden</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>165</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Germany</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>97</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Finland</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>74</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Canada</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>54</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>France</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>50</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Russia</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>49</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Denmark</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>37</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Italy</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>32</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Netherlands</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>32</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Australia</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>30</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Ireland</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>23</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Poland</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>21</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Belgium</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>16</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Greece</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>15</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Switzerland</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>14</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Austria</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>12</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Hungary</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>11</small></small></small></td>
-</tr>
-</tbody>
-</table>
-</div>
-
-### Top 20 Genres
-
-<div align="center">
-<table align="center" cellpadding="0" cellspacing="0">
-<thead>
-<tr>
-<th align="center" valign="middle" nowrap><small><small><small>Genre</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Tracks</small></small></small></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>black&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>205</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>progressive&nbsp;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>106</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>progressive&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>83</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>heavy&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>78</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>70</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>hard&nbsp;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>66</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>psychedelic&nbsp;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>57</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>electronic</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>53</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>alternative&nbsp;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>47</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>atmospheric&nbsp;black&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>45</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>death&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>41</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>post&#8209;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>39</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>stoner&nbsp;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>38</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>thrash&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>38</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>gothic&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>35</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>post&#8209;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>29</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>blues&nbsp;rock</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>28</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>death&#8209;doom&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>28</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>post&#8209;punk</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>28</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>sludge&nbsp;metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>26</small></small></small></td>
-</tr>
-</tbody>
-</table>
-</div>
-
-### Top 20 Groups / Artists
-
-<div align="center">
-<table align="center" cellpadding="0" cellspacing="0">
-<thead>
-<tr>
-<th align="center" valign="middle" nowrap><small><small><small>Group&nbsp;/&nbsp;artist</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Tracks</small></small></small></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Enslaved</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>50</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Darkthrone</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>28</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Opeth</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>21</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Ulver</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>17</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Shape&nbsp;Of&nbsp;Despair</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>12</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Wardruna</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>12</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Flight&nbsp;of&nbsp;Sleipnir</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>10</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Clark</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>9</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Frank&nbsp;Zappa</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>9</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Quakes</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>9</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Lauge</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>8</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>My&nbsp;Dying&nbsp;Bride</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>8</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Alcest</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>7</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Biohazard</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>7</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Carlo&nbsp;Domeniconi</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>7</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Chelsea&nbsp;Wolfe</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>7</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Counting&nbsp;Hours</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>7</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Dark&nbsp;Suns</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>7</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Devin&nbsp;Townsend</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>7</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>Rush</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>7</small></small></small></td>
-</tr>
-</tbody>
-</table>
-</div>
+![Spotify aggregate top lists](assets/aggregates.svg)
 
 <details>
 <summary>Workflow</summary>
 
 
-- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists.
+- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists, plus optional Spotify top/recent snapshots.
 - `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.
 - `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata where available.
 - `python scripts/apply_genre_rules.py --overwrite` applies curated genres from `data/genre_rules.csv`.
@@ -577,7 +275,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <details>
 <summary>Repeat this</summary>
 
-Create a Spotify app, run the local OAuth export once, store the full `data/tracks.csv` in a private data repository, then set public repository secrets described in `DATA.md`. GitHub Actions can refresh the public dashboard weekly without publishing the full CSV.
+Create a Spotify app, run the local OAuth export once, store the full `data/tracks.csv` in a private data repository, then set public repository secrets described in `DATA.md`. GitHub Actions can refresh the public dashboard weekly without publishing the full CSV. Spotify user refresh tokens expire after six months; when the workflow reports `invalid_grant`, or after adding `user-top-read` / `user-read-recently-played`, reauthorize locally and update the `SPOTIFY_REFRESH_TOKEN` secret.
 
 </details>
 
@@ -598,4 +296,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-17 19:36 UTC._
+_Generated at 2026-06-18 18:56 UTC._
