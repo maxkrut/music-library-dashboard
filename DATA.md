@@ -21,6 +21,16 @@ Set these secrets in the public repository:
 - `SPOTIFY_REFRESH_TOKEN`: Spotify refresh token for weekly exports.
 - `SPOTIFY_REDIRECT_URI`: optional; defaults to `http://127.0.0.1:8888/callback`.
 
+## Spotify Refresh Token Rotation
+
+Spotify user refresh tokens expire after six months. When the weekly workflow logs an `invalid_grant` refresh error, reauthorize locally:
+
+```bash
+python scripts/export_spotify.py --verbose
+```
+
+Then copy the new `refresh_token` value from `.cache/spotify-token.json` into the public repository `SPOTIFY_REFRESH_TOKEN` secret. Do not keep retrying the old token.
+
 ## Private Data Repository
 
 The private repository should contain:

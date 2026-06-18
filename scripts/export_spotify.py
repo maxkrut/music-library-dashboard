@@ -36,6 +36,13 @@ DEFAULT_SCOPE = "user-library-read playlist-read-private playlist-read-collabora
 MAX_RETRY_AFTER_SECONDS = max(1, int(os.getenv("SPOTIFY_MAX_RETRY_AFTER_SECONDS", "300")))
 MAX_RATE_LIMIT_RETRIES = max(1, int(os.getenv("SPOTIFY_MAX_RATE_LIMIT_RETRIES", "20")))
 ARTIST_BATCH_SIZE = min(50, max(1, int(os.getenv("SPOTIFY_ARTIST_BATCH_SIZE", "50"))))
+SPOTIFY_REAUTH_MESSAGE = (
+    "Spotify refresh token is expired, revoked, or invalid (invalid_grant). "
+    "Cached user token was discarded if present. "
+    "Reauthorize locally with `python scripts/export_spotify.py --verbose`, "
+    "then copy the new `refresh_token` from `.cache/spotify-token.json` "
+    "into the `SPOTIFY_REFRESH_TOKEN` GitHub secret."
+)
 
 MANUAL_FIELDS = ["year", "primary_genre", "genres", "rating", "status", "tags", "notes"]
 FIELDNAMES = [
@@ -73,6 +80,10 @@ class SpotifyApiError(RuntimeError):
         super().__init__(f"Spotify API returned {status}: {message}")
         self.status = status
         self.message = message
+
+
+class SpotifyReauthorizationRequired(RuntimeError):
+    pass
 
 
 def parse_args() -> argparse.Namespace:
@@ -212,6 +223,27 @@ def retry_after_seconds(raw_value: object, default: int = 5) -> int:
     return max(seconds, 1)
 
 
+def spotify_error_code(message: str) -> str:
+    try:
+        payload = json.loads(message)
+    except json.JSONDecodeError:
+        payload = {}
+
+    if isinstance(payload, dict):
+        error = payload.get("error")
+        if isinstance(error, str):
+            return error
+
+    return "invalid_grant" if "invalid_grant" in message else ""
+
+
+def discard_cached_user_token() -> None:
+    try:
+        TOKEN_CACHE.unlink()
+    except FileNotFoundError:
+        return
+
+
 def post_form(url: str, data: dict[str, str], client_id: str, client_secret: str) -> dict[str, Any]:
     encoded = urllib.parse.urlencode(data).encode("utf-8")
     basic = base64.b64encode(f"{client_id}:{client_secret}".encode("utf-8")).decode("ascii")
@@ -266,12 +298,18 @@ def refresh_access_token(
     refresh_token = token.get("refresh_token") or os.getenv("SPOTIFY_REFRESH_TOKEN")
     if not refresh_token:
         raise SpotifyApiError(401, "missing refresh token")
-    refreshed = post_form(
-        TOKEN_URL,
-        {"grant_type": "refresh_token", "refresh_token": refresh_token},
-        client_id,
-        client_secret,
-    )
+    try:
+        refreshed = post_form(
+            TOKEN_URL,
+            {"grant_type": "refresh_token", "refresh_token": refresh_token},
+            client_id,
+            client_secret,
+        )
+    except SpotifyApiError as error:
+        if spotify_error_code(error.message) == "invalid_grant":
+            discard_cached_user_token()
+            raise SpotifyReauthorizationRequired(SPOTIFY_REAUTH_MESSAGE) from error
+        raise
     if "refresh_token" not in refreshed:
         refreshed["refresh_token"] = refresh_token
     return with_expiry(refreshed)
@@ -418,9 +456,16 @@ def load_token(args: argparse.Namespace) -> dict[str, Any]:
         return token
 
     if token.get("refresh_token"):
-        token = refresh_access_token(token, args.client_id, args.client_secret)
-        write_json(TOKEN_CACHE, token)
-        return token
+        try:
+            token = refresh_access_token(token, args.client_id, args.client_secret)
+        except SpotifyReauthorizationRequired as error:
+            if args.no_interactive:
+                raise SystemExit(str(error)) from error
+            print(str(error), file=sys.stderr)
+            token = {}
+        else:
+            write_json(TOKEN_CACHE, token)
+            return token
 
     if args.no_interactive:
         raise SystemExit(
@@ -457,7 +502,10 @@ class SpotifyClient:
         if self.token.get("grant_type") == "client_credentials":
             self.token = request_client_credentials_token(self.client_id, self.client_secret)
             return
-        self.token = refresh_access_token(self.token, self.client_id, self.client_secret)
+        try:
+            self.token = refresh_access_token(self.token, self.client_id, self.client_secret)
+        except SpotifyReauthorizationRequired as error:
+            raise SystemExit(str(error)) from error
         if self.cache_token:
             write_json(TOKEN_CACHE, self.token)
 
@@ -486,7 +534,10 @@ class SpotifyClient:
             except urllib.error.HTTPError as error:
                 body = error.read().decode("utf-8", errors="replace")
                 if error.code == 401 and self.token.get("refresh_token"):
-                    self.token = refresh_access_token(self.token, self.client_id, self.client_secret)
+                    try:
+                        self.token = refresh_access_token(self.token, self.client_id, self.client_secret)
+                    except SpotifyReauthorizationRequired as refresh_error:
+                        raise SystemExit(str(refresh_error)) from refresh_error
                     if self.cache_token:
                         write_json(TOKEN_CACHE, self.token)
                     continue
