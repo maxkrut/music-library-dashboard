@@ -74,6 +74,10 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
+## Other
+
+![Other genre atlas](assets/atlas/other.svg)
+
 ## Latest 20 Liked Tracks
 
 <div align="center">
@@ -135,7 +139,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost&nbsp;Limbs</a></small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>Songs&nbsp;of&nbsp;Abundance,&nbsp;Psalms&nbsp;of&nbsp;Grief</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>2023</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small></small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;26</small></small></small></td>
@@ -296,4 +300,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-18 20:00 UTC._
+_Generated at 2026-06-18 20:02 UTC._
