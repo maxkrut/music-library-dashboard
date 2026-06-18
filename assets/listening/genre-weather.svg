@@ -18,7 +18,7 @@
 <rect x="310.0" y="82.0" width="4" height="94" fill="#8a8078"/>
 <text x="326.0" y="107.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#8a8078" text-anchor="start">CLOUD</text>
 <text x="386.0" y="107.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#8a8078" text-anchor="start">MIXED</text>
-<text x="582.0" y="107.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#8a8078" text-anchor="end">106</text>
+<text x="582.0" y="107.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#8a8078" text-anchor="end">107</text>
 <text x="326.0" y="138.0" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#102027" text-anchor="start">progressive rock</text>
 <rect x="326.0" y="154" width="20" height="8" fill="#8a8078"/>
 <rect x="354.0" y="154" width="20" height="8" fill="#8a8078"/>
@@ -51,7 +51,7 @@
 <rect x="16.0" y="184.0" width="4" height="94" fill="#557e64"/>
 <text x="32.0" y="209.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="start">STORM</text>
 <text x="92.0" y="209.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="start">HEAVY</text>
-<text x="288.0" y="209.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#557e64" text-anchor="end">70</text>
+<text x="288.0" y="209.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#557e64" text-anchor="end">71</text>
 <text x="32.0" y="240.0" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#102027" text-anchor="start">doom metal</text>
 <rect x="32.0" y="256" width="20" height="8" fill="#557e64"/>
 <rect x="60.0" y="256" width="20" height="8" fill="#557e64"/>
@@ -246,23 +246,23 @@
 <rect x="410.0" y="664" width="20" height="8" fill="#d9ded7"/>
 <rect x="438.0" y="664" width="20" height="8" fill="#d9ded7"/>
 <rect x="604.0" y="592.0" width="286.0" height="94" fill="#fffefa" stroke="#c7d0c7"/>
-<rect x="604.0" y="592.0" width="4" height="94" fill="#8a8078"/>
-<text x="620.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#8a8078" text-anchor="start">CLOUD</text>
-<text x="680.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#8a8078" text-anchor="start">MIXED</text>
-<text x="876.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#8a8078" text-anchor="end">22</text>
-<text x="620.0" y="648.0" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#102027" text-anchor="start">rock</text>
-<rect x="620.0" y="664" width="20" height="8" fill="#8a8078"/>
+<rect x="604.0" y="592.0" width="4" height="94" fill="#526f92"/>
+<text x="620.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="start">FOG</text>
+<text x="680.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="start">AMBIENT</text>
+<text x="876.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#526f92" text-anchor="end">22</text>
+<text x="620.0" y="648.0" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#102027" text-anchor="start">ambient</text>
+<rect x="620.0" y="664" width="20" height="8" fill="#526f92"/>
 <rect x="648.0" y="664" width="20" height="8" fill="#d9ded7"/>
 <rect x="676.0" y="664" width="20" height="8" fill="#d9ded7"/>
 <rect x="704.0" y="664" width="20" height="8" fill="#d9ded7"/>
 <rect x="732.0" y="664" width="20" height="8" fill="#d9ded7"/>
 <rect x="898.0" y="592.0" width="286.0" height="94" fill="#fffefa" stroke="#c7d0c7"/>
-<rect x="898.0" y="592.0" width="4" height="94" fill="#526f92"/>
-<text x="914.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="start">FOG</text>
-<text x="974.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="start">AMBIENT</text>
-<text x="1170.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#526f92" text-anchor="end">21</text>
-<text x="914.0" y="648.0" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#102027" text-anchor="start">ambient</text>
-<rect x="914.0" y="664" width="20" height="8" fill="#526f92"/>
+<rect x="898.0" y="592.0" width="4" height="94" fill="#8a8078"/>
+<text x="914.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#8a8078" text-anchor="start">CLOUD</text>
+<text x="974.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#8a8078" text-anchor="start">MIXED</text>
+<text x="1170.0" y="617.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#8a8078" text-anchor="end">22</text>
+<text x="914.0" y="648.0" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#102027" text-anchor="start">rock</text>
+<rect x="914.0" y="664" width="20" height="8" fill="#8a8078"/>
 <rect x="942.0" y="664" width="20" height="8" fill="#d9ded7"/>
 <rect x="970.0" y="664" width="20" height="8" fill="#d9ded7"/>
 <rect x="998.0" y="664" width="20" height="8" fill="#d9ded7"/>

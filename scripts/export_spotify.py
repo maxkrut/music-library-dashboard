@@ -7,6 +7,7 @@ import csv
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 import hashlib
+import http.client
 import http.server
 import json
 import os
@@ -602,7 +603,13 @@ class SpotifyClient:
                     time.sleep(max(retry_after, 1) + 1)
                     continue
                 raise SpotifyApiError(error.code, body) from error
-            except (ConnectionError, TimeoutError, socket.timeout, urllib.error.URLError) as error:
+            except (
+                ConnectionError,
+                TimeoutError,
+                http.client.IncompleteRead,
+                socket.timeout,
+                urllib.error.URLError,
+            ) as error:
                 last_network_error = error
                 time.sleep(min(2 + attempt * 2, 30))
                 continue

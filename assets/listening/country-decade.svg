@@ -16,16 +16,16 @@
 <text x="231.6" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">1</text>
 <rect x="297.2" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.11"/>
 <text x="358.9" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">8</text>
-<rect x="424.5" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.25"/>
-<text x="486.1" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">40</text>
+<rect x="424.5" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.26"/>
+<text x="486.1" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">42</text>
 <rect x="551.8" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.34"/>
 <text x="613.4" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">59</text>
 <rect x="679.0" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.40"/>
 <text x="740.6" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">73</text>
-<rect x="806.2" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.55"/>
+<rect x="806.2" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.54"/>
 <text x="867.9" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">107</text>
 <rect x="933.5" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.92"/>
-<text x="995.1" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">193</text>
+<text x="995.1" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">194</text>
 <rect x="1060.8" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.68"/>
 <text x="1122.4" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">138</text>
 <text x="156.0" y="172.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="end">United Kingdom</text>
@@ -53,9 +53,9 @@
 <text x="740.6" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">35</text>
 <rect x="806.2" y="184.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.35"/>
 <text x="867.9" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">63</text>
-<rect x="933.5" y="184.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.41"/>
+<rect x="933.5" y="184.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.40"/>
 <text x="995.1" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">75</text>
-<rect x="1060.8" y="184.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.32"/>
+<rect x="1060.8" y="184.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.31"/>
 <text x="1122.4" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">54</text>
 <text x="156.0" y="232.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="end">Sweden</text>
 <rect x="170.0" y="214.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.08"/>
@@ -100,7 +100,7 @@
 <rect x="933.5" y="274.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.21"/>
 <text x="995.1" y="291.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">30</text>
 <rect x="1060.8" y="274.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.18"/>
-<text x="1122.4" y="291.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">23</text>
+<text x="1122.4" y="291.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">24</text>
 <text x="156.0" y="322.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="end">Canada</text>
 <rect x="170.0" y="304.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.08"/>
 <rect x="297.2" y="304.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.08"/>
@@ -155,8 +155,8 @@
 <text x="867.9" y="411.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">4</text>
 <rect x="933.5" y="394.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.13"/>
 <text x="995.1" y="411.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">11</text>
-<rect x="1060.8" y="394.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.15"/>
-<text x="1122.4" y="411.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">17</text>
+<rect x="1060.8" y="394.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.16"/>
+<text x="1122.4" y="411.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">18</text>
 <text x="156.0" y="442.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="end">Italy</text>
 <rect x="170.0" y="424.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.08"/>
 <rect x="297.2" y="424.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.08"/>

@@ -90,6 +90,38 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </thead>
 <tbody>
 <tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;18</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Fionnlagh;&nbsp;Lauge</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/5CKwsEAhZogWhqWbGYQ4Da">Between&nbsp;Layers</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Between&nbsp;Layers</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>ambient</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;17</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>This&nbsp;Winter&nbsp;Machine</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/4W6MueOc6KliVlG0ZcZLQN">Reflections</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Clockwork&nbsp;Man</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2023</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>progressive&nbsp;rock</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;17</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Pallbearer</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2SV69wiCCKzoFLDs6NWM5N">I&nbsp;Saw&nbsp;the&nbsp;End</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Heartless</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2017</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;15</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Magic&nbsp;Man</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm">Steppe&nbsp;Grass</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Boards&nbsp;of&nbsp;Mongolia</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>dungeon&nbsp;synth</small></small></small></td>
+</tr>
+<tr>
 <td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;07</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>dungeontroll</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn">Crypt&nbsp;of&nbsp;Euphoria</a></small></small></small></td>
@@ -217,38 +249,6 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>experimental</small></small></small></td>
 </tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;21</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>OM</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2E26Vgc5DTlScIrYkrCeVG">Bedouin&#x27;s&nbsp;Vigil</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Bedouin’s&nbsp;Vigil&nbsp;/&nbsp;Assyrian&nbsp;Blood</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2006</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>stoner&nbsp;rock</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;21</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Hanging&nbsp;Garden</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/7ez3jbaUX5d4jH9spd3QVu">Isle&nbsp;of&nbsp;Bliss</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Isle&nbsp;of&nbsp;Bliss</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;16</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Cough</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2k4pS2s7JHRiZrc6LB5Xqu">Let&nbsp;It&nbsp;Bleed</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Still&nbsp;They&nbsp;Pray</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2016</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;15</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Flight&nbsp;of&nbsp;Sleipnir</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/0b24z2yYjV75L59h2tVaWX">Sidereal&nbsp;Course</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>V</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2014</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>stoner&nbsp;doom</small></small></small></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -296,4 +296,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-18 18:56 UTC._
+_Generated at 2026-06-18 20:00 UTC._
