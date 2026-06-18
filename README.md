@@ -19,15 +19,15 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </thead>
 <tbody>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>1975</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>1368</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>1680</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>1976</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>1369</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>1681</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>531</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>211</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>53</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>5</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>1958&#8209;2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>184h&nbsp;9m</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>184h&nbsp;11m</small></small></small></td>
 </tr>
 </tbody>
 </table>
@@ -108,6 +108,14 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 </thead>
 <tbody>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;18</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Fionnlagh;&nbsp;Lauge</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/5CKwsEAhZogWhqWbGYQ4Da">Between&nbsp;Layers</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Between&nbsp;Layers</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>ambient</small></small></small></td>
+</tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;17</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>This&nbsp;Winter&nbsp;Machine</small></small></small></td>
@@ -260,14 +268,6 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>experimental</small></small></small></td>
 </tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;21</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>OM</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2E26Vgc5DTlScIrYkrCeVG">Bedouin&#x27;s&nbsp;Vigil</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Bedouin’s&nbsp;Vigil&nbsp;/&nbsp;Assyrian&nbsp;Blood</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2006</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>stoner&nbsp;rock</small></small></small></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -323,7 +323,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>Denmark</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>37</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>38</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>Italy</small></small></small></td>
@@ -512,12 +512,12 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center" valign="middle" nowrap><small><small><small>9</small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Quakes</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Lauge</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>9</small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>Lauge</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>8</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Quakes</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>9</small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>My&nbsp;Dying&nbsp;Bride</small></small></small></td>
@@ -598,4 +598,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-17 19:36 UTC._
+_Generated at 2026-06-18 13:24 UTC._
