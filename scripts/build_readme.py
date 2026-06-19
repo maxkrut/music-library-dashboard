@@ -1069,35 +1069,76 @@ def country_decade_data(
     return countries, ordered_decades, dict(matrix)
 
 
-def album_mosaic_data(
-    tracks: list[TrackRow],
-    artist_genres: dict[str, str],
+def spotify_cover_wall_items(
+    top_cache: dict[str, object],
+    recently_played_cache: dict[str, object],
     *,
-    limit: int = 48,
-) -> list[dict[str, object]]:
-    counts: Counter[str] = Counter()
-    metadata: dict[str, dict[str, object]] = {}
-    for row in tracks:
-        album_name = row.get("album_name", "").strip()
-        if not album_name:
-            continue
-        key = row.get("album_id") or f"{row.get('artist_names', '')}|{album_name}"
-        counts[key] += 1
-        metadata.setdefault(
-            key,
+    limit: int = 36,
+) -> list[dict[str, str]]:
+    items: list[dict[str, str]] = []
+    seen: set[str] = set()
+
+    def add_track(track: object) -> None:
+        if not isinstance(track, dict):
+            return
+        image_url = str(track.get("image_url") or "").strip()
+        if not image_url or image_url in seen:
+            return
+        seen.add(image_url)
+        items.append(
             {
-                "album": album_name,
-                "artist": row.get("artist_names", ""),
-                "group": row_super_genre(row, artist_genres),
-                "year": effective_year(row),
-            },
+                "image_url": image_url,
+                "name": str(track.get("name") or "").strip(),
+                "artist": str(track.get("artist_names") or "").strip(),
+                "url": str(track.get("spotify_url") or "").strip(),
+            }
         )
 
-    rows: list[dict[str, object]] = []
-    for key, count in ranked_counter_rows(counts)[:limit]:
-        rows.append({**metadata.get(key, {}), "key": key, "count": count})
-    return rows
+    recent_items = recently_played_cache.get("items")
+    if isinstance(recent_items, list):
+        for item in recent_items:
+            if isinstance(item, dict):
+                add_track(item.get("track"))
+                if len(items) >= limit:
+                    return items
 
+    tracks = top_cache.get("tracks")
+    if isinstance(tracks, dict):
+        for time_range in ("short_term", "medium_term", "long_term"):
+            raw_items = tracks.get(time_range)
+            if not isinstance(raw_items, list):
+                continue
+            for track in raw_items:
+                add_track(track)
+                if len(items) >= limit:
+                    return items
+
+    return items
+
+
+def spotify_cover_wall_lines(
+    top_cache: dict[str, object],
+    recently_played_cache: dict[str, object],
+) -> list[str]:
+    covers = spotify_cover_wall_items(top_cache, recently_played_cache)
+    lines = ["### Spotify Covers", ""]
+    if not covers:
+        return lines + [
+            "_No Spotify cover images cached yet. Re-run Spotify export with top/recent scopes._",
+            "",
+        ]
+
+    lines.append('<p align="left">')
+    for item in covers:
+        alt = html.escape(" - ".join(part for part in (item["artist"], item["name"]) if part), quote=True)
+        src = html.escape(item["image_url"], quote=True)
+        url = html.escape(item["url"], quote=True)
+        image = f'<img src="{src}" width="72" height="72" alt="{alt}" />'
+        if url:
+            image = f'<a href="{url}">{image}</a>'
+        lines.append(image)
+    lines.extend(["</p>", ""])
+    return lines
 
 def fallback_top_ranges(tracks: list[TrackRow]) -> tuple[str, dict[str, RankedRows]]:
     dated_rows = [(parse_iso_date(added_date(row)), row) for row in tracks]
@@ -1532,6 +1573,45 @@ def write_taste_drift_svg(
     path.parent.mkdir(parents=True, exist_ok=True)
     write_text_lf(path, "\n".join(parts) + "\n")
 
+def svg_weather_icon(kind: str, x: float, y: float, accent: str) -> list[str]:
+    if kind == "STORM":
+        return [
+            f'<circle cx="{x + 22:.1f}" cy="{y + 18:.1f}" r="15" fill="{accent}" fill-opacity="0.18"/>',
+            f'<circle cx="{x + 40:.1f}" cy="{y + 16:.1f}" r="18" fill="{accent}" fill-opacity="0.24"/>',
+            f'<rect x="{x + 12:.1f}" y="{y + 20:.1f}" width="48" height="17" rx="8" fill="{accent}" fill-opacity="0.22"/>',
+            f'<path d="M{x + 34:.1f},{y + 32:.1f} L{x + 24:.1f},{y + 52:.1f} L{x + 37:.1f},{y + 49:.1f} L{x + 29:.1f},{y + 66:.1f} L{x + 50:.1f},{y + 42:.1f} L{x + 37:.1f},{y + 45:.1f} Z" fill="{accent}"/>',
+        ]
+    if kind == "MOON":
+        return [
+            f'<circle cx="{x + 34:.1f}" cy="{y + 34:.1f}" r="25" fill="{accent}" fill-opacity="0.88"/>',
+            f'<circle cx="{x + 45:.1f}" cy="{y + 27:.1f}" r="25" fill="#fffefa"/>',
+            f'<circle cx="{x + 15:.1f}" cy="{y + 14:.1f}" r="2.5" fill="{accent}" fill-opacity="0.45"/>',
+            f'<circle cx="{x + 55:.1f}" cy="{y + 55:.1f}" r="2" fill="{accent}" fill-opacity="0.45"/>',
+        ]
+    if kind == "FOG":
+        return [
+            f'<circle cx="{x + 23:.1f}" cy="{y + 18:.1f}" r="14" fill="{accent}" fill-opacity="0.15"/>',
+            f'<circle cx="{x + 41:.1f}" cy="{y + 18:.1f}" r="17" fill="{accent}" fill-opacity="0.18"/>',
+            f'<path d="M{x + 8:.1f},{y + 39:.1f} C{x + 25:.1f},{y + 31:.1f} {x + 42:.1f},{y + 47:.1f} {x + 62:.1f},{y + 38:.1f}" fill="none" stroke="{accent}" stroke-width="4" stroke-linecap="round" opacity="0.72"/>',
+            f'<path d="M{x + 8:.1f},{y + 51:.1f} C{x + 26:.1f},{y + 43:.1f} {x + 43:.1f},{y + 58:.1f} {x + 62:.1f},{y + 50:.1f}" fill="none" stroke="{accent}" stroke-width="4" stroke-linecap="round" opacity="0.52"/>',
+        ]
+    if kind == "SUN":
+        rays = []
+        for dx1, dy1, dx2, dy2 in ((34, 0, 34, 9), (34, 59, 34, 68), (0, 34, 9, 34), (59, 34, 68, 34), (10, 10, 17, 17), (51, 51, 58, 58), (58, 10, 51, 17), (17, 51, 10, 58)):
+            rays.append(f'<line x1="{x + dx1:.1f}" y1="{y + dy1:.1f}" x2="{x + dx2:.1f}" y2="{y + dy2:.1f}" stroke="{accent}" stroke-width="3" stroke-linecap="round" opacity="0.7"/>')
+        return rays + [f'<circle cx="{x + 34:.1f}" cy="{y + 34:.1f}" r="19" fill="{accent}" fill-opacity="0.76"/>']
+    if kind == "STATIC":
+        return [
+            f'<rect x="{x + 8:.1f}" y="{y + 9:.1f}" width="52" height="44" fill="{accent}" fill-opacity="0.13"/>',
+            f'<path d="M{x + 12:.1f},{y + 18:.1f} H{x + 58:.1f} M{x + 16:.1f},{y + 30:.1f} H{x + 48:.1f} M{x + 10:.1f},{y + 42:.1f} H{x + 55:.1f}" stroke="{accent}" stroke-width="4" stroke-linecap="square" opacity="0.76"/>',
+            f'<path d="M{x + 19:.1f},{y + 9:.1f} V{y + 53:.1f} M{x + 42:.1f},{y + 9:.1f} V{y + 53:.1f}" stroke="{accent}" stroke-width="2" opacity="0.24"/>',
+        ]
+    return [
+        f'<circle cx="{x + 23:.1f}" cy="{y + 22:.1f}" r="17" fill="{accent}" fill-opacity="0.17"/>',
+        f'<circle cx="{x + 42:.1f}" cy="{y + 20:.1f}" r="21" fill="{accent}" fill-opacity="0.23"/>',
+        f'<circle cx="{x + 54:.1f}" cy="{y + 31:.1f}" r="15" fill="{accent}" fill-opacity="0.19"/>',
+        f'<rect x="{x + 11:.1f}" y="{y + 27:.1f}" width="57" height="22" rx="11" fill="{accent}" fill-opacity="0.21"/>',
+    ]
 
 def write_genre_weather_svg(path: Path, genre_rows: RankedRows) -> None:
     width = 1200
@@ -1539,7 +1619,7 @@ def write_genre_weather_svg(path: Path, genre_rows: RankedRows) -> None:
     gap = 8
     columns = 4
     tile_width = (width - margin * 2 - gap * (columns - 1)) / columns
-    tile_height = 94
+    tile_height = 112
     header_height = 54
     rows = (min(24, len(genre_rows)) + columns - 1) // columns
     content_top = margin + header_height + 12
@@ -1565,16 +1645,17 @@ def write_genre_weather_svg(path: Path, genre_rows: RankedRows) -> None:
             [
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="{tile_width:.1f}" height="{tile_height}" fill="#fffefa" stroke="#c7d0c7"/>',
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{tile_height}" fill="{accent}"/>',
-                svg_text(x + 16, y + 25, icon, size=12, weight=800, fill=accent),
-                svg_text(x + 76, y + 25, mood.upper(), size=12, weight=800, fill=accent),
-                svg_text(x + tile_width - 14, y + 25, count, size=13, weight=800, fill=accent, anchor="end"),
-                svg_fitted_text(x + 16, y + 56, genre, max_width=tile_width - 32, size=18, min_size=12, weight=800),
+                *svg_weather_icon(icon, x + 16, y + 16, accent),
+                svg_text(x + 96, y + 28, icon, size=12, weight=800, fill=accent),
+                svg_text(x + 96, y + 48, mood.upper(), size=12, weight=800, fill=accent),
+                svg_text(x + tile_width - 14, y + 28, count, size=13, weight=800, fill=accent, anchor="end"),
+                svg_fitted_text(x + 16, y + 86, genre, max_width=tile_width - 32, size=18, min_size=12, weight=800),
             ]
         )
         for bar_index in range(5):
             bar_x = x + 16 + bar_index * 28
             fill = accent if bar_index < intensity else "#d9ded7"
-            parts.append(f'<rect x="{bar_x:.1f}" y="{y + 72}" width="20" height="8" fill="{fill}"/>')
+            parts.append(f'<rect x="{bar_x:.1f}" y="{y + 98}" width="20" height="8" fill="{fill}"/>')
 
     parts.append("</svg>")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1636,57 +1717,7 @@ def write_country_decade_svg(
     path.parent.mkdir(parents=True, exist_ok=True)
     write_text_lf(path, "\n".join(parts) + "\n")
 
-
-def write_cover_mosaic_svg(path: Path, albums: list[dict[str, object]]) -> None:
-    width = 1200
-    margin = 16
-    header_height = 54
-    columns = 8
-    gap = 8
-    tile_width = (width - margin * 2 - gap * (columns - 1)) / columns
-    tile_height = 140
-    visible = albums[:48]
-    rows = (len(visible) + columns - 1) // columns
-    content_top = margin + header_height + 12
-    height = content_top + rows * tile_height + max(0, rows - 1) * gap + margin
-
-    parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Abstract cover mosaic">',
-        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
-        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
-        svg_text(margin + 16, margin + 35, "Cover Mosaic", size=28, weight=800, fill="#ffffff"),
-        svg_text(width - margin - 16, margin + 35, "Abstract album tiles, not original cover art", size=15, weight=800, fill="#dfe8df", anchor="end"),
-    ]
-
-    for index, album in enumerate(visible):
-        row_index, col_index = divmod(index, columns)
-        x = margin + col_index * (tile_width + gap)
-        y = content_top + row_index * (tile_height + gap)
-        group = str(album.get("group") or "Other")
-        accent = group_color(group, index)
-        seed = sum(ord(char) for char in str(album.get("key") or album.get("album") or index))
-        alt = ("#526f92", "#a96855", "#557e64", "#7d744e")[seed % 4]
-        parts.extend(
-            [
-                f'<rect x="{x:.1f}" y="{y:.1f}" width="{tile_width:.1f}" height="{tile_height}" fill="#fffefa" stroke="#c7d0c7"/>',
-                f'<rect x="{x + 8:.1f}" y="{y + 8:.1f}" width="{tile_width - 16:.1f}" height="82" fill="{accent}"/>',
-                f'<circle cx="{x + 32 + seed % 68:.1f}" cy="{y + 28 + seed % 42:.1f}" r="{18 + seed % 22}" fill="{alt}" fill-opacity="0.74"/>',
-                f'<path d="M{x + 8:.1f},{y + 90:.1f} L{x + tile_width - 8:.1f},{y + 8:.1f} L{x + tile_width - 8:.1f},{y + 90:.1f} Z" fill="#102027" fill-opacity="0.22"/>',
-                f'<rect x="{x + tile_width - 40:.1f}" y="{y + 14:.1f}" width="24" height="18" fill="#fffefa" fill-opacity="0.88"/>',
-                svg_text(x + tile_width - 28, y + 28, album.get("count", ""), size=10, weight=800, fill="#102027", anchor="middle"),
-                svg_text(x + 10, y + 108, trim_text_to_width(str(album.get("album") or ""), tile_width - 20, size=11, weight=800), size=11, weight=800),
-                svg_text(x + 10, y + 126, trim_text_to_width(str(album.get("artist") or ""), tile_width - 20, size=10), size=10, fill="#5d6b62"),
-            ]
-        )
-
-    parts.append("</svg>")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    write_text_lf(path, "\n".join(parts) + "\n")
-
-
 def range_delta_label(name: str, current: RankedRows, previous: RankedRows) -> str:
-    if not previous:
-        return "all"
     current_rank = {item_name: index for index, (item_name, _score) in enumerate(current, start=1)}
     previous_rank = {item_name: index for index, (item_name, _score) in enumerate(previous, start=1)}
     if name not in previous_rank:
@@ -1697,7 +1728,6 @@ def range_delta_label(name: str, current: RankedRows, previous: RankedRows) -> s
     if delta < 0:
         return f"down {abs(delta)}"
     return "same"
-
 
 def write_top_ranges_svg(path: Path, source: str, ranges: dict[str, RankedRows]) -> None:
     width = 1200
@@ -2084,22 +2114,23 @@ def listening_maps(
     taste_path = listening_dir / "taste-drift.svg"
     weather_path = listening_dir / "genre-weather.svg"
     country_decade_path = listening_dir / "country-decade.svg"
-    mosaic_path = listening_dir / "cover-mosaic.svg"
     top_ranges_path = listening_dir / "top-ranges.svg"
     saved_played_path = listening_dir / "saved-vs-played.svg"
+
+    top_cache = read_json(SPOTIFY_TOP_ITEMS_CACHE)
+    recently_played_cache = read_json(SPOTIFY_RECENTLY_PLAYED_CACHE)
 
     months, groups, drift_series = taste_drift_data(tracks, artist_genres)
     write_taste_drift_svg(taste_path, months, groups, drift_series)
     write_genre_weather_svg(weather_path, genre_rows[:24])
     countries, decades, matrix = country_decade_data(tracks, artist_cache, country_overrides)
     write_country_decade_svg(country_decade_path, countries, decades, matrix)
-    write_cover_mosaic_svg(mosaic_path, album_mosaic_data(tracks, artist_genres))
-    top_source, top_ranges = top_ranges_data(tracks, read_json(SPOTIFY_TOP_ITEMS_CACHE))
+    top_source, top_ranges = top_ranges_data(tracks, top_cache)
     write_top_ranges_svg(top_ranges_path, top_source, top_ranges)
     played_source, saved_rows, played_rows, rediscovered, ignored = saved_vs_played_data(
         tracks,
         artist_genres,
-        read_json(SPOTIFY_RECENTLY_PLAYED_CACHE),
+        recently_played_cache,
     )
     write_saved_vs_played_svg(
         saved_played_path,
@@ -2119,8 +2150,7 @@ def listening_maps(
         "",
         md_image("Countries by decade heatmap", country_decade_path, readme_dir),
         "",
-        md_image("Abstract cover mosaic", mosaic_path, readme_dir),
-        "",
+        *spotify_cover_wall_lines(top_cache, recently_played_cache),
         md_image("Top items across time ranges", top_ranges_path, readme_dir),
         "",
         md_image("Saved library versus recently played", saved_played_path, readme_dir),
