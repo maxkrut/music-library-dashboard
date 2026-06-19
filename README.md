@@ -17,15 +17,28 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 ### Spotify Covers
 
 <p align="left">
-<a href="https://open.spotify.com/track/0ZJ58QZD2Q9B8OYnv1zDj8"><img src="https://i.scdn.co/image/ab67616d0000b273e43330d2a95575fff0bcc392" width="72" height="72" alt="ByErik ヵ - desolate" /></a>
-<a href="https://open.spotify.com/track/5wjudHcXoGo0ws7UyqRgOm"><img src="https://i.scdn.co/image/ab67616d0000b273c7111e896a848efc46a78888" width="72" height="72" alt="ByErik ヵ - silent nights" /></a>
+<a href="https://open.spotify.com/track/33Nts0hxxP78TnZvnFhg9Z"><img src="https://i.scdn.co/image/ab67616d0000b2734cf0ed932841336629d5e556" width="72" height="72" alt="Elder - Sight Unseen" /></a>
+<a href="https://open.spotify.com/track/55qC8918J5vVNMvc5gIAK0"><img src="https://i.scdn.co/image/ab67616d0000b273e15c786d583716bcfc233940" width="72" height="72" alt="Hecate - Comment est la nuit?" /></a>
+<a href="https://open.spotify.com/track/5bQF4WJXV8lny0agrYtS4n"><img src="https://i.scdn.co/image/ab67616d0000b2732a5150f997d625985c6a7a22" width="72" height="72" alt="Lauge; Baba Gnohm; JYRANTE - Dawn At Lake Saimaa" /></a>
+<a href="https://open.spotify.com/track/0DPmGm2ePI9UZj6rPWiMSz"><img src="https://i.scdn.co/image/ab67616d0000b273c99427dd2209f364e52ca6a8" width="72" height="72" alt="Илюша - А на лоутабе все спокойно" /></a>
+<a href="https://open.spotify.com/track/27j6138IXCVl7LKs3G9wNY"><img src="https://i.scdn.co/image/ab67616d0000b273e11adbea77e2088933ef99c2" width="72" height="72" alt="Чернозём и Звёзды; Pasosh - Могилёв" /></a>
+<a href="https://open.spotify.com/track/6zHuhmN3Q9gV9Jpz3I6Ola"><img src="https://i.scdn.co/image/ab67616d0000b273a3dac956ff614832179f3a93" width="72" height="72" alt="Liminal Sky; Ulver - The Weight of Heaven" /></a>
+<a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16"><img src="https://i.scdn.co/image/ab67616d0000b27348c4d9b7c35c587bc3be40c0" width="72" height="72" alt="Healthyliving - Ghost Limbs" /></a>
+<a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn"><img src="https://i.scdn.co/image/ab67616d0000b273fdb7eb230eacc2ba19c965b8" width="72" height="72" alt="dungeontroll - Crypt of Euphoria" /></a>
+<a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm"><img src="https://i.scdn.co/image/ab67616d0000b273f177ef4976ffa8d2ef8d4a26" width="72" height="72" alt="Magic Man - Steppe Grass" /></a>
+<a href="https://open.spotify.com/track/2SV69wiCCKzoFLDs6NWM5N"><img src="https://i.scdn.co/image/ab67616d0000b273c0b3f3aa840e06b57dc30588" width="72" height="72" alt="Pallbearer - I Saw the End" /></a>
+<a href="https://open.spotify.com/track/4W6MueOc6KliVlG0ZcZLQN"><img src="https://i.scdn.co/image/ab67616d0000b2736c1e9e55f76c278927fe248f" width="72" height="72" alt="This Winter Machine - Reflections" /></a>
+<a href="https://open.spotify.com/track/5CKwsEAhZogWhqWbGYQ4Da"><img src="https://i.scdn.co/image/ab67616d0000b2735a1f332ca6f8d90389b72672" width="72" height="72" alt="Fionnlagh; Lauge - Between Layers" /></a>
+<a href="https://open.spotify.com/track/2Zva4REc3tRtrl8U1r3iBt"><img src="https://i.scdn.co/image/ab67616d0000b2734cfb93228d97aa0245a5d5f4" width="72" height="72" alt="trapeia; ByErik ヵ - rescue - slowed + reverb" /></a>
+<a href="https://open.spotify.com/track/52R4fxcTSq7ofA0kSPzU6x"><img src="https://i.scdn.co/image/ab67616d0000b273e43330d2a95575fff0bcc392" width="72" height="72" alt="ByErik ヵ - desolate - Sped Up" /></a>
+<a href="https://open.spotify.com/track/5cuqr6e7lrom9MZhlKceUt"><img src="https://i.scdn.co/image/ab67616d0000b273add2d098be6ee6a46d48da78" width="72" height="72" alt="ByErik ヵ - desolate - Ultra Slowed" /></a>
+<a href="https://open.spotify.com/track/43ayK38w7C0w2nQvnrrTxE"><img src="https://i.scdn.co/image/ab67616d0000b273c7111e896a848efc46a78888" width="72" height="72" alt="ByErik ヵ - silent nights - Slowed" /></a>
 <a href="https://open.spotify.com/track/2GYGV67YjeEx6djZgg92jv"><img src="https://i.scdn.co/image/ab67616d0000b273495143da13334dd4c5e9a4bb" width="72" height="72" alt="ByErik ヵ; Astrxplaya - when the world goes quiet (deep)" /></a>
 <a href="https://open.spotify.com/track/2jDQJGGfdEiMrbPCkm0zmJ"><img src="https://i.scdn.co/image/ab67616d0000b273d616719bc36481a1feb54bf8" width="72" height="72" alt="Hyperspace Odyssey - Among the Cold Moons of Time" /></a>
 <a href="https://open.spotify.com/track/5Lheaa4HIBgI3awnX9VBVS"><img src="https://i.scdn.co/image/ab67616d0000b273bf6259a7bab76f180b834067" width="72" height="72" alt="SVLBRD - The Quiet" /></a>
 <a href="https://open.spotify.com/track/4bOm4HYgrRvv5XP5nPp3SJ"><img src="https://i.scdn.co/image/ab67616d0000b273f0e274c6e5c2c50936134a79" width="72" height="72" alt="Panic Music - Forgotten Soul" /></a>
 <a href="https://open.spotify.com/track/5NWbpjtQn8Ulo9zcvUmA83"><img src="https://i.scdn.co/image/ab67616d0000b273e7d271c6bbf3481ef9945b5c" width="72" height="72" alt="Earth Trax - The Paradox of the Heap" /></a>
 <a href="https://open.spotify.com/track/6B53iQqg1kNWynIteMXF7E"><img src="https://i.scdn.co/image/ab67616d0000b2732835a2a32eee6b250835a75e" width="72" height="72" alt="58918012 - Sacred Life" /></a>
-<a href="https://open.spotify.com/track/5CKwsEAhZogWhqWbGYQ4Da"><img src="https://i.scdn.co/image/ab67616d0000b2735a1f332ca6f8d90389b72672" width="72" height="72" alt="Fionnlagh; Lauge - Between Layers" /></a>
 <a href="https://open.spotify.com/track/5sHXwu3setWfUZIT2TWdtc"><img src="https://i.scdn.co/image/ab67616d0000b273d05e3b964b1fa7c37540fe0c" width="72" height="72" alt="Witchrot - Possession Deepens" /></a>
 <a href="https://open.spotify.com/track/2UDKtdF74bIbxASKtAzRTn"><img src="https://i.scdn.co/image/ab67616d0000b273733c6e1cfc427dcc957a5771" width="72" height="72" alt="Porcupine Tree - Signify" /></a>
 <a href="https://open.spotify.com/track/77EnjgcxEVog2LIgRnONbQ"><img src="https://i.scdn.co/image/ab67616d0000b2732387b7c81624f7699509d9c6" width="72" height="72" alt="Blood Incantation; Tangerine Dream - The Stargate [Tablet II]" /></a>
@@ -37,22 +50,9 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <a href="https://open.spotify.com/track/0s9CNODLi0XJP4YYjMlcMe"><img src="https://i.scdn.co/image/ab67616d0000b27326e8dc08b6a0a4f969e58aae" width="72" height="72" alt="Pelican - Gulch" /></a>
 <a href="https://open.spotify.com/track/0ZsuazVViMvIhrVIYZs9Sj"><img src="https://i.scdn.co/image/ab67616d0000b27300101896b31580854da8bc66" width="72" height="72" alt="Restless Spirit - Under Hellish Moon and Wailing Sky" /></a>
 <a href="https://open.spotify.com/track/3P7zk9whpWCc9HPXjIJVjz"><img src="https://i.scdn.co/image/ab67616d0000b2738643b1779936c3dc7de03c65" width="72" height="72" alt="Agalloch - The Lodge (2016 - Remaster)" /></a>
-<a href="https://open.spotify.com/track/4W6MueOc6KliVlG0ZcZLQN"><img src="https://i.scdn.co/image/ab67616d0000b2736c1e9e55f76c278927fe248f" width="72" height="72" alt="This Winter Machine - Reflections" /></a>
 <a href="https://open.spotify.com/track/3qMzMevt0NQalOoAK7StTs"><img src="https://i.scdn.co/image/ab67616d0000b2739d30fa8c5a44385ca1646a60" width="72" height="72" alt="I Hear Sirens - Drowning City Skyline" /></a>
 <a href="https://open.spotify.com/track/0EkTT9FyDZ8GKX6RGchyEt"><img src="https://i.scdn.co/image/ab67616d0000b273e6e6689c591ed1e7bb13ccfb" width="72" height="72" alt="By The Spirits - Into the Dust" /></a>
 <a href="https://open.spotify.com/track/1GpOKpL6CcaTaGgNMmMKSS"><img src="https://i.scdn.co/image/ab67616d0000b2734e46b0cf574e932c77adc6ea" width="72" height="72" alt="Oiseaux-Tempête - Notes from the Mediterranean Sea" /></a>
-<a href="https://open.spotify.com/track/7rjmUVgY6Sc0hz047069rA"><img src="https://i.scdn.co/image/ab67616d0000b273e7a8084c8a263e26e04eaac1" width="72" height="72" alt="Amarok - The Dark Parade" /></a>
-<a href="https://open.spotify.com/track/2SV69wiCCKzoFLDs6NWM5N"><img src="https://i.scdn.co/image/ab67616d0000b273c0b3f3aa840e06b57dc30588" width="72" height="72" alt="Pallbearer - I Saw the End" /></a>
-<a href="https://open.spotify.com/track/3xXI8pxcgo5SlHYfmA7J0t"><img src="https://i.scdn.co/image/ab67616d0000b273f248e7f14d9b08379baa7185" width="72" height="72" alt="Black Chamber - Teleology" /></a>
-<a href="https://open.spotify.com/track/4jVCGqtXDPSJh3D18PY5oD"><img src="https://i.scdn.co/image/ab67616d0000b27361595736954fdccc099bd22e" width="72" height="72" alt="None - I Yearn to Feel" /></a>
-<a href="https://open.spotify.com/track/5erCIwghJJLftq4BAp4SlV"><img src="https://i.scdn.co/image/ab67616d0000b273cddbf5698c4103a6acf01ef4" width="72" height="72" alt="A Swarm Of The Sun - Lifeline - Redux" /></a>
-<a href="https://open.spotify.com/track/6StCUqXqnkaYfLVcSiAbhw"><img src="https://i.scdn.co/image/ab67616d0000b273ac26fcc8f9b7986b5ca0c898" width="72" height="72" alt="Shape Of Despair - Forfeit" /></a>
-<a href="https://open.spotify.com/track/24ZC0ZK83WLZf3CATE5KLt"><img src="https://i.scdn.co/image/ab67616d0000b2738c862cce633d67a0b2973275" width="72" height="72" alt="Shape Of Despair - Written in My Scars" /></a>
-<a href="https://open.spotify.com/track/2FTD7GTnQjvpeReCYB8sMP"><img src="https://i.scdn.co/image/ab67616d0000b273fbc0aa1a64d505908c32999e" width="72" height="72" alt="Borknagar - Summits" /></a>
-<a href="https://open.spotify.com/track/3frjkX634GnJa3YJ0ht6Cp"><img src="https://i.scdn.co/image/ab67616d0000b273f7d8683256553d9290b620a8" width="72" height="72" alt="Borknagar - Winter Thrice" /></a>
-<a href="https://open.spotify.com/track/5ND7FYqz8YA7yLZDZjEQSx"><img src="https://i.scdn.co/image/ab67616d0000b2739a1636b8b202e6d1c75f8abf" width="72" height="72" alt="Borknagar - Voices" /></a>
-<a href="https://open.spotify.com/track/3lzBIGwNFXRK9VaciDGZcz"><img src="https://i.scdn.co/image/ab67616d0000b273877a2899d5dae317c03913cf" width="72" height="72" alt="Borknagar - Nordic Anthem" /></a>
-<a href="https://open.spotify.com/track/19gwdCshHVI8msunxPL9kP"><img src="https://i.scdn.co/image/ab67616d0000b273edc7a57add129d1479f4c1c8" width="72" height="72" alt="Witchcraft - Democracy" /></a>
 </p>
 
 ![Top items across time ranges](assets/listening/top-ranges.svg)
@@ -112,6 +112,10 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 ## Experimental / Noise
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
+
+## Other
+
+![Other genre atlas](assets/atlas/other.svg)
 
 ## Latest 20 Liked Tracks
 
@@ -174,7 +178,7 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 <td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost&nbsp;Limbs</a></small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>Songs&nbsp;of&nbsp;Abundance,&nbsp;Psalms&nbsp;of&nbsp;Grief</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>2023</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small></small></small></small></td>
 </tr>
 <tr>
 <td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;26</small></small></small></td>
@@ -335,4 +339,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-19 05:58 UTC._
+_Generated at 2026-06-19 06:06 UTC._
