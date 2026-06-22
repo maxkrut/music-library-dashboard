@@ -12,10 +12,10 @@
 <text x="32.0" y="156.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">01</text>
 <text x="66.0" y="156.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">United States</text>
 <text x="380.0" y="156.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">622</text>
-<rect x="66.0" y="166.0" width="122.3" height="16" fill="#557e64" fill-opacity="0.18"/>
+<rect x="66.0" y="166.0" width="122.7" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">02</text>
 <text x="66.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">United Kingdom</text>
-<text x="380.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">286</text>
+<text x="380.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">287</text>
 <rect x="66.0" y="190.0" width="97.1" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="204.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">03</text>
 <text x="66.0" y="204.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Norway</text>
@@ -48,13 +48,13 @@
 <text x="32.0" y="372.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">10</text>
 <text x="66.0" y="372.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Denmark</text>
 <text x="380.0" y="372.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">38</text>
-<rect x="66.0" y="382.0" width="13.7" height="16" fill="#557e64" fill-opacity="0.18"/>
+<rect x="66.0" y="382.0" width="14.1" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="396.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">11</text>
-<text x="66.0" y="396.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Italy</text>
-<text x="380.0" y="396.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">32</text>
+<text x="66.0" y="396.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Netherlands</text>
+<text x="380.0" y="396.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">33</text>
 <rect x="66.0" y="406.0" width="13.7" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="420.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">12</text>
-<text x="66.0" y="420.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Netherlands</text>
+<text x="66.0" y="420.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Italy</text>
 <text x="380.0" y="420.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">32</text>
 <rect x="66.0" y="430.0" width="12.8" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="444.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">13</text>
@@ -97,10 +97,10 @@
 <text x="424.0" y="156.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="start">01</text>
 <text x="458.0" y="156.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">black metal</text>
 <text x="772.0" y="156.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="end">205</text>
-<rect x="458.0" y="166.0" width="137.5" height="16" fill="#526f92" fill-opacity="0.18"/>
+<rect x="458.0" y="166.0" width="138.8" height="16" fill="#526f92" fill-opacity="0.18"/>
 <text x="424.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="start">02</text>
 <text x="458.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">progressive rock</text>
-<text x="772.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="end">106</text>
+<text x="772.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="end">107</text>
 <rect x="458.0" y="190.0" width="107.7" height="16" fill="#526f92" fill-opacity="0.18"/>
 <text x="424.0" y="204.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="start">03</text>
 <text x="458.0" y="204.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">progressive metal</text>
@@ -121,10 +121,10 @@
 <text x="424.0" y="300.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="start">07</text>
 <text x="458.0" y="300.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">psychedelic rock</text>
 <text x="772.0" y="300.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="end">57</text>
-<rect x="458.0" y="310.0" width="68.8" height="16" fill="#526f92" fill-opacity="0.18"/>
+<rect x="458.0" y="310.0" width="70.1" height="16" fill="#526f92" fill-opacity="0.18"/>
 <text x="424.0" y="324.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="start">08</text>
 <text x="458.0" y="324.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">electronic</text>
-<text x="772.0" y="324.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="end">53</text>
+<text x="772.0" y="324.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#526f92" text-anchor="end">54</text>
 <rect x="458.0" y="334.0" width="61.0" height="16" fill="#526f92" fill-opacity="0.18"/>
 <text x="424.0" y="348.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="start">09</text>
 <text x="458.0" y="348.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">alternative rock</text>
