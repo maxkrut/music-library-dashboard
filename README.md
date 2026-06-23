@@ -1,6 +1,8 @@
 # Maks Krutikov Spotify Library
 
-Personal Spotify metadata dashboard. No audio files, only generated summaries from a private CSV archive.
+Visual Spotify library dashboard generated from a private music archive: genre atlas, country timelines, listening maps, and all-time top songs.
+
+No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
 ![Spotify library overview](assets/overview.svg)
 
@@ -10,50 +12,41 @@ Personal Spotify metadata dashboard. No audio files, only generated summaries fr
 
 ![Taste drift by month](assets/listening/taste-drift.svg)
 
-![Genre weather map](assets/listening/genre-weather.svg)
-
 ![Countries by decade heatmap](assets/listening/country-decade.svg)
 
-### Spotify Covers
+### Your All-Time Top Songs
 
+<table>
+<tr>
+<td valign="top" width="52%">
 <p align="left">
-<a href="https://open.spotify.com/track/5k3xe0TRv3v3SvadmcBCan"><img src="https://i.scdn.co/image/ab67616d0000b273814d9658c0f0a1dc6dc9bfd8" width="72" height="72" alt="DIM - The Barrow Hunt" /></a>
-<a href="https://open.spotify.com/track/5CKwsEAhZogWhqWbGYQ4Da"><img src="https://i.scdn.co/image/ab67616d0000b2735a1f332ca6f8d90389b72672" width="72" height="72" alt="Fionnlagh; Lauge - Between Layers" /></a>
-<a href="https://open.spotify.com/track/6nMY6W3CvmBEOHTGrlm6PC"><img src="https://i.scdn.co/image/ab67616d0000b27347611d604ee4e051182900d3" width="72" height="72" alt="Yes - Love Lies Dreaming" /></a>
-<a href="https://open.spotify.com/track/2L32tvX6I73xToPvqFMi9k"><img src="https://i.scdn.co/image/ab67616d0000b273e6af226787e56897828123a6" width="72" height="72" alt="Amber Creek - Don&#x27;t Run Away" /></a>
-<a href="https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4"><img src="https://i.scdn.co/image/ab67616d0000b2731bb90bae67ab687245f6edcc" width="72" height="72" alt="Darkthrone - So I Marched To The Sunken Empire" /></a>
-<a href="https://open.spotify.com/track/7uYRmq6tONjvwUh8wn8zvh"><img src="https://i.scdn.co/image/ab67616d0000b27382a4a7494cc0641d6f272cf4" width="72" height="72" alt="Nils Frahm - Further in the Making" /></a>
-<a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16"><img src="https://i.scdn.co/image/ab67616d0000b27348c4d9b7c35c587bc3be40c0" width="72" height="72" alt="Healthyliving - Ghost Limbs" /></a>
-<a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn"><img src="https://i.scdn.co/image/ab67616d0000b273fdb7eb230eacc2ba19c965b8" width="72" height="72" alt="dungeontroll - Crypt of Euphoria" /></a>
-<a href="https://open.spotify.com/track/4yL2brWSBmFVKRiwVVJ0Vv"><img src="https://i.scdn.co/image/ab67616d0000b27385db555ea501f1931810a781" width="72" height="72" alt="Lyra - Below" /></a>
-<a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm"><img src="https://i.scdn.co/image/ab67616d0000b273f177ef4976ffa8d2ef8d4a26" width="72" height="72" alt="Magic Man - Steppe Grass" /></a>
-<a href="https://open.spotify.com/track/2SV69wiCCKzoFLDs6NWM5N"><img src="https://i.scdn.co/image/ab67616d0000b273c0b3f3aa840e06b57dc30588" width="72" height="72" alt="Pallbearer - I Saw the End" /></a>
-<a href="https://open.spotify.com/track/4W6MueOc6KliVlG0ZcZLQN"><img src="https://i.scdn.co/image/ab67616d0000b2736c1e9e55f76c278927fe248f" width="72" height="72" alt="This Winter Machine - Reflections" /></a>
-<a href="https://open.spotify.com/track/1j4rHgTvb34PAdrVvLfNIQ"><img src="https://i.scdn.co/image/ab67616d0000b27331a6b47a30d8b4754bf83917" width="72" height="72" alt="Abrasive Trees - I Didn&#x27;t Mean to Hurt You" /></a>
-<a href="https://open.spotify.com/track/69uKasX6KaviLVJV4kW4xO"><img src="https://i.scdn.co/image/ab67616d0000b2731ff9518f6149b6a351c15471" width="72" height="72" alt="Genocide - No Salvation Beyond This Point (Interlude)" /></a>
-<a href="https://open.spotify.com/track/359OX8TUHLK4qwlB2H43YF"><img src="https://i.scdn.co/image/ab67616d0000b2737515ad9f9c0cab329302c3d1" width="72" height="72" alt="Astral Corpse - Winter&#x27;s Bane" /></a>
-<a href="https://open.spotify.com/track/301izC0UcQyeHXTDiwnA1L"><img src="https://i.scdn.co/image/ab67616d0000b273fbd25ec973d0116acdffd6f8" width="72" height="72" alt="Velvet Mist - In Liminal" /></a>
-<a href="https://open.spotify.com/track/6MzJepMFNCDmRqGpP5XCdK"><img src="https://i.scdn.co/image/ab67616d0000b273f068c7834226e3df712d1d98" width="72" height="72" alt="Bloodhunter - The Night Is Darker Before The Dawn" /></a>
-<a href="https://open.spotify.com/track/0JQkRNCLDbza5cPdgnkvpY"><img src="https://i.scdn.co/image/ab67616d0000b2731ed37ee70c4bb4310059d34f" width="72" height="72" alt="Skurðgoð - Blóð Móðurkviðs" /></a>
-<a href="https://open.spotify.com/track/3YFHYMXszKw5GTXuxl92QG"><img src="https://i.scdn.co/image/ab67616d0000b27342cacb80907153200e9fb086" width="72" height="72" alt="Smallman; Asya Pincheva - Ясно слънце" /></a>
-<a href="https://open.spotify.com/track/2I2pPkip5NrIUAN3pHZKbk"><img src="https://i.scdn.co/image/ab67616d0000b2732864d09c7f772acdab1946ef" width="72" height="72" alt="Mountainscape; Amaya Lopez-Carromero - Dune" /></a>
-<a href="https://open.spotify.com/track/73YX8MtFdztLwobSvtYp0f"><img src="https://i.scdn.co/image/ab67616d0000b27388911adf8d4a317bfdab487d" width="72" height="72" alt="Midvil - Black Mountain" /></a>
-<a href="https://open.spotify.com/track/2BVcveumkNgN9cXImNt7Hw"><img src="https://i.scdn.co/image/ab67616d0000b2736f9e48a85c9d24a66c8e8d7e" width="72" height="72" alt="Matote - Primavera" /></a>
-<a href="https://open.spotify.com/track/7hZPzSg6kBPyOSRvXL3NHw"><img src="https://i.scdn.co/image/ab67616d0000b2736ef5910fbcc6db2a19e86141" width="72" height="72" alt="HÄXÄNKING - Somnium Haeretici" /></a>
-<a href="https://open.spotify.com/track/6gmUdiZzPGAqSTAVOr2Qjb"><img src="https://i.scdn.co/image/ab67616d0000b273aaddbe2e030489444cf36af8" width="72" height="72" alt="Khemmis - Benediction Tones" /></a>
-<a href="https://open.spotify.com/track/2dQuUSuDvyRkgTk1h3fUgA"><img src="https://i.scdn.co/image/ab67616d0000b2733f294152bf01fad6cdeea1ec" width="72" height="72" alt="Monolord - You Bastard" /></a>
-<a href="https://open.spotify.com/track/2v4ffpEtHz30KdoODqnUYX"><img src="https://i.scdn.co/image/ab67616d0000b273f1fbdcc9cb42cc3701f2c2eb" width="72" height="72" alt="Stormkeep - Echoes in the Vasts of Sequestration" /></a>
-<a href="https://open.spotify.com/track/33Nts0hxxP78TnZvnFhg9Z"><img src="https://i.scdn.co/image/ab67616d0000b2734cf0ed932841336629d5e556" width="72" height="72" alt="Elder - Sight Unseen" /></a>
-<a href="https://open.spotify.com/track/55qC8918J5vVNMvc5gIAK0"><img src="https://i.scdn.co/image/ab67616d0000b273e15c786d583716bcfc233940" width="72" height="72" alt="Hecate - Comment est la nuit?" /></a>
-<a href="https://open.spotify.com/track/5bQF4WJXV8lny0agrYtS4n"><img src="https://i.scdn.co/image/ab67616d0000b2732a5150f997d625985c6a7a22" width="72" height="72" alt="Lauge; Baba Gnohm; JYRANTE - Dawn At Lake Saimaa" /></a>
-<a href="https://open.spotify.com/track/0DPmGm2ePI9UZj6rPWiMSz"><img src="https://i.scdn.co/image/ab67616d0000b273c99427dd2209f364e52ca6a8" width="72" height="72" alt="Илюша - А на лоутабе все спокойно" /></a>
-<a href="https://open.spotify.com/track/27j6138IXCVl7LKs3G9wNY"><img src="https://i.scdn.co/image/ab67616d0000b273e11adbea77e2088933ef99c2" width="72" height="72" alt="Чернозём и Звёзды; Pasosh - Могилёв" /></a>
-<a href="https://open.spotify.com/track/6zHuhmN3Q9gV9Jpz3I6Ola"><img src="https://i.scdn.co/image/ab67616d0000b273a3dac956ff614832179f3a93" width="72" height="72" alt="Liminal Sky; Ulver - The Weight of Heaven" /></a>
-<a href="https://open.spotify.com/track/2Zva4REc3tRtrl8U1r3iBt"><img src="https://i.scdn.co/image/ab67616d0000b2734cfb93228d97aa0245a5d5f4" width="72" height="72" alt="trapeia; ByErik ヵ - rescue - slowed + reverb" /></a>
-<a href="https://open.spotify.com/track/52R4fxcTSq7ofA0kSPzU6x"><img src="https://i.scdn.co/image/ab67616d0000b273e43330d2a95575fff0bcc392" width="72" height="72" alt="ByErik ヵ - desolate - Sped Up" /></a>
-<a href="https://open.spotify.com/track/2L9TUkStJsBHh3Xtw8oUOP"><img src="https://i.scdn.co/image/ab67616d0000b27392fddb1d5464d42fa33205f1" width="72" height="72" alt="Summoning - Flammifer" /></a>
-<a href="https://open.spotify.com/track/4bl1FdMsjkTyB7IRoStT3w"><img src="https://i.scdn.co/image/ab67616d0000b273fbc0aa1a64d505908c32999e" width="72" height="72" alt="Borknagar - The Wild Lingers" /></a>
+<a href="https://open.spotify.com/track/0Dg2BfGZv5P9Jkcv95Aa0e"><img src="https://i.scdn.co/image/ab67616d0000b2732558e54864b2c1be58aee847" width="72" height="72" alt="Daylight Dies - Dismantling Devotion" /></a>
+<a href="https://open.spotify.com/track/3a8hSZnGAwnEhalgT28Cp6"><img src="https://i.scdn.co/image/ab67616d0000b273eabe69cadeb913306c5933cc" width="72" height="72" alt="Realm of Wolves - Hegemon Of Cold Seas" /></a>
+<a href="https://open.spotify.com/track/0uGSXfO8nC2VV1BpuW2Sr8"><img src="https://i.scdn.co/image/ab67616d0000b273eabe69cadeb913306c5933cc" width="72" height="72" alt="Realm of Wolves - And We Become Wolves" /></a>
+<a href="https://open.spotify.com/track/5dAie8vCratkNmHUnkPf0e"><img src="https://i.scdn.co/image/ab67616d0000b2731c726b68ae4f05b6671a086f" width="72" height="72" alt="Worm; Marty Friedman - Witchmoon: The Infernal Masquerade (feat. Marty Friedman)" /></a>
+<a href="https://open.spotify.com/track/39SSSnwlBXvqjp3VCP0oKU"><img src="https://i.scdn.co/image/ab67616d0000b273ac26fcc8f9b7986b5ca0c898" width="72" height="72" alt="Shape Of Despair - Dissolution" /></a>
+<a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
+<a href="https://open.spotify.com/track/6piuCKWW9pwvG1LYDWGk9D"><img src="https://i.scdn.co/image/ab67616d0000b2730815b7b365abac40db634b38" width="72" height="72" alt="Ben Kenney; Ashley Mendel; Rachel Ana Dobken - Three Times" /></a>
+<a href="https://open.spotify.com/track/58TcasrHLxzt3FEepjUJQd"><img src="https://i.scdn.co/image/ab67616d0000b273bc5a1e048fdd70be8c01f94d" width="72" height="72" alt="Shape Of Despair - Sleep Mirrored" /></a>
+<a href="https://open.spotify.com/track/72GUD7ZA98E9lWhltp4bqb"><img src="https://i.scdn.co/image/ab67616d0000b273559e72c773cf32a8fb6248a2" width="72" height="72" alt="Curta&#x27;n Wall; Elvya - The Dark Ages" /></a>
+<a href="https://open.spotify.com/track/1lZquyBVOQb3qvVMpvoXiT"><img src="https://i.scdn.co/image/ab67616d0000b2735df4965ac420798942c57b99" width="72" height="72" alt="220 Volt - Love Is All You Need" /></a>
+<a href="https://open.spotify.com/track/6S9cuHvVIuoKfSDwcENP9P"><img src="https://i.scdn.co/image/ab67616d0000b2737a2e1473dbe8e461ae689121" width="72" height="72" alt="Whispering Void - Vi Finnes" /></a>
+<a href="https://open.spotify.com/track/3VANrwkmYkLHpzZs63YadJ"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="72" height="72" alt="Obsequiae - Anlace and Heart" /></a>
+<a href="https://open.spotify.com/track/4kgf6zhFJQYPHz8ABNMkUL"><img src="https://i.scdn.co/image/ab67616d0000b2737fdf43bdfa5106d3eae0e0c2" width="72" height="72" alt="Сруб - Умирая радуй" /></a>
+<a href="https://open.spotify.com/track/2xPOwYbqUOlNa3Ad1neTsm"><img src="https://i.scdn.co/image/ab67616d0000b2733b80df170989af75667f7797" width="72" height="72" alt="Counting Hours - Timeless Ones" /></a>
+<a href="https://open.spotify.com/track/10rlIQ4RQIy6GeKfo0s2yy"><img src="https://i.scdn.co/image/ab67616d0000b273caaae0805c6a27757210d214" width="72" height="72" alt="The Flight of Sleipnir - Voland" /></a>
+<a href="https://open.spotify.com/track/4bL8poSHJGxHCTnrWqTmRb"><img src="https://i.scdn.co/image/ab67616d0000b2732e73fd8b722b3b984cdf9bf9" width="72" height="72" alt="Комонь; Павел Паньковский; Аркадий Пикунов - Ты подуй" /></a>
+<a href="https://open.spotify.com/track/2dkUNeusRI8WUCrtKvWKgs"><img src="https://i.scdn.co/image/ab67616d0000b27340e4eacd8da22567cfcde58f" width="72" height="72" alt="Sylvan - Posthumous Silence" /></a>
+<a href="https://open.spotify.com/track/6DTp1lInphWvQtCNbJoJ2N"><img src="https://i.scdn.co/image/ab67616d0000b27367e9b8ecf8c3f2ce3c2e8be4" width="72" height="72" alt="Fogweaver - Spell-woven" /></a>
+<a href="https://open.spotify.com/track/7zfxW7P4yYfbQTmW7XUjS6"><img src="https://i.scdn.co/image/ab67616d0000b273c03375b437f97510b2903215" width="72" height="72" alt="Psilocybe Larvae - Новый дивный мир" /></a>
+<a href="https://open.spotify.com/track/5el8o8F9zXlbgMun4IRxCj"><img src="https://i.scdn.co/image/ab67616d0000b273146190ba8aeb500d602df2a7" width="72" height="72" alt="Kick Puncher - Fight or Flight" /></a>
 </p>
+</td>
+<td valign="top" width="48%">
+<img src="assets/listening/all-time-top-songs.svg" width="560" alt="Your all-time top songs ranking" />
+</td>
+</tr>
+</table>
 
 ![Top items across time ranges](assets/listening/top-ranges.svg)
 
@@ -339,4 +332,12 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-22 10:48 UTC._
+<details>
+<summary>License</summary>
+
+- Repository code and generated dashboard assets: [`MIT License`](LICENSE).
+- Spotify, MusicBrainz and Wikidata metadata, plus linked Spotify artwork, remain governed by their source terms.
+
+</details>
+
+_Generated at 2026-06-23 19:53 UTC._

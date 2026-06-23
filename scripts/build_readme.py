@@ -26,6 +26,7 @@ MUSICBRAINZ_ARTIST_CACHE = ROOT / ".cache" / "musicbrainz-artists.json"
 SPOTIFY_TOP_ITEMS_CACHE = ROOT / ".cache" / "spotify-top-items.json"
 SPOTIFY_RECENTLY_PLAYED_CACHE = ROOT / ".cache" / "spotify-recently-played.json"
 COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
+REPO_DESCRIPTION = "Visual Spotify library dashboard generated from a private music archive: genre atlas, country timelines, listening maps, and all-time top songs."
 
 
 def write_text_lf(path: Path, content: str) -> None:
@@ -1001,21 +1002,6 @@ def group_short_label(group: str) -> str:
     }.get(group, group)
 
 
-def genre_weather_profile(genre: str) -> tuple[str, str, str]:
-    text = marker_text(genre)
-    if any(marker in text for marker in ("doom", "death", "sludge", "thrash", "heavy", "grind", "hardcore")):
-        return "STORM", "heavy", "#557e64"
-    if any(marker in text for marker in ("black", "folk", "ritual", "pagan", "neofolk", "dungeon")):
-        return "MOON", "ritual", "#7d744e"
-    if any(marker in text for marker in ("ambient", "drone", "electronic", "synth", "classical", "score")):
-        return "FOG", "ambient", "#526f92"
-    if any(marker in text for marker in ("pop", "soul", "funk", "reggae", "ska", "latin", "jazz")):
-        return "SUN", "bright", "#a96855"
-    if any(marker in text for marker in ("noise", "industrial", "punk", "experimental")):
-        return "STATIC", "raw", "#6f7772"
-    return "CLOUD", "mixed", "#8a8078"
-
-
 def taste_drift_data(
     tracks: list[TrackRow],
     artist_genres: dict[str, str],
@@ -1069,67 +1055,72 @@ def country_decade_data(
     return countries, ordered_decades, dict(matrix)
 
 
-def spotify_cover_wall_items(
+def cached_spotify_top_tracks(
     top_cache: dict[str, object],
-    recently_played_cache: dict[str, object],
     *,
-    limit: int = 36,
+    time_range: str = "long_term",
+    limit: int = 50,
 ) -> list[dict[str, str]]:
+    tracks = top_cache.get("tracks")
+    if not isinstance(tracks, dict):
+        return []
+    raw_items = tracks.get(time_range)
+    if not isinstance(raw_items, list):
+        return []
+
     items: list[dict[str, str]] = []
     seen: set[str] = set()
-
-    def add_track(track: object) -> None:
+    for track in raw_items:
         if not isinstance(track, dict):
-            return
-        image_url = str(track.get("image_url") or "").strip()
-        if not image_url or image_url in seen:
-            return
-        seen.add(image_url)
+            continue
+        name = str(track.get("name") or "").strip()
+        artist = str(track.get("artist_names") or "").strip()
+        url = str(track.get("spotify_url") or "").strip()
+        track_id = str(track.get("id") or "").strip()
+        key = track_id or url or f"{artist}|{name}"
+        if (not name and not artist) or key in seen:
+            continue
+        seen.add(key)
         items.append(
             {
-                "image_url": image_url,
-                "name": str(track.get("name") or "").strip(),
-                "artist": str(track.get("artist_names") or "").strip(),
-                "url": str(track.get("spotify_url") or "").strip(),
+                "image_url": str(track.get("image_url") or "").strip(),
+                "name": name,
+                "artist": artist,
+                "url": url,
             }
         )
-
-    recent_items = recently_played_cache.get("items")
-    if isinstance(recent_items, list):
-        for item in recent_items:
-            if isinstance(item, dict):
-                add_track(item.get("track"))
-                if len(items) >= limit:
-                    return items
-
-    tracks = top_cache.get("tracks")
-    if isinstance(tracks, dict):
-        for time_range in ("short_term", "medium_term", "long_term"):
-            raw_items = tracks.get(time_range)
-            if not isinstance(raw_items, list):
-                continue
-            for track in raw_items:
-                add_track(track)
-                if len(items) >= limit:
-                    return items
+        if len(items) >= limit:
+            break
 
     return items
 
 
-def spotify_cover_wall_lines(
-    top_cache: dict[str, object],
-    recently_played_cache: dict[str, object],
+def spotify_all_time_top_songs_lines(
+    top_tracks: list[dict[str, str]],
+    ranking_path: Path,
+    readme_dir: Path,
 ) -> list[str]:
-    covers = spotify_cover_wall_items(top_cache, recently_played_cache)
-    lines = ["### Spotify Covers", ""]
-    if not covers:
+    lines = ["### Your All-Time Top Songs", ""]
+    if not top_tracks:
         return lines + [
-            "_No Spotify cover images cached yet. Re-run Spotify export with top/recent scopes._",
+            "_No Spotify all-time top songs cached yet. Re-run Spotify export with `user-top-read` scope._",
             "",
         ]
 
+    try:
+        ranking_src = os.path.relpath(ranking_path, readme_dir).replace("\\", "/")
+    except ValueError:
+        ranking_src = ranking_path.as_posix()
+
+    lines.extend(
+        [
+            '<table>',
+            '<tr>',
+            '<td valign="top" width="52%">',
+        ]
+    )
     lines.append('<p align="left">')
-    for item in covers:
+    for item in [track for track in top_tracks if track.get("image_url")][:36]:
         alt = html.escape(" - ".join(part for part in (item["artist"], item["name"]) if part), quote=True)
         src = html.escape(item["image_url"], quote=True)
         url = html.escape(item["url"], quote=True)
@@ -1137,8 +1128,20 @@ def spotify_cover_wall_lines(
         if url:
             image = f'<a href="{url}">{image}</a>'
         lines.append(image)
-    lines.extend(["</p>", ""])
+    lines.extend(
+        [
+            "</p>",
+            "</td>",
+            '<td valign="top" width="48%">',
+            f'<img src="{html.escape(ranking_src, quote=True)}" width="560" alt="Your all-time top songs ranking" />',
+            "</td>",
+            "</tr>",
+            "</table>",
+            "",
+        ]
+    )
     return lines
+
 
 def fallback_top_ranges(tracks: list[TrackRow]) -> tuple[str, dict[str, RankedRows]]:
     dated_rows = [(parse_iso_date(added_date(row)), row) for row in tracks]
@@ -1573,89 +1576,58 @@ def write_taste_drift_svg(
     path.parent.mkdir(parents=True, exist_ok=True)
     write_text_lf(path, "\n".join(parts) + "\n")
 
-def svg_weather_icon(kind: str, x: float, y: float, accent: str) -> list[str]:
-    if kind == "STORM":
-        return [
-            f'<circle cx="{x + 22:.1f}" cy="{y + 18:.1f}" r="15" fill="{accent}" fill-opacity="0.18"/>',
-            f'<circle cx="{x + 40:.1f}" cy="{y + 16:.1f}" r="18" fill="{accent}" fill-opacity="0.24"/>',
-            f'<rect x="{x + 12:.1f}" y="{y + 20:.1f}" width="48" height="17" rx="8" fill="{accent}" fill-opacity="0.22"/>',
-            f'<path d="M{x + 34:.1f},{y + 32:.1f} L{x + 24:.1f},{y + 52:.1f} L{x + 37:.1f},{y + 49:.1f} L{x + 29:.1f},{y + 66:.1f} L{x + 50:.1f},{y + 42:.1f} L{x + 37:.1f},{y + 45:.1f} Z" fill="{accent}"/>',
-        ]
-    if kind == "MOON":
-        return [
-            f'<circle cx="{x + 34:.1f}" cy="{y + 34:.1f}" r="25" fill="{accent}" fill-opacity="0.88"/>',
-            f'<circle cx="{x + 45:.1f}" cy="{y + 27:.1f}" r="25" fill="#fffefa"/>',
-            f'<circle cx="{x + 15:.1f}" cy="{y + 14:.1f}" r="2.5" fill="{accent}" fill-opacity="0.45"/>',
-            f'<circle cx="{x + 55:.1f}" cy="{y + 55:.1f}" r="2" fill="{accent}" fill-opacity="0.45"/>',
-        ]
-    if kind == "FOG":
-        return [
-            f'<circle cx="{x + 23:.1f}" cy="{y + 18:.1f}" r="14" fill="{accent}" fill-opacity="0.15"/>',
-            f'<circle cx="{x + 41:.1f}" cy="{y + 18:.1f}" r="17" fill="{accent}" fill-opacity="0.18"/>',
-            f'<path d="M{x + 8:.1f},{y + 39:.1f} C{x + 25:.1f},{y + 31:.1f} {x + 42:.1f},{y + 47:.1f} {x + 62:.1f},{y + 38:.1f}" fill="none" stroke="{accent}" stroke-width="4" stroke-linecap="round" opacity="0.72"/>',
-            f'<path d="M{x + 8:.1f},{y + 51:.1f} C{x + 26:.1f},{y + 43:.1f} {x + 43:.1f},{y + 58:.1f} {x + 62:.1f},{y + 50:.1f}" fill="none" stroke="{accent}" stroke-width="4" stroke-linecap="round" opacity="0.52"/>',
-        ]
-    if kind == "SUN":
-        rays = []
-        for dx1, dy1, dx2, dy2 in ((34, 0, 34, 9), (34, 59, 34, 68), (0, 34, 9, 34), (59, 34, 68, 34), (10, 10, 17, 17), (51, 51, 58, 58), (58, 10, 51, 17), (17, 51, 10, 58)):
-            rays.append(f'<line x1="{x + dx1:.1f}" y1="{y + dy1:.1f}" x2="{x + dx2:.1f}" y2="{y + dy2:.1f}" stroke="{accent}" stroke-width="3" stroke-linecap="round" opacity="0.7"/>')
-        return rays + [f'<circle cx="{x + 34:.1f}" cy="{y + 34:.1f}" r="19" fill="{accent}" fill-opacity="0.76"/>']
-    if kind == "STATIC":
-        return [
-            f'<rect x="{x + 8:.1f}" y="{y + 9:.1f}" width="52" height="44" fill="{accent}" fill-opacity="0.13"/>',
-            f'<path d="M{x + 12:.1f},{y + 18:.1f} H{x + 58:.1f} M{x + 16:.1f},{y + 30:.1f} H{x + 48:.1f} M{x + 10:.1f},{y + 42:.1f} H{x + 55:.1f}" stroke="{accent}" stroke-width="4" stroke-linecap="square" opacity="0.76"/>',
-            f'<path d="M{x + 19:.1f},{y + 9:.1f} V{y + 53:.1f} M{x + 42:.1f},{y + 9:.1f} V{y + 53:.1f}" stroke="{accent}" stroke-width="2" opacity="0.24"/>',
-        ]
-    return [
-        f'<circle cx="{x + 23:.1f}" cy="{y + 22:.1f}" r="17" fill="{accent}" fill-opacity="0.17"/>',
-        f'<circle cx="{x + 42:.1f}" cy="{y + 20:.1f}" r="21" fill="{accent}" fill-opacity="0.23"/>',
-        f'<circle cx="{x + 54:.1f}" cy="{y + 31:.1f}" r="15" fill="{accent}" fill-opacity="0.19"/>',
-        f'<rect x="{x + 11:.1f}" y="{y + 27:.1f}" width="57" height="22" rx="11" fill="{accent}" fill-opacity="0.21"/>',
-    ]
 
-def write_genre_weather_svg(path: Path, genre_rows: RankedRows) -> None:
-    width = 1200
+def write_all_time_top_songs_svg(path: Path, top_tracks: list[dict[str, str]]) -> None:
+    width = 560
+    height = 640
     margin = 16
-    gap = 8
-    columns = 4
-    tile_width = (width - margin * 2 - gap * (columns - 1)) / columns
-    tile_height = 112
-    header_height = 54
-    rows = (min(24, len(genre_rows)) + columns - 1) // columns
-    content_top = margin + header_height + 12
-    height = content_top + rows * tile_height + max(0, rows - 1) * gap + margin
-    visible = genre_rows[:24]
-    max_count = max((count for _genre, count in visible), default=1)
+    header_height = 62
+    chart_y = margin + header_height + 24
+    row_height = 27
+    visible = top_tracks[:18]
+    max_score = max(len(visible), 1)
 
     parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Genre weather map">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Your all-time top songs ranking">',
         f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
         f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
-        svg_text(margin + 16, margin + 35, "Genre Weather", size=28, weight=800, fill="#ffffff"),
-        svg_text(width - margin - 16, margin + 35, "Mood intensity from assigned genres", size=15, weight=800, fill="#dfe8df", anchor="end"),
+        svg_text(margin + 16, margin + 30, "Your All-Time", size=22, weight=800, fill="#ffffff"),
+        svg_text(margin + 16, margin + 52, "Top Songs", size=22, weight=800, fill="#ffffff"),
+        svg_text(width - margin - 16, margin + 39, "Spotify long term", size=13, weight=800, fill="#dfe8df", anchor="end"),
     ]
 
-    for index, (genre, count) in enumerate(visible):
-        row_index, col_index = divmod(index, columns)
-        x = margin + col_index * (tile_width + gap)
-        y = content_top + row_index * (tile_height + gap)
-        icon, mood, accent = genre_weather_profile(genre)
-        intensity = max(1, min(5, round(count / max_count * 5)))
+    if not visible:
+        parts.append(svg_text(width / 2, height / 2, "No all-time top songs cached yet", size=16, weight=800, fill="#6f7772", anchor="middle"))
+    else:
+        accent_cycle = ("#557e64", "#526f92", "#a96855", "#7d744e")
+        for index, track in enumerate(visible):
+            y = chart_y + index * row_height
+            rank = index + 1
+            score = max_score - index
+            bar_width = 118 * score / max_score
+            accent = accent_cycle[index % len(accent_cycle)]
+            artist = track.get("artist", "")
+            name = track.get("name", "")
+            label = " - ".join(part for part in (artist, name) if part)
+            fill = "#fffefa" if index % 2 == 0 else "#f1f4ee"
+            parts.extend(
+                [
+                    f'<rect x="{margin}" y="{y - 18:.1f}" width="{width - margin * 2}" height="24" fill="{fill}" stroke="#d9ded7" stroke-width="0.5"/>',
+                    svg_text(margin + 14, y, f"{rank:02d}", size=11, weight=800, fill=accent),
+                    f'<rect x="{width - margin - 126}" y="{y - 12:.1f}" width="118" height="8" fill="#d9ded7"/>',
+                    f'<rect x="{width - margin - 126}" y="{y - 12:.1f}" width="{bar_width:.1f}" height="8" fill="{accent}" fill-opacity="0.86"/>',
+                    svg_text(margin + 52, y, trim_text_to_width(label, 330, size=12, weight=800), size=12, weight=800),
+                ]
+            )
+
+        footer_y = height - margin - 18
         parts.extend(
             [
-                f'<rect x="{x:.1f}" y="{y:.1f}" width="{tile_width:.1f}" height="{tile_height}" fill="#fffefa" stroke="#c7d0c7"/>',
-                f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{tile_height}" fill="{accent}"/>',
-                *svg_weather_icon(icon, x + 16, y + 16, accent),
-                svg_text(x + 96, y + 28, icon, size=12, weight=800, fill=accent),
-                svg_text(x + 96, y + 48, mood.upper(), size=12, weight=800, fill=accent),
-                svg_text(x + tile_width - 14, y + 28, count, size=13, weight=800, fill=accent, anchor="end"),
-                svg_fitted_text(x + 16, y + 86, genre, max_width=tile_width - 32, size=18, min_size=12, weight=800),
+                f'<rect x="{margin}" y="{footer_y - 18}" width="{width - margin * 2}" height="34" fill="#fffefa" stroke="#c7d0c7"/>',
+                svg_text(margin + 14, footer_y + 4, f"{len(top_tracks)} cached long-term tracks", size=12, weight=800, fill="#557e64"),
+                svg_text(width - margin - 14, footer_y + 4, "covers shown beside this rank", size=12, weight=800, fill="#526f92", anchor="end"),
             ]
         )
-        for bar_index in range(5):
-            bar_x = x + 16 + bar_index * 28
-            fill = accent if bar_index < intensity else "#d9ded7"
-            parts.append(f'<rect x="{bar_x:.1f}" y="{y + 98}" width="20" height="8" fill="{fill}"/>')
 
     parts.append("</svg>")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -2106,14 +2078,13 @@ def listening_maps(
     tracks: list[TrackRow],
     artist_cache: dict[str, object],
     country_overrides: dict[str, str],
-    genre_rows: RankedRows,
     artist_genres: dict[str, str],
     readme_dir: Path,
 ) -> list[str]:
     listening_dir = readme_dir / "assets" / "listening"
     taste_path = listening_dir / "taste-drift.svg"
-    weather_path = listening_dir / "genre-weather.svg"
     country_decade_path = listening_dir / "country-decade.svg"
+    all_time_top_songs_path = listening_dir / "all-time-top-songs.svg"
     top_ranges_path = listening_dir / "top-ranges.svg"
     saved_played_path = listening_dir / "saved-vs-played.svg"
 
@@ -2122,9 +2093,10 @@ def listening_maps(
 
     months, groups, drift_series = taste_drift_data(tracks, artist_genres)
     write_taste_drift_svg(taste_path, months, groups, drift_series)
-    write_genre_weather_svg(weather_path, genre_rows[:24])
     countries, decades, matrix = country_decade_data(tracks, artist_cache, country_overrides)
     write_country_decade_svg(country_decade_path, countries, decades, matrix)
+    all_time_top_tracks = cached_spotify_top_tracks(top_cache)
+    write_all_time_top_songs_svg(all_time_top_songs_path, all_time_top_tracks)
     top_source, top_ranges = top_ranges_data(tracks, top_cache)
     write_top_ranges_svg(top_ranges_path, top_source, top_ranges)
     played_source, saved_rows, played_rows, rediscovered, ignored = saved_vs_played_data(
@@ -2146,11 +2118,9 @@ def listening_maps(
         "",
         md_image("Taste drift by month", taste_path, readme_dir),
         "",
-        md_image("Genre weather map", weather_path, readme_dir),
-        "",
         md_image("Countries by decade heatmap", country_decade_path, readme_dir),
         "",
-        *spotify_cover_wall_lines(top_cache, recently_played_cache),
+        *spotify_all_time_top_songs_lines(all_time_top_tracks, all_time_top_songs_path, readme_dir),
         md_image("Top items across time ranges", top_ranges_path, readme_dir),
         "",
         md_image("Saved library versus recently played", saved_played_path, readme_dir),
@@ -2195,7 +2165,9 @@ def build_dashboard(
     lines: list[str] = [
         "# Maks Krutikov Spotify Library",
         "",
-        "Personal Spotify metadata dashboard. No audio files, only generated summaries from a private CSV archive.",
+        REPO_DESCRIPTION,
+        "",
+        "No audio files are included: this repository publishes generated summaries from a private CSV archive.",
         "",
     ]
 
@@ -2254,7 +2226,6 @@ def build_dashboard(
                 tracks,
                 artist_cache,
                 country_overrides,
-                assigned_genres,
                 artist_genres,
                 readme_dir,
             )
@@ -2325,6 +2296,14 @@ def build_dashboard(
             f"- MusicBrainz genre enricher: {md_link('scripts/enrich_genres_musicbrainz.py', ROOT / 'scripts' / 'enrich_genres_musicbrainz.py', readme_dir)}",
             f"- Genre rule applier: {md_link('scripts/apply_genre_rules.py', ROOT / 'scripts' / 'apply_genre_rules.py', readme_dir)}",
             f"- Spotify API debug: {md_link('scripts/debug_spotify.py', ROOT / 'scripts' / 'debug_spotify.py', readme_dir)}",
+            "",
+            "</details>",
+            "",
+            "<details>",
+            "<summary>License</summary>",
+            "",
+            f"- Repository code and generated dashboard assets: {md_link('MIT License', ROOT / 'LICENSE', readme_dir)}.",
+            "- Spotify, MusicBrainz and Wikidata metadata, plus linked Spotify artwork, remain governed by their source terms.",
             "",
             "</details>",
             "",
