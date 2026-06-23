@@ -22,12 +22,12 @@
 <text x="613.4" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">59</text>
 <rect x="679.0" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.40"/>
 <text x="740.6" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">73</text>
-<rect x="806.2" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.54"/>
+<rect x="806.2" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.55"/>
 <text x="867.9" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">107</text>
 <rect x="933.5" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.92"/>
-<text x="995.1" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">194</text>
-<rect x="1060.8" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.68"/>
-<text x="1122.4" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">138</text>
+<text x="995.1" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">193</text>
+<rect x="1060.8" y="124.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.70"/>
+<text x="1122.4" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">142</text>
 <text x="156.0" y="172.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="end">United Kingdom</text>
 <rect x="170.0" y="154.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.08"/>
 <rect x="297.2" y="154.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.10"/>
@@ -53,9 +53,9 @@
 <text x="740.6" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">35</text>
 <rect x="806.2" y="184.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.35"/>
 <text x="867.9" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">63</text>
-<rect x="933.5" y="184.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.40"/>
+<rect x="933.5" y="184.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.41"/>
 <text x="995.1" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">75</text>
-<rect x="1060.8" y="184.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.31"/>
+<rect x="1060.8" y="184.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.32"/>
 <text x="1122.4" y="201.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">54</text>
 <text x="156.0" y="232.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="end">Sweden</text>
 <rect x="170.0" y="214.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.08"/>
@@ -156,7 +156,7 @@
 <rect x="933.5" y="394.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.13"/>
 <text x="995.1" y="411.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">11</text>
 <rect x="1060.8" y="394.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.16"/>
-<text x="1122.4" y="411.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">18</text>
+<text x="1122.4" y="411.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#102027" text-anchor="middle">19</text>
 <text x="156.0" y="442.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="end">Netherlands</text>
 <rect x="170.0" y="424.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.08"/>
 <rect x="297.2" y="424.0" width="123.2" height="24" fill="#557e64" fill-opacity="0.08"/>

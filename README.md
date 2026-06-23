@@ -126,6 +126,46 @@ No audio files are included: this repository publishes generated summaries from 
 </thead>
 <tbody>
 <tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;23</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Khemmis</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/7LFxWclMQjpARPSThKVAE0">Carrion&nbsp;King</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Khemmis</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;23</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Stormkeep</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/5VSnXnQktUKOfDyysLMMzx">Ballad&nbsp;of&nbsp;a&nbsp;Fallen&nbsp;Star</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Nocturnes&nbsp;of&nbsp;Iswylm</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>melodic&nbsp;black&nbsp;metal</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;23</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Stormkeep</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/5Hh7lLiY3y9ELHs3ZsdAcH">Saccharine&nbsp;Subjugation</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Nocturnes&nbsp;of&nbsp;Iswylm</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>melodic&nbsp;black&nbsp;metal</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;23</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Stormkeep</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/4bTmQdOeFL6jHhpzfACpHp">The&nbsp;Black&nbsp;Dragons&nbsp;of&nbsp;Iswylm</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Nocturnes&nbsp;of&nbsp;Iswylm</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>melodic&nbsp;black&nbsp;metal</small></small></small></td>
+</tr>
+<tr>
+<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;23</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Lauge;&nbsp;Baba&nbsp;Gnohm;&nbsp;JYRANTE</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/3YTA4Y3qWmPEauQ5MIbbKJ">Below&nbsp;The&nbsp;Surface</a></small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>Below&nbsp;The&nbsp;Surface</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
+<td align="center" valign="middle" nowrap><small><small><small>ambient</small></small></small></td>
+</tr>
+<tr>
 <td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;19</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>Amber&nbsp;Creek</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2L32tvX6I73xToPvqFMi9k">Don&#x27;t&nbsp;Run&nbsp;Away</a></small></small></small></td>
@@ -245,46 +285,6 @@ No audio files are included: this repository publishes generated summaries from 
 <td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
 <td align="center" valign="middle" nowrap><small><small><small>electronic</small></small></small></td>
 </tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;08</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Spirit&nbsp;Adrift</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2lIheKkJlthP8A5oeTpdPX">You&nbsp;Will&nbsp;Never&nbsp;Hold&nbsp;The&nbsp;Key</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Infinite&nbsp;Illumination</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>heavy&nbsp;metal</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;29</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>BULLDOZER</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/1hJ4Go14cllZv8YE6YLIFV">The&nbsp;Great&nbsp;Deceiver</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Exorcism</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>1984</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>speed&nbsp;metal</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;29</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>BULLDOZER</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/7dsXchfku5959Z14zkzxET">Another&nbsp;Beer&nbsp;(It&#x27;s&nbsp;What&nbsp;I&nbsp;Need)</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Fallen&nbsp;Angel&nbsp;/&nbsp;Another&nbsp;Beer&nbsp;(Is&nbsp;What&nbsp;I&nbsp;Need)</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>1984</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>speed&nbsp;metal</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;27</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Üga&nbsp;Büga</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/1fafmxEOMDxm4db8Oz61hi">Valley&nbsp;of&nbsp;The&nbsp;Wolf</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Valley&nbsp;of&nbsp;The&nbsp;Wolf&nbsp;(single)</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>heavy&nbsp;metal</small></small></small></td>
-</tr>
-<tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;04&#8209;27</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Immolation</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/6UBbYpErZJMCL0NIimAOTk">Bend&nbsp;Towards&nbsp;The&nbsp;Dark</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Descent</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>death&nbsp;metal</small></small></small></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -340,4 +340,4 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-23 19:53 UTC._
+_Generated at 2026-06-23 20:01 UTC._
