@@ -26,7 +26,8 @@ MUSICBRAINZ_ARTIST_CACHE = ROOT / ".cache" / "musicbrainz-artists.json"
 SPOTIFY_TOP_ITEMS_CACHE = ROOT / ".cache" / "spotify-top-items.json"
 SPOTIFY_RECENTLY_PLAYED_CACHE = ROOT / ".cache" / "spotify-recently-played.json"
 COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
-REPO_DESCRIPTION = "Visual Spotify library dashboard generated from a private music archive: genre atlas, country timelines, listening maps, and all-time top songs."
+README_TITLE = "Spotify Library Dashboard"
+REPO_DESCRIPTION = "Automated Spotify library dashboard with genre atlas, country timelines, listening maps, and all-time top songs."
 
 
 def write_text_lf(path: Path, content: str) -> None:
@@ -607,6 +608,14 @@ def external_html_link(label: str, url: str) -> str:
     return SafeHtml(f'<a href="{html_escape(target)}">{compact_html_text(text)}</a>')
 
 
+def external_wrapped_html_link(label: str, url: str) -> str:
+    text = str(label or "").strip()
+    target = str(url or "").strip()
+    if not target:
+        return html_escape(text)
+    return SafeHtml(f'<a href="{html_escape(target)}">{html_escape(text)}</a>')
+
+
 def repo_label(path: Path) -> str:
     try:
         return path.relative_to(ROOT).as_posix()
@@ -630,10 +639,15 @@ def compact_html_text(value: object) -> str:
     )
 
 
-def compact_cell(value: object, *, allow_html: bool = False) -> str:
+def compact_cell(
+    value: object,
+    *,
+    allow_html: bool = False,
+    preserve_spacing: bool = True,
+) -> str:
     cell = str(value if value is not None else "")
     if not allow_html:
-        cell = compact_html_text(cell)
+        cell = compact_html_text(cell) if preserve_spacing else html_escape(cell)
     return f"<small><small><small>{cell}</small></small></small>"
 
 
@@ -652,6 +666,27 @@ def compact_table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
         for value in row:
             rendered.append(
                 f'<td align="center" valign="middle" nowrap>{compact_cell(value, allow_html=isinstance(value, SafeHtml))}</td>'
+            )
+        rendered.append("</tr>")
+    rendered.extend(["</tbody>", "</table>", "</div>"])
+    return "\n".join(rendered)
+
+
+def wrapped_table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
+    rendered = [
+        '<div align="center">',
+        '<table align="center" cellpadding="4" cellspacing="0">',
+        "<thead>",
+        "<tr>",
+    ]
+    for header in headers:
+        rendered.append(f'<th align="left" valign="top">{compact_cell(header, preserve_spacing=False)}</th>')
+    rendered.extend(["</tr>", "</thead>", "<tbody>"])
+    for row in rows:
+        rendered.append("<tr>")
+        for value in row:
+            rendered.append(
+                f'<td align="left" valign="top">{compact_cell(value, allow_html=isinstance(value, SafeHtml), preserve_spacing=False)}</td>'
             )
         rendered.append("</tr>")
     rendered.extend(["</tbody>", "</table>", "</div>"])
@@ -769,17 +804,27 @@ def recent_liked_rows(tracks: list[TrackRow], limit: int = 20) -> list[list[str]
         key=lambda row: (added_date(row), row.get("track_name", ""), row.get("artist_names", "")),
         reverse=True,
     )
-    return [
-        [
-            date_label(added_date(row)),
-            row.get("artist_names", ""),
-            external_html_link(row.get("track_name", ""), row.get("spotify_url", "")),
-            row.get("album_name", ""),
-            effective_year(row),
-            effective_primary_genre(row),
-        ]
-        for row in liked_tracks[:limit]
-    ]
+    rows: list[list[str]] = []
+    for row in liked_tracks[:limit]:
+        track = external_wrapped_html_link(row.get("track_name", ""), row.get("spotify_url", ""))
+        artist = html_escape(row.get("artist_names", ""))
+        track_cell = SafeHtml(f"{track}<br/><small>{artist}</small>")
+        meta = " · ".join(
+            part
+            for part in (
+                effective_year(row),
+                effective_primary_genre(row),
+            )
+            if part
+        )
+        album = html_escape(row.get("album_name", ""))
+        detail_cell = SafeHtml(
+            f"{album}<br/><small>{html_escape(meta)}</small>"
+            if meta
+            else album
+        )
+        rows.append([date_label(added_date(row)), track_cell, detail_cell])
+    return rows
 
 
 def slug(value: str) -> str:
@@ -1100,7 +1145,7 @@ def spotify_all_time_top_songs_lines(
     ranking_path: Path,
     readme_dir: Path,
 ) -> list[str]:
-    lines = ["### Your All-Time Top Songs", ""]
+    lines = ["### All-Time Top Songs", ""]
     if not top_tracks:
         return lines + [
             "_No Spotify all-time top songs cached yet. Re-run Spotify export with `user-top-read` scope._",
@@ -1133,7 +1178,7 @@ def spotify_all_time_top_songs_lines(
             "</p>",
             "</td>",
             '<td valign="top" width="48%">',
-            f'<img src="{html.escape(ranking_src, quote=True)}" width="560" alt="Your all-time top songs ranking" />',
+            f'<img src="{html.escape(ranking_src, quote=True)}" width="560" alt="All-time top songs ranking" />',
             "</td>",
             "</tr>",
             "</table>",
@@ -1588,10 +1633,10 @@ def write_all_time_top_songs_svg(path: Path, top_tracks: list[dict[str, str]]) -
     max_score = max(len(visible), 1)
 
     parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Your all-time top songs ranking">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="All-time top songs ranking">',
         f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
         f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
-        svg_text(margin + 16, margin + 30, "Your All-Time", size=22, weight=800, fill="#ffffff"),
+        svg_text(margin + 16, margin + 30, "All-Time", size=22, weight=800, fill="#ffffff"),
         svg_text(margin + 16, margin + 52, "Top Songs", size=22, weight=800, fill="#ffffff"),
         svg_text(width - margin - 16, margin + 39, "Spotify long term", size=13, weight=800, fill="#dfe8df", anchor="end"),
     ]
@@ -2163,7 +2208,7 @@ def build_dashboard(
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     lines: list[str] = [
-        "# Maks Krutikov Spotify Library",
+        f"# {README_TITLE}",
         "",
         REPO_DESCRIPTION,
         "",
@@ -2244,10 +2289,10 @@ def build_dashboard(
 
         lines.extend(
             [
-                "## Latest 20 Liked Tracks",
+                "## Latest Liked Tracks",
                 "",
-                compact_table(
-                    ["Added", "Artist", "Track", "Album", "Year", "Genre"],
+                wrapped_table(
+                    ["Added", "Track", "Details"],
                     recent_liked_rows(tracks, 20),
                 ),
                 "",
@@ -2308,6 +2353,8 @@ def build_dashboard(
             "</details>",
             "",
             f"_Generated at {generated_at}._",
+            "",
+            "<sub>Created by Maksim Krutikov.</sub>",
             "",
         ]
     )
