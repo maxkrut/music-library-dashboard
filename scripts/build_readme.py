@@ -651,27 +651,6 @@ def compact_cell(
     return f"<small><small><small>{cell}</small></small></small>"
 
 
-def compact_table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
-    rendered = [
-        '<div align="center">',
-        '<table align="center" cellpadding="0" cellspacing="0">',
-        "<thead>",
-        "<tr>",
-    ]
-    for header in headers:
-        rendered.append(f'<th align="center" valign="middle" nowrap>{compact_cell(header)}</th>')
-    rendered.extend(["</tr>", "</thead>", "<tbody>"])
-    for row in rows:
-        rendered.append("<tr>")
-        for value in row:
-            rendered.append(
-                f'<td align="center" valign="middle" nowrap>{compact_cell(value, allow_html=isinstance(value, SafeHtml))}</td>'
-            )
-        rendered.append("</tr>")
-    rendered.extend(["</tbody>", "</table>", "</div>"])
-    return "\n".join(rendered)
-
-
 def wrapped_table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
     rendered = [
         '<div align="center">',
