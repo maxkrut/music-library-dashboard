@@ -1,6 +1,6 @@
-# Maks Krutikov Spotify Library
+# Spotify Library Dashboard
 
-Visual Spotify library dashboard generated from a private music archive: genre atlas, country timelines, listening maps, and all-time top songs.
+Automated Spotify library dashboard with genre atlas, country timelines, listening maps, and all-time top songs.
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -14,7 +14,7 @@ No audio files are included: this repository publishes generated summaries from 
 
 ![Countries by decade heatmap](assets/listening/country-decade.svg)
 
-### Your All-Time Top Songs
+### All-Time Top Songs
 
 <table>
 <tr>
@@ -43,7 +43,7 @@ No audio files are included: this repository publishes generated summaries from 
 </p>
 </td>
 <td valign="top" width="48%">
-<img src="assets/listening/all-time-top-songs.svg" width="560" alt="Your all-time top songs ranking" />
+<img src="assets/listening/all-time-top-songs.svg" width="560" alt="All-time top songs ranking" />
 </td>
 </tr>
 </table>
@@ -110,180 +110,117 @@ No audio files are included: this repository publishes generated summaries from 
 
 ![Other genre atlas](assets/atlas/other.svg)
 
-## Latest 20 Liked Tracks
+## Latest Liked Tracks
 
 <div align="center">
-<table align="center" cellpadding="0" cellspacing="0">
+<table align="center" cellpadding="4" cellspacing="0">
 <thead>
 <tr>
-<th align="center" valign="middle" nowrap><small><small><small>Added</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Artist</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Track</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Album</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Year</small></small></small></th>
-<th align="center" valign="middle" nowrap><small><small><small>Genre</small></small></small></th>
+<th align="left" valign="top"><small><small><small>Added</small></small></small></th>
+<th align="left" valign="top"><small><small><small>Track</small></small></small></th>
+<th align="left" valign="top"><small><small><small>Details</small></small></small></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;23</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Khemmis</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/7LFxWclMQjpARPSThKVAE0">Carrion&nbsp;King</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Khemmis</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/7LFxWclMQjpARPSThKVAE0">Carrion King</a><br/><small>Khemmis</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Khemmis<br/><small>2026 · doom metal</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;23</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Stormkeep</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/5VSnXnQktUKOfDyysLMMzx">Ballad&nbsp;of&nbsp;a&nbsp;Fallen&nbsp;Star</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Nocturnes&nbsp;of&nbsp;Iswylm</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>melodic&nbsp;black&nbsp;metal</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/5VSnXnQktUKOfDyysLMMzx">Ballad of a Fallen Star</a><br/><small>Stormkeep</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>The Nocturnes of Iswylm<br/><small>2026 · melodic black metal</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;23</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Stormkeep</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/5Hh7lLiY3y9ELHs3ZsdAcH">Saccharine&nbsp;Subjugation</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Nocturnes&nbsp;of&nbsp;Iswylm</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>melodic&nbsp;black&nbsp;metal</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/5Hh7lLiY3y9ELHs3ZsdAcH">Saccharine Subjugation</a><br/><small>Stormkeep</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>The Nocturnes of Iswylm<br/><small>2026 · melodic black metal</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;23</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Stormkeep</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/4bTmQdOeFL6jHhpzfACpHp">The&nbsp;Black&nbsp;Dragons&nbsp;of&nbsp;Iswylm</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Nocturnes&nbsp;of&nbsp;Iswylm</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>melodic&nbsp;black&nbsp;metal</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/4bTmQdOeFL6jHhpzfACpHp">The Black Dragons of Iswylm</a><br/><small>Stormkeep</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>The Nocturnes of Iswylm<br/><small>2026 · melodic black metal</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;23</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Lauge;&nbsp;Baba&nbsp;Gnohm;&nbsp;JYRANTE</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/3YTA4Y3qWmPEauQ5MIbbKJ">Below&nbsp;The&nbsp;Surface</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Below&nbsp;The&nbsp;Surface</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>ambient</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/3YTA4Y3qWmPEauQ5MIbbKJ">Below The Surface</a><br/><small>Lauge; Baba Gnohm; JYRANTE</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Below The Surface<br/><small>2026 · ambient</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;19</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Amber&nbsp;Creek</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2L32tvX6I73xToPvqFMi9k">Don&#x27;t&nbsp;Run&nbsp;Away</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Don&#x27;t&nbsp;Run&nbsp;Away</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>electronic</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-19</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/2L32tvX6I73xToPvqFMi9k">Don&#x27;t Run Away</a><br/><small>Amber Creek</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Don&#x27;t Run Away<br/><small>2026 · electronic</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;19</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Yes</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/6nMY6W3CvmBEOHTGrlm6PC">Love&nbsp;Lies&nbsp;Dreaming</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Aurora&nbsp;(Bonus&nbsp;Tracks&nbsp;Edition)</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>progressive&nbsp;rock</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-19</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/6nMY6W3CvmBEOHTGrlm6PC">Love Lies Dreaming</a><br/><small>Yes</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Aurora (Bonus Tracks Edition)<br/><small>2026 · progressive rock</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;18</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Fionnlagh;&nbsp;Lauge</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/5CKwsEAhZogWhqWbGYQ4Da">Between&nbsp;Layers</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Between&nbsp;Layers</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>ambient</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-18</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/5CKwsEAhZogWhqWbGYQ4Da">Between Layers</a><br/><small>Fionnlagh; Lauge</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Between Layers<br/><small>2026 · ambient</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;17</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>This&nbsp;Winter&nbsp;Machine</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/4W6MueOc6KliVlG0ZcZLQN">Reflections</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>The&nbsp;Clockwork&nbsp;Man</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2023</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>progressive&nbsp;rock</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-17</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/4W6MueOc6KliVlG0ZcZLQN">Reflections</a><br/><small>This Winter Machine</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>The Clockwork Man<br/><small>2023 · progressive rock</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;17</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Pallbearer</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2SV69wiCCKzoFLDs6NWM5N">I&nbsp;Saw&nbsp;the&nbsp;End</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Heartless</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2017</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>doom&nbsp;metal</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-17</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/2SV69wiCCKzoFLDs6NWM5N">I Saw the End</a><br/><small>Pallbearer</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Heartless<br/><small>2017 · doom metal</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;15</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Magic&nbsp;Man</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm">Steppe&nbsp;Grass</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Boards&nbsp;of&nbsp;Mongolia</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>dungeon&nbsp;synth</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-15</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm">Steppe Grass</a><br/><small>Magic Man</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Boards of Mongolia<br/><small>2026 · dungeon synth</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;07</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>dungeontroll</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn">Crypt&nbsp;of&nbsp;Euphoria</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Into&nbsp;the&nbsp;Castle&nbsp;of&nbsp;the&nbsp;Forbidden&nbsp;Twilight</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2020</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>dungeon&nbsp;synth</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-07</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn">Crypt of Euphoria</a><br/><small>dungeontroll</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Into the Castle of the Forbidden Twilight<br/><small>2020 · dungeon synth</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;06&#8209;04</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Healthyliving</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost&nbsp;Limbs</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Songs&nbsp;of&nbsp;Abundance,&nbsp;Psalms&nbsp;of&nbsp;Grief</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2023</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-06-04</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost Limbs</a><br/><small>Healthyliving</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Songs of Abundance, Psalms of Grief<br/><small>2023</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;26</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Nils&nbsp;Frahm</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/7uYRmq6tONjvwUh8wn8zvh">Further&nbsp;in&nbsp;the&nbsp;Making</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Old&nbsp;Friends&nbsp;New&nbsp;Friends</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2021</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>modern&nbsp;classical</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-05-26</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/7uYRmq6tONjvwUh8wn8zvh">Further in the Making</a><br/><small>Nils Frahm</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Old Friends New Friends<br/><small>2021 · modern classical</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;24</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Darkthrone</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4">So&nbsp;I&nbsp;Marched&nbsp;To&nbsp;The&nbsp;Sunken&nbsp;Empire</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Pre&#8209;Historic&nbsp;Metal</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>black&nbsp;metal</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-05-24</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4">So I Marched To The Sunken Empire</a><br/><small>Darkthrone</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Pre-Historic Metal<br/><small>2026 · black metal</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;15</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Kaatayra</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/5IoMPCKmcSlTteXdRVCzCs">Águas&nbsp;Passadas</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Caminhos&nbsp;de&nbsp;Água</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>atmospheric&nbsp;black&nbsp;metal</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-05-15</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/5IoMPCKmcSlTteXdRVCzCs">Águas Passadas</a><br/><small>Kaatayra</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Caminhos de Água<br/><small>2026 · atmospheric black metal</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;15</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Conjurer</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/1YXo39c7oKj77QdON48uIA">Let&nbsp;Us&nbsp;Live</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Unself</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2025</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>sludge&nbsp;metal</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-05-15</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1YXo39c7oKj77QdON48uIA">Let Us Live</a><br/><small>Conjurer</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Unself<br/><small>2025 · sludge metal</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;14</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Summoning</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/2L9TUkStJsBHh3Xtw8oUOP">Flammifer</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Old&nbsp;Mornings&nbsp;Dawn</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2013</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>black&nbsp;metal</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-05-14</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/2L9TUkStJsBHh3Xtw8oUOP">Flammifer</a><br/><small>Summoning</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Old Mornings Dawn<br/><small>2013 · black metal</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;14</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Rivers&nbsp;of&nbsp;Nihil</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/5EtFUoimouxAcK1Dwj60Pz">Terrestria&nbsp;III:&nbsp;Wither</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Where&nbsp;Owls&nbsp;Know&nbsp;My&nbsp;Name</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2018</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>death&nbsp;metal</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-05-14</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/5EtFUoimouxAcK1Dwj60Pz">Terrestria III: Wither</a><br/><small>Rivers of Nihil</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Where Owls Know My Name<br/><small>2018 · death metal</small></small></small></small></td>
 </tr>
 <tr>
-<td align="center" valign="middle" nowrap><small><small><small>2026&#8209;05&#8209;08</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>heks</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small><a href="https://open.spotify.com/track/1Yg1pftEFPMsATyNfkuGYX">Protestantisk&nbsp;Fanatiker&nbsp;(London&nbsp;Fields&nbsp;Darkwave)</a></small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>Protestantisk&nbsp;Fanatiker&nbsp;(London&nbsp;Fields&nbsp;Darkwave)</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>2026</small></small></small></td>
-<td align="center" valign="middle" nowrap><small><small><small>electronic</small></small></small></td>
+<td align="left" valign="top"><small><small><small>2026-05-08</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1Yg1pftEFPMsATyNfkuGYX">Protestantisk Fanatiker (London Fields Darkwave)</a><br/><small>heks</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Protestantisk Fanatiker (London Fields Darkwave)<br/><small>2026 · electronic</small></small></small></small></td>
 </tr>
 </tbody>
 </table>
@@ -340,4 +277,6 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-23 20:01 UTC._
+_Generated at 2026-06-25 07:15 UTC._
+
+<sub>Created by Maksim Krutikov.</sub>
