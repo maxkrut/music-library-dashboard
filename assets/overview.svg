@@ -6,19 +6,19 @@
 <rect x="16.0" y="82.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="16.0" y="82.0" width="4" height="92" fill="#557e64"/>
 <text x="34.0" y="112.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#557e64" text-anchor="start">TRACKS</text>
-<text x="34.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1982</text>
+<text x="34.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1984</text>
 <rect x="408.0" y="82.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="408.0" y="82.0" width="4" height="92" fill="#526f92"/>
 <text x="426.0" y="112.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#526f92" text-anchor="start">ARTISTS</text>
-<text x="426.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1370</text>
+<text x="426.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1372</text>
 <rect x="800.0" y="82.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="800.0" y="82.0" width="4" height="92" fill="#a96855"/>
 <text x="818.0" y="112.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#a96855" text-anchor="start">ALBUMS</text>
-<text x="818.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1685</text>
+<text x="818.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1687</text>
 <rect x="16.0" y="182.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="16.0" y="182.0" width="4" height="92" fill="#557e64"/>
 <text x="34.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#557e64" text-anchor="start">TAG GENRES</text>
-<text x="34.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">531</text>
+<text x="34.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">533</text>
 <rect x="408.0" y="182.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="408.0" y="182.0" width="4" height="92" fill="#526f92"/>
 <text x="426.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#526f92" text-anchor="start">ASSIGNED GENRES</text>
@@ -38,5 +38,5 @@
 <rect x="800.0" y="282.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="800.0" y="282.0" width="4" height="92" fill="#a96855"/>
 <text x="818.0" y="312.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#a96855" text-anchor="start">DURATION</text>
-<text x="818.0" y="354.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">184h 51m</text>
+<text x="818.0" y="354.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">184h 56m</text>
 </svg>

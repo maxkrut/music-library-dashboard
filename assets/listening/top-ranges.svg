@@ -17,13 +17,13 @@
 <text x="72.0" y="208.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">Stormkeep</text>
 <text x="386.0" y="208.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="end">new</text>
 <text x="34.0" y="236.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">04</text>
-<text x="72.0" y="236.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">Khemmis</text>
+<text x="72.0" y="236.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">Fief</text>
 <text x="386.0" y="236.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="end">new</text>
 <text x="34.0" y="264.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">05</text>
-<text x="72.0" y="264.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">The Flight of Sleipnir</text>
+<text x="72.0" y="264.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">Lauge</text>
 <text x="386.0" y="264.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="end">new</text>
 <text x="34.0" y="292.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">06</text>
-<text x="72.0" y="292.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">Lauge</text>
+<text x="72.0" y="292.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">The Flight of Sleipnir</text>
 <text x="386.0" y="292.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="end">new</text>
 <text x="34.0" y="320.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">07</text>
 <text x="72.0" y="320.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">ByErik ヵ</text>
@@ -61,7 +61,7 @@
 <text x="778.0" y="152.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">same</text>
 <text x="426.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="start">02</text>
 <text x="464.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">The Flight of Sleipnir</text>
-<text x="778.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">up 3</text>
+<text x="778.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">up 4</text>
 <text x="426.0" y="208.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="start">03</text>
 <text x="464.0" y="208.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">Rush</text>
 <text x="778.0" y="208.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">new</text>
@@ -85,7 +85,7 @@
 <text x="778.0" y="376.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">new</text>
 <text x="426.0" y="404.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="start">10</text>
 <text x="464.0" y="404.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">Lauge</text>
-<text x="778.0" y="404.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">down 4</text>
+<text x="778.0" y="404.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">down 5</text>
 <text x="426.0" y="432.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="start">11</text>
 <text x="464.0" y="432.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" fill="#102027" text-anchor="start">Borknagar</text>
 <text x="778.0" y="432.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#526f92" text-anchor="end">down 9</text>

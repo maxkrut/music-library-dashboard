@@ -24,8 +24,8 @@ No audio files are included: this repository publishes generated summaries from 
 <a href="https://open.spotify.com/track/3a8hSZnGAwnEhalgT28Cp6"><img src="https://i.scdn.co/image/ab67616d0000b273eabe69cadeb913306c5933cc" width="72" height="72" alt="Realm of Wolves - Hegemon Of Cold Seas" /></a>
 <a href="https://open.spotify.com/track/0uGSXfO8nC2VV1BpuW2Sr8"><img src="https://i.scdn.co/image/ab67616d0000b273eabe69cadeb913306c5933cc" width="72" height="72" alt="Realm of Wolves - And We Become Wolves" /></a>
 <a href="https://open.spotify.com/track/5dAie8vCratkNmHUnkPf0e"><img src="https://i.scdn.co/image/ab67616d0000b2731c726b68ae4f05b6671a086f" width="72" height="72" alt="Worm; Marty Friedman - Witchmoon: The Infernal Masquerade (feat. Marty Friedman)" /></a>
-<a href="https://open.spotify.com/track/39SSSnwlBXvqjp3VCP0oKU"><img src="https://i.scdn.co/image/ab67616d0000b273ac26fcc8f9b7986b5ca0c898" width="72" height="72" alt="Shape Of Despair - Dissolution" /></a>
 <a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
+<a href="https://open.spotify.com/track/39SSSnwlBXvqjp3VCP0oKU"><img src="https://i.scdn.co/image/ab67616d0000b273ac26fcc8f9b7986b5ca0c898" width="72" height="72" alt="Shape Of Despair - Dissolution" /></a>
 <a href="https://open.spotify.com/track/6piuCKWW9pwvG1LYDWGk9D"><img src="https://i.scdn.co/image/ab67616d0000b2730815b7b365abac40db634b38" width="72" height="72" alt="Ben Kenney; Ashley Mendel; Rachel Ana Dobken - Three Times" /></a>
 <a href="https://open.spotify.com/track/58TcasrHLxzt3FEepjUJQd"><img src="https://i.scdn.co/image/ab67616d0000b273bc5a1e048fdd70be8c01f94d" width="72" height="72" alt="Shape Of Despair - Sleep Mirrored" /></a>
 <a href="https://open.spotify.com/track/72GUD7ZA98E9lWhltp4bqb"><img src="https://i.scdn.co/image/ab67616d0000b273559e72c773cf32a8fb6248a2" width="72" height="72" alt="Curta&#x27;n Wall; Elvya - The Dark Ages" /></a>
@@ -123,6 +123,16 @@ No audio files are included: this repository publishes generated summaries from 
 </thead>
 <tbody>
 <tr>
+<td align="left" valign="top"><small><small><small>2026-06-27</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/2UTpZhFg9tnzChSHHcoqBq">Ночь темна</a><br/><small>Baba Yaga Team</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Василиса и Баба Яга (Original Game Soundtrack)<br/><small>2024</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-06-26</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/6RPSdDexmwCZnLRdzfv67G">ΣΤΗΝ ΘΕΟΤΟΚΟ με δίχως τάστα-perdesiz</a><br/><small>π. Διονύσιος Ταμπάκης</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Paradise Metal<br/><small>2026 · psychedelic rock</small></small></small></small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
 <td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/7LFxWclMQjpARPSThKVAE0">Carrion King</a><br/><small>Khemmis</small></small></small></small></td>
 <td align="left" valign="top"><small><small><small>Khemmis<br/><small>2026 · doom metal</small></small></small></small></td>
@@ -212,16 +222,6 @@ No audio files are included: this repository publishes generated summaries from 
 <td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/2L9TUkStJsBHh3Xtw8oUOP">Flammifer</a><br/><small>Summoning</small></small></small></small></td>
 <td align="left" valign="top"><small><small><small>Old Mornings Dawn<br/><small>2013 · black metal</small></small></small></small></td>
 </tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-05-14</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/5EtFUoimouxAcK1Dwj60Pz">Terrestria III: Wither</a><br/><small>Rivers of Nihil</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Where Owls Know My Name<br/><small>2018 · death metal</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-05-08</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1Yg1pftEFPMsATyNfkuGYX">Protestantisk Fanatiker (London Fields Darkwave)</a><br/><small>heks</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Protestantisk Fanatiker (London Fields Darkwave)<br/><small>2026 · electronic</small></small></small></small></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -277,6 +277,6 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-25 07:17 UTC._
+_Generated at 2026-06-29 10:00 UTC._
 
 <sub>Created by Maksim Krutikov.</sub>
