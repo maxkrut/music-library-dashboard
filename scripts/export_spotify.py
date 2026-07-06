@@ -38,6 +38,7 @@ DEFAULT_REDIRECT_URI = "http://127.0.0.1:8888/callback"
 DEFAULT_SCOPE = "user-library-read playlist-read-private playlist-read-collaborative user-top-read user-read-recently-played"
 MAX_RETRY_AFTER_SECONDS = max(1, int(os.getenv("SPOTIFY_MAX_RETRY_AFTER_SECONDS", "300")))
 MAX_RATE_LIMIT_RETRIES = max(1, int(os.getenv("SPOTIFY_MAX_RATE_LIMIT_RETRIES", "20")))
+RETRYABLE_HTTP_STATUS_CODES = {500, 502, 503, 504}
 ARTIST_BATCH_SIZE = min(50, max(1, int(os.getenv("SPOTIFY_ARTIST_BATCH_SIZE", "50"))))
 SPOTIFY_REAUTH_MESSAGE = (
     "Spotify refresh token is expired, revoked, or invalid (invalid_grant). "
@@ -251,6 +252,19 @@ def retry_after_seconds(raw_value: object, default: int = 5) -> int:
     return max(seconds, 1)
 
 
+def retry_delay_seconds(error: urllib.error.HTTPError, attempt: int) -> int:
+    default = 5 if error.code == 429 else min(2 + attempt * 2, 30)
+    retry_after = retry_after_seconds(error.headers.get("Retry-After"), default)
+    if retry_after > MAX_RETRY_AFTER_SECONDS:
+        label = "rate limited" if error.code == 429 else "retry requested"
+        raise SpotifyApiError(error.code, f"{label} for {retry_after} seconds") from error
+    return max(retry_after, 1) + 1
+
+
+def should_retry_http_error(status: int) -> bool:
+    return status == 429 or status in RETRYABLE_HTTP_STATUS_CODES
+
+
 def spotify_error_code(message: str) -> str:
     try:
         payload = json.loads(message)
@@ -291,11 +305,10 @@ def post_form(url: str, data: dict[str, str], client_id: str, client_secret: str
                 return json.loads(response.read().decode("utf-8"))
         except urllib.error.HTTPError as error:
             body = error.read().decode("utf-8", errors="replace")
-            if error.code == 429:
-                retry_after = retry_after_seconds(error.headers.get("Retry-After"), 5)
-                if retry_after > MAX_RETRY_AFTER_SECONDS:
-                    raise SpotifyApiError(error.code, f"rate limited for {retry_after} seconds") from error
-                time.sleep(max(retry_after, 1) + 1)
+            if should_retry_http_error(error.code):
+                if attempt >= MAX_RATE_LIMIT_RETRIES - 1:
+                    raise SpotifyApiError(error.code, body or "form retry budget exhausted") from error
+                time.sleep(retry_delay_seconds(error, attempt))
                 continue
             raise SpotifyApiError(error.code, body) from error
         except (ConnectionError, TimeoutError, socket.timeout, urllib.error.URLError) as error:
@@ -597,10 +610,14 @@ class SpotifyClient:
                         write_json(TOKEN_CACHE, self.token)
                     continue
                 if error.code == 429:
-                    retry_after = retry_after_seconds(error.headers.get("Retry-After"), 5)
-                    if retry_after > MAX_RETRY_AFTER_SECONDS:
-                        raise SpotifyApiError(error.code, f"rate limited for {retry_after} seconds") from error
-                    time.sleep(max(retry_after, 1) + 1)
+                    if attempt >= MAX_RATE_LIMIT_RETRIES - 1:
+                        raise SpotifyApiError(error.code, body or "rate limit retry budget exhausted") from error
+                    time.sleep(retry_delay_seconds(error, attempt))
+                    continue
+                if error.code in RETRYABLE_HTTP_STATUS_CODES:
+                    if attempt >= MAX_RATE_LIMIT_RETRIES - 1:
+                        raise SpotifyApiError(error.code, body or "server error retry budget exhausted") from error
+                    time.sleep(retry_delay_seconds(error, attempt))
                     continue
                 raise SpotifyApiError(error.code, body) from error
             except (
