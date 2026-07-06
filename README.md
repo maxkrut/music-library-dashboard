@@ -27,7 +27,6 @@ No audio files are included: this repository publishes generated summaries from 
 <a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
 <a href="https://open.spotify.com/track/39SSSnwlBXvqjp3VCP0oKU"><img src="https://i.scdn.co/image/ab67616d0000b273ac26fcc8f9b7986b5ca0c898" width="72" height="72" alt="Shape Of Despair - Dissolution" /></a>
 <a href="https://open.spotify.com/track/6piuCKWW9pwvG1LYDWGk9D"><img src="https://i.scdn.co/image/ab67616d0000b2730815b7b365abac40db634b38" width="72" height="72" alt="Ben Kenney; Ashley Mendel; Rachel Ana Dobken - Three Times" /></a>
-<a href="https://open.spotify.com/track/58TcasrHLxzt3FEepjUJQd"><img src="https://i.scdn.co/image/ab67616d0000b273bc5a1e048fdd70be8c01f94d" width="72" height="72" alt="Shape Of Despair - Sleep Mirrored" /></a>
 <a href="https://open.spotify.com/track/72GUD7ZA98E9lWhltp4bqb"><img src="https://i.scdn.co/image/ab67616d0000b273559e72c773cf32a8fb6248a2" width="72" height="72" alt="Curta&#x27;n Wall; Elvya - The Dark Ages" /></a>
 <a href="https://open.spotify.com/track/1lZquyBVOQb3qvVMpvoXiT"><img src="https://i.scdn.co/image/ab67616d0000b2735df4965ac420798942c57b99" width="72" height="72" alt="220 Volt - Love Is All You Need" /></a>
 <a href="https://open.spotify.com/track/6S9cuHvVIuoKfSDwcENP9P"><img src="https://i.scdn.co/image/ab67616d0000b2737a2e1473dbe8e461ae689121" width="72" height="72" alt="Whispering Void - Vi Finnes" /></a>
@@ -40,6 +39,7 @@ No audio files are included: this repository publishes generated summaries from 
 <a href="https://open.spotify.com/track/6DTp1lInphWvQtCNbJoJ2N"><img src="https://i.scdn.co/image/ab67616d0000b27367e9b8ecf8c3f2ce3c2e8be4" width="72" height="72" alt="Fogweaver - Spell-woven" /></a>
 <a href="https://open.spotify.com/track/7zfxW7P4yYfbQTmW7XUjS6"><img src="https://i.scdn.co/image/ab67616d0000b273c03375b437f97510b2903215" width="72" height="72" alt="Psilocybe Larvae - Новый дивный мир" /></a>
 <a href="https://open.spotify.com/track/5el8o8F9zXlbgMun4IRxCj"><img src="https://i.scdn.co/image/ab67616d0000b273146190ba8aeb500d602df2a7" width="72" height="72" alt="Kick Puncher - Fight or Flight" /></a>
+<a href="https://open.spotify.com/track/2qURNRJHKUjc9aT398g0pf"><img src="https://i.scdn.co/image/ab67616d0000b273af6b567023c685829c273982" width="72" height="72" alt="Theatre Of Tragedy - Venus" /></a>
 </p>
 </td>
 <td valign="top" width="48%">
@@ -123,14 +123,29 @@ No audio files are included: this repository publishes generated summaries from 
 </thead>
 <tbody>
 <tr>
+<td align="left" valign="top"><small><small><small>2026-07-06</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/03mOFk2uyyqazaNbnVZVmG">Antibiosis</a><br/><small>Words Of Farewell</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>The Black Wild Yonder<br/><small>2014 · death metal</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-07-01</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/7wu4wHFF09Qww23NW0VPvq">ΧΑΙΡΕ ΠΑΡΘΕΝΕ ΣΟΥΜΕΛΑ-Ψαλτοτράγουδο</a><br/><small>π. Διονύσιος Ταμπάκης</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Paradise Metal<br/><small>2026 · psychedelic rock</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-07-01</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/37VRXqCE4ixT8I2i8zEa7k">ΗΛΕΚΤΡΙΚΕΣ ΥΜΝΩΔΙΕΣ- Ά Εωθινόν με Ηλεκτρική Κιθάρα δίχως τάστα-perdesiz</a><br/><small>π. Διονύσιος Ταμπάκης</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Paradise Metal<br/><small>2026 · psychedelic rock</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-06-29</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/6NpC69PWENdMii8ouxYcBd">Deadening</a><br/><small>Nailed to Obscurity</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>King Delusion<br/><small>2017 · melodic death metal</small></small></small></small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><small><small><small>2026-06-27</small></small></small></td>
 <td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/2UTpZhFg9tnzChSHHcoqBq">Ночь темна</a><br/><small>Baba Yaga Team</small></small></small></small></td>
 <td align="left" valign="top"><small><small><small>Василиса и Баба Яга (Original Game Soundtrack)<br/><small>2024</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-26</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/6RPSdDexmwCZnLRdzfv67G">ΣΤΗΝ ΘΕΟΤΟΚΟ με δίχως τάστα-perdesiz</a><br/><small>π. Διονύσιος Ταμπάκης</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Paradise Metal<br/><small>2026 · psychedelic rock</small></small></small></small></td>
 </tr>
 <tr>
 <td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
@@ -207,21 +222,6 @@ No audio files are included: this repository publishes generated summaries from 
 <td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4">So I Marched To The Sunken Empire</a><br/><small>Darkthrone</small></small></small></small></td>
 <td align="left" valign="top"><small><small><small>Pre-Historic Metal<br/><small>2026 · black metal</small></small></small></small></td>
 </tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-05-15</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/5IoMPCKmcSlTteXdRVCzCs">Águas Passadas</a><br/><small>Kaatayra</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Caminhos de Água<br/><small>2026 · atmospheric black metal</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-05-15</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1YXo39c7oKj77QdON48uIA">Let Us Live</a><br/><small>Conjurer</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Unself<br/><small>2025 · sludge metal</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-05-14</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/2L9TUkStJsBHh3Xtw8oUOP">Flammifer</a><br/><small>Summoning</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Old Mornings Dawn<br/><small>2013 · black metal</small></small></small></small></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -277,6 +277,6 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 
 </details>
 
-_Generated at 2026-06-29 10:00 UTC._
+_Generated at 2026-07-06 17:14 UTC._
 
 <sub>Created by Maksim Krutikov.</sub>
