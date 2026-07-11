@@ -2,7 +2,7 @@
 
 Automated Spotify library dashboard with genre atlas, country timelines, listening maps, and all-time top songs.
 
-_Last updated 2026-07-11 07:06 UTC._
+_Last updated 2026-07-11 07:12 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
