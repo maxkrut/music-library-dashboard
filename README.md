@@ -1,6 +1,6 @@
 # Spotify Library Dashboard
 
-Automated Spotify library dashboard with genre atlas, country timelines, listening maps, and all-time top songs.
+Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
 _Last updated 2026-07-11 07:12 UTC._
 
@@ -8,7 +8,7 @@ No audio files are included: this repository publishes generated summaries from 
 
 ![Spotify library overview](assets/overview.svg)
 
-## All-Time Top Songs
+## Long-Term Favorites
 
 Spotify long-term favorites. Album covers are shown once, keeping the highest-ranked track from each album.
 
@@ -34,73 +34,51 @@ Spotify long-term favorites. Album covers are shown once, keeping the highest-ra
 <a href="https://open.spotify.com/track/2qURNRJHKUjc9aT398g0pf"><img src="https://i.scdn.co/image/ab67616d0000b273af6b567023c685829c273982" width="72" height="72" alt="Theatre Of Tragedy - Venus" /></a>
 </p>
 
+<details>
+<summary>View ranked list</summary>
+
 <p align="center">
-<img src="assets/listening/all-time-top-songs.svg" width="720" alt="All-time top songs ranking" />
+<img src="assets/listening/all-time-top-songs.svg" width="720" alt="Long-term favorites ranking" />
 </p>
+
+</details>
 
 ## Latest Liked Tracks
 
 The ten most recently saved tracks in the library.
 
 <div align="center">
-<table align="center" cellpadding="4" cellspacing="0">
-<thead>
-<tr>
-<th align="left" valign="top"><small><small><small>Added</small></small></small></th>
-<th align="left" valign="top"><small><small><small>Track</small></small></small></th>
-<th align="left" valign="top"><small><small><small>Details</small></small></small></th>
-</tr>
-</thead>
+<table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
-<td align="left" valign="top"><small><small><small>2026-07-10</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1LkGmGVt1y9Ks2O1IRzAzy">fever in the night</a><br/><small>ALLP; laviero</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>fever in the night<br/><small>2026 · hip hop</small></small></small></small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1LkGmGVt1y9Ks2O1IRzAzy">fever in the night</a></strong> — ALLP; laviero<br/><small>fever in the night · 2026 · hip hop · Added 2026-07-10</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><small><small><small>2026-07-09</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/3oRuCzqdduzZ2CBhAtv8zO">Portrait Gallery</a><br/><small>Luke Howard</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Sun, Cloud<br/><small>2013</small></small></small></small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3oRuCzqdduzZ2CBhAtv8zO">Portrait Gallery</a></strong> — Luke Howard<br/><small>Sun, Cloud · 2013 · Added 2026-07-09</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><small><small><small>2026-07-08</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1Q5dHbfQOOlpldhUyN9SLS">Ne Ola Yar Ola</a><br/><small>Barış Manço</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Sarı Çizmeli Mehmet Ağa<br/><small>1993 · anatolian rock</small></small></small></small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1Q5dHbfQOOlpldhUyN9SLS">Ne Ola Yar Ola</a></strong> — Barış Manço<br/><small>Sarı Çizmeli Mehmet Ağa · 1993 · anatolian rock · Added 2026-07-08</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><small><small><small>2026-07-08</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/6A8OuzYyWXkEX8NSKpxdA6">Lions at the Gate</a><br/><small>The Tower</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Hic Abundant Leones<br/><small>2014</small></small></small></small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6A8OuzYyWXkEX8NSKpxdA6">Lions at the Gate</a></strong> — The Tower<br/><small>Hic Abundant Leones · 2014 · Added 2026-07-08</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><small><small><small>2026-07-08</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/4gCxNWL3Wce5matrFYqwg6">Human Disgrace</a><br/><small>Abominog</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Manifesting Void<br/><small>2008 · death metal</small></small></small></small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4gCxNWL3Wce5matrFYqwg6">Human Disgrace</a></strong> — Abominog<br/><small>Manifesting Void · 2008 · death metal · Added 2026-07-08</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><small><small><small>2026-07-08</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1MNoaPv7HGoYbZfeAbzPVZ">Долгая счастливая жизнь</a><br/><small>Grazhdanskaya Oborona</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>The Best, Pt. 2<br/><small>1990 · siberian punk</small></small></small></small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1MNoaPv7HGoYbZfeAbzPVZ">Долгая счастливая жизнь</a></strong> — Grazhdanskaya Oborona<br/><small>The Best, Pt. 2 · 1990 · siberian punk · Added 2026-07-08</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><small><small><small>2026-07-07</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/4b7LkbOF77v009R9zU4yxT">If I Awake</a><br/><small>Zeromind</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>If I Awake<br/><small>2026</small></small></small></small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4b7LkbOF77v009R9zU4yxT">If I Awake</a></strong> — Zeromind<br/><small>If I Awake · 2026 · Added 2026-07-07</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><small><small><small>2026-07-07</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/3Hi1ulX4rvxnOij9Z9ufRt">Promise</a><br/><small>Radagast</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Vermis - Sounds of the World, Vol. 1 - Melodies of the Unknown<br/><small>2025 · dungeon synth</small></small></small></small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3Hi1ulX4rvxnOij9Z9ufRt">Promise</a></strong> — Radagast<br/><small>Vermis - Sounds of the World, Vol. 1 - Melodies of the Unknown · 2025 · dungeon synth · Added 2026-07-07</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><small><small><small>2026-07-06</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/03mOFk2uyyqazaNbnVZVmG">Antibiosis</a><br/><small>Words Of Farewell</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>The Black Wild Yonder<br/><small>2014 · death metal</small></small></small></small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/03mOFk2uyyqazaNbnVZVmG">Antibiosis</a></strong> — Words Of Farewell<br/><small>The Black Wild Yonder · 2014 · death metal · Added 2026-07-06</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><small><small><small>2026-07-01</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/7wu4wHFF09Qww23NW0VPvq">ΧΑΙΡΕ ΠΑΡΘΕΝΕ ΣΟΥΜΕΛΑ-Ψαλτοτράγουδο</a><br/><small>π. Διονύσιος Ταμπάκης</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Paradise Metal<br/><small>2026 · psychedelic rock</small></small></small></small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7wu4wHFF09Qww23NW0VPvq">ΧΑΙΡΕ ΠΑΡΘΕΝΕ ΣΟΥΜΕΛΑ-Ψαλτοτράγουδο</a></strong> — π. Διονύσιος Ταμπάκης<br/><small>Paradise Metal · 2026 · psychedelic rock · Added 2026-07-01</small></td>
 </tr>
 </tbody>
 </table>

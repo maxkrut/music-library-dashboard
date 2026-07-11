@@ -30,7 +30,7 @@ SPOTIFY_TOP_ITEMS_CACHE = ROOT / ".cache" / "spotify-top-items.json"
 SPOTIFY_RECENTLY_PLAYED_CACHE = ROOT / ".cache" / "spotify-recently-played.json"
 COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
 README_TITLE = "Spotify Library Dashboard"
-REPO_DESCRIPTION = "Automated Spotify library dashboard with genre atlas, country timelines, listening maps, and all-time top songs."
+REPO_DESCRIPTION = "Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries."
 
 
 def write_text_lf(path: Path, content: str) -> None:
@@ -596,43 +596,20 @@ def external_wrapped_html_link(label: str, url: str) -> str:
     return SafeHtml(f'<a href="{html_escape(target)}">{html_escape(text)}</a>')
 
 
-def compact_html_text(value: object) -> str:
-    return (
-        html_escape(value)
-        .replace(" ", "&nbsp;")
-        .replace("-", "&#8209;")
-    )
-
-
-def compact_cell(
-    value: object,
-    *,
-    allow_html: bool = False,
-    preserve_spacing: bool = True,
-) -> str:
-    cell = str(value if value is not None else "")
-    if not allow_html:
-        cell = compact_html_text(cell) if preserve_spacing else html_escape(cell)
-    return f"<small><small><small>{cell}</small></small></small>"
-
-
-def wrapped_table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
+def stacked_list(items: Iterable[SafeHtml]) -> str:
     rendered = [
         '<div align="center">',
-        '<table align="center" cellpadding="4" cellspacing="0">',
-        "<thead>",
-        "<tr>",
+        '<table width="100%" cellpadding="8" cellspacing="0">',
+        "<tbody>",
     ]
-    for header in headers:
-        rendered.append(f'<th align="left" valign="top">{compact_cell(header, preserve_spacing=False)}</th>')
-    rendered.extend(["</tr>", "</thead>", "<tbody>"])
-    for row in rows:
-        rendered.append("<tr>")
-        for value in row:
-            rendered.append(
-                f'<td align="left" valign="top">{compact_cell(value, allow_html=isinstance(value, SafeHtml), preserve_spacing=False)}</td>'
-            )
-        rendered.append("</tr>")
+    for item in items:
+        rendered.extend(
+            [
+                "<tr>",
+                f'<td align="left" valign="top">{item}</td>',
+                "</tr>",
+            ]
+        )
     rendered.extend(["</tbody>", "</table>", "</div>"])
     return "\n".join(rendered)
 
@@ -743,7 +720,7 @@ def assigned_genre_rows(
     return top(counts, len(counts))
 
 
-def recent_liked_rows(tracks: list[TrackRow], limit: int = 20) -> list[list[str]]:
+def recent_liked_items(tracks: list[TrackRow], limit: int = 20) -> list[SafeHtml]:
     liked_tracks = [
         row
         for row in tracks
@@ -753,27 +730,28 @@ def recent_liked_rows(tracks: list[TrackRow], limit: int = 20) -> list[list[str]
         key=lambda row: (added_date(row), row.get("track_name", ""), row.get("artist_names", "")),
         reverse=True,
     )
-    rows: list[list[str]] = []
+    items: list[SafeHtml] = []
     for row in liked_tracks[:limit]:
         track = external_wrapped_html_link(row.get("track_name", ""), row.get("spotify_url", ""))
         artist = html_escape(row.get("artist_names", ""))
-        track_cell = SafeHtml(f"{track}<br/><small>{artist}</small>")
+        title = f"<strong>{track}</strong>"
+        if artist:
+            title += f" — {artist}"
+        liked_date = date_label(added_date(row))
         meta = " · ".join(
             part
             for part in (
+                row.get("album_name", "").strip(),
                 effective_year(row),
                 effective_primary_genre(row),
+                f"Added {liked_date}" if liked_date else "",
             )
             if part
         )
-        album = html_escape(row.get("album_name", ""))
-        detail_cell = SafeHtml(
-            f"{album}<br/><small>{html_escape(meta)}</small>"
-            if meta
-            else album
+        items.append(
+            SafeHtml(f"{title}<br/><small>{html_escape(meta)}</small>")
         )
-        rows.append([date_label(added_date(row)), track_cell, detail_cell])
-    return rows
+    return items
 
 
 def slug(value: str) -> str:
@@ -1088,20 +1066,20 @@ def unique_album_cover_tracks(
     return covers
 
 
-def spotify_all_time_top_songs_lines(
+def spotify_long_term_favorites_lines(
     top_tracks: list[dict[str, str]],
     ranking_path: Path,
     readme_dir: Path,
 ) -> list[str]:
     lines = [
-        "## All-Time Top Songs",
+        "## Long-Term Favorites",
         "",
         "Spotify long-term favorites. Album covers are shown once, keeping the highest-ranked track from each album.",
         "",
     ]
     if not top_tracks:
         return lines + [
-            "_No Spotify all-time top songs cached yet. Re-run Spotify export with `user-top-read` scope._",
+            "_No Spotify long-term favorites cached yet. Re-run Spotify export with `user-top-read` scope._",
             "",
         ]
 
@@ -1123,9 +1101,14 @@ def spotify_all_time_top_songs_lines(
         [
             "</p>",
             "",
+            "<details>",
+            "<summary>View ranked list</summary>",
+            "",
             '<p align="center">',
-            f'<img src="{html.escape(ranking_src, quote=True)}" width="720" alt="All-time top songs ranking" />',
+            f'<img src="{html.escape(ranking_src, quote=True)}" width="720" alt="Long-term favorites ranking" />',
             "</p>",
+            "",
+            "</details>",
             "",
         ]
     )
@@ -1566,7 +1549,7 @@ def write_taste_drift_svg(
     write_text_lf(path, "\n".join(parts) + "\n")
 
 
-def write_all_time_top_songs_svg(path: Path, top_tracks: list[dict[str, str]]) -> None:
+def write_long_term_favorites_svg(path: Path, top_tracks: list[dict[str, str]]) -> None:
     width = 560
     height = 640
     margin = 16
@@ -1577,16 +1560,16 @@ def write_all_time_top_songs_svg(path: Path, top_tracks: list[dict[str, str]]) -
     max_score = max(len(visible), 1)
 
     parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="All-time top songs ranking">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Long-term favorites ranking">',
         f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
         f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
-        svg_text(margin + 16, margin + 30, "All-Time", size=22, weight=800, fill="#ffffff"),
-        svg_text(margin + 16, margin + 52, "Top Songs", size=22, weight=800, fill="#ffffff"),
+        svg_text(margin + 16, margin + 30, "Long-Term", size=22, weight=800, fill="#ffffff"),
+        svg_text(margin + 16, margin + 52, "Favorites", size=22, weight=800, fill="#ffffff"),
         svg_text(width - margin - 16, margin + 39, "Spotify long term", size=13, weight=800, fill="#dfe8df", anchor="end"),
     ]
 
     if not visible:
-        parts.append(svg_text(width / 2, height / 2, "No all-time top songs cached yet", size=16, weight=800, fill="#6f7772", anchor="middle"))
+        parts.append(svg_text(width / 2, height / 2, "No long-term favorites cached yet", size=16, weight=800, fill="#6f7772", anchor="middle"))
     else:
         accent_cycle = ("#557e64", "#526f92", "#a96855", "#7d744e")
         for index, track in enumerate(visible):
@@ -2084,7 +2067,7 @@ def listening_maps(
     listening_dir = readme_dir / "assets" / "listening"
     taste_path = listening_dir / "taste-drift.svg"
     country_decade_path = listening_dir / "country-decade.svg"
-    all_time_top_songs_path = listening_dir / "all-time-top-songs.svg"
+    long_term_favorites_path = listening_dir / "all-time-top-songs.svg"
     top_ranges_path = listening_dir / "top-ranges.svg"
     saved_played_path = listening_dir / "saved-vs-played.svg"
 
@@ -2095,8 +2078,8 @@ def listening_maps(
     write_taste_drift_svg(taste_path, months, groups, drift_series)
     countries, decades, matrix = country_decade_data(tracks, artist_countries)
     write_country_decade_svg(country_decade_path, countries, decades, matrix)
-    all_time_top_tracks = cached_spotify_top_tracks(top_cache)
-    write_all_time_top_songs_svg(all_time_top_songs_path, all_time_top_tracks)
+    long_term_favorites = cached_spotify_top_tracks(top_cache)
+    write_long_term_favorites_svg(long_term_favorites_path, long_term_favorites)
     top_source, top_ranges = top_ranges_data(tracks, top_cache)
     write_top_ranges_svg(top_ranges_path, top_source, top_ranges)
     played_source, saved_rows, played_rows, rediscovered, ignored = saved_vs_played_data(
@@ -2113,9 +2096,9 @@ def listening_maps(
         ignored,
     )
 
-    top_songs = spotify_all_time_top_songs_lines(
-        all_time_top_tracks,
-        all_time_top_songs_path,
+    top_songs = spotify_long_term_favorites_lines(
+        long_term_favorites,
+        long_term_favorites_path,
         readme_dir,
     )
     trends = [
@@ -2223,8 +2206,8 @@ def build_dashboard(
                 ("Tracks", len(tracks)),
                 ("Artists", len(artists)),
                 ("Albums", len(albums)),
-                ("Tag genres", len(genres)),
-                ("Assigned genres", len(assigned_genres)),
+                ("Source genres", len(genres)),
+                ("Dominant genres", len(assigned_genres)),
                 ("Countries", len(countries)),
                 ("Playlists", len(playlists)),
                 ("Release years", year_range),
@@ -2264,10 +2247,7 @@ def build_dashboard(
                 "",
                 "The ten most recently saved tracks in the library.",
                 "",
-                wrapped_table(
-                    ["Added", "Track", "Details"],
-                    recent_liked_rows(tracks, 10),
-                ),
+                stacked_list(recent_liked_items(tracks, 10)),
                 "",
                 "## Library Rankings",
                 "",

@@ -126,17 +126,44 @@ def test_top_songs_layout_is_single_column(tmp_path: Path) -> None:
     ]
 
     rendered = "\n".join(
-        build_readme.spotify_all_time_top_songs_lines(
+        build_readme.spotify_long_term_favorites_lines(
             tracks,
             tmp_path / "ranking.svg",
             tmp_path,
         )
     )
 
-    assert rendered.startswith("## All-Time Top Songs")
+    assert rendered.startswith("## Long-Term Favorites")
     assert "<table>" not in rendered
     assert rendered.count('<p align="center">') == 2
     assert 'width="720"' in rendered
+    assert "<summary>View ranked list</summary>" in rendered
+
+
+def test_recent_liked_layout_is_mobile_friendly() -> None:
+    items = build_readme.recent_liked_items(
+        [
+            {
+                "track_name": "Track",
+                "artist_names": "Artist",
+                "album_name": "Album",
+                "year": "2026",
+                "primary_genre": "ambient",
+                "sources": "liked",
+                "latest_added_at": "2026-07-10T12:00:00Z",
+                "spotify_url": "https://example.com/track",
+            }
+        ],
+        limit=10,
+    )
+    rendered = build_readme.stacked_list(items)
+
+    assert '<table width="100%"' in rendered
+    assert "<thead>" not in rendered
+    assert rendered.count("<td") == 1
+    assert "Track</a></strong> — Artist" in rendered
+    assert "Album · 2026 · ambient · Added 2026-07-10" in rendered
+    assert "<small><small>" not in rendered
 
 
 def test_genre_atlas_groups_are_collapsed(tmp_path: Path) -> None:
