@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="560" height="640" viewBox="0 0 560 640" role="img" aria-label="All-time top songs ranking">
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="640" viewBox="0 0 560 640" role="img" aria-label="Long-term favorites ranking">
 <rect width="560" height="640" fill="#f7f6f0"/>
 <rect x="16" y="16" width="528" height="62" fill="#22382d"/>
-<text x="32.0" y="46.0" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="start">All-Time</text>
-<text x="32.0" y="68.0" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="start">Top Songs</text>
+<text x="32.0" y="46.0" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="start">Long-Term</text>
+<text x="32.0" y="68.0" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" text-anchor="start">Favorites</text>
 <text x="528.0" y="55.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#dfe8df" text-anchor="end">Spotify long term</text>
 <rect x="16" y="84.0" width="528" height="24" fill="#fffefa" stroke="#d9ded7" stroke-width="0.5"/>
 <text x="30.0" y="102.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">01</text>

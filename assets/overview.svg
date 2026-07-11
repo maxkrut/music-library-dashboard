@@ -17,11 +17,11 @@
 <text x="818.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">1692</text>
 <rect x="16.0" y="182.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="16.0" y="182.0" width="4" height="92" fill="#557e64"/>
-<text x="34.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#557e64" text-anchor="start">TAG GENRES</text>
+<text x="34.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#557e64" text-anchor="start">SOURCE GENRES</text>
 <text x="34.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">534</text>
 <rect x="408.0" y="182.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="408.0" y="182.0" width="4" height="92" fill="#526f92"/>
-<text x="426.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#526f92" text-anchor="start">ASSIGNED GENRES</text>
+<text x="426.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#526f92" text-anchor="start">DOMINANT GENRES</text>
 <text x="426.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#102027" text-anchor="start">210</text>
 <rect x="800.0" y="182.0" width="384.0" height="92" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="800.0" y="182.0" width="4" height="92" fill="#a96855"/>
