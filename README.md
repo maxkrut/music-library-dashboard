@@ -2,27 +2,19 @@
 
 Automated Spotify library dashboard with genre atlas, country timelines, listening maps, and all-time top songs.
 
+_Last updated 2026-07-11 07:06 UTC._
+
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
 ![Spotify library overview](assets/overview.svg)
 
-> Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.
+## All-Time Top Songs
 
-## Listening Maps
+Spotify long-term favorites. Album covers are shown once, keeping the highest-ranked track from each album.
 
-![Taste drift by month](assets/listening/taste-drift.svg)
-
-![Countries by decade heatmap](assets/listening/country-decade.svg)
-
-### All-Time Top Songs
-
-<table>
-<tr>
-<td valign="top" width="52%">
-<p align="left">
+<p align="center">
 <a href="https://open.spotify.com/track/0Dg2BfGZv5P9Jkcv95Aa0e"><img src="https://i.scdn.co/image/ab67616d0000b2732558e54864b2c1be58aee847" width="72" height="72" alt="Daylight Dies - Dismantling Devotion" /></a>
 <a href="https://open.spotify.com/track/3a8hSZnGAwnEhalgT28Cp6"><img src="https://i.scdn.co/image/ab67616d0000b273eabe69cadeb913306c5933cc" width="72" height="72" alt="Realm of Wolves - Hegemon Of Cold Seas" /></a>
-<a href="https://open.spotify.com/track/0uGSXfO8nC2VV1BpuW2Sr8"><img src="https://i.scdn.co/image/ab67616d0000b273eabe69cadeb913306c5933cc" width="72" height="72" alt="Realm of Wolves - And We Become Wolves" /></a>
 <a href="https://open.spotify.com/track/5dAie8vCratkNmHUnkPf0e"><img src="https://i.scdn.co/image/ab67616d0000b2731c726b68ae4f05b6671a086f" width="72" height="72" alt="Worm; Marty Friedman - Witchmoon: The Infernal Masquerade (feat. Marty Friedman)" /></a>
 <a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
 <a href="https://open.spotify.com/track/39SSSnwlBXvqjp3VCP0oKU"><img src="https://i.scdn.co/image/ab67616d0000b273ac26fcc8f9b7986b5ca0c898" width="72" height="72" alt="Shape Of Despair - Dissolution" /></a>
@@ -30,9 +22,9 @@ No audio files are included: this repository publishes generated summaries from 
 <a href="https://open.spotify.com/track/72GUD7ZA98E9lWhltp4bqb"><img src="https://i.scdn.co/image/ab67616d0000b273559e72c773cf32a8fb6248a2" width="72" height="72" alt="Curta&#x27;n Wall; Elvya - The Dark Ages" /></a>
 <a href="https://open.spotify.com/track/1lZquyBVOQb3qvVMpvoXiT"><img src="https://i.scdn.co/image/ab67616d0000b2735df4965ac420798942c57b99" width="72" height="72" alt="220 Volt - Love Is All You Need" /></a>
 <a href="https://open.spotify.com/track/6S9cuHvVIuoKfSDwcENP9P"><img src="https://i.scdn.co/image/ab67616d0000b2737a2e1473dbe8e461ae689121" width="72" height="72" alt="Whispering Void - Vi Finnes" /></a>
+<a href="https://open.spotify.com/track/2xPOwYbqUOlNa3Ad1neTsm"><img src="https://i.scdn.co/image/ab67616d0000b2733b80df170989af75667f7797" width="72" height="72" alt="Counting Hours - Timeless Ones" /></a>
 <a href="https://open.spotify.com/track/3VANrwkmYkLHpzZs63YadJ"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="72" height="72" alt="Obsequiae - Anlace and Heart" /></a>
 <a href="https://open.spotify.com/track/4kgf6zhFJQYPHz8ABNMkUL"><img src="https://i.scdn.co/image/ab67616d0000b2737fdf43bdfa5106d3eae0e0c2" width="72" height="72" alt="Сруб - Умирая радуй" /></a>
-<a href="https://open.spotify.com/track/2xPOwYbqUOlNa3Ad1neTsm"><img src="https://i.scdn.co/image/ab67616d0000b2733b80df170989af75667f7797" width="72" height="72" alt="Counting Hours - Timeless Ones" /></a>
 <a href="https://open.spotify.com/track/10rlIQ4RQIy6GeKfo0s2yy"><img src="https://i.scdn.co/image/ab67616d0000b273caaae0805c6a27757210d214" width="72" height="72" alt="The Flight of Sleipnir - Voland" /></a>
 <a href="https://open.spotify.com/track/4bL8poSHJGxHCTnrWqTmRb"><img src="https://i.scdn.co/image/ab67616d0000b2732e73fd8b722b3b984cdf9bf9" width="72" height="72" alt="Комонь; Павел Паньковский; Аркадий Пикунов - Ты подуй" /></a>
 <a href="https://open.spotify.com/track/2dkUNeusRI8WUCrtKvWKgs"><img src="https://i.scdn.co/image/ab67616d0000b27340e4eacd8da22567cfcde58f" width="72" height="72" alt="Sylvan - Posthumous Silence" /></a>
@@ -41,76 +33,14 @@ No audio files are included: this repository publishes generated summaries from 
 <a href="https://open.spotify.com/track/5el8o8F9zXlbgMun4IRxCj"><img src="https://i.scdn.co/image/ab67616d0000b273146190ba8aeb500d602df2a7" width="72" height="72" alt="Kick Puncher - Fight or Flight" /></a>
 <a href="https://open.spotify.com/track/2qURNRJHKUjc9aT398g0pf"><img src="https://i.scdn.co/image/ab67616d0000b273af6b567023c685829c273982" width="72" height="72" alt="Theatre Of Tragedy - Venus" /></a>
 </p>
-</td>
-<td valign="top" width="48%">
-<img src="assets/listening/all-time-top-songs.svg" width="560" alt="All-time top songs ranking" />
-</td>
-</tr>
-</table>
 
-![Top items across time ranges](assets/listening/top-ranges.svg)
-
-![Saved library versus recently played](assets/listening/saved-vs-played.svg)
-
-## Genre Atlas
-
-## Metal
-
-![Metal genre atlas](assets/atlas/metal.svg)
-
-## Rock / Psych / Prog
-
-![Rock / Psych / Prog genre atlas](assets/atlas/rock-psych-prog.svg)
-
-## Electronic / Ambient
-
-![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
-
-## Punk / Hardcore
-
-![Punk / Hardcore genre atlas](assets/atlas/punk-hardcore.svg)
-
-## Folk / World
-
-![Folk / World genre atlas](assets/atlas/folk-world.svg)
-
-## Jazz / Blues
-
-![Jazz / Blues genre atlas](assets/atlas/jazz-blues.svg)
-
-## Soul / Funk / R&B
-
-![Soul / Funk / R&B genre atlas](assets/atlas/soul-funk-r-b.svg)
-
-## Reggae / Ska
-
-![Reggae / Ska genre atlas](assets/atlas/reggae-ska.svg)
-
-## Afrobeat / Latin
-
-![Afrobeat / Latin genre atlas](assets/atlas/afrobeat-latin.svg)
-
-## Classical / Score
-
-![Classical / Score genre atlas](assets/atlas/classical-score.svg)
-
-## Pop / Songwriter
-
-![Pop / Songwriter genre atlas](assets/atlas/pop-songwriter.svg)
-
-## Hip-Hop / Rap
-
-![Hip-Hop / Rap genre atlas](assets/atlas/hip-hop-rap.svg)
-
-## Experimental / Noise
-
-![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
-
-## Other
-
-![Other genre atlas](assets/atlas/other.svg)
+<p align="center">
+<img src="assets/listening/all-time-top-songs.svg" width="720" alt="All-time top songs ranking" />
+</p>
 
 ## Latest Liked Tracks
+
+The ten most recently saved tracks in the library.
 
 <div align="center">
 <table align="center" cellpadding="4" cellspacing="0">
@@ -123,6 +53,46 @@ No audio files are included: this repository publishes generated summaries from 
 </thead>
 <tbody>
 <tr>
+<td align="left" valign="top"><small><small><small>2026-07-10</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1LkGmGVt1y9Ks2O1IRzAzy">fever in the night</a><br/><small>ALLP; laviero</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>fever in the night<br/><small>2026 · hip hop</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-07-09</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/3oRuCzqdduzZ2CBhAtv8zO">Portrait Gallery</a><br/><small>Luke Howard</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Sun, Cloud<br/><small>2013</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-07-08</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1Q5dHbfQOOlpldhUyN9SLS">Ne Ola Yar Ola</a><br/><small>Barış Manço</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Sarı Çizmeli Mehmet Ağa<br/><small>1993 · anatolian rock</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-07-08</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/6A8OuzYyWXkEX8NSKpxdA6">Lions at the Gate</a><br/><small>The Tower</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Hic Abundant Leones<br/><small>2014</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-07-08</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/4gCxNWL3Wce5matrFYqwg6">Human Disgrace</a><br/><small>Abominog</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Manifesting Void<br/><small>2008 · death metal</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-07-08</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1MNoaPv7HGoYbZfeAbzPVZ">Долгая счастливая жизнь</a><br/><small>Grazhdanskaya Oborona</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>The Best, Pt. 2<br/><small>1990 · siberian punk</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-07-07</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/4b7LkbOF77v009R9zU4yxT">If I Awake</a><br/><small>Zeromind</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>If I Awake<br/><small>2026</small></small></small></small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><small><small><small>2026-07-07</small></small></small></td>
+<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/3Hi1ulX4rvxnOij9Z9ufRt">Promise</a><br/><small>Radagast</small></small></small></small></td>
+<td align="left" valign="top"><small><small><small>Vermis - Sounds of the World, Vol. 1 - Melodies of the Unknown<br/><small>2025 · dungeon synth</small></small></small></small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><small><small><small>2026-07-06</small></small></small></td>
 <td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/03mOFk2uyyqazaNbnVZVmG">Antibiosis</a><br/><small>Words Of Farewell</small></small></small></small></td>
 <td align="left" valign="top"><small><small><small>The Black Wild Yonder<br/><small>2014 · death metal</small></small></small></small></td>
@@ -132,121 +102,152 @@ No audio files are included: this repository publishes generated summaries from 
 <td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/7wu4wHFF09Qww23NW0VPvq">ΧΑΙΡΕ ΠΑΡΘΕΝΕ ΣΟΥΜΕΛΑ-Ψαλτοτράγουδο</a><br/><small>π. Διονύσιος Ταμπάκης</small></small></small></small></td>
 <td align="left" valign="top"><small><small><small>Paradise Metal<br/><small>2026 · psychedelic rock</small></small></small></small></td>
 </tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-07-01</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/37VRXqCE4ixT8I2i8zEa7k">ΗΛΕΚΤΡΙΚΕΣ ΥΜΝΩΔΙΕΣ- Ά Εωθινόν με Ηλεκτρική Κιθάρα δίχως τάστα-perdesiz</a><br/><small>π. Διονύσιος Ταμπάκης</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Paradise Metal<br/><small>2026 · psychedelic rock</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-29</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/6NpC69PWENdMii8ouxYcBd">Deadening</a><br/><small>Nailed to Obscurity</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>King Delusion<br/><small>2017 · melodic death metal</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-27</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/2UTpZhFg9tnzChSHHcoqBq">Ночь темна</a><br/><small>Baba Yaga Team</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Василиса и Баба Яга (Original Game Soundtrack)<br/><small>2024</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/7LFxWclMQjpARPSThKVAE0">Carrion King</a><br/><small>Khemmis</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Khemmis<br/><small>2026 · doom metal</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/5VSnXnQktUKOfDyysLMMzx">Ballad of a Fallen Star</a><br/><small>Stormkeep</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>The Nocturnes of Iswylm<br/><small>2026 · melodic black metal</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/5Hh7lLiY3y9ELHs3ZsdAcH">Saccharine Subjugation</a><br/><small>Stormkeep</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>The Nocturnes of Iswylm<br/><small>2026 · melodic black metal</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/4bTmQdOeFL6jHhpzfACpHp">The Black Dragons of Iswylm</a><br/><small>Stormkeep</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>The Nocturnes of Iswylm<br/><small>2026 · melodic black metal</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-23</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/3YTA4Y3qWmPEauQ5MIbbKJ">Below The Surface</a><br/><small>Lauge; Baba Gnohm; JYRANTE</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Below The Surface<br/><small>2026 · ambient</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-19</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/2L32tvX6I73xToPvqFMi9k">Don&#x27;t Run Away</a><br/><small>Amber Creek</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Don&#x27;t Run Away<br/><small>2026 · electronic</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-19</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/6nMY6W3CvmBEOHTGrlm6PC">Love Lies Dreaming</a><br/><small>Yes</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Aurora (Bonus Tracks Edition)<br/><small>2026 · progressive rock</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-18</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/5CKwsEAhZogWhqWbGYQ4Da">Between Layers</a><br/><small>Fionnlagh; Lauge</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Between Layers<br/><small>2026 · ambient</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-17</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/4W6MueOc6KliVlG0ZcZLQN">Reflections</a><br/><small>This Winter Machine</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>The Clockwork Man<br/><small>2023 · progressive rock</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-17</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/2SV69wiCCKzoFLDs6NWM5N">I Saw the End</a><br/><small>Pallbearer</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Heartless<br/><small>2017 · doom metal</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-15</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/23tqZZq7hLy54A952keiLm">Steppe Grass</a><br/><small>Magic Man</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Boards of Mongolia<br/><small>2026 · dungeon synth</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-07</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/02AshrPDkh1K36dD12f2mn">Crypt of Euphoria</a><br/><small>dungeontroll</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Into the Castle of the Forbidden Twilight<br/><small>2020 · dungeon synth</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-06-04</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/1Y3US4jr3hPVYd7k5Bmn16">Ghost Limbs</a><br/><small>Healthyliving</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Songs of Abundance, Psalms of Grief<br/><small>2023</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-05-26</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/7uYRmq6tONjvwUh8wn8zvh">Further in the Making</a><br/><small>Nils Frahm</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Old Friends New Friends<br/><small>2021 · modern classical</small></small></small></small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><small><small><small>2026-05-24</small></small></small></td>
-<td align="left" valign="top"><small><small><small><a href="https://open.spotify.com/track/57eO5u9HWcifKGw07rrGG4">So I Marched To The Sunken Empire</a><br/><small>Darkthrone</small></small></small></small></td>
-<td align="left" valign="top"><small><small><small>Pre-Historic Metal<br/><small>2026 · black metal</small></small></small></small></td>
-</tr>
 </tbody>
 </table>
 </div>
 
-## Aggregates
+## Library Rankings
 
 ![Spotify aggregate top lists](assets/aggregates.svg)
 
+## Listening Trends
+
+How the library changes over time, from recent taste shifts to long-term listening patterns.
+
+### Taste Drift
+
+Monthly changes across the dominant genre groups in recently saved music.
+
+![Taste drift by month](assets/listening/taste-drift.svg)
+
+### Short, Medium and Long Term
+
+![Top items across time ranges](assets/listening/top-ranges.svg)
+
+### Saved vs Played
+
+A comparison between the saved library and recently played music.
+
+![Saved library versus recently played](assets/listening/saved-vs-played.svg)
+
+### Countries by Decade
+
+Artist origins across release decades, using MusicBrainz, Wikidata and curated overrides.
+
+![Countries by decade heatmap](assets/listening/country-decade.svg)
+
+## Genre Atlas
+
+Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.
+
 <details>
-<summary>Workflow</summary>
+<summary><strong>Metal</strong> · 48 genres · 921 track assignments</summary>
 
-
-- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists, plus optional Spotify top/recent snapshots.
-- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.
-- `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata where available.
-- `python scripts/apply_genre_rules.py --overwrite` applies curated genres from `data/genre_rules.csv`.
-- `python scripts/build_readme.py` regenerates this README.
-- `python scripts/debug_spotify.py` checks OAuth and first Spotify API pages without writing CSV.
-- Manual fields in `data/tracks.csv` are preserved on export: `year`, `primary_genre`, `genres`, `rating`, `status`, `tags`, `notes`.
-- Weekly GitHub Actions use a private data repository for `data/tracks.csv`; this public repository commits only generated summaries and public rules.
+![Metal genre atlas](assets/atlas/metal.svg)
 
 </details>
 
 <details>
-<summary>Repeat this</summary>
+<summary><strong>Rock / Psych / Prog</strong> · 52 genres · 601 track assignments</summary>
+
+![Rock / Psych / Prog genre atlas](assets/atlas/rock-psych-prog.svg)
+
+</details>
+
+<details>
+<summary><strong>Electronic / Ambient</strong> · 31 genres · 190 track assignments</summary>
+
+![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
+
+</details>
+
+<details>
+<summary><strong>Punk / Hardcore</strong> · 13 genres · 74 track assignments</summary>
+
+![Punk / Hardcore genre atlas](assets/atlas/punk-hardcore.svg)
+
+</details>
+
+<details>
+<summary><strong>Folk / World</strong> · 17 genres · 64 track assignments</summary>
+
+![Folk / World genre atlas](assets/atlas/folk-world.svg)
+
+</details>
+
+<details>
+<summary><strong>Jazz / Blues</strong> · 13 genres · 26 track assignments</summary>
+
+![Jazz / Blues genre atlas](assets/atlas/jazz-blues.svg)
+
+</details>
+
+<details>
+<summary><strong>Soul / Funk / R&amp;B</strong> · 6 genres · 15 track assignments</summary>
+
+![Soul / Funk / R&B genre atlas](assets/atlas/soul-funk-r-b.svg)
+
+</details>
+
+<details>
+<summary><strong>Reggae / Ska</strong> · 1 genre · 5 track assignments</summary>
+
+![Reggae / Ska genre atlas](assets/atlas/reggae-ska.svg)
+
+</details>
+
+<details>
+<summary><strong>Afrobeat / Latin</strong> · 1 genre · 1 track assignment</summary>
+
+![Afrobeat / Latin genre atlas](assets/atlas/afrobeat-latin.svg)
+
+</details>
+
+<details>
+<summary><strong>Classical / Score</strong> · 7 genres · 29 track assignments</summary>
+
+![Classical / Score genre atlas](assets/atlas/classical-score.svg)
+
+</details>
+
+<details>
+<summary><strong>Pop / Songwriter</strong> · 9 genres · 39 track assignments</summary>
+
+![Pop / Songwriter genre atlas](assets/atlas/pop-songwriter.svg)
+
+</details>
+
+<details>
+<summary><strong>Hip-Hop / Rap</strong> · 5 genres · 13 track assignments</summary>
+
+![Hip-Hop / Rap genre atlas](assets/atlas/hip-hop-rap.svg)
+
+</details>
+
+<details>
+<summary><strong>Experimental / Noise</strong> · 4 genres · 20 track assignments</summary>
+
+![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
+
+</details>
+
+<details>
+<summary><strong>Other</strong> · 3 genres · 3 track assignments</summary>
+
+![Other genre atlas](assets/atlas/other.svg)
+
+</details>
+
+<details>
+<summary>How it works</summary>
+
+- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists, plus Spotify top and recent snapshots.
+- `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata.
+- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.
+- `python scripts/apply_genre_rules.py --overwrite` applies curated genre rules.
+- `python scripts/build_readme.py` regenerates the dashboard and SVG assets.
+- Manual fields are preserved during export: `year`, `primary_genre`, `genres`, `rating`, `status`, `tags`, `notes`.
+- Weekly GitHub Actions use a private data repository; the public repository contains only generated summaries and public rules.
 
 Create a Spotify app, run the local OAuth export once, store the full `data/tracks.csv` in a private data repository, then set public repository secrets described in `DATA.md`. GitHub Actions can refresh the public dashboard weekly without publishing the full CSV. Spotify user refresh tokens expire after six months; when the workflow reports `invalid_grant`, or after adding `user-top-read` / `user-read-recently-played`, reauthorize locally and update the `SPOTIFY_REFRESH_TOKEN` secret.
 
@@ -276,7 +277,5 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 - Spotify, MusicBrainz and Wikidata metadata, plus linked Spotify artwork, remain governed by their source terms.
 
 </details>
-
-_Generated at 2026-07-06 17:14 UTC._
 
 <sub>Created by Maksim Krutikov.</sub>

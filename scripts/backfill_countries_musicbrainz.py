@@ -19,9 +19,11 @@ from build_readme import (
     read_tracks,
 )
 from enrich_genres_musicbrainz import (
+    CACHE_CHECKPOINT_INTERVAL,
     DEFAULT_USER_AGENT,
     ROOT,
     MusicBrainzClient,
+    final_cache_checkpoint_due,
     load_dotenv,
     query_artist,
     read_json,
@@ -59,10 +61,6 @@ def raw_country_available(data: Any) -> bool:
         return False
     if str(data.get("country") or "").strip():
         return True
-    for field in ("area", "begin_area", "begin-area"):
-        area = data.get(field)
-        if isinstance(area, dict) and str(area.get("name") or "").strip():
-            return True
     return bool(str(data.get("wikidata_origin") or "").strip())
 
 
@@ -170,7 +168,6 @@ def main() -> None:
         key = norm(artist)
         artist_cache[key] = query_artist(client, artist, args.min_score)
         fetched_absent += 1
-        write_json(artist_cache_path, artist_cache)
         if args.verbose:
             status = "matched" if artist_cache[key].get("matched") else "missed"
             country = country_from_artist_data(artist_cache[key]) or "missing"
@@ -180,11 +177,12 @@ def main() -> None:
                 ),
                 flush=True,
             )
-        if index % 25 == 0:
+        if index % CACHE_CHECKPOINT_INTERVAL == 0:
             write_json(artist_cache_path, artist_cache)
 
-    if fetched_absent:
+    if final_cache_checkpoint_due(fetched_absent):
         write_json(artist_cache_path, artist_cache)
+    if fetched_absent:
         missing_keys = country_missing_keys(artist_cache, args.retry_checked, args.limit)
         missing_without_id = country_missing_without_id(artist_cache)
 
@@ -197,7 +195,7 @@ def main() -> None:
         wikidata_id = wikidata_id_from_relations(payload.get("relations", []) or [])
         wikidata_origin = ""
         wikidata_failed = False
-        if wikidata_id and not (payload.get("country") or payload.get("area")):
+        if wikidata_id and not payload.get("country"):
             try:
                 wikidata_origin = wikidata_country(wikidata_id, args.user_agent)
             except Exception as error:  # noqa: BLE001
@@ -228,17 +226,21 @@ def main() -> None:
             name = data.get("name") or key
             country = country_from_artist_data(updated) or "missing"
             print(console_text(f"{index}/{len(missing_keys)} {name}: {country}"), flush=True)
-        if index % 25 == 0:
+        if index % CACHE_CHECKPOINT_INTERVAL == 0:
             write_json(artist_cache_path, artist_cache)
             print(
                 f"Checked {index}/{len(missing_keys)} artists; filled {changed}; still missing {still_missing}.",
                 flush=True,
             )
 
-    write_json(artist_cache_path, artist_cache)
+    if final_cache_checkpoint_due(len(missing_keys)):
+        write_json(artist_cache_path, artist_cache)
     print(f"Filled countries for {changed} artists.")
     print(f"Still missing after lookup: {still_missing + len(missing_without_id)} artists.")
-    print(f"Wrote {artist_cache_path}.")
+    if fetched_absent or missing_keys:
+        print(f"Wrote {artist_cache_path}.")
+    else:
+        print("Country cache is already up to date.")
 
 
 if __name__ == "__main__":
