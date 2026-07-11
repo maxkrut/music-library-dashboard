@@ -2,7 +2,7 @@
 
 Automated Spotify library dashboard with genre atlas, country timelines, listening maps, and all-time top songs.
 
-_Last updated 2026-07-11 07:04 UTC._
+_Last updated 2026-07-11 07:06 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -141,49 +141,49 @@ Artist origins across release decades, using MusicBrainz, Wikidata and curated o
 Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.
 
 <details>
-<summary><strong>Metal</strong> · 50 genres · 923 track assignments</summary>
+<summary><strong>Metal</strong> · 48 genres · 921 track assignments</summary>
 
 ![Metal genre atlas](assets/atlas/metal.svg)
 
 </details>
 
 <details>
-<summary><strong>Rock / Psych / Prog</strong> · 51 genres · 610 track assignments</summary>
+<summary><strong>Rock / Psych / Prog</strong> · 52 genres · 601 track assignments</summary>
 
 ![Rock / Psych / Prog genre atlas](assets/atlas/rock-psych-prog.svg)
 
 </details>
 
 <details>
-<summary><strong>Electronic / Ambient</strong> · 25 genres · 184 track assignments</summary>
+<summary><strong>Electronic / Ambient</strong> · 31 genres · 190 track assignments</summary>
 
 ![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
 
 </details>
 
 <details>
-<summary><strong>Punk / Hardcore</strong> · 13 genres · 75 track assignments</summary>
+<summary><strong>Punk / Hardcore</strong> · 13 genres · 74 track assignments</summary>
 
 ![Punk / Hardcore genre atlas](assets/atlas/punk-hardcore.svg)
 
 </details>
 
 <details>
-<summary><strong>Folk / World</strong> · 15 genres · 65 track assignments</summary>
+<summary><strong>Folk / World</strong> · 17 genres · 64 track assignments</summary>
 
 ![Folk / World genre atlas](assets/atlas/folk-world.svg)
 
 </details>
 
 <details>
-<summary><strong>Jazz / Blues</strong> · 10 genres · 29 track assignments</summary>
+<summary><strong>Jazz / Blues</strong> · 13 genres · 26 track assignments</summary>
 
 ![Jazz / Blues genre atlas](assets/atlas/jazz-blues.svg)
 
 </details>
 
 <details>
-<summary><strong>Soul / Funk / R&amp;B</strong> · 5 genres · 14 track assignments</summary>
+<summary><strong>Soul / Funk / R&amp;B</strong> · 6 genres · 15 track assignments</summary>
 
 ![Soul / Funk / R&B genre atlas](assets/atlas/soul-funk-r-b.svg)
 
@@ -197,7 +197,7 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Afrobeat / Latin</strong> · 2 genres · 2 track assignments</summary>
+<summary><strong>Afrobeat / Latin</strong> · 1 genre · 1 track assignment</summary>
 
 ![Afrobeat / Latin genre atlas](assets/atlas/afrobeat-latin.svg)
 
@@ -211,23 +211,30 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Pop / Songwriter</strong> · 5 genres · 36 track assignments</summary>
+<summary><strong>Pop / Songwriter</strong> · 9 genres · 39 track assignments</summary>
 
 ![Pop / Songwriter genre atlas](assets/atlas/pop-songwriter.svg)
 
 </details>
 
 <details>
-<summary><strong>Hip-Hop / Rap</strong> · 3 genres · 11 track assignments</summary>
+<summary><strong>Hip-Hop / Rap</strong> · 5 genres · 13 track assignments</summary>
 
 ![Hip-Hop / Rap genre atlas](assets/atlas/hip-hop-rap.svg)
 
 </details>
 
 <details>
-<summary><strong>Experimental / Noise</strong> · 3 genres · 19 track assignments</summary>
+<summary><strong>Experimental / Noise</strong> · 4 genres · 20 track assignments</summary>
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
+
+</details>
+
+<details>
+<summary><strong>Other</strong> · 3 genres · 3 track assignments</summary>
+
+![Other genre atlas](assets/atlas/other.svg)
 
 </details>
 
