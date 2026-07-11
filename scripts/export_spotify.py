@@ -11,7 +11,6 @@ import http.client
 import http.server
 import json
 import os
-import tempfile
 import sys
 import time
 import urllib.error
@@ -22,11 +21,15 @@ import socket
 from pathlib import Path
 from typing import Any, Iterable
 
+from file_utils import atomic_text_writer
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "tracks.csv"
 CACHE_DIR = ROOT / ".cache"
 TOKEN_CACHE = CACHE_DIR / "spotify-token.json"
+OAUTH_STATE_CACHE = CACHE_DIR / "spotify-oauth-state.json"
+OAUTH_STATE_MAX_AGE_SECONDS = 10 * 60
 ARTIST_CACHE = CACHE_DIR / "spotify-artists.json"
 TOP_ITEMS_CACHE = CACHE_DIR / "spotify-top-items.json"
 RECENTLY_PLAYED_CACHE = CACHE_DIR / "spotify-recently-played.json"
@@ -153,12 +156,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--print-auth-url",
         action="store_true",
-        help="Print a Spotify authorization URL for manual reauthorization and exit.",
+        help="Print a Spotify authorization URL, save its state for 10 minutes, and exit.",
     )
     parser.add_argument(
         "--callback-url",
         default="",
-        help="Exchange a pasted Spotify redirect URL for a fresh user token.",
+        help="Exchange the redirect URL produced after --print-auth-url for a fresh user token.",
     )
     parser.add_argument(
         "--skip-genres",
@@ -207,8 +210,7 @@ def read_json(path: Path, default: Any) -> Any:
 
 
 def write_json(path: Path, data: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as file:
+    with atomic_text_writer(path) as file:
         json.dump(data, file, indent=2, sort_keys=True)
         file.write("\n")
 
@@ -383,6 +385,36 @@ def spotify_authorization_url(
     return f"{AUTH_URL}?{urllib.parse.urlencode(params)}"
 
 
+def new_oauth_state() -> str:
+    return hashlib.sha256(os.urandom(16)).hexdigest()[:16]
+
+
+def save_oauth_state(state: str) -> None:
+    write_json(OAUTH_STATE_CACHE, {"state": state, "created_at": int(time.time())})
+
+
+def load_oauth_state() -> str:
+    data = read_json(OAUTH_STATE_CACHE, {})
+    if not isinstance(data, dict):
+        return ""
+    state = str(data.get("state") or "")
+    try:
+        created_at = int(data.get("created_at") or 0)
+    except (TypeError, ValueError):
+        created_at = 0
+    if not state or created_at < int(time.time()) - OAUTH_STATE_MAX_AGE_SECONDS:
+        discard_oauth_state()
+        return ""
+    return state
+
+
+def discard_oauth_state() -> None:
+    try:
+        OAUTH_STATE_CACHE.unlink()
+    except FileNotFoundError:
+        pass
+
+
 def request_user_token(
     client_id: str,
     client_secret: str,
@@ -391,7 +423,11 @@ def request_user_token(
     manual_oauth: bool,
     callback_url: str = "",
 ) -> dict[str, Any]:
-    state = hashlib.sha256(os.urandom(16)).hexdigest()[:16]
+    state = load_oauth_state() if callback_url else new_oauth_state()
+    if callback_url and not state:
+        raise SystemExit(
+            "No pending OAuth authorization was found. Run --print-auth-url first."
+        )
     auth_url = spotify_authorization_url(client_id, redirect_uri, scope, state)
     if callback_url:
         parsed = urllib.parse.urlparse(callback_url)
@@ -405,7 +441,7 @@ def request_user_token(
         parsed = urllib.parse.urlparse(callback_url)
         query = urllib.parse.parse_qs(parsed.query)
 
-    if not callback_url and query.get("state", [""])[0] != state:
+    if query.get("state", [""])[0] != state:
         raise SystemExit("OAuth state mismatch. Try again.")
     if "error" in query:
         raise SystemExit(f"Spotify authorization failed: {query['error'][0]}")
@@ -422,6 +458,7 @@ def request_user_token(
         client_id,
         client_secret,
     )
+    discard_oauth_state()
     return with_expiry(token)
 
 
@@ -775,16 +812,6 @@ def merge_track(existing: dict[str, str], incoming: dict[str, str]) -> dict[str,
     return merged
 
 
-def fetch_saved_tracks(client: SpotifyClient, market: str | None) -> list[dict[str, str]]:
-    tracks: list[dict[str, str]] = []
-    params = {"limit": 50, "market": market}
-    for item in client.paginate("/me/tracks", params):
-        normalized = normalize_track(item, "liked")
-        if normalized:
-            tracks.append(normalized)
-    return tracks
-
-
 def fetch_saved_tracks_into(
     client: SpotifyClient,
     market: str | None,
@@ -809,27 +836,6 @@ def fetch_saved_tracks_into(
 
 def fetch_current_user_playlists(client: SpotifyClient) -> list[dict[str, Any]]:
     return list(client.paginate("/me/playlists", {"limit": 50}))
-
-
-def fetch_playlist_tracks(
-    client: SpotifyClient,
-    playlist_id: str,
-    playlist_name: str,
-    market: str | None,
-) -> list[dict[str, str]]:
-    tracks: list[dict[str, str]] = []
-    params = {"limit": 50, "market": market, "additional_types": "track"}
-    try:
-        for item in client.paginate(f"/playlists/{playlist_id}/items", params):
-            normalized = normalize_track(item, "playlist", playlist_name)
-            if normalized:
-                tracks.append(normalized)
-    except SpotifyApiError as error:
-        if error.status == 403:
-            print(f"Skipping playlist {playlist_name or playlist_id}: Spotify returned 403.", file=sys.stderr)
-            return []
-        raise
-    return tracks
 
 
 def fetch_playlist_tracks_into(
@@ -1187,7 +1193,6 @@ def guard_default_output(args: argparse.Namespace, tracks: dict[str, dict[str, s
 
 
 def write_tracks(path: Path, tracks: dict[str, dict[str, str]]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
     rows = sorted(
         tracks.values(),
         key=lambda row: (
@@ -1198,26 +1203,11 @@ def write_tracks(path: Path, tracks: dict[str, dict[str, str]]) -> None:
             row.get("track_name", "").lower(),
         ),
     )
-    fd, tmp_name = tempfile.mkstemp(
-        prefix=f".{path.name}.",
-        suffix=".tmp",
-        dir=path.parent,
-    )
-    try:
-        with os.fdopen(fd, "w", encoding="utf-8", newline="") as file:
-            writer = csv.DictWriter(file, fieldnames=FIELDNAMES)
-            writer.writeheader()
-            for row in rows:
-                writer.writerow({field: row.get(field, "") for field in FIELDNAMES})
-            file.flush()
-            os.fsync(file.fileno())
-        os.replace(tmp_name, path)
-    except Exception:
-        try:
-            os.unlink(tmp_name)
-        except FileNotFoundError:
-            pass
-        raise
+    with atomic_text_writer(path, newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=FIELDNAMES)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({field: row.get(field, "") for field in FIELDNAMES})
 
 
 def main() -> None:
@@ -1226,7 +1216,9 @@ def main() -> None:
     if args.print_auth_url:
         if not args.client_id:
             raise SystemExit("Set SPOTIFY_CLIENT_ID or pass --client-id.")
-        print(spotify_authorization_url(args.client_id, args.redirect_uri, args.scope))
+        state = new_oauth_state()
+        save_oauth_state(state)
+        print(spotify_authorization_url(args.client_id, args.redirect_uri, args.scope, state))
         return
     if args.verbose:
         log_file = resolve_path(args.log_file)

@@ -4,9 +4,9 @@ from __future__ import annotations
 import argparse
 import csv
 import fnmatch
-import os
-import tempfile
 from pathlib import Path
+
+from file_utils import atomic_text_writer
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -167,38 +167,24 @@ def apply_rules_to_row(
 
         changed = False
         if primary and (overwrite or not row.get("primary_genre")):
-            row["primary_genre"] = primary
-            changed = True
+            if row.get("primary_genre") != primary:
+                row["primary_genre"] = primary
+                changed = True
         if genres and (overwrite or not row.get("genres")):
-            row["genres"] = genres
-            changed = True
+            if row.get("genres") != genres:
+                row["genres"] = genres
+                changed = True
         return changed
 
     return False
 
 
 def write_tracks(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    fd, tmp_name = tempfile.mkstemp(
-        prefix=f".{path.name}.",
-        suffix=".tmp",
-        dir=path.parent,
-    )
-    try:
-        with os.fdopen(fd, "w", encoding="utf-8", newline="") as file:
-            writer = csv.DictWriter(file, fieldnames=fieldnames)
-            writer.writeheader()
-            for row in rows:
-                writer.writerow({field: row.get(field, "") for field in fieldnames})
-            file.flush()
-            os.fsync(file.fileno())
-        os.replace(tmp_name, path)
-    except Exception:
-        try:
-            os.unlink(tmp_name)
-        except FileNotFoundError:
-            pass
-        raise
+    with atomic_text_writer(path, newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({field: row.get(field, "") for field in fieldnames})
 
 
 def main() -> None:

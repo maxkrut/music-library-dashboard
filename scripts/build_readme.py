@@ -11,10 +11,13 @@ import shutil
 import stat
 import tempfile
 import time
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from typing import Iterable
+
+from file_utils import atomic_text_writer
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,7 +34,7 @@ REPO_DESCRIPTION = "Automated Spotify library dashboard with genre atlas, countr
 
 
 def write_text_lf(path: Path, content: str) -> None:
-    with path.open("w", encoding="utf-8", newline="\n") as file:
+    with atomic_text_writer(path, newline="\n") as file:
         file.write(content)
 
 
@@ -387,6 +390,7 @@ def split_values(value: str) -> list[str]:
     return [part.strip() for part in value.replace(",", ";").split(";") if part.strip()]
 
 
+@lru_cache(maxsize=4096)
 def normalize_genre_text(value: str) -> str:
     text = value.casefold().strip()
     text = text.replace("’", "'").replace("‐", "-").replace("‑", "-").replace("–", "-").replace("—", "-")
@@ -396,6 +400,7 @@ def normalize_genre_text(value: str) -> str:
     return text.strip(" -/")
 
 
+@lru_cache(maxsize=4096)
 def canonical_genre(value: str) -> str:
     text = normalize_genre_text(value)
     if not text:
@@ -435,6 +440,7 @@ def normalize_country_value(value: str) -> str:
     return COUNTRY_CODES.get(text.upper(), text)
 
 
+@lru_cache(maxsize=4096)
 def marker_text(value: str) -> str:
     return " ".join(re.sub(r"[^a-z0-9]+", " ", value.casefold()).split())
 
@@ -455,6 +461,10 @@ def country_from_artist_data(data: object) -> str:
     if country_code:
         return normalize_country_value(country_code)
 
+    wikidata_origin = str(data.get("wikidata_origin") or "").strip()
+    if wikidata_origin:
+        return normalize_country_value(wikidata_origin)
+
     area = data.get("area")
     if isinstance(area, dict):
         area_name = str(area.get("name") or "").strip()
@@ -467,10 +477,6 @@ def country_from_artist_data(data: object) -> str:
         if begin_area_name:
             return normalize_country_value(begin_area_name)
 
-    wikidata_origin = str(data.get("wikidata_origin") or "").strip()
-    if wikidata_origin:
-        return normalize_country_value(wikidata_origin)
-
     for tag in data.get("tags", []) or []:
         if isinstance(tag, dict):
             country = country_from_marker(str(tag.get("name") or ""))
@@ -482,15 +488,12 @@ def country_from_artist_data(data: object) -> str:
 
 def track_countries(
     row: dict[str, str],
-    artist_cache: dict[str, object],
-    country_overrides: dict[str, str] | None = None,
+    artist_countries: dict[str, str],
 ) -> list[str]:
     countries: list[str] = []
     seen: set[str] = set()
     for artist in all_artists(row):
-        country = (country_overrides or {}).get(norm(artist), "")
-        if not country:
-            country = country_from_artist_data(artist_cache.get(norm(artist)))
+        country = artist_countries.get(artist, "")
         if country and country not in seen:
             seen.add(country)
             countries.append(country)
@@ -568,11 +571,6 @@ def track_lookup(tracks: list[TrackRow]) -> dict[str, TrackRow]:
     return {row.get("track_id", ""): row for row in tracks if row.get("track_id")}
 
 
-def md_escape(value: object) -> str:
-    text = str(value if value is not None else "")
-    return text.replace("|", "\\|").replace("\n", " ").strip()
-
-
 def md_link(label: str, target: Path, base_dir: Path) -> str:
     try:
         rel = os.path.relpath(target, base_dir).replace("\\", "/")
@@ -590,45 +588,12 @@ def md_image(label: str, target: Path, base_dir: Path) -> str:
     return f"![{safe_label}]({rel})"
 
 
-def external_md_link(label: str, url: str) -> str:
-    text = str(label or "").strip()
-    target = str(url or "").strip()
-    if not target:
-        return text
-    safe_label = text.replace("[", "\\[").replace("]", "\\]")
-    safe_target = target.replace(")", "%29")
-    return f"[{safe_label}]({safe_target})"
-
-
-def external_html_link(label: str, url: str) -> str:
-    text = str(label or "").strip()
-    target = str(url or "").strip()
-    if not target:
-        return text
-    return SafeHtml(f'<a href="{html_escape(target)}">{compact_html_text(text)}</a>')
-
-
 def external_wrapped_html_link(label: str, url: str) -> str:
     text = str(label or "").strip()
     target = str(url or "").strip()
     if not target:
         return html_escape(text)
     return SafeHtml(f'<a href="{html_escape(target)}">{html_escape(text)}</a>')
-
-
-def repo_label(path: Path) -> str:
-    try:
-        return path.relative_to(ROOT).as_posix()
-    except ValueError:
-        return path.name
-
-
-def table(headers: list[str], rows: Iterable[Iterable[object]]) -> str:
-    rendered = ["| " + " | ".join(headers) + " |"]
-    rendered.append("| " + " | ".join("---" for _ in headers) + " |")
-    for row in rows:
-        rendered.append("| " + " | ".join(md_escape(value) for value in row) + " |")
-    return "\n".join(rendered)
 
 
 def compact_html_text(value: object) -> str:
@@ -695,6 +660,7 @@ def html_escape(value: object) -> str:
     return html.escape(str(value if value is not None else ""), quote=True)
 
 
+@lru_cache(maxsize=4096)
 def genre_marker_matches(genre: str, marker: str) -> bool:
     genre_text = marker_text(genre)
     marker_text_value = marker_text(marker)
@@ -703,6 +669,7 @@ def genre_marker_matches(genre: str, marker: str) -> bool:
     return bool(re.search(rf"(?:^| ){re.escape(marker_text_value)}(?: |$)", genre_text))
 
 
+@lru_cache(maxsize=4096)
 def super_genre(genre: str) -> str:
     for label, markers in SUPER_GENRE_RULES:
         if any(genre_marker_matches(genre, marker) for marker in markers):
@@ -727,18 +694,29 @@ def artist_country(
     )
 
 
+def build_artist_country_index(
+    artists: Iterable[str],
+    artist_cache: dict[str, object],
+    country_overrides: dict[str, str],
+) -> dict[str, str]:
+    return {
+        artist: artist_country(artist, artist_cache, country_overrides)
+        for artist in artists
+    }
+
+
 def artist_genre_assignments(
     tracks: list[TrackRow],
     genre_rows: RankedRows,
 ) -> dict[str, str]:
     genre_rank = {genre: index for index, (genre, _count) in enumerate(genre_rows)}
-    artist_genres: dict[str, Counter[str]] = {}
+    artist_genres: defaultdict[str, Counter[str]] = defaultdict(Counter)
     for row in tracks:
         genre = dominant_row_genre(row)
         if not genre:
             continue
         for artist in all_artists(row):
-            artist_genres.setdefault(artist, Counter())[genre] += 1
+            artist_genres[artist][genre] += 1
 
     assignments: dict[str, str] = {}
     for artist, genre_counts in artist_genres.items():
@@ -747,14 +725,6 @@ def artist_genre_assignments(
             key=lambda genre: (-genre_counts[genre], genre_rank.get(genre, len(genre_rank)), genre),
         )
     return assignments
-
-
-def artists_assigned_to_genre(
-    row: TrackRow,
-    artist_genres: dict[str, str],
-    genre: str,
-) -> list[str]:
-    return [artist for artist in all_artists(row) if artist_genres.get(artist) == genre]
 
 
 def assigned_genre_rows(
@@ -909,41 +879,14 @@ def svg_text(
     )
 
 
-def genre_stats(
-    genre: str,
-    tracks: list[TrackRow],
-    artist_cache: dict[str, object],
-    country_overrides: dict[str, str],
-    artist_genres: dict[str, str],
-) -> tuple[RankedRows, RankedRows, RankedRows]:
-    rows = [
-        row for row in tracks if artists_assigned_to_genre(row, artist_genres, genre)
-    ]
-    genre_artists = Counter(
-        artist
-        for row in rows
-        for artist in artists_assigned_to_genre(row, artist_genres, genre)
-    )
-    genre_years = Counter(effective_year(row) for row in rows if effective_year(row).isdigit())
-    genre_countries = Counter(
-        country
-        for row in rows
-        for artist in artists_assigned_to_genre(row, artist_genres, genre)
-        for country in [artist_country(artist, artist_cache, country_overrides)]
-        if country
-    )
-    return top(genre_artists, 15), top(genre_years, 15), top(genre_countries, 15)
-
-
 def build_genre_stat_index(
     tracks: list[TrackRow],
-    artist_cache: dict[str, object],
-    country_overrides: dict[str, str],
+    artist_countries: dict[str, str],
     artist_genres: dict[str, str],
 ) -> dict[str, tuple[RankedRows, RankedRows, RankedRows]]:
-    artist_counts: dict[str, Counter[str]] = {}
-    year_counts: dict[str, Counter[str]] = {}
-    country_counts: dict[str, Counter[str]] = {}
+    artist_counts: defaultdict[str, Counter[str]] = defaultdict(Counter)
+    year_counts: defaultdict[str, Counter[str]] = defaultdict(Counter)
+    country_counts: defaultdict[str, Counter[str]] = defaultdict(Counter)
 
     for row in tracks:
         artists_by_genre: dict[str, list[str]] = {}
@@ -954,12 +897,12 @@ def build_genre_stat_index(
 
         year = effective_year(row)
         for genre, artists in artists_by_genre.items():
-            artist_counts.setdefault(genre, Counter()).update(artists)
+            artist_counts[genre].update(artists)
             if year.isdigit():
-                year_counts.setdefault(genre, Counter())[year] += 1
-            country_counter = country_counts.setdefault(genre, Counter())
+                year_counts[genre][year] += 1
+            country_counter = country_counts[genre]
             for artist in artists:
-                country = artist_country(artist, artist_cache, country_overrides)
+                country = artist_countries.get(artist, "")
                 if country:
                     country_counter[country] += 1
 
@@ -1041,12 +984,9 @@ def taste_drift_data(
         monthly.setdefault(month, Counter())[row_super_genre(row, artist_genres)] += 1
 
     months = sorted(monthly)[-month_limit:]
-    totals = Counter(
-        group
-        for month in months
-        for group, count in monthly.get(month, Counter()).items()
-        for _ in range(count)
-    )
+    totals: Counter[str] = Counter()
+    for month in months:
+        totals.update(monthly[month])
     groups = [group for group, _count in top(totals, group_limit)]
     series = {group: [monthly.get(month, Counter()).get(group, 0) for month in months] for group in groups}
     return months, groups, series
@@ -1054,8 +994,7 @@ def taste_drift_data(
 
 def country_decade_data(
     tracks: list[TrackRow],
-    artist_cache: dict[str, object],
-    country_overrides: dict[str, str],
+    artist_countries: dict[str, str],
     *,
     country_limit: int = 12,
 ) -> tuple[list[str], list[str], dict[tuple[str, str], int]]:
@@ -1066,7 +1005,7 @@ def country_decade_data(
         decade = decade_label(effective_year(row))
         if not decade:
             continue
-        row_countries = track_countries(row, artist_cache, country_overrides)
+        row_countries = track_countries(row, artist_countries)
         if not row_countries:
             continue
         decades.add(decade)
@@ -1107,6 +1046,8 @@ def cached_spotify_top_tracks(
         seen.add(key)
         items.append(
             {
+                "album_id": str(track.get("album_id") or "").strip(),
+                "album_name": str(track.get("album_name") or "").strip(),
                 "image_url": str(track.get("image_url") or "").strip(),
                 "name": name,
                 "artist": artist,
@@ -1119,12 +1060,45 @@ def cached_spotify_top_tracks(
     return items
 
 
+def unique_album_cover_tracks(
+    top_tracks: list[dict[str, str]],
+    limit: int = 36,
+) -> list[dict[str, str]]:
+    covers: list[dict[str, str]] = []
+    seen_albums: set[str] = set()
+    for track in top_tracks:
+        image_url = track.get("image_url", "").strip()
+        if not image_url:
+            continue
+        album_id = track.get("album_id", "").strip()
+        album_name = track.get("album_name", "").strip()
+        artist = track.get("artist", "").strip()
+        if album_id:
+            album_key = f"id:{album_id}"
+        elif album_name:
+            album_key = f"metadata:{norm(artist)}|{norm(album_name)}"
+        else:
+            album_key = f"image:{image_url}"
+        if album_key in seen_albums:
+            continue
+        seen_albums.add(album_key)
+        covers.append(track)
+        if len(covers) >= limit:
+            break
+    return covers
+
+
 def spotify_all_time_top_songs_lines(
     top_tracks: list[dict[str, str]],
     ranking_path: Path,
     readme_dir: Path,
 ) -> list[str]:
-    lines = ["### All-Time Top Songs", ""]
+    lines = [
+        "## All-Time Top Songs",
+        "",
+        "Spotify long-term favorites. Album covers are shown once, keeping the highest-ranked track from each album.",
+        "",
+    ]
     if not top_tracks:
         return lines + [
             "_No Spotify all-time top songs cached yet. Re-run Spotify export with `user-top-read` scope._",
@@ -1136,15 +1110,8 @@ def spotify_all_time_top_songs_lines(
     except ValueError:
         ranking_src = ranking_path.as_posix()
 
-    lines.extend(
-        [
-            '<table>',
-            '<tr>',
-            '<td valign="top" width="52%">',
-        ]
-    )
-    lines.append('<p align="left">')
-    for item in [track for track in top_tracks if track.get("image_url")][:36]:
+    lines.append('<p align="center">')
+    for item in unique_album_cover_tracks(top_tracks):
         alt = html.escape(" - ".join(part for part in (item["artist"], item["name"]) if part), quote=True)
         src = html.escape(item["image_url"], quote=True)
         url = html.escape(item["url"], quote=True)
@@ -1155,12 +1122,10 @@ def spotify_all_time_top_songs_lines(
     lines.extend(
         [
             "</p>",
-            "</td>",
-            '<td valign="top" width="48%">',
-            f'<img src="{html.escape(ranking_src, quote=True)}" width="560" alt="All-time top songs ranking" />',
-            "</td>",
-            "</tr>",
-            "</table>",
+            "",
+            '<p align="center">',
+            f'<img src="{html.escape(ranking_src, quote=True)}" width="720" alt="All-time top songs ranking" />',
+            "</p>",
             "",
         ]
     )
@@ -2028,8 +1993,7 @@ def remove_tree_best_effort(path: Path) -> None:
 
 def genre_atlas(
     tracks: list[TrackRow],
-    artist_cache: dict[str, object],
-    country_overrides: dict[str, str],
+    artist_countries: dict[str, str],
     genre_rows: RankedRows,
     artist_genres: dict[str, str],
     readme_dir: Path,
@@ -2044,8 +2008,7 @@ def genre_atlas(
     try:
         genre_stat_index = build_genre_stat_index(
             tracks,
-            artist_cache,
-            country_overrides,
+            artist_countries,
             artist_genres,
         )
 
@@ -2053,7 +2016,12 @@ def genre_atlas(
         for genre, count in genre_rows:
             grouped.setdefault(super_genre(genre), []).append((genre, count))
 
-        lines: list[str] = ["## Genre Atlas", ""]
+        lines: list[str] = [
+            "## Genre Atlas",
+            "",
+            "Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.",
+            "",
+        ]
         group_order = [label for label, _markers in SUPER_GENRE_RULES] + ["Other"]
         card_index = 0
         generated_files: list[Path] = []
@@ -2075,11 +2043,20 @@ def genre_atlas(
             )
             generated_files.append(staging_path)
             rel_path = os.path.relpath(final_path, readme_dir).replace("\\", "/")
+            genre_label = "genre" if len(group_rows) == 1 else "genres"
+            assignment_label = "assignment" if group_tracks == 1 else "assignments"
             lines.extend(
                 [
-                    f"## {group}",
+                    "<details>",
+                    (
+                        f"<summary><strong>{html_escape(group)}</strong> · "
+                        f"{len(group_rows)} {genre_label} · "
+                        f"{group_tracks} track {assignment_label}</summary>"
+                    ),
                     "",
                     f"![{group} genre atlas]({rel_path})",
+                    "",
+                    "</details>",
                     "",
                 ]
             )
@@ -2100,11 +2077,10 @@ def genre_atlas(
 
 def listening_maps(
     tracks: list[TrackRow],
-    artist_cache: dict[str, object],
-    country_overrides: dict[str, str],
+    artist_countries: dict[str, str],
     artist_genres: dict[str, str],
     readme_dir: Path,
-) -> list[str]:
+) -> tuple[list[str], list[str]]:
     listening_dir = readme_dir / "assets" / "listening"
     taste_path = listening_dir / "taste-drift.svg"
     country_decade_path = listening_dir / "country-decade.svg"
@@ -2117,7 +2093,7 @@ def listening_maps(
 
     months, groups, drift_series = taste_drift_data(tracks, artist_genres)
     write_taste_drift_svg(taste_path, months, groups, drift_series)
-    countries, decades, matrix = country_decade_data(tracks, artist_cache, country_overrides)
+    countries, decades, matrix = country_decade_data(tracks, artist_countries)
     write_country_decade_svg(country_decade_path, countries, decades, matrix)
     all_time_top_tracks = cached_spotify_top_tracks(top_cache)
     write_all_time_top_songs_svg(all_time_top_songs_path, all_time_top_tracks)
@@ -2137,19 +2113,40 @@ def listening_maps(
         ignored,
     )
 
-    return [
-        "## Listening Maps",
+    top_songs = spotify_all_time_top_songs_lines(
+        all_time_top_tracks,
+        all_time_top_songs_path,
+        readme_dir,
+    )
+    trends = [
+        "## Listening Trends",
+        "",
+        "How the library changes over time, from recent taste shifts to long-term listening patterns.",
+        "",
+        "### Taste Drift",
+        "",
+        "Monthly changes across the dominant genre groups in recently saved music.",
         "",
         md_image("Taste drift by month", taste_path, readme_dir),
         "",
-        md_image("Countries by decade heatmap", country_decade_path, readme_dir),
+        "### Short, Medium and Long Term",
         "",
-        *spotify_all_time_top_songs_lines(all_time_top_tracks, all_time_top_songs_path, readme_dir),
         md_image("Top items across time ranges", top_ranges_path, readme_dir),
+        "",
+        "### Saved vs Played",
+        "",
+        "A comparison between the saved library and recently played music.",
         "",
         md_image("Saved library versus recently played", saved_played_path, readme_dir),
         "",
+        "### Countries by Decade",
+        "",
+        "Artist origins across release decades, using MusicBrainz, Wikidata and curated overrides.",
+        "",
+        md_image("Countries by decade heatmap", country_decade_path, readme_dir),
+        "",
     ]
+    return top_songs, trends
 
 
 def build_dashboard(
@@ -2164,9 +2161,10 @@ def build_dashboard(
     artist_cache = read_json(MUSICBRAINZ_ARTIST_CACHE)
     country_overrides = read_country_overrides(COUNTRY_OVERRIDES_CSV)
     artists = Counter(artist for row in tracks for artist in all_artists(row))
+    artist_countries = build_artist_country_index(artists, artist_cache, country_overrides)
     genres = Counter(genre.lower() for row in tracks for genre in effective_genres(row))
     countries = Counter(
-        country for row in tracks for country in track_countries(row, artist_cache, country_overrides)
+        country for row in tracks for country in track_countries(row, artist_countries)
     )
     years = Counter(effective_year(row) for row in tracks if effective_year(row).isdigit())
     albums = {
@@ -2190,6 +2188,8 @@ def build_dashboard(
         f"# {README_TITLE}",
         "",
         REPO_DESCRIPTION,
+        "",
+        f"_Last updated {generated_at}._",
         "",
         "No audio files are included: this repository publishes generated summaries from a private CSV archive.",
         "",
@@ -2237,70 +2237,59 @@ def build_dashboard(
             top_assigned_genres,
             top_artists,
         )
+        top_songs_lines, listening_trend_lines = listening_maps(
+            tracks,
+            artist_countries,
+            artist_genres,
+            readme_dir,
+        )
+        genre_atlas_lines = genre_atlas(
+            tracks,
+            artist_countries,
+            assigned_genres,
+            artist_genres,
+            readme_dir,
+            atlas_dir,
+        )
         lines.extend(
             [
                 md_image("Spotify library overview", overview_path, readme_dir),
                 "",
-                "> Each artist is assigned to exactly one dominant genre. Every genre card below shows top 15 artists, years and countries.",
-                "",
             ]
         )
-        lines.extend(
-            listening_maps(
-                tracks,
-                artist_cache,
-                country_overrides,
-                artist_genres,
-                readme_dir,
-            )
-        )
-        lines.extend(
-            genre_atlas(
-                tracks,
-                artist_cache,
-                country_overrides,
-                assigned_genres,
-                artist_genres,
-                readme_dir,
-                atlas_dir,
-            )
-        )
-
+        lines.extend(top_songs_lines)
         lines.extend(
             [
                 "## Latest Liked Tracks",
                 "",
+                "The ten most recently saved tracks in the library.",
+                "",
                 wrapped_table(
                     ["Added", "Track", "Details"],
-                    recent_liked_rows(tracks, 20),
+                    recent_liked_rows(tracks, 10),
                 ),
                 "",
-                "## Aggregates",
+                "## Library Rankings",
                 "",
                 md_image("Spotify aggregate top lists", aggregates_path, readme_dir),
                 "",
-                "<details>",
-                "<summary>Workflow</summary>",
-                "",
-                "",
-                "- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists, plus optional Spotify top/recent snapshots.",
-                "- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.",
-                "- `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata where available.",
-                "- `python scripts/apply_genre_rules.py --overwrite` applies curated genres from `data/genre_rules.csv`.",
-                "- `python scripts/build_readme.py` regenerates this README.",
-                "- `python scripts/debug_spotify.py` checks OAuth and first Spotify API pages without writing CSV.",
-                "- Manual fields in `data/tracks.csv` are preserved on export: `year`, `primary_genre`, `genres`, `rating`, `status`, `tags`, `notes`.",
-                "- Weekly GitHub Actions use a private data repository for `data/tracks.csv`; this public repository commits only generated summaries and public rules.",
-                "",
-                "</details>",
-                "",
             ]
         )
+        lines.extend(listening_trend_lines)
+        lines.extend(genre_atlas_lines)
 
     lines.extend(
         [
             "<details>",
-            "<summary>Repeat this</summary>",
+            "<summary>How it works</summary>",
+            "",
+            "- `python scripts/export_spotify.py` updates `data/tracks.csv` from saved tracks and owned/collaborative playlists, plus Spotify top and recent snapshots.",
+            "- `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata.",
+            "- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.",
+            "- `python scripts/apply_genre_rules.py --overwrite` applies curated genre rules.",
+            "- `python scripts/build_readme.py` regenerates the dashboard and SVG assets.",
+            "- Manual fields are preserved during export: `year`, `primary_genre`, `genres`, `rating`, `status`, `tags`, `notes`.",
+            "- Weekly GitHub Actions use a private data repository; the public repository contains only generated summaries and public rules.",
             "",
             "Create a Spotify app, run the local OAuth export once, store the full `data/tracks.csv` in a private data repository, then set public repository secrets described in `DATA.md`. GitHub Actions can refresh the public dashboard weekly without publishing the full CSV. Spotify user refresh tokens expire after six months; when the workflow reports `invalid_grant`, or after adding `user-top-read` / `user-read-recently-played`, reauthorize locally and update the `SPOTIFY_REFRESH_TOKEN` secret.",
             "",
@@ -2330,8 +2319,6 @@ def build_dashboard(
             "- Spotify, MusicBrainz and Wikidata metadata, plus linked Spotify artwork, remain governed by their source terms.",
             "",
             "</details>",
-            "",
-            f"_Generated at {generated_at}._",
             "",
             "<sub>Created by Maksim Krutikov.</sub>",
             "",

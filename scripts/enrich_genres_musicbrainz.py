@@ -6,7 +6,6 @@ import csv
 import json
 import os
 import socket
-import tempfile
 import time
 import urllib.error
 import urllib.parse
@@ -14,6 +13,8 @@ import urllib.request
 from collections import Counter
 from pathlib import Path
 from typing import Any, Iterable
+
+from file_utils import atomic_text_writer
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +25,7 @@ RELEASE_GROUP_CACHE = CACHE_DIR / "musicbrainz-release-groups.json"
 GENRE_CACHE = CACHE_DIR / "musicbrainz-genres.json"
 API_BASE = "https://musicbrainz.org/ws/2"
 DEFAULT_USER_AGENT = "myfavmusic-genre-enricher/1.0 (personal local metadata script)"
+CACHE_CHECKPOINT_INTERVAL = 25
 
 BROAD_GENRE_MARKERS = {
     "ambient",
@@ -134,6 +136,14 @@ GENERIC_PARENT_RULES = {
 }
 
 
+def cache_checkpoint_due(count: int) -> bool:
+    return count > 0 and count % CACHE_CHECKPOINT_INTERVAL == 0
+
+
+def final_cache_checkpoint_due(count: int) -> bool:
+    return count > 0 and not cache_checkpoint_due(count)
+
+
 def parse_args() -> argparse.Namespace:
     load_dotenv(ROOT / ".env")
     parser = argparse.ArgumentParser(
@@ -193,8 +203,7 @@ def read_json(path: Path, default: Any) -> Any:
 
 
 def write_json(path: Path, data: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as file:
+    with atomic_text_writer(path) as file:
         json.dump(data, file, indent=2, sort_keys=True, ensure_ascii=False)
         file.write("\n")
 
@@ -206,31 +215,15 @@ def read_tracks(path: Path) -> tuple[list[str], list[dict[str, str]]]:
 
 
 def write_tracks(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    fd, tmp_name = tempfile.mkstemp(
-        prefix=f".{path.name}.",
-        suffix=".tmp",
-        dir=path.parent,
-    )
-    try:
-        with os.fdopen(fd, "w", encoding="utf-8", newline="") as file:
-            writer = csv.DictWriter(file, fieldnames=fieldnames)
-            writer.writeheader()
-            for row in rows:
-                writer.writerow({field: row.get(field, "") for field in fieldnames})
-            file.flush()
-            os.fsync(file.fileno())
-        os.replace(tmp_name, path)
-    except Exception:
-        try:
-            os.unlink(tmp_name)
-        except FileNotFoundError:
-            pass
-        raise
+    with atomic_text_writer(path, newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({field: row.get(field, "") for field in fieldnames})
 
 
-def split_values(value: str) -> list[str]:
-    return [part.strip() for part in value.replace(",", ";").split(";") if part.strip()]
+def split_semicolon(value: str) -> list[str]:
+    return [part.strip() for part in value.split(";") if part.strip()]
 
 
 def join_unique(values: Iterable[str]) -> str:
@@ -251,7 +244,7 @@ def complete_existing_genres(row: dict[str, str]) -> bool:
         row["genres"] = primary
         return True
     if genres and not primary:
-        values = split_values(genres)
+        values = split_semicolon(genres)
         if values:
             row["primary_genre"] = values[0]
             return True
@@ -483,7 +476,7 @@ def artist_names_from_rows(rows: list[dict[str, str]], overwrite: bool) -> list[
     for row in rows:
         if not overwrite and (row.get("primary_genre") or row.get("genres")):
             continue
-        for artist in split_values(row.get("artist_names", "")):
+        for artist in split_semicolon(row.get("artist_names", "")):
             key = norm(artist)
             if key and key not in seen:
                 seen.add(key)
@@ -499,7 +492,7 @@ def row_genres(
 ) -> list[str]:
     weighted: Counter[str] = Counter()
     first_seen: dict[str, int] = {}
-    for artist_index, artist in enumerate(split_values(row.get("artist_names", ""))):
+    for artist_index, artist in enumerate(split_semicolon(row.get("artist_names", ""))):
         artist_data = artist_cache.get(norm(artist), {})
         for genre_index, genre in enumerate(ranked_genres_for_artist(artist_data, musicbrainz_genres, max_genres)):
             first_seen.setdefault(genre, artist_index * 100 + genre_index)
@@ -509,7 +502,7 @@ def row_genres(
 
 
 def release_group_cache_key(row: dict[str, str]) -> str:
-    artist = split_values(row.get("artist_names", ""))
+    artist = split_semicolon(row.get("artist_names", ""))
     artist_name = artist[0] if artist else ""
     return f"{norm(artist_name)}|{norm(row.get('album_name', ''))}"
 
@@ -554,14 +547,12 @@ def main() -> None:
             continue
         artist_cache[key] = query_artist(client, artist, args.min_score)
         fetched += 1
-        if not args.dry_run:
+        if not args.dry_run and cache_checkpoint_due(fetched):
             write_json(artist_cache_path, artist_cache)
         if args.verbose:
             status = "matched" if artist_cache[key].get("matched") else "missed"
             print(f"{fetched}: {status} {artist}", flush=True)
-        if fetched % 25 == 0 and not args.dry_run:
-            write_json(artist_cache_path, artist_cache)
-    if fetched and not args.dry_run:
+    if final_cache_checkpoint_due(fetched) and not args.dry_run:
         write_json(artist_cache_path, artist_cache)
 
     fetched_release_groups = 0
@@ -578,7 +569,7 @@ def main() -> None:
             release_key = release_group_cache_key(row)
             release_data = release_group_cache.get(release_key)
             if release_data is None and not args.offline:
-                artist = split_values(row.get("artist_names", ""))
+                artist = split_semicolon(row.get("artist_names", ""))
                 release_data = query_release_group(
                     client,
                     artist[0] if artist else "",
@@ -587,7 +578,10 @@ def main() -> None:
                 )
                 release_group_cache[release_key] = release_data
                 fetched_release_groups += 1
-                if fetched_release_groups % 25 == 0 and not args.dry_run:
+                if (
+                    cache_checkpoint_due(fetched_release_groups)
+                    and not args.dry_run
+                ):
                     write_json(release_group_cache_path, release_group_cache)
             if release_data:
                 genres = ranked_genres_from_tags(
@@ -610,7 +604,7 @@ def main() -> None:
     if args.dry_run:
         print("Dry run only; CSV was not written.")
         return
-    if fetched_release_groups:
+    if final_cache_checkpoint_due(fetched_release_groups):
         write_json(release_group_cache_path, release_group_cache)
     print(f"Fetched {fetched_release_groups} MusicBrainz release-group records.")
     write_tracks(output_path, fieldnames, rows)
