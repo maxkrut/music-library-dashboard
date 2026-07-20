@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-07-13 08:28 UTC._
+_Last updated 2026-07-20 08:19 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -22,13 +22,13 @@ Spotify long-term favorites. Album covers are shown once, keeping the highest-ra
 <a href="https://open.spotify.com/track/72GUD7ZA98E9lWhltp4bqb"><img src="https://i.scdn.co/image/ab67616d0000b273559e72c773cf32a8fb6248a2" width="72" height="72" alt="Curta&#x27;n Wall; Elvya - The Dark Ages" /></a>
 <a href="https://open.spotify.com/track/1lZquyBVOQb3qvVMpvoXiT"><img src="https://i.scdn.co/image/ab67616d0000b2735df4965ac420798942c57b99" width="72" height="72" alt="220 Volt - Love Is All You Need" /></a>
 <a href="https://open.spotify.com/track/6S9cuHvVIuoKfSDwcENP9P"><img src="https://i.scdn.co/image/ab67616d0000b2737a2e1473dbe8e461ae689121" width="72" height="72" alt="Whispering Void - Vi Finnes" /></a>
-<a href="https://open.spotify.com/track/2xPOwYbqUOlNa3Ad1neTsm"><img src="https://i.scdn.co/image/ab67616d0000b2733b80df170989af75667f7797" width="72" height="72" alt="Counting Hours - Timeless Ones" /></a>
 <a href="https://open.spotify.com/track/3VANrwkmYkLHpzZs63YadJ"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="72" height="72" alt="Obsequiae - Anlace and Heart" /></a>
 <a href="https://open.spotify.com/track/4kgf6zhFJQYPHz8ABNMkUL"><img src="https://i.scdn.co/image/ab67616d0000b2737fdf43bdfa5106d3eae0e0c2" width="72" height="72" alt="Сруб - Умирая радуй" /></a>
 <a href="https://open.spotify.com/track/10rlIQ4RQIy6GeKfo0s2yy"><img src="https://i.scdn.co/image/ab67616d0000b273caaae0805c6a27757210d214" width="72" height="72" alt="The Flight of Sleipnir - Voland" /></a>
+<a href="https://open.spotify.com/track/6DTp1lInphWvQtCNbJoJ2N"><img src="https://i.scdn.co/image/ab67616d0000b27367e9b8ecf8c3f2ce3c2e8be4" width="72" height="72" alt="Fogweaver - Spell-woven" /></a>
+<a href="https://open.spotify.com/track/2xPOwYbqUOlNa3Ad1neTsm"><img src="https://i.scdn.co/image/ab67616d0000b2733b80df170989af75667f7797" width="72" height="72" alt="Counting Hours - Timeless Ones" /></a>
 <a href="https://open.spotify.com/track/4bL8poSHJGxHCTnrWqTmRb"><img src="https://i.scdn.co/image/ab67616d0000b2732e73fd8b722b3b984cdf9bf9" width="72" height="72" alt="Комонь; Павел Паньковский; Аркадий Пикунов - Ты подуй" /></a>
 <a href="https://open.spotify.com/track/2dkUNeusRI8WUCrtKvWKgs"><img src="https://i.scdn.co/image/ab67616d0000b27340e4eacd8da22567cfcde58f" width="72" height="72" alt="Sylvan - Posthumous Silence" /></a>
-<a href="https://open.spotify.com/track/6DTp1lInphWvQtCNbJoJ2N"><img src="https://i.scdn.co/image/ab67616d0000b27367e9b8ecf8c3f2ce3c2e8be4" width="72" height="72" alt="Fogweaver - Spell-woven" /></a>
 <a href="https://open.spotify.com/track/7zfxW7P4yYfbQTmW7XUjS6"><img src="https://i.scdn.co/image/ab67616d0000b273c03375b437f97510b2903215" width="72" height="72" alt="Psilocybe Larvae - Новый дивный мир" /></a>
 <a href="https://open.spotify.com/track/5el8o8F9zXlbgMun4IRxCj"><img src="https://i.scdn.co/image/ab67616d0000b273146190ba8aeb500d602df2a7" width="72" height="72" alt="Kick Puncher - Fight or Flight" /></a>
 <a href="https://open.spotify.com/track/2qURNRJHKUjc9aT398g0pf"><img src="https://i.scdn.co/image/ab67616d0000b273af6b567023c685829c273982" width="72" height="72" alt="Theatre Of Tragedy - Venus" /></a>
@@ -51,6 +51,18 @@ The ten most recently saved tracks in the library.
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1gI3uumUNQ4pzLaPNggJE8">Stellar Voyage II</a></strong> — Aftoktonia<br/><small>Through Nebulae of the Empyrean Aether · 2026 · Added 2026-07-15</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2pq2AZD8SRHGiizeU5F2dj">Armoured Skeleton</a></strong> — Torpor<br/><small>Armoured Skeleton · 2026 · doom metal · Added 2026-07-15</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/5aCI6qKhobQG8n08eVMGFA">The Number Of The Word</a></strong> — Negative Plane<br/><small>Stained Glass Revelations · 2011 · black metal · Added 2026-07-15</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/0ORryQQGPzNlomh9NK8kGP">A Solitary Future</a></strong> — Liminal Sky; Ulver<br/><small>All Tomorrow&#x27;s Darkness · 2026 · experimental · Added 2026-07-14</small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1LkGmGVt1y9Ks2O1IRzAzy">fever in the night</a></strong> — ALLP; laviero<br/><small>fever in the night · 2026 · hip hop · Added 2026-07-10</small></td>
 </tr>
 <tr>
@@ -67,18 +79,6 @@ The ten most recently saved tracks in the library.
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1MNoaPv7HGoYbZfeAbzPVZ">Долгая счастливая жизнь</a></strong> — Grazhdanskaya Oborona<br/><small>The Best, Pt. 2 · 1990 · siberian punk · Added 2026-07-08</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4b7LkbOF77v009R9zU4yxT">If I Awake</a></strong> — Zeromind<br/><small>If I Awake · 2026 · Added 2026-07-07</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3Hi1ulX4rvxnOij9Z9ufRt">Promise</a></strong> — Radagast<br/><small>Vermis - Sounds of the World, Vol. 1 - Melodies of the Unknown · 2025 · dungeon synth · Added 2026-07-07</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/03mOFk2uyyqazaNbnVZVmG">Antibiosis</a></strong> — Words Of Farewell<br/><small>The Black Wild Yonder · 2014 · death metal · Added 2026-07-06</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7wu4wHFF09Qww23NW0VPvq">ΧΑΙΡΕ ΠΑΡΘΕΝΕ ΣΟΥΜΕΛΑ-Ψαλτοτράγουδο</a></strong> — π. Διονύσιος Ταμπάκης<br/><small>Paradise Metal · 2026 · psychedelic rock · Added 2026-07-01</small></td>
 </tr>
 </tbody>
 </table>
@@ -119,7 +119,7 @@ Artist origins across release decades, using MusicBrainz, Wikidata and curated o
 Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.
 
 <details>
-<summary><strong>Metal</strong> · 48 genres · 921 track assignments</summary>
+<summary><strong>Metal</strong> · 48 genres · 923 track assignments</summary>
 
 ![Metal genre atlas](assets/atlas/metal.svg)
 
