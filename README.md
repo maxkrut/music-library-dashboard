@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-07-20 08:19 UTC._
+_Last updated 2026-07-27 08:48 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -51,6 +51,15 @@ The ten most recently saved tracks in the library.
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3L41mK3ctZjjvG0EV4QonL">Solar Drift</a></strong> — Amalomu; Red Nuts<br/><small>Solar Drift · 2026 · funk rock · Added 2026-07-27</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/0bKs1y9PTFBddM9qj0JGvb">Puritania</a></strong> — Dimmu Borgir<br/><small>Puritanical Euphoric Misanthropia · 2001 · symphonic black metal · Added 2026-07-21</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7doTP0tF4zs2zQyYS8YmEh">The Sacrilegious Scorn</a></strong> — Dimmu Borgir<br/><small>In Sorte Diaboli · 2007 · symphonic black metal · Added 2026-07-21</small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1gI3uumUNQ4pzLaPNggJE8">Stellar Voyage II</a></strong> — Aftoktonia<br/><small>Through Nebulae of the Empyrean Aether · 2026 · Added 2026-07-15</small></td>
 </tr>
 <tr>
@@ -70,15 +79,6 @@ The ten most recently saved tracks in the library.
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1Q5dHbfQOOlpldhUyN9SLS">Ne Ola Yar Ola</a></strong> — Barış Manço<br/><small>Sarı Çizmeli Mehmet Ağa · 1993 · anatolian rock · Added 2026-07-08</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6A8OuzYyWXkEX8NSKpxdA6">Lions at the Gate</a></strong> — The Tower<br/><small>Hic Abundant Leones · 2014 · Added 2026-07-08</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4gCxNWL3Wce5matrFYqwg6">Human Disgrace</a></strong> — Abominog<br/><small>Manifesting Void · 2008 · death metal · Added 2026-07-08</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1MNoaPv7HGoYbZfeAbzPVZ">Долгая счастливая жизнь</a></strong> — Grazhdanskaya Oborona<br/><small>The Best, Pt. 2 · 1990 · siberian punk · Added 2026-07-08</small></td>
 </tr>
 </tbody>
 </table>
@@ -119,14 +119,14 @@ Artist origins across release decades, using MusicBrainz, Wikidata and curated o
 Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.
 
 <details>
-<summary><strong>Metal</strong> · 48 genres · 923 track assignments</summary>
+<summary><strong>Metal</strong> · 48 genres · 925 track assignments</summary>
 
 ![Metal genre atlas](assets/atlas/metal.svg)
 
 </details>
 
 <details>
-<summary><strong>Rock / Psych / Prog</strong> · 52 genres · 601 track assignments</summary>
+<summary><strong>Rock / Psych / Prog</strong> · 53 genres · 602 track assignments</summary>
 
 ![Rock / Psych / Prog genre atlas](assets/atlas/rock-psych-prog.svg)
 

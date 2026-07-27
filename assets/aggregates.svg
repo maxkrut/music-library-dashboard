@@ -11,20 +11,20 @@
 <rect x="66.0" y="142.0" width="266.0" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="156.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">01</text>
 <text x="66.0" y="156.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">United States</text>
-<text x="380.0" y="156.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">626</text>
-<rect x="66.0" y="166.0" width="122.8" height="16" fill="#557e64" fill-opacity="0.18"/>
+<text x="380.0" y="156.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">627</text>
+<rect x="66.0" y="166.0" width="122.6" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">02</text>
 <text x="66.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">United Kingdom</text>
 <text x="380.0" y="180.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">289</text>
-<rect x="66.0" y="190.0" width="96.9" height="16" fill="#557e64" fill-opacity="0.18"/>
+<rect x="66.0" y="190.0" width="97.6" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="204.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">03</text>
 <text x="66.0" y="204.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Norway</text>
-<text x="380.0" y="204.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">228</text>
-<rect x="66.0" y="214.0" width="70.1" height="16" fill="#557e64" fill-opacity="0.18"/>
+<text x="380.0" y="204.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">230</text>
+<rect x="66.0" y="214.0" width="70.0" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="228.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">04</text>
 <text x="66.0" y="228.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Sweden</text>
 <text x="380.0" y="228.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">165</text>
-<rect x="66.0" y="238.0" width="42.5" height="16" fill="#557e64" fill-opacity="0.18"/>
+<rect x="66.0" y="238.0" width="42.4" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="252.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">05</text>
 <text x="66.0" y="252.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Germany</text>
 <text x="380.0" y="252.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">100</text>
@@ -44,7 +44,7 @@
 <text x="32.0" y="348.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">09</text>
 <text x="66.0" y="348.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Russia</text>
 <text x="380.0" y="348.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">50</text>
-<rect x="66.0" y="358.0" width="16.6" height="16" fill="#557e64" fill-opacity="0.18"/>
+<rect x="66.0" y="358.0" width="16.5" height="16" fill="#557e64" fill-opacity="0.18"/>
 <text x="32.0" y="372.0" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#557e64" text-anchor="start">10</text>
 <text x="66.0" y="372.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="start">Denmark</text>
 <text x="380.0" y="372.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#557e64" text-anchor="end">39</text>

@@ -9,19 +9,19 @@
 <rect x="180.0" y="126.0" width="410" height="18" fill="#d9ded7"/>
 <rect x="180.0" y="126.0" width="410.0" height="18" fill="#557e64" fill-opacity="0.78"/>
 <rect x="610.0" y="126.0" width="410" height="18" fill="#d9ded7"/>
-<rect x="610.0" y="126.0" width="4.0" height="18" fill="#526f92" fill-opacity="0.78"/>
-<text x="596.0" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">920</text>
-<text x="620.0" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">9</text>
+<rect x="610.0" y="126.0" width="3.6" height="18" fill="#526f92" fill-opacity="0.78"/>
+<text x="596.0" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">922</text>
+<text x="619.6" y="141.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">8</text>
 <text x="166.0" y="183.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="end">Rock</text>
 <rect x="180.0" y="168.0" width="410" height="18" fill="#d9ded7"/>
-<rect x="180.0" y="168.0" width="266.9" height="18" fill="#557e64" fill-opacity="0.78"/>
+<rect x="180.0" y="168.0" width="266.8" height="18" fill="#557e64" fill-opacity="0.78"/>
 <rect x="610.0" y="168.0" width="410" height="18" fill="#d9ded7"/>
-<rect x="610.0" y="168.0" width="1.8" height="18" fill="#526f92" fill-opacity="0.78"/>
-<text x="596.0" y="183.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">599</text>
-<text x="617.8" y="183.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">4</text>
+<rect x="610.0" y="168.0" width="0.4" height="18" fill="#526f92" fill-opacity="0.78"/>
+<text x="596.0" y="183.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">600</text>
+<text x="616.4" y="183.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">1</text>
 <text x="166.0" y="225.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="end">Electronic</text>
 <rect x="180.0" y="210.0" width="410" height="18" fill="#d9ded7"/>
-<rect x="180.0" y="210.0" width="83.8" height="18" fill="#557e64" fill-opacity="0.78"/>
+<rect x="180.0" y="210.0" width="83.6" height="18" fill="#557e64" fill-opacity="0.78"/>
 <rect x="610.0" y="210.0" width="410" height="18" fill="#d9ded7"/>
 <rect x="610.0" y="210.0" width="0.9" height="18" fill="#526f92" fill-opacity="0.78"/>
 <text x="596.0" y="225.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">188</text>
@@ -30,9 +30,9 @@
 <rect x="180.0" y="252.0" width="410" height="18" fill="#d9ded7"/>
 <rect x="180.0" y="252.0" width="32.5" height="18" fill="#557e64" fill-opacity="0.78"/>
 <rect x="610.0" y="252.0" width="410" height="18" fill="#d9ded7"/>
-<rect x="610.0" y="252.0" width="0.9" height="18" fill="#526f92" fill-opacity="0.78"/>
+<rect x="610.0" y="252.0" width="0.0" height="18" fill="#526f92" fill-opacity="0.78"/>
 <text x="596.0" y="267.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">73</text>
-<text x="616.9" y="267.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">2</text>
+<text x="616.0" y="267.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">0</text>
 <text x="166.0" y="309.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="end">Folk</text>
 <rect x="180.0" y="294.0" width="410" height="18" fill="#d9ded7"/>
 <rect x="180.0" y="294.0" width="28.5" height="18" fill="#557e64" fill-opacity="0.78"/>
@@ -47,22 +47,22 @@
 <rect x="610.0" y="336.0" width="0.0" height="18" fill="#526f92" fill-opacity="0.78"/>
 <text x="596.0" y="351.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">37</text>
 <text x="616.0" y="351.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">0</text>
-<text x="166.0" y="393.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="end">Classical</text>
+<text x="166.0" y="393.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="end">Outside library</text>
 <rect x="180.0" y="378.0" width="410" height="18" fill="#d9ded7"/>
-<rect x="180.0" y="378.0" width="11.1" height="18" fill="#557e64" fill-opacity="0.78"/>
+<rect x="180.0" y="378.0" width="0.0" height="18" fill="#557e64" fill-opacity="0.78"/>
 <rect x="610.0" y="378.0" width="410" height="18" fill="#d9ded7"/>
-<rect x="610.0" y="378.0" width="0.0" height="18" fill="#526f92" fill-opacity="0.78"/>
-<text x="596.0" y="393.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">25</text>
-<text x="616.0" y="393.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">0</text>
-<text x="166.0" y="435.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="end">Jazz</text>
+<rect x="610.0" y="378.0" width="14.2" height="18" fill="#526f92" fill-opacity="0.78"/>
+<text x="596.0" y="393.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">0</text>
+<text x="630.2" y="393.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">32</text>
+<text x="166.0" y="435.0" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#102027" text-anchor="end">Classical</text>
 <rect x="180.0" y="420.0" width="410" height="18" fill="#d9ded7"/>
 <rect x="180.0" y="420.0" width="11.1" height="18" fill="#557e64" fill-opacity="0.78"/>
 <rect x="610.0" y="420.0" width="410" height="18" fill="#d9ded7"/>
-<rect x="610.0" y="420.0" width="0.0" height="18" fill="#526f92" fill-opacity="0.78"/>
+<rect x="610.0" y="420.0" width="0.4" height="18" fill="#526f92" fill-opacity="0.78"/>
 <text x="596.0" y="435.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#557e64" text-anchor="start">25</text>
-<text x="616.0" y="435.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">0</text>
+<text x="616.4" y="435.0" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#526f92" text-anchor="start">1</text>
 <rect x="16" y="422" width="568" height="42" fill="#fffefa" stroke="#c7d0c7"/>
 <rect x="616" y="422" width="568" height="42" fill="#fffefa" stroke="#c7d0c7"/>
 <text x="32.0" y="448.0" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#557e64" text-anchor="start">rediscovered: 17 recent library tracks</text>
-<text x="632.0" y="448.0" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#a96855" text-anchor="start">ignored favorites: 1977 saved tracks outside this snapshot</text>
+<text x="632.0" y="448.0" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#a96855" text-anchor="start">ignored favorites: 1980 saved tracks outside this snapshot</text>
 </svg>
