@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-08-10 06:44 UTC._
+_Last updated 2026-08-17 05:52 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -19,19 +19,19 @@ Spotify long-term favorites. Album covers are shown once, keeping the highest-ra
 <a href="https://open.spotify.com/track/39SSSnwlBXvqjp3VCP0oKU"><img src="https://i.scdn.co/image/ab67616d0000b273ac26fcc8f9b7986b5ca0c898" width="72" height="72" alt="Shape Of Despair - Dissolution" /></a>
 <a href="https://open.spotify.com/track/6piuCKWW9pwvG1LYDWGk9D"><img src="https://i.scdn.co/image/ab67616d0000b2730815b7b365abac40db634b38" width="72" height="72" alt="Ben Kenney; Ashley Mendel; Rachel Ana Dobken - Three Times" /></a>
 <a href="https://open.spotify.com/track/72GUD7ZA98E9lWhltp4bqb"><img src="https://i.scdn.co/image/ab67616d0000b273559e72c773cf32a8fb6248a2" width="72" height="72" alt="Curta&#x27;n Wall; Elvya - The Dark Ages" /></a>
-<a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
-<a href="https://open.spotify.com/track/6S9cuHvVIuoKfSDwcENP9P"><img src="https://i.scdn.co/image/ab67616d0000b2737a2e1473dbe8e461ae689121" width="72" height="72" alt="Whispering Void - Vi Finnes" /></a>
 <a href="https://open.spotify.com/track/3VANrwkmYkLHpzZs63YadJ"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="72" height="72" alt="Obsequiae - Anlace and Heart" /></a>
+<a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
 <a href="https://open.spotify.com/track/4kgf6zhFJQYPHz8ABNMkUL"><img src="https://i.scdn.co/image/ab67616d0000b2737fdf43bdfa5106d3eae0e0c2" width="72" height="72" alt="Сруб - Умирая радуй" /></a>
 <a href="https://open.spotify.com/track/6DTp1lInphWvQtCNbJoJ2N"><img src="https://i.scdn.co/image/ab67616d0000b27367e9b8ecf8c3f2ce3c2e8be4" width="72" height="72" alt="Fogweaver - Spell-woven" /></a>
 <a href="https://open.spotify.com/track/4bL8poSHJGxHCTnrWqTmRb"><img src="https://i.scdn.co/image/ab67616d0000b2732e73fd8b722b3b984cdf9bf9" width="72" height="72" alt="Комонь; Павел Паньковский; Аркадий Пикунов - Ты подуй" /></a>
 <a href="https://open.spotify.com/track/2dkUNeusRI8WUCrtKvWKgs"><img src="https://i.scdn.co/image/ab67616d0000b27340e4eacd8da22567cfcde58f" width="72" height="72" alt="Sylvan - Posthumous Silence" /></a>
 <a href="https://open.spotify.com/track/7zfxW7P4yYfbQTmW7XUjS6"><img src="https://i.scdn.co/image/ab67616d0000b273c03375b437f97510b2903215" width="72" height="72" alt="Psilocybe Larvae - Новый дивный мир" /></a>
 <a href="https://open.spotify.com/track/2xPOwYbqUOlNa3Ad1neTsm"><img src="https://i.scdn.co/image/ab67616d0000b2733b80df170989af75667f7797" width="72" height="72" alt="Counting Hours - Timeless Ones" /></a>
-<a href="https://open.spotify.com/track/2qURNRJHKUjc9aT398g0pf"><img src="https://i.scdn.co/image/ab67616d0000b273af6b567023c685829c273982" width="72" height="72" alt="Theatre Of Tragedy - Venus" /></a>
 <a href="https://open.spotify.com/track/1cbjK0wRgoD5M1VYW3ImFy"><img src="https://i.scdn.co/image/ab67616d0000b2734d5192764e232944f72ac64e" width="72" height="72" alt="Century - Black Revenant" /></a>
 <a href="https://open.spotify.com/track/4MzII8fszi8KkFl1ryv07L"><img src="https://i.scdn.co/image/ab67616d0000b273ad0677f76f220c118226fd46" width="72" height="72" alt="Carbon Based Lifeforms - Interloper" /></a>
 <a href="https://open.spotify.com/track/6YpIVWErIzMrR6E7tIiz9K"><img src="https://i.scdn.co/image/ab67616d0000b2739a7ace0ede4e5a0cfbbe16ac" width="72" height="72" alt="Wovenhand - Truly Golden" /></a>
+<a href="https://open.spotify.com/track/5cWIoa3mKP8UzC4s065Cv3"><img src="https://i.scdn.co/image/ab67616d0000b2738471b54464d3ca497bef61e3" width="72" height="72" alt="Lustre - Dreaded Still" /></a>
+<a href="https://open.spotify.com/track/20z2wxoDeVwYCuXjzUON0f"><img src="https://i.scdn.co/image/ab67616d0000b2738aee3c4cf4a5b7cbd3ff705c" width="72" height="72" alt="Gruesome Pledge - Crusaders" /></a>
 </p>
 
 <details>
@@ -50,6 +50,12 @@ The ten most recently saved tracks in the library.
 <div align="center">
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/5ELPJmRxlvGFsCq9S7fUVR">Solace</a></strong> — Radagast<br/><small>Baba&#x27;s House · 2026 · dungeon synth · Added 2026-08-15</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3AxT0zo6lNVrpM3OfiEagr">Twilight Glow</a></strong> — JYRANTE<br/><small>Sleeping With The Stars · 2026 · Added 2026-08-14</small></td>
+</tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6nJLBDlgLjzhG2wPC6y8C0">Bishop of the Iron Guard</a></strong> — Fvneral Fvkk<br/><small>Bishop of the Iron Guard · 2026 · doom metal · Added 2026-08-06</small></td>
 </tr>
@@ -73,12 +79,6 @@ The ten most recently saved tracks in the library.
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1yDYHl8cCbzbd4YRN3cDdJ">Festival of the Whirling Blades</a></strong> — Fief<br/><small>VI · 2024 · dungeon synth · Added 2026-08-02</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7fxrxv5CilLCzTAW0njXy0">Sacred Place</a></strong> — Hewer of Caves<br/><small>Tabernacle · 2022 · dungeon synth · Added 2026-08-02</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3eCBQqnSIr58BXNCF5H05G">A Dance Of Sun And Moon</a></strong> — Hewer of Caves<br/><small>A Dance Of Sun And Moon · 2024 · dungeon synth · Added 2026-08-02</small></td>
 </tr>
 </tbody>
 </table>
@@ -133,7 +133,7 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Electronic / Ambient</strong> · 31 genres · 191 track assignments</summary>
+<summary><strong>Electronic / Ambient</strong> · 31 genres · 193 track assignments</summary>
 
 ![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
 
