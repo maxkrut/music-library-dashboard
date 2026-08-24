@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-08-17 05:52 UTC._
+_Last updated 2026-08-24 05:58 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -51,6 +51,18 @@ The ten most recently saved tracks in the library.
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4s0DbR4wt8AadGDlQbPepm">The Hunter</a></strong> — Iced Earth<br/><small>The Dark Saga · 1996 · power metal · Added 2026-08-17</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6oJ9FaEFwmrS7NgxsEHhFJ">Lorn and Loath</a></strong> — Wolcensmen<br/><small>Fire in the White Stone · 2019 · ambient · Added 2026-08-17</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3Q5j1J6hXHRzK4TB54NAeJ">Faith&#x27;s Window</a></strong> — Advent Horizon<br/><small>Falling Together · 2026 · Added 2026-08-17</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1xYhMDqK3c3QZCuaFIAmSc">Gravity I</a></strong> — Advent Horizon<br/><small>Gravity · 2026 · Added 2026-08-17</small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/5ELPJmRxlvGFsCq9S7fUVR">Solace</a></strong> — Radagast<br/><small>Baba&#x27;s House · 2026 · dungeon synth · Added 2026-08-15</small></td>
 </tr>
 <tr>
@@ -67,18 +79,6 @@ The ten most recently saved tracks in the library.
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2nKcythNgNkBXO8RIHx7Ug">The Kingdom is Ours</a></strong> — Erang; Fief<br/><small>The Kingdom is Ours · 2024 · dungeon synth · Added 2026-08-02</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/67sXPg89vYxeIM36diF3Cx">Part I: An Orchid Night</a></strong> — Monastery<br/><small>The Garden of Abandon (Part I: The Summer Queen &amp; Part II: the Winter King) · 2019 · electronic · Added 2026-08-02</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2hSjuG3BmWEy6c9AL84fHt">The Boulder in the Shade</a></strong> — DIM<br/><small>Compendium Reliquiae · 2021 · dungeon synth · Added 2026-08-02</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/5DyCkWgql5R9qKAp6HiTJV">Landskein</a></strong> — DIM<br/><small>Compendium II · 2019 · dungeon synth · Added 2026-08-02</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1yDYHl8cCbzbd4YRN3cDdJ">Festival of the Whirling Blades</a></strong> — Fief<br/><small>VI · 2024 · dungeon synth · Added 2026-08-02</small></td>
 </tr>
 </tbody>
 </table>
@@ -133,7 +133,7 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Electronic / Ambient</strong> · 31 genres · 193 track assignments</summary>
+<summary><strong>Electronic / Ambient</strong> · 31 genres · 194 track assignments</summary>
 
 ![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
 
