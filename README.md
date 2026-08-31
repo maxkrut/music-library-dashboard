@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-08-24 05:58 UTC._
+_Last updated 2026-08-31 11:39 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -51,6 +51,18 @@ The ten most recently saved tracks in the library.
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2FcdtGhl7pOdRdlIMKHSPF">Turn the Key</a></strong> — Chelsea Wolfe<br/><small>The Dark · 2026 · singer-songwriter · Added 2026-08-27</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6cHrPKckZAZ0o3jQrKs2hB">Kill Him With Poison</a></strong> — Zorn<br/><small>Return to Castle Death · 2026 · avant-garde · Added 2026-08-26</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2QslhSobUJwOWQnvyIpyef">Set the Control to the Heart of the Mother, Pt. 6</a></strong> — Klaus Schulze; Pete Namlook<br/><small>The Dark Side of the Moog (Complete Version, Vol. 3) · 2016 · electronic · Added 2026-08-26</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3eRhhZJCbpwJ4vVnu6wkYa">Заход солнца</a></strong> — SIVERNOT; Crystal Cage<br/><small>Меланхолия · 2025 · electronic · Added 2026-08-26</small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4s0DbR4wt8AadGDlQbPepm">The Hunter</a></strong> — Iced Earth<br/><small>The Dark Saga · 1996 · power metal · Added 2026-08-17</small></td>
 </tr>
 <tr>
@@ -67,18 +79,6 @@ The ten most recently saved tracks in the library.
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3AxT0zo6lNVrpM3OfiEagr">Twilight Glow</a></strong> — JYRANTE<br/><small>Sleeping With The Stars · 2026 · Added 2026-08-14</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6nJLBDlgLjzhG2wPC6y8C0">Bishop of the Iron Guard</a></strong> — Fvneral Fvkk<br/><small>Bishop of the Iron Guard · 2026 · doom metal · Added 2026-08-06</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/665zJR3tMVdJDLBnGrZozN">Kaiserstadt Gareth</a></strong> — Gilgareth<br/><small>Eine Reise beginnt · 2024 · dungeon synth · Added 2026-08-02</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6DTp1lInphWvQtCNbJoJ2N">Spell-woven</a></strong> — Fogweaver<br/><small>Fogweaver · 2019 · dungeon synth · Added 2026-08-02</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2nKcythNgNkBXO8RIHx7Ug">The Kingdom is Ours</a></strong> — Erang; Fief<br/><small>The Kingdom is Ours · 2024 · dungeon synth · Added 2026-08-02</small></td>
 </tr>
 </tbody>
 </table>
@@ -133,7 +133,7 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Electronic / Ambient</strong> · 31 genres · 194 track assignments</summary>
+<summary><strong>Electronic / Ambient</strong> · 31 genres · 196 track assignments</summary>
 
 ![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
 
@@ -189,7 +189,7 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Pop / Songwriter</strong> · 9 genres · 40 track assignments</summary>
+<summary><strong>Pop / Songwriter</strong> · 9 genres · 41 track assignments</summary>
 
 ![Pop / Songwriter genre atlas](assets/atlas/pop-songwriter.svg)
 
@@ -203,7 +203,7 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Experimental / Noise</strong> · 4 genres · 20 track assignments</summary>
+<summary><strong>Experimental / Noise</strong> · 4 genres · 21 track assignments</summary>
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
 
