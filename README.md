@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-08-31 11:39 UTC._
+_Last updated 2026-09-07 10:25 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -20,18 +20,18 @@ Spotify long-term favorites. Album covers are shown once, keeping the highest-ra
 <a href="https://open.spotify.com/track/6piuCKWW9pwvG1LYDWGk9D"><img src="https://i.scdn.co/image/ab67616d0000b2730815b7b365abac40db634b38" width="72" height="72" alt="Ben Kenney; Ashley Mendel; Rachel Ana Dobken - Three Times" /></a>
 <a href="https://open.spotify.com/track/72GUD7ZA98E9lWhltp4bqb"><img src="https://i.scdn.co/image/ab67616d0000b273559e72c773cf32a8fb6248a2" width="72" height="72" alt="Curta&#x27;n Wall; Elvya - The Dark Ages" /></a>
 <a href="https://open.spotify.com/track/3VANrwkmYkLHpzZs63YadJ"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="72" height="72" alt="Obsequiae - Anlace and Heart" /></a>
-<a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
 <a href="https://open.spotify.com/track/4kgf6zhFJQYPHz8ABNMkUL"><img src="https://i.scdn.co/image/ab67616d0000b2737fdf43bdfa5106d3eae0e0c2" width="72" height="72" alt="Сруб - Умирая радуй" /></a>
 <a href="https://open.spotify.com/track/6DTp1lInphWvQtCNbJoJ2N"><img src="https://i.scdn.co/image/ab67616d0000b27367e9b8ecf8c3f2ce3c2e8be4" width="72" height="72" alt="Fogweaver - Spell-woven" /></a>
 <a href="https://open.spotify.com/track/4bL8poSHJGxHCTnrWqTmRb"><img src="https://i.scdn.co/image/ab67616d0000b2732e73fd8b722b3b984cdf9bf9" width="72" height="72" alt="Комонь; Павел Паньковский; Аркадий Пикунов - Ты подуй" /></a>
 <a href="https://open.spotify.com/track/2dkUNeusRI8WUCrtKvWKgs"><img src="https://i.scdn.co/image/ab67616d0000b27340e4eacd8da22567cfcde58f" width="72" height="72" alt="Sylvan - Posthumous Silence" /></a>
+<a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
 <a href="https://open.spotify.com/track/7zfxW7P4yYfbQTmW7XUjS6"><img src="https://i.scdn.co/image/ab67616d0000b273c03375b437f97510b2903215" width="72" height="72" alt="Psilocybe Larvae - Новый дивный мир" /></a>
 <a href="https://open.spotify.com/track/2xPOwYbqUOlNa3Ad1neTsm"><img src="https://i.scdn.co/image/ab67616d0000b2733b80df170989af75667f7797" width="72" height="72" alt="Counting Hours - Timeless Ones" /></a>
-<a href="https://open.spotify.com/track/1cbjK0wRgoD5M1VYW3ImFy"><img src="https://i.scdn.co/image/ab67616d0000b2734d5192764e232944f72ac64e" width="72" height="72" alt="Century - Black Revenant" /></a>
 <a href="https://open.spotify.com/track/4MzII8fszi8KkFl1ryv07L"><img src="https://i.scdn.co/image/ab67616d0000b273ad0677f76f220c118226fd46" width="72" height="72" alt="Carbon Based Lifeforms - Interloper" /></a>
 <a href="https://open.spotify.com/track/6YpIVWErIzMrR6E7tIiz9K"><img src="https://i.scdn.co/image/ab67616d0000b2739a7ace0ede4e5a0cfbbe16ac" width="72" height="72" alt="Wovenhand - Truly Golden" /></a>
 <a href="https://open.spotify.com/track/5cWIoa3mKP8UzC4s065Cv3"><img src="https://i.scdn.co/image/ab67616d0000b2738471b54464d3ca497bef61e3" width="72" height="72" alt="Lustre - Dreaded Still" /></a>
 <a href="https://open.spotify.com/track/20z2wxoDeVwYCuXjzUON0f"><img src="https://i.scdn.co/image/ab67616d0000b2738aee3c4cf4a5b7cbd3ff705c" width="72" height="72" alt="Gruesome Pledge - Crusaders" /></a>
+<a href="https://open.spotify.com/track/5gap3HytuW49NoS0N2SEBb"><img src="https://i.scdn.co/image/ab67616d0000b2735193899383223274807145b4" width="72" height="72" alt="Paths of the Eternal - Abandoned Cathedral" /></a>
 </p>
 
 <details>
@@ -51,6 +51,18 @@ The ten most recently saved tracks in the library.
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/0YY8l8V0lZmlOlCItEaa7o">Burnout</a></strong> — Facing Fear<br/><small>Burnout · 2026 · Added 2026-09-06</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6tcd56A4K9PATOVQZ3r51p">Bloodmoon</a></strong> — Kerrigan<br/><small>Bloodmoon · 2023 · heavy metal · Added 2026-09-06</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2kzvv1zUQRneozxjGbJE3R">Cimbrian Rites</a></strong> — Speedslut<br/><small>Cimbrian Rites · 2026 · speed metal · Added 2026-09-06</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4OfWZhSZTDFlVTyY3Axjj1">Ghosts Among The Obelisks</a></strong> — Wolves In The Throne Room<br/><small>Ghosts Among The Obelisks · 2026 · atmospheric black metal · Added 2026-09-05</small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2FcdtGhl7pOdRdlIMKHSPF">Turn the Key</a></strong> — Chelsea Wolfe<br/><small>The Dark · 2026 · singer-songwriter · Added 2026-08-27</small></td>
 </tr>
 <tr>
@@ -67,18 +79,6 @@ The ten most recently saved tracks in the library.
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6oJ9FaEFwmrS7NgxsEHhFJ">Lorn and Loath</a></strong> — Wolcensmen<br/><small>Fire in the White Stone · 2019 · ambient · Added 2026-08-17</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3Q5j1J6hXHRzK4TB54NAeJ">Faith&#x27;s Window</a></strong> — Advent Horizon<br/><small>Falling Together · 2026 · Added 2026-08-17</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/1xYhMDqK3c3QZCuaFIAmSc">Gravity I</a></strong> — Advent Horizon<br/><small>Gravity · 2026 · Added 2026-08-17</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/5ELPJmRxlvGFsCq9S7fUVR">Solace</a></strong> — Radagast<br/><small>Baba&#x27;s House · 2026 · dungeon synth · Added 2026-08-15</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3AxT0zo6lNVrpM3OfiEagr">Twilight Glow</a></strong> — JYRANTE<br/><small>Sleeping With The Stars · 2026 · Added 2026-08-14</small></td>
 </tr>
 </tbody>
 </table>
@@ -119,7 +119,7 @@ Artist origins across release decades, using MusicBrainz, Wikidata and curated o
 Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.
 
 <details>
-<summary><strong>Metal</strong> · 48 genres · 927 track assignments</summary>
+<summary><strong>Metal</strong> · 48 genres · 930 track assignments</summary>
 
 ![Metal genre atlas](assets/atlas/metal.svg)
 
