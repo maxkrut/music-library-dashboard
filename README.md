@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-09-07 10:25 UTC._
+_Last updated 2026-09-14 10:44 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -13,8 +13,8 @@ No audio files are included: this repository publishes generated summaries from 
 Spotify long-term favorites. Album covers are shown once, keeping the highest-ranked track from each album.
 
 <p align="center">
-<a href="https://open.spotify.com/track/0Dg2BfGZv5P9Jkcv95Aa0e"><img src="https://i.scdn.co/image/ab67616d0000b2732558e54864b2c1be58aee847" width="72" height="72" alt="Daylight Dies - Dismantling Devotion" /></a>
 <a href="https://open.spotify.com/track/3a8hSZnGAwnEhalgT28Cp6"><img src="https://i.scdn.co/image/ab67616d0000b273eabe69cadeb913306c5933cc" width="72" height="72" alt="Realm of Wolves - Hegemon Of Cold Seas" /></a>
+<a href="https://open.spotify.com/track/0Dg2BfGZv5P9Jkcv95Aa0e"><img src="https://i.scdn.co/image/ab67616d0000b2732558e54864b2c1be58aee847" width="72" height="72" alt="Daylight Dies - Dismantling Devotion" /></a>
 <a href="https://open.spotify.com/track/5dAie8vCratkNmHUnkPf0e"><img src="https://i.scdn.co/image/ab67616d0000b2731c726b68ae4f05b6671a086f" width="72" height="72" alt="Worm; Marty Friedman - Witchmoon: The Infernal Masquerade (feat. Marty Friedman)" /></a>
 <a href="https://open.spotify.com/track/39SSSnwlBXvqjp3VCP0oKU"><img src="https://i.scdn.co/image/ab67616d0000b273ac26fcc8f9b7986b5ca0c898" width="72" height="72" alt="Shape Of Despair - Dissolution" /></a>
 <a href="https://open.spotify.com/track/6piuCKWW9pwvG1LYDWGk9D"><img src="https://i.scdn.co/image/ab67616d0000b2730815b7b365abac40db634b38" width="72" height="72" alt="Ben Kenney; Ashley Mendel; Rachel Ana Dobken - Three Times" /></a>
@@ -24,13 +24,13 @@ Spotify long-term favorites. Album covers are shown once, keeping the highest-ra
 <a href="https://open.spotify.com/track/6DTp1lInphWvQtCNbJoJ2N"><img src="https://i.scdn.co/image/ab67616d0000b27367e9b8ecf8c3f2ce3c2e8be4" width="72" height="72" alt="Fogweaver - Spell-woven" /></a>
 <a href="https://open.spotify.com/track/4bL8poSHJGxHCTnrWqTmRb"><img src="https://i.scdn.co/image/ab67616d0000b2732e73fd8b722b3b984cdf9bf9" width="72" height="72" alt="Комонь; Павел Паньковский; Аркадий Пикунов - Ты подуй" /></a>
 <a href="https://open.spotify.com/track/2dkUNeusRI8WUCrtKvWKgs"><img src="https://i.scdn.co/image/ab67616d0000b27340e4eacd8da22567cfcde58f" width="72" height="72" alt="Sylvan - Posthumous Silence" /></a>
-<a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
 <a href="https://open.spotify.com/track/7zfxW7P4yYfbQTmW7XUjS6"><img src="https://i.scdn.co/image/ab67616d0000b273c03375b437f97510b2903215" width="72" height="72" alt="Psilocybe Larvae - Новый дивный мир" /></a>
 <a href="https://open.spotify.com/track/2xPOwYbqUOlNa3Ad1neTsm"><img src="https://i.scdn.co/image/ab67616d0000b2733b80df170989af75667f7797" width="72" height="72" alt="Counting Hours - Timeless Ones" /></a>
 <a href="https://open.spotify.com/track/4MzII8fszi8KkFl1ryv07L"><img src="https://i.scdn.co/image/ab67616d0000b273ad0677f76f220c118226fd46" width="72" height="72" alt="Carbon Based Lifeforms - Interloper" /></a>
 <a href="https://open.spotify.com/track/6YpIVWErIzMrR6E7tIiz9K"><img src="https://i.scdn.co/image/ab67616d0000b2739a7ace0ede4e5a0cfbbe16ac" width="72" height="72" alt="Wovenhand - Truly Golden" /></a>
 <a href="https://open.spotify.com/track/5cWIoa3mKP8UzC4s065Cv3"><img src="https://i.scdn.co/image/ab67616d0000b2738471b54464d3ca497bef61e3" width="72" height="72" alt="Lustre - Dreaded Still" /></a>
 <a href="https://open.spotify.com/track/20z2wxoDeVwYCuXjzUON0f"><img src="https://i.scdn.co/image/ab67616d0000b2738aee3c4cf4a5b7cbd3ff705c" width="72" height="72" alt="Gruesome Pledge - Crusaders" /></a>
+<a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
 <a href="https://open.spotify.com/track/5gap3HytuW49NoS0N2SEBb"><img src="https://i.scdn.co/image/ab67616d0000b2735193899383223274807145b4" width="72" height="72" alt="Paths of the Eternal - Abandoned Cathedral" /></a>
 </p>
 
@@ -51,6 +51,15 @@ The ten most recently saved tracks in the library.
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/29rdn1OUDNxLj5cM9sPiRy">Gutter Rats</a></strong> — Gallower<br/><small>Behold The Realm Of Darkness · 2020 · thrash metal · Added 2026-09-11</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6qQuUIq3vCHLY0kUG1Plis">Eldhaf</a></strong> — Múr<br/><small>Múr · 2024 · post-rock · Added 2026-09-09</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6hA9Rttkj87i57AYBi4HvT">Procession</a></strong> — Desiderii Marginis<br/><small>Procession · 2012 · dark ambient · Added 2026-09-09</small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/0YY8l8V0lZmlOlCItEaa7o">Burnout</a></strong> — Facing Fear<br/><small>Burnout · 2026 · Added 2026-09-06</small></td>
 </tr>
 <tr>
@@ -70,15 +79,6 @@ The ten most recently saved tracks in the library.
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2QslhSobUJwOWQnvyIpyef">Set the Control to the Heart of the Mother, Pt. 6</a></strong> — Klaus Schulze; Pete Namlook<br/><small>The Dark Side of the Moog (Complete Version, Vol. 3) · 2016 · electronic · Added 2026-08-26</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/3eRhhZJCbpwJ4vVnu6wkYa">Заход солнца</a></strong> — SIVERNOT; Crystal Cage<br/><small>Меланхолия · 2025 · electronic · Added 2026-08-26</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4s0DbR4wt8AadGDlQbPepm">The Hunter</a></strong> — Iced Earth<br/><small>The Dark Saga · 1996 · power metal · Added 2026-08-17</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6oJ9FaEFwmrS7NgxsEHhFJ">Lorn and Loath</a></strong> — Wolcensmen<br/><small>Fire in the White Stone · 2019 · ambient · Added 2026-08-17</small></td>
 </tr>
 </tbody>
 </table>
@@ -119,21 +119,21 @@ Artist origins across release decades, using MusicBrainz, Wikidata and curated o
 Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.
 
 <details>
-<summary><strong>Metal</strong> · 48 genres · 930 track assignments</summary>
+<summary><strong>Metal</strong> · 48 genres · 931 track assignments</summary>
 
 ![Metal genre atlas](assets/atlas/metal.svg)
 
 </details>
 
 <details>
-<summary><strong>Rock / Psych / Prog</strong> · 53 genres · 603 track assignments</summary>
+<summary><strong>Rock / Psych / Prog</strong> · 53 genres · 604 track assignments</summary>
 
 ![Rock / Psych / Prog genre atlas](assets/atlas/rock-psych-prog.svg)
 
 </details>
 
 <details>
-<summary><strong>Electronic / Ambient</strong> · 31 genres · 196 track assignments</summary>
+<summary><strong>Electronic / Ambient</strong> · 31 genres · 197 track assignments</summary>
 
 ![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
 
