@@ -216,6 +216,19 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 
 </details>
 
+## Recommended Music Resources
+
+A few music services I use and recommend:
+
+- [Every Noise at Once](https://everynoise.com/) — explore genres and their connections.
+- [Rate Your Music](https://rateyourmusic.com/) — ratings, lists and music discovery.
+- [Discogs](https://www.discogs.com/) — detailed release credits and editions.
+- [Bandcamp](https://bandcamp.com/) — discover and support independent artists.
+- [WhoSampled](https://www.whosampled.com/) — samples, covers and remixes.
+- [Songfacts](https://www.songfacts.com/) — stories and facts behind songs.
+- [Equipboard](https://equipboard.com/) — gear used by musicians.
+- [Encyclopaedia Metallum](https://www.metal-archives.com/) — metal bands and releases.
+
 <details>
 <summary>How it works</summary>
 
