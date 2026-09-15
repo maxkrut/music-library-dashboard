@@ -75,7 +75,7 @@ def test_genre_rule_reports_only_real_changes() -> None:
     assert changed["genres"] == "rock; indie rock"
 
 
-def test_top_song_covers_are_unique_per_album() -> None:
+def test_favorite_album_covers_require_three_ranked_tracks() -> None:
     cache = {
         "tracks": {
             "long_term": [
@@ -97,10 +97,18 @@ def test_top_song_covers_are_unique_per_album() -> None:
                 },
                 {
                     "id": "track-3",
+                    "album_id": "album-1",
+                    "album_name": "First Album",
+                    "artist_names": "Artist",
+                    "name": "Track Three",
+                    "image_url": "https://example.com/first.jpg",
+                },
+                {
+                    "id": "track-4",
                     "album_id": "album-2",
                     "album_name": "Second Album",
                     "artist_names": "Artist",
-                    "name": "Track Three",
+                    "name": "Track Four",
                     "image_url": "https://example.com/second.jpg",
                 },
             ]
@@ -108,9 +116,9 @@ def test_top_song_covers_are_unique_per_album() -> None:
     }
 
     tracks = build_readme.cached_spotify_top_tracks(cache)
-    covers = build_readme.unique_album_cover_tracks(tracks)
+    covers = build_readme.favorite_album_cover_tracks(tracks)
 
-    assert [track["name"] for track in covers] == ["Track One", "Track Three"]
+    assert [track["name"] for track in covers] == ["Track One"]
 
 
 def test_top_songs_layout_is_single_column(tmp_path: Path) -> None:
@@ -135,7 +143,8 @@ def test_top_songs_layout_is_single_column(tmp_path: Path) -> None:
 
     assert rendered.startswith("## Long-Term Favorites")
     assert "<table>" not in rendered
-    assert rendered.count('<p align="center">') == 2
+    assert rendered.count('<p align="center">') == 1
+    assert "No album currently has at least three tracks" in rendered
     assert 'width="720"' in rendered
     assert "<summary>View ranked list</summary>" in rendered
 

@@ -10,29 +10,9 @@ No audio files are included: this repository publishes generated summaries from 
 
 ## Long-Term Favorites
 
-Spotify long-term favorites. Album covers are shown once, keeping the highest-ranked track from each album.
+Albums ranked by how many distinct tracks they place in Spotify's long-term top 50. At least three tracks from an album are required.
 
-<p align="center">
-<a href="https://open.spotify.com/track/3a8hSZnGAwnEhalgT28Cp6"><img src="https://i.scdn.co/image/ab67616d0000b273eabe69cadeb913306c5933cc" width="72" height="72" alt="Realm of Wolves - Hegemon Of Cold Seas" /></a>
-<a href="https://open.spotify.com/track/0Dg2BfGZv5P9Jkcv95Aa0e"><img src="https://i.scdn.co/image/ab67616d0000b2732558e54864b2c1be58aee847" width="72" height="72" alt="Daylight Dies - Dismantling Devotion" /></a>
-<a href="https://open.spotify.com/track/5dAie8vCratkNmHUnkPf0e"><img src="https://i.scdn.co/image/ab67616d0000b2731c726b68ae4f05b6671a086f" width="72" height="72" alt="Worm; Marty Friedman - Witchmoon: The Infernal Masquerade (feat. Marty Friedman)" /></a>
-<a href="https://open.spotify.com/track/39SSSnwlBXvqjp3VCP0oKU"><img src="https://i.scdn.co/image/ab67616d0000b273ac26fcc8f9b7986b5ca0c898" width="72" height="72" alt="Shape Of Despair - Dissolution" /></a>
-<a href="https://open.spotify.com/track/6piuCKWW9pwvG1LYDWGk9D"><img src="https://i.scdn.co/image/ab67616d0000b2730815b7b365abac40db634b38" width="72" height="72" alt="Ben Kenney; Ashley Mendel; Rachel Ana Dobken - Three Times" /></a>
-<a href="https://open.spotify.com/track/72GUD7ZA98E9lWhltp4bqb"><img src="https://i.scdn.co/image/ab67616d0000b273559e72c773cf32a8fb6248a2" width="72" height="72" alt="Curta&#x27;n Wall; Elvya - The Dark Ages" /></a>
-<a href="https://open.spotify.com/track/3VANrwkmYkLHpzZs63YadJ"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="72" height="72" alt="Obsequiae - Anlace and Heart" /></a>
-<a href="https://open.spotify.com/track/4kgf6zhFJQYPHz8ABNMkUL"><img src="https://i.scdn.co/image/ab67616d0000b2737fdf43bdfa5106d3eae0e0c2" width="72" height="72" alt="Сруб - Умирая радуй" /></a>
-<a href="https://open.spotify.com/track/6DTp1lInphWvQtCNbJoJ2N"><img src="https://i.scdn.co/image/ab67616d0000b27367e9b8ecf8c3f2ce3c2e8be4" width="72" height="72" alt="Fogweaver - Spell-woven" /></a>
-<a href="https://open.spotify.com/track/4bL8poSHJGxHCTnrWqTmRb"><img src="https://i.scdn.co/image/ab67616d0000b2732e73fd8b722b3b984cdf9bf9" width="72" height="72" alt="Комонь; Павел Паньковский; Аркадий Пикунов - Ты подуй" /></a>
-<a href="https://open.spotify.com/track/2dkUNeusRI8WUCrtKvWKgs"><img src="https://i.scdn.co/image/ab67616d0000b27340e4eacd8da22567cfcde58f" width="72" height="72" alt="Sylvan - Posthumous Silence" /></a>
-<a href="https://open.spotify.com/track/7zfxW7P4yYfbQTmW7XUjS6"><img src="https://i.scdn.co/image/ab67616d0000b273c03375b437f97510b2903215" width="72" height="72" alt="Psilocybe Larvae - Новый дивный мир" /></a>
-<a href="https://open.spotify.com/track/2xPOwYbqUOlNa3Ad1neTsm"><img src="https://i.scdn.co/image/ab67616d0000b2733b80df170989af75667f7797" width="72" height="72" alt="Counting Hours - Timeless Ones" /></a>
-<a href="https://open.spotify.com/track/4MzII8fszi8KkFl1ryv07L"><img src="https://i.scdn.co/image/ab67616d0000b273ad0677f76f220c118226fd46" width="72" height="72" alt="Carbon Based Lifeforms - Interloper" /></a>
-<a href="https://open.spotify.com/track/6YpIVWErIzMrR6E7tIiz9K"><img src="https://i.scdn.co/image/ab67616d0000b2739a7ace0ede4e5a0cfbbe16ac" width="72" height="72" alt="Wovenhand - Truly Golden" /></a>
-<a href="https://open.spotify.com/track/5cWIoa3mKP8UzC4s065Cv3"><img src="https://i.scdn.co/image/ab67616d0000b2738471b54464d3ca497bef61e3" width="72" height="72" alt="Lustre - Dreaded Still" /></a>
-<a href="https://open.spotify.com/track/20z2wxoDeVwYCuXjzUON0f"><img src="https://i.scdn.co/image/ab67616d0000b2738aee3c4cf4a5b7cbd3ff705c" width="72" height="72" alt="Gruesome Pledge - Crusaders" /></a>
-<a href="https://open.spotify.com/track/4F00BHvoYuKwWjBMOEqX3L"><img src="https://i.scdn.co/image/ab67616d0000b2737908ff05e177c9c76c38a1ca" width="72" height="72" alt="VHS Dreams - Nightdrive" /></a>
-<a href="https://open.spotify.com/track/5gap3HytuW49NoS0N2SEBb"><img src="https://i.scdn.co/image/ab67616d0000b2735193899383223274807145b4" width="72" height="72" alt="Paths of the Eternal - Abandoned Cathedral" /></a>
-</p>
+_No album currently has at least three tracks in the long-term top 50._
 
 <details>
 <summary>View ranked list</summary>

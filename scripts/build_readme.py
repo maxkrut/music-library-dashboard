@@ -1038,16 +1038,13 @@ def cached_spotify_top_tracks(
     return items
 
 
-def unique_album_cover_tracks(
+def favorite_album_cover_tracks(
     top_tracks: list[dict[str, str]],
     limit: int = 36,
+    min_tracks: int = 3,
 ) -> list[dict[str, str]]:
-    covers: list[dict[str, str]] = []
-    seen_albums: set[str] = set()
-    for track in top_tracks:
-        image_url = track.get("image_url", "").strip()
-        if not image_url:
-            continue
+    albums: dict[str, dict[str, object]] = {}
+    for rank, track in enumerate(top_tracks):
         album_id = track.get("album_id", "").strip()
         album_name = track.get("album_name", "").strip()
         artist = track.get("artist", "").strip()
@@ -1056,14 +1053,36 @@ def unique_album_cover_tracks(
         elif album_name:
             album_key = f"metadata:{norm(artist)}|{norm(album_name)}"
         else:
-            album_key = f"image:{image_url}"
-        if album_key in seen_albums:
+            album_key = f"image:{track.get('image_url', '').strip()}"
+
+        track_key = track.get("url", "").strip() or f"{norm(artist)}|{norm(track.get('name', ''))}"
+        album = albums.setdefault(
+            album_key,
+            {"tracks": {}, "rank_sum": 0, "best_rank": rank, "cover": None},
+        )
+        album_tracks = album["tracks"]
+        if not isinstance(album_tracks, dict) or track_key in album_tracks:
             continue
-        seen_albums.add(album_key)
-        covers.append(track)
-        if len(covers) >= limit:
-            break
-    return covers
+        album_tracks[track_key] = track
+        album["rank_sum"] = int(album["rank_sum"]) + rank
+        if album["cover"] is None and track.get("image_url", "").strip():
+            album["cover"] = track
+
+    eligible = [
+        album
+        for album in albums.values()
+        if isinstance(album["tracks"], dict)
+        and len(album["tracks"]) >= min_tracks
+        and album["cover"] is not None
+    ]
+    eligible.sort(
+        key=lambda album: (
+            -len(album["tracks"]),
+            int(album["rank_sum"]),
+            int(album["best_rank"]),
+        )
+    )
+    return [album["cover"] for album in eligible[:limit] if isinstance(album["cover"], dict)]
 
 
 def spotify_long_term_favorites_lines(
@@ -1074,7 +1093,7 @@ def spotify_long_term_favorites_lines(
     lines = [
         "## Long-Term Favorites",
         "",
-        "Spotify long-term favorites. Album covers are shown once, keeping the highest-ranked track from each album.",
+        "Albums ranked by how many distinct tracks they place in Spotify's long-term top 50. At least three tracks from an album are required.",
         "",
     ]
     if not top_tracks:
@@ -1088,8 +1107,17 @@ def spotify_long_term_favorites_lines(
     except ValueError:
         ranking_src = ranking_path.as_posix()
 
-    lines.append('<p align="center">')
-    for item in unique_album_cover_tracks(top_tracks):
+    favorite_albums = favorite_album_cover_tracks(top_tracks)
+    if favorite_albums:
+        lines.append('<p align="center">')
+    else:
+        lines.extend(
+            [
+                "_No album currently has at least three tracks in the long-term top 50._",
+                "",
+            ]
+        )
+    for item in favorite_albums:
         alt = html.escape(" - ".join(part for part in (item["artist"], item["name"]) if part), quote=True)
         src = html.escape(item["image_url"], quote=True)
         url = html.escape(item["url"], quote=True)
@@ -1097,10 +1125,10 @@ def spotify_long_term_favorites_lines(
         if url:
             image = f'<a href="{url}">{image}</a>'
         lines.append(image)
+    if favorite_albums:
+        lines.extend(["</p>", ""])
     lines.extend(
         [
-            "</p>",
-            "",
             "<details>",
             "<summary>View ranked list</summary>",
             "",
