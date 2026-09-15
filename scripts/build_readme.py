@@ -999,7 +999,7 @@ def country_decade_data(
 def favorite_album_cover_tracks(
     library_tracks: list[TrackRow],
     limit: int = 36,
-    min_liked_tracks: int = 3,
+    min_liked_tracks: int = 5,
 ) -> list[dict[str, str]]:
     albums: dict[str, dict[str, object]] = {}
     for track in library_tracks:
@@ -1059,7 +1059,7 @@ def favorite_albums_lines(
     lines = [
         "## Favorite Albums",
         "",
-        "Albums ranked by the number of distinct liked tracks. At least three liked tracks from an album are required.",
+        "Albums ranked by the number of distinct liked tracks. At least five liked tracks from an album are required.",
         "",
     ]
     favorite_albums = favorite_album_cover_tracks(library_tracks)
@@ -1068,7 +1068,7 @@ def favorite_albums_lines(
     else:
         lines.extend(
             [
-                "_No album currently has at least three liked tracks with cached artwork._",
+                "_No album currently has at least five liked tracks with cached artwork._",
                 "",
             ]
         )

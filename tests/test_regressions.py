@@ -75,7 +75,7 @@ def test_genre_rule_reports_only_real_changes() -> None:
     assert changed["genres"] == "rock; indie rock"
 
 
-def test_favorite_album_covers_require_three_liked_tracks() -> None:
+def test_favorite_album_covers_require_five_liked_tracks() -> None:
     library_tracks = [
         {
             "track_id": f"liked-{index}",
@@ -86,7 +86,7 @@ def test_favorite_album_covers_require_three_liked_tracks() -> None:
             "album_image_url": "https://example.com/first.jpg",
             "sources": "liked",
         }
-        for index in range(3)
+        for index in range(5)
     ]
     library_tracks.extend(
         {
@@ -98,7 +98,7 @@ def test_favorite_album_covers_require_three_liked_tracks() -> None:
             "album_image_url": "https://example.com/second.jpg",
             "sources": "liked",
         }
-        for index in range(2)
+        for index in range(4)
     )
     covers = build_readme.favorite_album_cover_tracks(library_tracks)
 
@@ -117,7 +117,7 @@ def test_favorite_albums_layout_is_cover_only() -> None:
             "spotify_url": "https://example.com/track",
             "sources": "liked",
         }
-        for index in range(3)
+        for index in range(5)
     ]
 
     rendered = "\n".join(build_readme.favorite_albums_lines(tracks))
