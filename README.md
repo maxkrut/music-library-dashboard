@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-09-14 10:44 UTC._
+_Last updated 2026-09-15 09:03 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -51,6 +51,9 @@ The ten most recently saved tracks in the library.
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7g9qFFo27ppws6o2cVVBvz">Nousee Musta Lintu</a></strong> — Soulgrind<br/><small>Ad Pulchram Mortem · 2026 · Added 2026-09-14</small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/29rdn1OUDNxLj5cM9sPiRy">Gutter Rats</a></strong> — Gallower<br/><small>Behold The Realm Of Darkness · 2020 · thrash metal · Added 2026-09-11</small></td>
 </tr>
 <tr>
@@ -76,9 +79,6 @@ The ten most recently saved tracks in the library.
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6cHrPKckZAZ0o3jQrKs2hB">Kill Him With Poison</a></strong> — Zorn<br/><small>Return to Castle Death · 2026 · avant-garde · Added 2026-08-26</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2QslhSobUJwOWQnvyIpyef">Set the Control to the Heart of the Mother, Pt. 6</a></strong> — Klaus Schulze; Pete Namlook<br/><small>The Dark Side of the Moog (Complete Version, Vol. 3) · 2016 · electronic · Added 2026-08-26</small></td>
 </tr>
 </tbody>
 </table>
