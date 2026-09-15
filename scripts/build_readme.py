@@ -996,55 +996,12 @@ def country_decade_data(
     return countries, ordered_decades, dict(matrix)
 
 
-def cached_spotify_top_tracks(
-    top_cache: dict[str, object],
-    *,
-    time_range: str = "long_term",
-    limit: int = 50,
-) -> list[dict[str, str]]:
-    tracks = top_cache.get("tracks")
-    if not isinstance(tracks, dict):
-        return []
-    raw_items = tracks.get(time_range)
-    if not isinstance(raw_items, list):
-        return []
-
-    items: list[dict[str, str]] = []
-    seen: set[str] = set()
-    for track in raw_items:
-        if not isinstance(track, dict):
-            continue
-        name = str(track.get("name") or "").strip()
-        artist = str(track.get("artist_names") or "").strip()
-        url = str(track.get("spotify_url") or "").strip()
-        track_id = str(track.get("id") or "").strip()
-        key = track_id or url or f"{artist}|{name}"
-        if (not name and not artist) or key in seen:
-            continue
-        seen.add(key)
-        items.append(
-            {
-                "album_id": str(track.get("album_id") or "").strip(),
-                "album_name": str(track.get("album_name") or "").strip(),
-                "image_url": str(track.get("image_url") or "").strip(),
-                "name": name,
-                "artist": artist,
-                "url": url,
-            }
-        )
-        if len(items) >= limit:
-            break
-
-    return items
-
-
 def favorite_album_cover_tracks(
-    top_tracks: list[dict[str, str]],
     library_tracks: list[TrackRow],
     limit: int = 36,
     min_liked_tracks: int = 3,
 ) -> list[dict[str, str]]:
-    liked_tracks_by_album: dict[str, set[str]] = defaultdict(set)
+    albums: dict[str, dict[str, object]] = {}
     for track in library_tracks:
         sources = {source.casefold() for source in split_values(track.get("sources", ""))}
         if "liked" not in sources:
@@ -1063,91 +1020,67 @@ def favorite_album_cover_tracks(
             or track.get("spotify_url", "").strip()
             or f"{norm(artist)}|{norm(track.get('track_name', ''))}"
         )
-        liked_tracks_by_album[album_key].add(track_key)
-
-    albums: dict[str, dict[str, object]] = {}
-    for rank, track in enumerate(top_tracks):
-        album_id = track.get("album_id", "").strip()
-        album_name = track.get("album_name", "").strip()
-        artist = track.get("artist", "").strip()
-        if album_id:
-            album_key = f"id:{album_id}"
-        elif album_name:
-            album_key = f"metadata:{norm(artist)}|{norm(album_name)}"
-        else:
-            album_key = f"image:{track.get('image_url', '').strip()}"
-
-        track_key = track.get("url", "").strip() or f"{norm(artist)}|{norm(track.get('name', ''))}"
         album = albums.setdefault(
             album_key,
-            {"tracks": {}, "rank_sum": 0, "best_rank": rank, "cover": None},
+            {"tracks": set(), "cover": track},
         )
         album_tracks = album["tracks"]
-        if not isinstance(album_tracks, dict) or track_key in album_tracks:
-            continue
-        album_tracks[track_key] = track
-        album["rank_sum"] = int(album["rank_sum"]) + rank
-        if album["cover"] is None and track.get("image_url", "").strip():
+        if isinstance(album_tracks, set):
+            album_tracks.add(track_key)
+        cover = album["cover"]
+        if (
+            isinstance(cover, dict)
+            and not cover.get("album_image_url", "").strip()
+            and track.get("album_image_url", "").strip()
+        ):
             album["cover"] = track
 
     eligible = [
         album
-        for album_key, album in albums.items()
-        if len(liked_tracks_by_album.get(album_key, set())) >= min_liked_tracks
-        and album["cover"] is not None
+        for album in albums.values()
+        if isinstance(album["tracks"], set)
+        and len(album["tracks"]) >= min_liked_tracks
+        and isinstance(album["cover"], dict)
+        and album["cover"].get("album_image_url", "").strip()
     ]
     eligible.sort(
         key=lambda album: (
             -len(album["tracks"]),
-            int(album["rank_sum"]),
-            int(album["best_rank"]),
+            norm(album["cover"].get("artist_names", "")),
+            norm(album["cover"].get("album_name", "")),
         )
     )
     return [album["cover"] for album in eligible[:limit] if isinstance(album["cover"], dict)]
 
 
-def spotify_long_term_favorites_lines(
-    top_tracks: list[dict[str, str]],
+def favorite_albums_lines(
     library_tracks: list[TrackRow],
-    ranking_path: Path,
-    readme_dir: Path,
 ) -> list[str]:
     lines = [
-        "## Long-Term Favorites",
+        "## Favorite Albums",
         "",
-        "Album covers follow Spotify's long-term track ranking. Only albums with at least three distinct liked tracks in the library are included.",
+        "Albums ranked by the number of distinct liked tracks. At least three liked tracks from an album are required.",
         "",
     ]
-    if not top_tracks:
-        return lines + [
-            "_No Spotify long-term favorites cached yet. Re-run Spotify export with `user-top-read` scope._",
-            "",
-        ]
-
-    try:
-        ranking_src = os.path.relpath(ranking_path, readme_dir).replace("\\", "/")
-    except ValueError:
-        ranking_src = ranking_path.as_posix()
-
-    favorite_albums = favorite_album_cover_tracks(top_tracks, library_tracks)
+    favorite_albums = favorite_album_cover_tracks(library_tracks)
     if favorite_albums:
         lines.append('<p align="center">')
     else:
         lines.extend(
             [
-                "_No long-term favorite currently belongs to an album with at least three liked tracks._",
+                "_No album currently has at least three liked tracks with cached artwork._",
                 "",
             ]
         )
     for item in favorite_albums:
         alt = html.escape(
-            " - ".join(part for part in (item["artist"], item["album_name"]) if part),
+            " - ".join(part for part in (item["artist_names"], item["album_name"]) if part),
             quote=True,
         )
-        src = html.escape(item["image_url"], quote=True)
+        src = html.escape(item["album_image_url"], quote=True)
         album_id = item.get("album_id", "").strip()
         url = html.escape(
-            f"https://open.spotify.com/album/{album_id}" if album_id else item["url"],
+            f"https://open.spotify.com/album/{album_id}" if album_id else item["spotify_url"],
             quote=True,
         )
         image = f'<img src="{src}" width="72" height="72" alt="{alt}" />'
@@ -1156,19 +1089,6 @@ def spotify_long_term_favorites_lines(
         lines.append(image)
     if favorite_albums:
         lines.extend(["</p>", ""])
-    lines.extend(
-        [
-            "<details>",
-            "<summary>View ranked list</summary>",
-            "",
-            '<p align="center">',
-            f'<img src="{html.escape(ranking_src, quote=True)}" width="720" alt="Long-term favorites ranking" />',
-            "</p>",
-            "",
-            "</details>",
-            "",
-        ]
-    )
     return lines
 
 
@@ -1600,63 +1520,6 @@ def write_taste_drift_svg(
                     svg_text(x + 22, legend_y, group_short_label(group), size=13, weight=800, fill="#102027"),
                 ]
             )
-
-    parts.append("</svg>")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    write_text_lf(path, "\n".join(parts) + "\n")
-
-
-def write_long_term_favorites_svg(path: Path, top_tracks: list[dict[str, str]]) -> None:
-    width = 560
-    height = 640
-    margin = 16
-    header_height = 62
-    chart_y = margin + header_height + 24
-    row_height = 27
-    visible = top_tracks[:18]
-    max_score = max(len(visible), 1)
-
-    parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Long-term favorites ranking">',
-        f'<rect width="{width}" height="{height}" fill="#f7f6f0"/>',
-        f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
-        svg_text(margin + 16, margin + 30, "Long-Term", size=22, weight=800, fill="#ffffff"),
-        svg_text(margin + 16, margin + 52, "Favorites", size=22, weight=800, fill="#ffffff"),
-        svg_text(width - margin - 16, margin + 39, "Spotify long term", size=13, weight=800, fill="#dfe8df", anchor="end"),
-    ]
-
-    if not visible:
-        parts.append(svg_text(width / 2, height / 2, "No long-term favorites cached yet", size=16, weight=800, fill="#6f7772", anchor="middle"))
-    else:
-        accent_cycle = ("#557e64", "#526f92", "#a96855", "#7d744e")
-        for index, track in enumerate(visible):
-            y = chart_y + index * row_height
-            rank = index + 1
-            score = max_score - index
-            bar_width = 118 * score / max_score
-            accent = accent_cycle[index % len(accent_cycle)]
-            artist = track.get("artist", "")
-            name = track.get("name", "")
-            label = " - ".join(part for part in (artist, name) if part)
-            fill = "#fffefa" if index % 2 == 0 else "#f1f4ee"
-            parts.extend(
-                [
-                    f'<rect x="{margin}" y="{y - 18:.1f}" width="{width - margin * 2}" height="24" fill="{fill}" stroke="#d9ded7" stroke-width="0.5"/>',
-                    svg_text(margin + 14, y, f"{rank:02d}", size=11, weight=800, fill=accent),
-                    f'<rect x="{width - margin - 126}" y="{y - 12:.1f}" width="118" height="8" fill="#d9ded7"/>',
-                    f'<rect x="{width - margin - 126}" y="{y - 12:.1f}" width="{bar_width:.1f}" height="8" fill="{accent}" fill-opacity="0.86"/>',
-                    svg_text(margin + 52, y, trim_text_to_width(label, 330, size=12, weight=800), size=12, weight=800),
-                ]
-            )
-
-        footer_y = height - margin - 18
-        parts.extend(
-            [
-                f'<rect x="{margin}" y="{footer_y - 18}" width="{width - margin * 2}" height="34" fill="#fffefa" stroke="#c7d0c7"/>',
-                svg_text(margin + 14, footer_y + 4, f"{len(top_tracks)} cached long-term tracks", size=12, weight=800, fill="#557e64"),
-                svg_text(width - margin - 14, footer_y + 4, "covers shown beside this rank", size=12, weight=800, fill="#526f92", anchor="end"),
-            ]
-        )
 
     parts.append("</svg>")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -2124,7 +1987,6 @@ def listening_maps(
     listening_dir = readme_dir / "assets" / "listening"
     taste_path = listening_dir / "taste-drift.svg"
     country_decade_path = listening_dir / "country-decade.svg"
-    long_term_favorites_path = listening_dir / "all-time-top-songs.svg"
     top_ranges_path = listening_dir / "top-ranges.svg"
     saved_played_path = listening_dir / "saved-vs-played.svg"
 
@@ -2135,8 +1997,6 @@ def listening_maps(
     write_taste_drift_svg(taste_path, months, groups, drift_series)
     countries, decades, matrix = country_decade_data(tracks, artist_countries)
     write_country_decade_svg(country_decade_path, countries, decades, matrix)
-    long_term_favorites = cached_spotify_top_tracks(top_cache)
-    write_long_term_favorites_svg(long_term_favorites_path, long_term_favorites)
     top_source, top_ranges = top_ranges_data(tracks, top_cache)
     write_top_ranges_svg(top_ranges_path, top_source, top_ranges)
     played_source, saved_rows, played_rows, rediscovered, ignored = saved_vs_played_data(
@@ -2153,11 +2013,8 @@ def listening_maps(
         ignored,
     )
 
-    top_songs = spotify_long_term_favorites_lines(
-        long_term_favorites,
+    top_songs = favorite_albums_lines(
         tracks,
-        long_term_favorites_path,
-        readme_dir,
     )
     trends = [
         "## Listening Trends",

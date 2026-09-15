@@ -76,46 +76,6 @@ def test_genre_rule_reports_only_real_changes() -> None:
 
 
 def test_favorite_album_covers_require_three_liked_tracks() -> None:
-    cache = {
-        "tracks": {
-            "long_term": [
-                {
-                    "id": "track-1",
-                    "album_id": "album-1",
-                    "album_name": "First Album",
-                    "artist_names": "Artist",
-                    "name": "Track One",
-                    "image_url": "https://example.com/first.jpg",
-                },
-                {
-                    "id": "track-2",
-                    "album_id": "album-1",
-                    "album_name": "First Album",
-                    "artist_names": "Artist",
-                    "name": "Track Two",
-                    "image_url": "https://example.com/first.jpg",
-                },
-                {
-                    "id": "track-3",
-                    "album_id": "album-1",
-                    "album_name": "First Album",
-                    "artist_names": "Artist",
-                    "name": "Track Three",
-                    "image_url": "https://example.com/first.jpg",
-                },
-                {
-                    "id": "track-4",
-                    "album_id": "album-2",
-                    "album_name": "Second Album",
-                    "artist_names": "Artist",
-                    "name": "Track Four",
-                    "image_url": "https://example.com/second.jpg",
-                },
-            ]
-        }
-    }
-
-    tracks = build_readme.cached_spotify_top_tracks(cache)
     library_tracks = [
         {
             "track_id": f"liked-{index}",
@@ -123,6 +83,7 @@ def test_favorite_album_covers_require_three_liked_tracks() -> None:
             "artist_names": "Artist",
             "album_id": "album-1",
             "album_name": "First Album",
+            "album_image_url": "https://example.com/first.jpg",
             "sources": "liked",
         }
         for index in range(3)
@@ -134,51 +95,38 @@ def test_favorite_album_covers_require_three_liked_tracks() -> None:
             "artist_names": "Artist",
             "album_id": "album-2",
             "album_name": "Second Album",
+            "album_image_url": "https://example.com/second.jpg",
             "sources": "liked",
         }
         for index in range(2)
     )
-    covers = build_readme.favorite_album_cover_tracks(tracks, library_tracks)
+    covers = build_readme.favorite_album_cover_tracks(library_tracks)
 
-    assert [track["name"] for track in covers] == ["Track One"]
+    assert [track["album_name"] for track in covers] == ["First Album"]
 
 
-def test_top_songs_layout_is_single_column(tmp_path: Path) -> None:
+def test_favorite_albums_layout_is_cover_only() -> None:
     tracks = [
         {
             "album_id": "album-1",
             "album_name": "Album",
-            "artist": "Artist",
-            "name": "Track",
-            "image_url": "https://example.com/cover.jpg",
-            "url": "https://example.com/track",
+            "artist_names": "Artist",
+            "track_name": f"Track {index}",
+            "track_id": f"track-{index}",
+            "album_image_url": "https://example.com/cover.jpg",
+            "spotify_url": "https://example.com/track",
+            "sources": "liked",
         }
+        for index in range(3)
     ]
 
-    rendered = "\n".join(
-        build_readme.spotify_long_term_favorites_lines(
-            tracks,
-            [
-                {
-                    "track_id": f"liked-{index}",
-                    "track_name": f"Liked Track {index}",
-                    "artist_names": "Artist",
-                    "album_id": "album-1",
-                    "album_name": "Album",
-                    "sources": "liked",
-                }
-                for index in range(3)
-            ],
-            tmp_path / "ranking.svg",
-            tmp_path,
-        )
-    )
+    rendered = "\n".join(build_readme.favorite_albums_lines(tracks))
 
-    assert rendered.startswith("## Long-Term Favorites")
+    assert rendered.startswith("## Favorite Albums")
     assert "<table>" not in rendered
-    assert rendered.count('<p align="center">') == 2
-    assert 'width="720"' in rendered
-    assert "<summary>View ranked list</summary>" in rendered
+    assert rendered.count('<p align="center">') == 1
+    assert "long-term" not in rendered.casefold()
+    assert "View ranked list" not in rendered
 
 
 def test_recent_liked_layout_is_mobile_friendly() -> None:

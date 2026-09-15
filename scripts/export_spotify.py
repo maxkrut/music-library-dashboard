@@ -68,6 +68,7 @@ FIELDNAMES = [
     "popularity",
     "spotify_url",
     "album_id",
+    "album_image_url",
     "artist_ids",
     "track_number",
     "disc_number",
@@ -754,6 +755,10 @@ def normalize_track(
         return None
 
     album = track.get("album") or {}
+    album_images = album.get("images") or []
+    album_image_url = ""
+    if album_images and isinstance(album_images[0], dict):
+        album_image_url = album_images[0].get("url", "")
     artists = track.get("artists") or []
     release_date = album.get("release_date", "")
     artist_ids = [artist.get("id", "") for artist in artists if artist.get("id")]
@@ -777,6 +782,7 @@ def normalize_track(
         "popularity": str(track.get("popularity", "")),
         "spotify_url": (track.get("external_urls") or {}).get("spotify", ""),
         "album_id": album.get("id", ""),
+        "album_image_url": album_image_url,
         "artist_ids": join_unique(artist_ids),
         "track_number": str(track.get("track_number") or ""),
         "disc_number": str(track.get("disc_number") or ""),
