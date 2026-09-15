@@ -1040,9 +1040,31 @@ def cached_spotify_top_tracks(
 
 def favorite_album_cover_tracks(
     top_tracks: list[dict[str, str]],
+    library_tracks: list[TrackRow],
     limit: int = 36,
-    min_tracks: int = 3,
+    min_liked_tracks: int = 3,
 ) -> list[dict[str, str]]:
+    liked_tracks_by_album: dict[str, set[str]] = defaultdict(set)
+    for track in library_tracks:
+        sources = {source.casefold() for source in split_values(track.get("sources", ""))}
+        if "liked" not in sources:
+            continue
+        album_id = track.get("album_id", "").strip()
+        album_name = track.get("album_name", "").strip()
+        artist = track.get("artist_names", "").strip()
+        if album_id:
+            album_key = f"id:{album_id}"
+        elif album_name:
+            album_key = f"metadata:{norm(artist)}|{norm(album_name)}"
+        else:
+            continue
+        track_key = (
+            track.get("track_id", "").strip()
+            or track.get("spotify_url", "").strip()
+            or f"{norm(artist)}|{norm(track.get('track_name', ''))}"
+        )
+        liked_tracks_by_album[album_key].add(track_key)
+
     albums: dict[str, dict[str, object]] = {}
     for rank, track in enumerate(top_tracks):
         album_id = track.get("album_id", "").strip()
@@ -1070,9 +1092,8 @@ def favorite_album_cover_tracks(
 
     eligible = [
         album
-        for album in albums.values()
-        if isinstance(album["tracks"], dict)
-        and len(album["tracks"]) >= min_tracks
+        for album_key, album in albums.items()
+        if len(liked_tracks_by_album.get(album_key, set())) >= min_liked_tracks
         and album["cover"] is not None
     ]
     eligible.sort(
@@ -1087,13 +1108,14 @@ def favorite_album_cover_tracks(
 
 def spotify_long_term_favorites_lines(
     top_tracks: list[dict[str, str]],
+    library_tracks: list[TrackRow],
     ranking_path: Path,
     readme_dir: Path,
 ) -> list[str]:
     lines = [
         "## Long-Term Favorites",
         "",
-        "Albums ranked by how many distinct tracks they place in Spotify's long-term top 50. At least three tracks from an album are required.",
+        "Album covers follow Spotify's long-term track ranking. Only albums with at least three distinct liked tracks in the library are included.",
         "",
     ]
     if not top_tracks:
@@ -1107,20 +1129,27 @@ def spotify_long_term_favorites_lines(
     except ValueError:
         ranking_src = ranking_path.as_posix()
 
-    favorite_albums = favorite_album_cover_tracks(top_tracks)
+    favorite_albums = favorite_album_cover_tracks(top_tracks, library_tracks)
     if favorite_albums:
         lines.append('<p align="center">')
     else:
         lines.extend(
             [
-                "_No album currently has at least three tracks in the long-term top 50._",
+                "_No long-term favorite currently belongs to an album with at least three liked tracks._",
                 "",
             ]
         )
     for item in favorite_albums:
-        alt = html.escape(" - ".join(part for part in (item["artist"], item["name"]) if part), quote=True)
+        alt = html.escape(
+            " - ".join(part for part in (item["artist"], item["album_name"]) if part),
+            quote=True,
+        )
         src = html.escape(item["image_url"], quote=True)
-        url = html.escape(item["url"], quote=True)
+        album_id = item.get("album_id", "").strip()
+        url = html.escape(
+            f"https://open.spotify.com/album/{album_id}" if album_id else item["url"],
+            quote=True,
+        )
         image = f'<img src="{src}" width="72" height="72" alt="{alt}" />'
         if url:
             image = f'<a href="{url}">{image}</a>'
@@ -2126,6 +2155,7 @@ def listening_maps(
 
     top_songs = spotify_long_term_favorites_lines(
         long_term_favorites,
+        tracks,
         long_term_favorites_path,
         readme_dir,
     )

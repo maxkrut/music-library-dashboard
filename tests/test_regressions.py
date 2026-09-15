@@ -75,7 +75,7 @@ def test_genre_rule_reports_only_real_changes() -> None:
     assert changed["genres"] == "rock; indie rock"
 
 
-def test_favorite_album_covers_require_three_ranked_tracks() -> None:
+def test_favorite_album_covers_require_three_liked_tracks() -> None:
     cache = {
         "tracks": {
             "long_term": [
@@ -116,7 +116,29 @@ def test_favorite_album_covers_require_three_ranked_tracks() -> None:
     }
 
     tracks = build_readme.cached_spotify_top_tracks(cache)
-    covers = build_readme.favorite_album_cover_tracks(tracks)
+    library_tracks = [
+        {
+            "track_id": f"liked-{index}",
+            "track_name": f"Liked Track {index}",
+            "artist_names": "Artist",
+            "album_id": "album-1",
+            "album_name": "First Album",
+            "sources": "liked",
+        }
+        for index in range(3)
+    ]
+    library_tracks.extend(
+        {
+            "track_id": f"other-{index}",
+            "track_name": f"Other Track {index}",
+            "artist_names": "Artist",
+            "album_id": "album-2",
+            "album_name": "Second Album",
+            "sources": "liked",
+        }
+        for index in range(2)
+    )
+    covers = build_readme.favorite_album_cover_tracks(tracks, library_tracks)
 
     assert [track["name"] for track in covers] == ["Track One"]
 
@@ -136,6 +158,17 @@ def test_top_songs_layout_is_single_column(tmp_path: Path) -> None:
     rendered = "\n".join(
         build_readme.spotify_long_term_favorites_lines(
             tracks,
+            [
+                {
+                    "track_id": f"liked-{index}",
+                    "track_name": f"Liked Track {index}",
+                    "artist_names": "Artist",
+                    "album_id": "album-1",
+                    "album_name": "Album",
+                    "sources": "liked",
+                }
+                for index in range(3)
+            ],
             tmp_path / "ranking.svg",
             tmp_path,
         )
@@ -143,8 +176,7 @@ def test_top_songs_layout_is_single_column(tmp_path: Path) -> None:
 
     assert rendered.startswith("## Long-Term Favorites")
     assert "<table>" not in rendered
-    assert rendered.count('<p align="center">') == 1
-    assert "No album currently has at least three tracks" in rendered
+    assert rendered.count('<p align="center">') == 2
     assert 'width="720"' in rendered
     assert "<summary>View ranked list</summary>" in rendered
 

@@ -10,9 +10,14 @@ No audio files are included: this repository publishes generated summaries from 
 
 ## Long-Term Favorites
 
-Albums ranked by how many distinct tracks they place in Spotify's long-term top 50. At least three tracks from an album are required.
+Album covers follow Spotify's long-term track ranking. Only albums with at least three distinct liked tracks in the library are included.
 
-_No album currently has at least three tracks in the long-term top 50._
+<p align="center">
+<a href="https://open.spotify.com/album/3hLWVOaHPss0vUbzQvEi8N"><img src="https://i.scdn.co/image/ab67616d0000b273eabe69cadeb913306c5933cc" width="72" height="72" alt="Realm of Wolves - Hegemon of cold seas" /></a>
+<a href="https://open.spotify.com/album/59w4hQFZKTrDWymuXDPQdn"><img src="https://i.scdn.co/image/ab67616d0000b273ac26fcc8f9b7986b5ca0c898" width="72" height="72" alt="Shape Of Despair - Return to the Void" /></a>
+<a href="https://open.spotify.com/album/1Y0TFCRKcrcn5KTLzeys3T"><img src="https://i.scdn.co/image/ab67616d0000b2733b80df170989af75667f7797" width="72" height="72" alt="Counting Hours - The Wishing Tomb" /></a>
+<a href="https://open.spotify.com/album/1AAzWBkgkhlIxmR3FH41pR"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="72" height="72" alt="Obsequiae - Aria of Vernal Tombs" /></a>
+</p>
 
 <details>
 <summary>View ranked list</summary>
