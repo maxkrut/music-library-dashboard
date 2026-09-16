@@ -6,23 +6,23 @@
 <rect x="16.0" y="82.0" width="384.0" height="92" fill="#222826" stroke="#495348"/>
 <rect x="16.0" y="82.0" width="4" height="92" fill="#a7b68c"/>
 <text x="34.0" y="112.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#a7b68c" text-anchor="start">TRACKS</text>
-<text x="34.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">2020</text>
+<text x="34.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">2021</text>
 <rect x="408.0" y="82.0" width="384.0" height="92" fill="#222826" stroke="#495348"/>
 <rect x="408.0" y="82.0" width="4" height="92" fill="#a6b9c8"/>
 <text x="426.0" y="112.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#a6b9c8" text-anchor="start">ARTISTS</text>
-<text x="426.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">1401</text>
+<text x="426.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">1402</text>
 <rect x="800.0" y="82.0" width="384.0" height="92" fill="#222826" stroke="#495348"/>
 <rect x="800.0" y="82.0" width="4" height="92" fill="#d29879"/>
 <text x="818.0" y="112.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#d29879" text-anchor="start">ALBUMS</text>
-<text x="818.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">1720</text>
+<text x="818.0" y="154.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">1721</text>
 <rect x="16.0" y="182.0" width="384.0" height="92" fill="#222826" stroke="#495348"/>
 <rect x="16.0" y="182.0" width="4" height="92" fill="#a7b68c"/>
 <text x="34.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#a7b68c" text-anchor="start">SOURCE GENRES</text>
-<text x="34.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">549</text>
+<text x="34.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">540</text>
 <rect x="408.0" y="182.0" width="384.0" height="92" fill="#222826" stroke="#495348"/>
 <rect x="408.0" y="182.0" width="4" height="92" fill="#a6b9c8"/>
 <text x="426.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#a6b9c8" text-anchor="start">DOMINANT GENRES</text>
-<text x="426.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">190</text>
+<text x="426.0" y="254.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">211</text>
 <rect x="800.0" y="182.0" width="384.0" height="92" fill="#222826" stroke="#495348"/>
 <rect x="800.0" y="182.0" width="4" height="92" fill="#d29879"/>
 <text x="818.0" y="212.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#d29879" text-anchor="start">COUNTRIES</text>
@@ -38,5 +38,5 @@
 <rect x="800.0" y="282.0" width="384.0" height="92" fill="#222826" stroke="#495348"/>
 <rect x="800.0" y="282.0" width="4" height="92" fill="#d29879"/>
 <text x="818.0" y="312.0" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#d29879" text-anchor="start">DURATION</text>
-<text x="818.0" y="354.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">187h 56m</text>
+<text x="818.0" y="354.0" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#eee9df" text-anchor="start">188h 1m</text>
 </svg>

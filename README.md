@@ -2,7 +2,7 @@
 
 Albums I keep. Sounds I discover. A personal collection by Maksim Krutikov.
 
-_Last updated 2026-09-16 06:32 UTC._
+_Last updated 2026-09-16 06:33 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -37,6 +37,10 @@ Albums ranked by the number of distinct liked tracks. At least five liked tracks
 
 The latest additions to my saved collection.
 
+<a href="https://open.spotify.com/track/26ARKqLHu8wjEsOk3HOTpF"><img src="https://i.scdn.co/image/ab67616d0000b27367076cbcaa515ae5d7e16331" width="80" height="80" alt="Blood of the Badlands" /></a>
+
+**Sunscorched — Stranger&#x27;s Land**
+
 <a href="https://open.spotify.com/track/7g9qFFo27ppws6o2cVVBvz"><img src="https://i.scdn.co/image/ab67616d0000b2737208de93361ca50b6d353341" width="80" height="80" alt="Ad Pulchram Mortem" /></a>
 
 **Soulgrind — Nousee Musta Lintu**
@@ -45,10 +49,6 @@ The latest additions to my saved collection.
 
 **Gallower — Gutter Rats**
 
-<a href="https://open.spotify.com/track/6qQuUIq3vCHLY0kUG1Plis"><img src="https://i.scdn.co/image/ab67616d0000b273248fb3d2c80bc11b136c21be" width="80" height="80" alt="Múr" /></a>
-
-**Múr — Eldhaf**
-
 <details>
 <summary>All ten recent additions</summary>
 
@@ -56,34 +56,34 @@ The latest additions to my saved collection.
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/26ARKqLHu8wjEsOk3HOTpF">Stranger&#x27;s Land</a></strong> — Sunscorched<br/><small>Blood of the Badlands · 2026 · Added 2026-09-15</small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7g9qFFo27ppws6o2cVVBvz">Nousee Musta Lintu</a></strong> — Soulgrind<br/><small>Ad Pulchram Mortem · 2026 · Added 2026-09-14</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/29rdn1OUDNxLj5cM9sPiRy">Gutter Rats</a></strong> — Gallower<br/><small>Behold The Realm Of Darkness · 2020 · Added 2026-09-11</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/29rdn1OUDNxLj5cM9sPiRy">Gutter Rats</a></strong> — Gallower<br/><small>Behold The Realm Of Darkness · 2020 · thrash metal · Added 2026-09-11</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6qQuUIq3vCHLY0kUG1Plis">Eldhaf</a></strong> — Múr<br/><small>Múr · 2024 · Added 2026-09-09</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6qQuUIq3vCHLY0kUG1Plis">Eldhaf</a></strong> — Múr<br/><small>Múr · 2024 · post-rock · Added 2026-09-09</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6hA9Rttkj87i57AYBi4HvT">Procession</a></strong> — Desiderii Marginis<br/><small>Procession · 2012 · Added 2026-09-09</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6hA9Rttkj87i57AYBi4HvT">Procession</a></strong> — Desiderii Marginis<br/><small>Procession · 2012 · dark ambient · Added 2026-09-09</small></td>
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/0YY8l8V0lZmlOlCItEaa7o">Burnout</a></strong> — Facing Fear<br/><small>Burnout · 2026 · Added 2026-09-06</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6tcd56A4K9PATOVQZ3r51p">Bloodmoon</a></strong> — Kerrigan<br/><small>Bloodmoon · 2023 · Added 2026-09-06</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6tcd56A4K9PATOVQZ3r51p">Bloodmoon</a></strong> — Kerrigan<br/><small>Bloodmoon · 2023 · heavy metal · Added 2026-09-06</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2kzvv1zUQRneozxjGbJE3R">Cimbrian Rites</a></strong> — Speedslut<br/><small>Cimbrian Rites · 2026 · Added 2026-09-06</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2kzvv1zUQRneozxjGbJE3R">Cimbrian Rites</a></strong> — Speedslut<br/><small>Cimbrian Rites · 2026 · speed metal · Added 2026-09-06</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4OfWZhSZTDFlVTyY3Axjj1">Ghosts Among The Obelisks</a></strong> — Wolves In The Throne Room<br/><small>Ghosts Among The Obelisks · 2026 · Added 2026-09-05</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4OfWZhSZTDFlVTyY3Axjj1">Ghosts Among The Obelisks</a></strong> — Wolves In The Throne Room<br/><small>Ghosts Among The Obelisks · 2026 · atmospheric black metal · Added 2026-09-05</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2FcdtGhl7pOdRdlIMKHSPF">Turn the Key</a></strong> — Chelsea Wolfe<br/><small>The Dark · 2026 · Added 2026-08-27</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6cHrPKckZAZ0o3jQrKs2hB">Kill Him With Poison</a></strong> — Zorn<br/><small>Return to Castle Death · 2026 · Added 2026-08-26</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2FcdtGhl7pOdRdlIMKHSPF">Turn the Key</a></strong> — Chelsea Wolfe<br/><small>The Dark · 2026 · singer-songwriter · Added 2026-08-27</small></td>
 </tr>
 </tbody>
 </table>
@@ -141,49 +141,49 @@ Artist origins across release decades, using MusicBrainz, Wikidata and curated o
 Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.
 
 <details>
-<summary><strong>Metal</strong> · 50 genres · 924 track assignments</summary>
+<summary><strong>Metal</strong> · 48 genres · 931 track assignments</summary>
 
 ![Metal genre atlas](assets/atlas/metal.svg)
 
 </details>
 
 <details>
-<summary><strong>Rock / Psych / Prog</strong> · 51 genres · 610 track assignments</summary>
+<summary><strong>Rock / Psych / Prog</strong> · 53 genres · 604 track assignments</summary>
 
 ![Rock / Psych / Prog genre atlas](assets/atlas/rock-psych-prog.svg)
 
 </details>
 
 <details>
-<summary><strong>Electronic / Ambient</strong> · 25 genres · 187 track assignments</summary>
+<summary><strong>Electronic / Ambient</strong> · 31 genres · 197 track assignments</summary>
 
 ![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
 
 </details>
 
 <details>
-<summary><strong>Punk / Hardcore</strong> · 13 genres · 75 track assignments</summary>
+<summary><strong>Punk / Hardcore</strong> · 13 genres · 74 track assignments</summary>
 
 ![Punk / Hardcore genre atlas](assets/atlas/punk-hardcore.svg)
 
 </details>
 
 <details>
-<summary><strong>Folk / World</strong> · 15 genres · 65 track assignments</summary>
+<summary><strong>Folk / World</strong> · 17 genres · 64 track assignments</summary>
 
 ![Folk / World genre atlas](assets/atlas/folk-world.svg)
 
 </details>
 
 <details>
-<summary><strong>Jazz / Blues</strong> · 10 genres · 29 track assignments</summary>
+<summary><strong>Jazz / Blues</strong> · 13 genres · 26 track assignments</summary>
 
 ![Jazz / Blues genre atlas](assets/atlas/jazz-blues.svg)
 
 </details>
 
 <details>
-<summary><strong>Soul / Funk / R&amp;B</strong> · 5 genres · 14 track assignments</summary>
+<summary><strong>Soul / Funk / R&amp;B</strong> · 6 genres · 15 track assignments</summary>
 
 ![Soul / Funk / R&B genre atlas](assets/atlas/soul-funk-r-b.svg)
 
@@ -197,7 +197,7 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Afrobeat / Latin</strong> · 2 genres · 2 track assignments</summary>
+<summary><strong>Afrobeat / Latin</strong> · 1 genre · 1 track assignment</summary>
 
 ![Afrobeat / Latin genre atlas](assets/atlas/afrobeat-latin.svg)
 
@@ -211,23 +211,30 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Pop / Songwriter</strong> · 5 genres · 38 track assignments</summary>
+<summary><strong>Pop / Songwriter</strong> · 9 genres · 41 track assignments</summary>
 
 ![Pop / Songwriter genre atlas](assets/atlas/pop-songwriter.svg)
 
 </details>
 
 <details>
-<summary><strong>Hip-Hop / Rap</strong> · 3 genres · 11 track assignments</summary>
+<summary><strong>Hip-Hop / Rap</strong> · 5 genres · 13 track assignments</summary>
 
 ![Hip-Hop / Rap genre atlas](assets/atlas/hip-hop-rap.svg)
 
 </details>
 
 <details>
-<summary><strong>Experimental / Noise</strong> · 3 genres · 19 track assignments</summary>
+<summary><strong>Experimental / Noise</strong> · 4 genres · 21 track assignments</summary>
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
+
+</details>
+
+<details>
+<summary><strong>Other</strong> · 3 genres · 3 track assignments</summary>
+
+![Other genre atlas](assets/atlas/other.svg)
 
 </details>
 
