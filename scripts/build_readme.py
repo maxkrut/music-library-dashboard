@@ -1658,7 +1658,7 @@ def write_saved_vs_played_svg(
     ignored: int,
 ) -> None:
     width = 1200
-    height = 520
+    height = 540
     margin = 16
     header_height = 54
     chart_x = 180
