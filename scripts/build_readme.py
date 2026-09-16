@@ -1626,8 +1626,8 @@ def write_top_ranges_svg(path: Path, source: str, ranges: dict[str, RankedRows])
             [
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="{card_width:.1f}" height="{card_height}" fill="#fffefa" stroke="#c7d0c7"/>',
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="4" height="{card_height}" fill="{accent}"/>',
-                f'<rect x="{x + 4:.1f}" y="{y:.1f}" width="{card_width - 4:.1f}" height="46" fill="#edf2ed"/>',
-                svg_text(x + 16, y + 30, title, size=21, weight=800),
+                f'<rect x="{x + 4:.1f}" y="{y:.1f}" width="{card_width - 4:.1f}" height="46" fill="#304333"/>',
+                svg_text(x + 16, y + 30, title, size=21, weight=800, fill="#ffffff"),
             ]
         )
         if not rows:
