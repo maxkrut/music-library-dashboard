@@ -1,56 +1,35 @@
-# My music archive
+# Spotify Library Dashboard
 
-Albums I keep. Sounds I discover. A personal collection by Maksim Krutikov.
+Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
 _Last updated 2026-09-16 06:33 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
+![Spotify library overview](assets/overview.svg)
+
 ## Favorite Albums
 
 Albums ranked by the number of distinct liked tracks. At least five liked tracks from an album are required.
 
-<table><tbody>
-<tr>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/3yybpj4kjYUA7EQ2IpvLM1"><img src="https://i.scdn.co/image/ab67616d0000b273183809d631e345a001763263" width="140" height="140" alt="Enslaved - Mardraum" /></a><br/><strong>Enslaved</strong><br/>Mardraum<br/><sub>10 liked tracks</sub></td>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/1XzzaxK9FWQbdDxJ7fG99z"><img src="https://i.scdn.co/image/ab67616d0000b273a3997fd893c2cd9bb67db4f0" width="140" height="140" alt="Darkthrone - The Cult is Alive" /></a><br/><strong>Darkthrone</strong><br/>The Cult is Alive<br/><sub>9 liked tracks</sub></td>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/0M43d6s6l1b5x6SALQSrP0"><img src="https://i.scdn.co/image/ab67616d0000b273921c5061393602d848aa3365" width="140" height="140" alt="Darkthrone - Circle The Wagons" /></a><br/><strong>Darkthrone</strong><br/>Circle The Wagons<br/><sub>8 liked tracks</sub></td>
-</tr>
-<tr>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/2u7LOAgv5j5h543CgViXfw"><img src="https://i.scdn.co/image/ab67616d0000b2739bced906ded019389f3484e2" width="140" height="140" alt="Enslaved - Monumension" /></a><br/><strong>Enslaved</strong><br/>Monumension<br/><sub>8 liked tracks</sub></td>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/3uei5LFX4boIwVER1zdLD8"><img src="https://i.scdn.co/image/ab67616d0000b273b11b76df3a262a25ec91caed" width="140" height="140" alt="Enslaved - Below The Lights" /></a><br/><strong>Enslaved</strong><br/>Below The Lights<br/><sub>7 liked tracks</sub></td>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/3BXI5u6ukjK3JmWI53hbzl"><img src="https://i.scdn.co/image/ab67616d0000b2731b60219eea92ca9071ac0d86" width="140" height="140" alt="Enslaved - Blodhemn" /></a><br/><strong>Enslaved</strong><br/>Blodhemn<br/><sub>7 liked tracks</sub></td>
-</tr>
-<tr>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/7DMbJmJnbuv5EGFsNPfh6K"><img src="https://i.scdn.co/image/ab67616d0000b273ff14e1a404e50e95f64b3027" width="140" height="140" alt="Enslaved - Eld" /></a><br/><strong>Enslaved</strong><br/>Eld<br/><sub>6 liked tracks</sub></td>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/4b7oroZfX3w5vaRaotvr6p"><img src="https://i.scdn.co/image/ab67616d0000b273e4f5448b3adf7854889ce6c1" width="140" height="140" alt="Opeth - My Arms, Your Hearse" /></a><br/><strong>Opeth</strong><br/>My Arms, Your Hearse<br/><sub>6 liked tracks</sub></td>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/5qIvAO77qv1y8VxdRXa7Uv"><img src="https://i.scdn.co/image/ab67616d0000b2735ff8d781e39bbdb2070c4d25" width="140" height="140" alt="Ulver - The Assassination of Julius Caesar" /></a><br/><strong>Ulver</strong><br/>The Assassination of Julius Caesar<br/><sub>6 liked tracks</sub></td>
-</tr>
-<tr>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/5RL3iKkCVR0roH1V63pfri"><img src="https://i.scdn.co/image/ab67616d0000b273301b8629e4642d59dfdd7a46" width="140" height="140" alt="Obscure - On Formaldehyde" /></a><br/><strong>Obscure</strong><br/>On Formaldehyde<br/><sub>5 liked tracks</sub></td>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/1AAzWBkgkhlIxmR3FH41pR"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="140" height="140" alt="Obsequiae - Aria of Vernal Tombs" /></a><br/><strong>Obsequiae</strong><br/>Aria of Vernal Tombs<br/><sub>5 liked tracks</sub></td>
-<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/7jd4fRf4g2BfmifRRQJIxT"><img src="https://i.scdn.co/image/ab67616d0000b273b18833c7354dab85dc5c7099" width="140" height="140" alt="Wardruna - Runaljod - Ragnarok" /></a><br/><strong>Wardruna</strong><br/>Runaljod - Ragnarok<br/><sub>5 liked tracks</sub></td>
-</tr>
-</tbody></table>
+<p align="center">
+<a href="https://open.spotify.com/album/3yybpj4kjYUA7EQ2IpvLM1"><img src="https://i.scdn.co/image/ab67616d0000b273183809d631e345a001763263" width="72" height="72" alt="Enslaved - Mardraum" /></a>
+<a href="https://open.spotify.com/album/1XzzaxK9FWQbdDxJ7fG99z"><img src="https://i.scdn.co/image/ab67616d0000b273a3997fd893c2cd9bb67db4f0" width="72" height="72" alt="Darkthrone - The Cult is Alive" /></a>
+<a href="https://open.spotify.com/album/0M43d6s6l1b5x6SALQSrP0"><img src="https://i.scdn.co/image/ab67616d0000b273921c5061393602d848aa3365" width="72" height="72" alt="Darkthrone - Circle The Wagons" /></a>
+<a href="https://open.spotify.com/album/2u7LOAgv5j5h543CgViXfw"><img src="https://i.scdn.co/image/ab67616d0000b2739bced906ded019389f3484e2" width="72" height="72" alt="Enslaved - Monumension" /></a>
+<a href="https://open.spotify.com/album/3uei5LFX4boIwVER1zdLD8"><img src="https://i.scdn.co/image/ab67616d0000b273b11b76df3a262a25ec91caed" width="72" height="72" alt="Enslaved - Below The Lights" /></a>
+<a href="https://open.spotify.com/album/3BXI5u6ukjK3JmWI53hbzl"><img src="https://i.scdn.co/image/ab67616d0000b2731b60219eea92ca9071ac0d86" width="72" height="72" alt="Enslaved - Blodhemn" /></a>
+<a href="https://open.spotify.com/album/7DMbJmJnbuv5EGFsNPfh6K"><img src="https://i.scdn.co/image/ab67616d0000b273ff14e1a404e50e95f64b3027" width="72" height="72" alt="Enslaved - Eld" /></a>
+<a href="https://open.spotify.com/album/4b7oroZfX3w5vaRaotvr6p"><img src="https://i.scdn.co/image/ab67616d0000b273e4f5448b3adf7854889ce6c1" width="72" height="72" alt="Opeth - My Arms, Your Hearse" /></a>
+<a href="https://open.spotify.com/album/5qIvAO77qv1y8VxdRXa7Uv"><img src="https://i.scdn.co/image/ab67616d0000b2735ff8d781e39bbdb2070c4d25" width="72" height="72" alt="Ulver - The Assassination of Julius Caesar" /></a>
+<a href="https://open.spotify.com/album/5RL3iKkCVR0roH1V63pfri"><img src="https://i.scdn.co/image/ab67616d0000b273301b8629e4642d59dfdd7a46" width="72" height="72" alt="Obscure - On Formaldehyde" /></a>
+<a href="https://open.spotify.com/album/1AAzWBkgkhlIxmR3FH41pR"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="72" height="72" alt="Obsequiae - Aria of Vernal Tombs" /></a>
+<a href="https://open.spotify.com/album/7jd4fRf4g2BfmifRRQJIxT"><img src="https://i.scdn.co/image/ab67616d0000b273b18833c7354dab85dc5c7099" width="72" height="72" alt="Wardruna - Runaljod - Ragnarok" /></a>
+</p>
 
-## Recent Discoveries
+## Latest Liked Tracks
 
-The latest additions to my saved collection.
-
-<a href="https://open.spotify.com/track/26ARKqLHu8wjEsOk3HOTpF"><img src="https://i.scdn.co/image/ab67616d0000b27367076cbcaa515ae5d7e16331" width="80" height="80" alt="Blood of the Badlands" /></a>
-
-**Sunscorched — Stranger&#x27;s Land**
-
-<a href="https://open.spotify.com/track/7g9qFFo27ppws6o2cVVBvz"><img src="https://i.scdn.co/image/ab67616d0000b2737208de93361ca50b6d353341" width="80" height="80" alt="Ad Pulchram Mortem" /></a>
-
-**Soulgrind — Nousee Musta Lintu**
-
-<a href="https://open.spotify.com/track/29rdn1OUDNxLj5cM9sPiRy"><img src="https://i.scdn.co/image/ab67616d0000b273f71f2d8e4f478a466bf534c9" width="80" height="80" alt="Behold The Realm Of Darkness" /></a>
-
-**Gallower — Gutter Rats**
-
-<details>
-<summary>All ten recent additions</summary>
+The ten most recently saved tracks in the library.
 
 <div align="center">
 <table width="100%" cellpadding="8" cellspacing="0">
@@ -89,26 +68,9 @@ The latest additions to my saved collection.
 </table>
 </div>
 
-</details>
-
-## From the Archive
-
-A weekly selection from the older favorites in my saved collection.
-
-<a href="https://open.spotify.com/album/0M43d6s6l1b5x6SALQSrP0"><img src="https://i.scdn.co/image/ab67616d0000b273921c5061393602d848aa3365" width="180" height="180" alt="Darkthrone — Circle The Wagons" /></a>
-
-**Darkthrone — Circle The Wagons** · 8 liked tracks
-
-## The Collection in Numbers
-
-![Spotify library overview](assets/overview.svg)
-
-<details>
-<summary>Explore library rankings</summary>
+## Library Rankings
 
 ![Spotify aggregate top lists](assets/aggregates.svg)
-
-</details>
 
 ## Listening Trends
 
