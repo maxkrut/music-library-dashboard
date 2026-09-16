@@ -155,6 +155,25 @@ def test_recent_liked_layout_is_mobile_friendly() -> None:
     assert "<small><small>" not in rendered
 
 
+def test_saved_vs_played_keeps_the_two_counts_visually_separate(tmp_path: Path) -> None:
+    chart = tmp_path / "saved-vs-played.svg"
+
+    build_readme.write_saved_vs_played_svg(
+        chart,
+        "Spotify recently played",
+        [("Metal", 92)],
+        [("Metal", 14)],
+        rediscovered=14,
+        ignored=2007,
+    )
+
+    rendered = chart.read_text(encoding="utf-8")
+    assert ">saved 92</text>" in rendered
+    assert ">played 14</text>" in rendered
+    assert 'x="646.0" y="137.0"' in rendered
+    assert 'x="646.0" y="152.0"' in rendered
+
+
 def test_genre_atlas_groups_are_collapsed(tmp_path: Path) -> None:
     lines = build_readme.genre_atlas(
         [

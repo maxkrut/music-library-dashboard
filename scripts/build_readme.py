@@ -1658,14 +1658,17 @@ def write_saved_vs_played_svg(
     ignored: int,
 ) -> None:
     width = 1200
-    height = 500
+    height = 520
     margin = 16
     header_height = 54
     chart_x = 180
     chart_y = 126
     row_height = 42
     bar_width = 410
-    gap = 20
+    # Keep a dedicated centre column for the two counts.  Placing both numbers
+    # at the bar boundary made small recent-play counts run into saved counts
+    # once GitHub scaled the SVG down to the README column.
+    gap = 112
     saved = dict(saved_rows)
     played = dict(played_rows)
     groups = [group for group, _count in top(Counter(saved) + Counter(played), 8)]
@@ -1694,8 +1697,24 @@ def write_saved_vs_played_svg(
                 f'<rect x="{chart_x:.1f}" y="{y:.1f}" width="{saved_width:.1f}" height="18" fill="#557e64" fill-opacity="0.78"/>',
                 f'<rect x="{chart_x + bar_width + gap:.1f}" y="{y:.1f}" width="{bar_width}" height="18" fill="#d9ded7"/>',
                 f'<rect x="{chart_x + bar_width + gap:.1f}" y="{y:.1f}" width="{played_width:.1f}" height="18" fill="#526f92" fill-opacity="0.78"/>',
-                svg_text(chart_x + bar_width + 6, y + 15, saved_count, size=11, weight=800, fill="#557e64"),
-                svg_text(chart_x + bar_width + gap + played_width + 6, y + 15, played_count, size=11, weight=800, fill="#526f92"),
+                svg_text(
+                    chart_x + bar_width + gap / 2,
+                    y + 11,
+                    f"saved {saved_count}",
+                    size=11,
+                    weight=800,
+                    fill="#557e64",
+                    anchor="middle",
+                ),
+                svg_text(
+                    chart_x + bar_width + gap / 2,
+                    y + 26,
+                    f"played {played_count}",
+                    size=11,
+                    weight=800,
+                    fill="#526f92",
+                    anchor="middle",
+                ),
             ]
         )
 
