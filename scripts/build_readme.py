@@ -29,11 +29,22 @@ MUSICBRAINZ_ARTIST_CACHE = ROOT / ".cache" / "musicbrainz-artists.json"
 SPOTIFY_TOP_ITEMS_CACHE = ROOT / ".cache" / "spotify-top-items.json"
 SPOTIFY_RECENTLY_PLAYED_CACHE = ROOT / ".cache" / "spotify-recently-played.json"
 COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
-README_TITLE = "Spotify Library Dashboard"
-REPO_DESCRIPTION = "Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries."
+README_TITLE = "My music archive"
+REPO_DESCRIPTION = "Albums I keep. Sounds I discover. A personal collection by Maksim Krutikov."
 
 
 def write_text_lf(path: Path, content: str) -> None:
+    if path.suffix == ".svg":
+        palette = {
+            "#f7f6f0": "#181c1b", "#fffefa": "#222826",
+            "#102027": "#eee9df", "#22382d": "#303a30",
+            "#c7d0c7": "#495348", "#d9ded7": "#394139",
+            "#f1f4ee": "#202622", "#557e64": "#a7b68c",
+            "#526f92": "#a6b9c8", "#a96855": "#d29879",
+            "#7d744e": "#c1b17e", "#6f7772": "#b3bbb0",
+            "#5d6b62": "#bac3b4", "#7a827b": "#a5b09e",
+        }
+        content = re.sub(r"#[0-9a-fA-F]{6}", lambda m: palette.get(m[0].lower(), m[0]), content)
     with atomic_text_writer(path, newline="\n") as file:
         file.write(content)
 
@@ -1050,7 +1061,7 @@ def favorite_album_cover_tracks(
             norm(album["cover"].get("album_name", "")),
         )
     )
-    return [album["cover"] for album in eligible[:limit] if isinstance(album["cover"], dict)]
+    return [dict(album["cover"], liked_count=str(len(album["tracks"]))) for album in eligible[:limit] if isinstance(album["cover"], dict)]
 
 
 def favorite_albums_lines(
@@ -1064,7 +1075,7 @@ def favorite_albums_lines(
     ]
     favorite_albums = favorite_album_cover_tracks(library_tracks)
     if favorite_albums:
-        lines.append('<p align="center">')
+        lines.append('<table><tbody>')
     else:
         lines.extend(
             [
@@ -1072,7 +1083,9 @@ def favorite_albums_lines(
                 "",
             ]
         )
-    for item in favorite_albums:
+    for index, item in enumerate(favorite_albums):
+        if index % 3 == 0:
+            lines.append('<tr>')
         alt = html.escape(
             " - ".join(part for part in (item["artist_names"], item["album_name"]) if part),
             quote=True,
@@ -1083,12 +1096,42 @@ def favorite_albums_lines(
             f"https://open.spotify.com/album/{album_id}" if album_id else item["spotify_url"],
             quote=True,
         )
-        image = f'<img src="{src}" width="72" height="72" alt="{alt}" />'
+        image = f'<img src="{src}" width="140" height="140" alt="{alt}" />'
         if url:
             image = f'<a href="{url}">{image}</a>'
-        lines.append(image)
+        lines.append(f'<td width="33%" align="center" valign="top">{image}<br/><strong>{html.escape(item["artist_names"])}</strong><br/>{html.escape(item["album_name"])}<br/><sub>{item["liked_count"]} liked tracks</sub></td>')
+        if index % 3 == 2 or index == len(favorite_albums) - 1:
+            lines.append('</tr>')
     if favorite_albums:
-        lines.extend(["</p>", ""])
+        lines.extend(["</tbody></table>", ""])
+    return lines
+
+
+def archive_feature_lines(tracks: list[TrackRow]) -> list[str]:
+    """Rotate weekly among the older half of qualifying favorite albums."""
+    albums = favorite_album_cover_tracks(tracks, limit=len(tracks))
+    albums.sort(key=lambda row: (added_date(row), row.get("album_id", "")))
+    if not albums:
+        return []
+    pool = albums[:max(1, len(albums) // 2)]
+    item = pool[(datetime.now(timezone.utc).date().toordinal() // 7) % len(pool)]
+    url = "https://open.spotify.com/album/" + item.get("album_id", "")
+    label = html.escape(item.get("artist_names", "") + " — " + item.get("album_name", ""))
+    return ["## From the Archive", "", "A weekly selection from the older favorites in my saved collection.", "",
+            f'<a href="{html.escape(url, quote=True)}"><img src="{html.escape(item["album_image_url"], quote=True)}" width="180" height="180" alt="{label}" /></a>', "",
+            f'**{label}** · {item["liked_count"]} liked tracks', ""]
+
+
+def recent_discovery_lines(tracks: list[TrackRow]) -> list[str]:
+    liked = [row for row in tracks if "liked" in {s.casefold() for s in split_values(row.get("sources", ""))}]
+    liked.sort(key=lambda row: (added_date(row), row.get("track_id", "")), reverse=True)
+    lines = ["## Recent Discoveries", "", "The latest additions to my saved collection.", ""]
+    for row in liked[:3]:
+        image = row.get("album_image_url", "")
+        if image:
+            lines.append(f'<a href="{html.escape(row.get("spotify_url", ""), quote=True)}"><img src="{html.escape(image, quote=True)}" width="80" height="80" alt="{html.escape(row.get("album_name", ""), quote=True)}" /></a>')
+        lines.extend(["", f'**{html.escape(row.get("artist_names", ""))} — {html.escape(row.get("track_name", ""))}**', ""])
+    lines.extend(["<details>", "<summary>All ten recent additions</summary>", "", stacked_list(recent_liked_items(tracks, 10)), "", "</details>", ""])
     return lines
 
 
@@ -2149,24 +2192,21 @@ def build_dashboard(
             readme_dir,
             atlas_dir,
         )
+        lines.extend(top_songs_lines)
+        lines.extend(recent_discovery_lines(tracks))
+        lines.extend(archive_feature_lines(tracks))
         lines.extend(
             [
+                "## The Collection in Numbers",
+                "",
                 md_image("Spotify library overview", overview_path, readme_dir),
                 "",
-            ]
-        )
-        lines.extend(top_songs_lines)
-        lines.extend(
-            [
-                "## Latest Liked Tracks",
-                "",
-                "The ten most recently saved tracks in the library.",
-                "",
-                stacked_list(recent_liked_items(tracks, 10)),
-                "",
-                "## Library Rankings",
+                "<details>",
+                "<summary>Explore library rankings</summary>",
                 "",
                 md_image("Spotify aggregate top lists", aggregates_path, readme_dir),
+                "",
+                "</details>",
                 "",
             ]
         )

@@ -123,8 +123,9 @@ def test_favorite_albums_layout_is_cover_only() -> None:
     rendered = "\n".join(build_readme.favorite_albums_lines(tracks))
 
     assert rendered.startswith("## Favorite Albums")
-    assert "<table>" not in rendered
-    assert rendered.count('<p align="center">') == 1
+    assert '<table><tbody>' in rendered
+    assert 'width="140"' in rendered
+    assert '5 liked tracks' in rendered
     assert "long-term" not in rendered.casefold()
     assert "View ranked list" not in rendered
 

@@ -1,35 +1,56 @@
-# Spotify Library Dashboard
+# My music archive
 
-Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
+Albums I keep. Sounds I discover. A personal collection by Maksim Krutikov.
 
-_Last updated 2026-09-15 09:34 UTC._
+_Last updated 2026-09-16 06:32 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
-
-![Spotify library overview](assets/overview.svg)
 
 ## Favorite Albums
 
 Albums ranked by the number of distinct liked tracks. At least five liked tracks from an album are required.
 
-<p align="center">
-<a href="https://open.spotify.com/album/3yybpj4kjYUA7EQ2IpvLM1"><img src="https://i.scdn.co/image/ab67616d0000b273183809d631e345a001763263" width="72" height="72" alt="Enslaved - Mardraum" /></a>
-<a href="https://open.spotify.com/album/1XzzaxK9FWQbdDxJ7fG99z"><img src="https://i.scdn.co/image/ab67616d0000b273a3997fd893c2cd9bb67db4f0" width="72" height="72" alt="Darkthrone - The Cult is Alive" /></a>
-<a href="https://open.spotify.com/album/0M43d6s6l1b5x6SALQSrP0"><img src="https://i.scdn.co/image/ab67616d0000b273921c5061393602d848aa3365" width="72" height="72" alt="Darkthrone - Circle The Wagons" /></a>
-<a href="https://open.spotify.com/album/2u7LOAgv5j5h543CgViXfw"><img src="https://i.scdn.co/image/ab67616d0000b2739bced906ded019389f3484e2" width="72" height="72" alt="Enslaved - Monumension" /></a>
-<a href="https://open.spotify.com/album/3uei5LFX4boIwVER1zdLD8"><img src="https://i.scdn.co/image/ab67616d0000b273b11b76df3a262a25ec91caed" width="72" height="72" alt="Enslaved - Below The Lights" /></a>
-<a href="https://open.spotify.com/album/3BXI5u6ukjK3JmWI53hbzl"><img src="https://i.scdn.co/image/ab67616d0000b2731b60219eea92ca9071ac0d86" width="72" height="72" alt="Enslaved - Blodhemn" /></a>
-<a href="https://open.spotify.com/album/7DMbJmJnbuv5EGFsNPfh6K"><img src="https://i.scdn.co/image/ab67616d0000b273ff14e1a404e50e95f64b3027" width="72" height="72" alt="Enslaved - Eld" /></a>
-<a href="https://open.spotify.com/album/4b7oroZfX3w5vaRaotvr6p"><img src="https://i.scdn.co/image/ab67616d0000b273e4f5448b3adf7854889ce6c1" width="72" height="72" alt="Opeth - My Arms, Your Hearse" /></a>
-<a href="https://open.spotify.com/album/5qIvAO77qv1y8VxdRXa7Uv"><img src="https://i.scdn.co/image/ab67616d0000b2735ff8d781e39bbdb2070c4d25" width="72" height="72" alt="Ulver - The Assassination of Julius Caesar" /></a>
-<a href="https://open.spotify.com/album/5RL3iKkCVR0roH1V63pfri"><img src="https://i.scdn.co/image/ab67616d0000b273301b8629e4642d59dfdd7a46" width="72" height="72" alt="Obscure - On Formaldehyde" /></a>
-<a href="https://open.spotify.com/album/1AAzWBkgkhlIxmR3FH41pR"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="72" height="72" alt="Obsequiae - Aria of Vernal Tombs" /></a>
-<a href="https://open.spotify.com/album/7jd4fRf4g2BfmifRRQJIxT"><img src="https://i.scdn.co/image/ab67616d0000b273b18833c7354dab85dc5c7099" width="72" height="72" alt="Wardruna - Runaljod - Ragnarok" /></a>
-</p>
+<table><tbody>
+<tr>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/3yybpj4kjYUA7EQ2IpvLM1"><img src="https://i.scdn.co/image/ab67616d0000b273183809d631e345a001763263" width="140" height="140" alt="Enslaved - Mardraum" /></a><br/><strong>Enslaved</strong><br/>Mardraum<br/><sub>10 liked tracks</sub></td>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/1XzzaxK9FWQbdDxJ7fG99z"><img src="https://i.scdn.co/image/ab67616d0000b273a3997fd893c2cd9bb67db4f0" width="140" height="140" alt="Darkthrone - The Cult is Alive" /></a><br/><strong>Darkthrone</strong><br/>The Cult is Alive<br/><sub>9 liked tracks</sub></td>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/0M43d6s6l1b5x6SALQSrP0"><img src="https://i.scdn.co/image/ab67616d0000b273921c5061393602d848aa3365" width="140" height="140" alt="Darkthrone - Circle The Wagons" /></a><br/><strong>Darkthrone</strong><br/>Circle The Wagons<br/><sub>8 liked tracks</sub></td>
+</tr>
+<tr>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/2u7LOAgv5j5h543CgViXfw"><img src="https://i.scdn.co/image/ab67616d0000b2739bced906ded019389f3484e2" width="140" height="140" alt="Enslaved - Monumension" /></a><br/><strong>Enslaved</strong><br/>Monumension<br/><sub>8 liked tracks</sub></td>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/3uei5LFX4boIwVER1zdLD8"><img src="https://i.scdn.co/image/ab67616d0000b273b11b76df3a262a25ec91caed" width="140" height="140" alt="Enslaved - Below The Lights" /></a><br/><strong>Enslaved</strong><br/>Below The Lights<br/><sub>7 liked tracks</sub></td>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/3BXI5u6ukjK3JmWI53hbzl"><img src="https://i.scdn.co/image/ab67616d0000b2731b60219eea92ca9071ac0d86" width="140" height="140" alt="Enslaved - Blodhemn" /></a><br/><strong>Enslaved</strong><br/>Blodhemn<br/><sub>7 liked tracks</sub></td>
+</tr>
+<tr>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/7DMbJmJnbuv5EGFsNPfh6K"><img src="https://i.scdn.co/image/ab67616d0000b273ff14e1a404e50e95f64b3027" width="140" height="140" alt="Enslaved - Eld" /></a><br/><strong>Enslaved</strong><br/>Eld<br/><sub>6 liked tracks</sub></td>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/4b7oroZfX3w5vaRaotvr6p"><img src="https://i.scdn.co/image/ab67616d0000b273e4f5448b3adf7854889ce6c1" width="140" height="140" alt="Opeth - My Arms, Your Hearse" /></a><br/><strong>Opeth</strong><br/>My Arms, Your Hearse<br/><sub>6 liked tracks</sub></td>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/5qIvAO77qv1y8VxdRXa7Uv"><img src="https://i.scdn.co/image/ab67616d0000b2735ff8d781e39bbdb2070c4d25" width="140" height="140" alt="Ulver - The Assassination of Julius Caesar" /></a><br/><strong>Ulver</strong><br/>The Assassination of Julius Caesar<br/><sub>6 liked tracks</sub></td>
+</tr>
+<tr>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/5RL3iKkCVR0roH1V63pfri"><img src="https://i.scdn.co/image/ab67616d0000b273301b8629e4642d59dfdd7a46" width="140" height="140" alt="Obscure - On Formaldehyde" /></a><br/><strong>Obscure</strong><br/>On Formaldehyde<br/><sub>5 liked tracks</sub></td>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/1AAzWBkgkhlIxmR3FH41pR"><img src="https://i.scdn.co/image/ab67616d0000b273e85d9d8144bcfc5af72dd1ee" width="140" height="140" alt="Obsequiae - Aria of Vernal Tombs" /></a><br/><strong>Obsequiae</strong><br/>Aria of Vernal Tombs<br/><sub>5 liked tracks</sub></td>
+<td width="33%" align="center" valign="top"><a href="https://open.spotify.com/album/7jd4fRf4g2BfmifRRQJIxT"><img src="https://i.scdn.co/image/ab67616d0000b273b18833c7354dab85dc5c7099" width="140" height="140" alt="Wardruna - Runaljod - Ragnarok" /></a><br/><strong>Wardruna</strong><br/>Runaljod - Ragnarok<br/><sub>5 liked tracks</sub></td>
+</tr>
+</tbody></table>
 
-## Latest Liked Tracks
+## Recent Discoveries
 
-The ten most recently saved tracks in the library.
+The latest additions to my saved collection.
+
+<a href="https://open.spotify.com/track/7g9qFFo27ppws6o2cVVBvz"><img src="https://i.scdn.co/image/ab67616d0000b2737208de93361ca50b6d353341" width="80" height="80" alt="Ad Pulchram Mortem" /></a>
+
+**Soulgrind — Nousee Musta Lintu**
+
+<a href="https://open.spotify.com/track/29rdn1OUDNxLj5cM9sPiRy"><img src="https://i.scdn.co/image/ab67616d0000b273f71f2d8e4f478a466bf534c9" width="80" height="80" alt="Behold The Realm Of Darkness" /></a>
+
+**Gallower — Gutter Rats**
+
+<a href="https://open.spotify.com/track/6qQuUIq3vCHLY0kUG1Plis"><img src="https://i.scdn.co/image/ab67616d0000b273248fb3d2c80bc11b136c21be" width="80" height="80" alt="Múr" /></a>
+
+**Múr — Eldhaf**
+
+<details>
+<summary>All ten recent additions</summary>
 
 <div align="center">
 <table width="100%" cellpadding="8" cellspacing="0">
@@ -38,39 +59,56 @@ The ten most recently saved tracks in the library.
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7g9qFFo27ppws6o2cVVBvz">Nousee Musta Lintu</a></strong> — Soulgrind<br/><small>Ad Pulchram Mortem · 2026 · Added 2026-09-14</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/29rdn1OUDNxLj5cM9sPiRy">Gutter Rats</a></strong> — Gallower<br/><small>Behold The Realm Of Darkness · 2020 · thrash metal · Added 2026-09-11</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/29rdn1OUDNxLj5cM9sPiRy">Gutter Rats</a></strong> — Gallower<br/><small>Behold The Realm Of Darkness · 2020 · Added 2026-09-11</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6qQuUIq3vCHLY0kUG1Plis">Eldhaf</a></strong> — Múr<br/><small>Múr · 2024 · post-rock · Added 2026-09-09</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6qQuUIq3vCHLY0kUG1Plis">Eldhaf</a></strong> — Múr<br/><small>Múr · 2024 · Added 2026-09-09</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6hA9Rttkj87i57AYBi4HvT">Procession</a></strong> — Desiderii Marginis<br/><small>Procession · 2012 · dark ambient · Added 2026-09-09</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6hA9Rttkj87i57AYBi4HvT">Procession</a></strong> — Desiderii Marginis<br/><small>Procession · 2012 · Added 2026-09-09</small></td>
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/0YY8l8V0lZmlOlCItEaa7o">Burnout</a></strong> — Facing Fear<br/><small>Burnout · 2026 · Added 2026-09-06</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6tcd56A4K9PATOVQZ3r51p">Bloodmoon</a></strong> — Kerrigan<br/><small>Bloodmoon · 2023 · heavy metal · Added 2026-09-06</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6tcd56A4K9PATOVQZ3r51p">Bloodmoon</a></strong> — Kerrigan<br/><small>Bloodmoon · 2023 · Added 2026-09-06</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2kzvv1zUQRneozxjGbJE3R">Cimbrian Rites</a></strong> — Speedslut<br/><small>Cimbrian Rites · 2026 · speed metal · Added 2026-09-06</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2kzvv1zUQRneozxjGbJE3R">Cimbrian Rites</a></strong> — Speedslut<br/><small>Cimbrian Rites · 2026 · Added 2026-09-06</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4OfWZhSZTDFlVTyY3Axjj1">Ghosts Among The Obelisks</a></strong> — Wolves In The Throne Room<br/><small>Ghosts Among The Obelisks · 2026 · atmospheric black metal · Added 2026-09-05</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4OfWZhSZTDFlVTyY3Axjj1">Ghosts Among The Obelisks</a></strong> — Wolves In The Throne Room<br/><small>Ghosts Among The Obelisks · 2026 · Added 2026-09-05</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2FcdtGhl7pOdRdlIMKHSPF">Turn the Key</a></strong> — Chelsea Wolfe<br/><small>The Dark · 2026 · singer-songwriter · Added 2026-08-27</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2FcdtGhl7pOdRdlIMKHSPF">Turn the Key</a></strong> — Chelsea Wolfe<br/><small>The Dark · 2026 · Added 2026-08-27</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6cHrPKckZAZ0o3jQrKs2hB">Kill Him With Poison</a></strong> — Zorn<br/><small>Return to Castle Death · 2026 · avant-garde · Added 2026-08-26</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6cHrPKckZAZ0o3jQrKs2hB">Kill Him With Poison</a></strong> — Zorn<br/><small>Return to Castle Death · 2026 · Added 2026-08-26</small></td>
 </tr>
 </tbody>
 </table>
 </div>
 
-## Library Rankings
+</details>
+
+## From the Archive
+
+A weekly selection from the older favorites in my saved collection.
+
+<a href="https://open.spotify.com/album/0M43d6s6l1b5x6SALQSrP0"><img src="https://i.scdn.co/image/ab67616d0000b273921c5061393602d848aa3365" width="180" height="180" alt="Darkthrone — Circle The Wagons" /></a>
+
+**Darkthrone — Circle The Wagons** · 8 liked tracks
+
+## The Collection in Numbers
+
+![Spotify library overview](assets/overview.svg)
+
+<details>
+<summary>Explore library rankings</summary>
 
 ![Spotify aggregate top lists](assets/aggregates.svg)
+
+</details>
 
 ## Listening Trends
 
@@ -103,49 +141,49 @@ Artist origins across release decades, using MusicBrainz, Wikidata and curated o
 Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.
 
 <details>
-<summary><strong>Metal</strong> · 48 genres · 931 track assignments</summary>
+<summary><strong>Metal</strong> · 50 genres · 924 track assignments</summary>
 
 ![Metal genre atlas](assets/atlas/metal.svg)
 
 </details>
 
 <details>
-<summary><strong>Rock / Psych / Prog</strong> · 53 genres · 604 track assignments</summary>
+<summary><strong>Rock / Psych / Prog</strong> · 51 genres · 610 track assignments</summary>
 
 ![Rock / Psych / Prog genre atlas](assets/atlas/rock-psych-prog.svg)
 
 </details>
 
 <details>
-<summary><strong>Electronic / Ambient</strong> · 31 genres · 197 track assignments</summary>
+<summary><strong>Electronic / Ambient</strong> · 25 genres · 187 track assignments</summary>
 
 ![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
 
 </details>
 
 <details>
-<summary><strong>Punk / Hardcore</strong> · 13 genres · 74 track assignments</summary>
+<summary><strong>Punk / Hardcore</strong> · 13 genres · 75 track assignments</summary>
 
 ![Punk / Hardcore genre atlas](assets/atlas/punk-hardcore.svg)
 
 </details>
 
 <details>
-<summary><strong>Folk / World</strong> · 17 genres · 64 track assignments</summary>
+<summary><strong>Folk / World</strong> · 15 genres · 65 track assignments</summary>
 
 ![Folk / World genre atlas](assets/atlas/folk-world.svg)
 
 </details>
 
 <details>
-<summary><strong>Jazz / Blues</strong> · 13 genres · 26 track assignments</summary>
+<summary><strong>Jazz / Blues</strong> · 10 genres · 29 track assignments</summary>
 
 ![Jazz / Blues genre atlas](assets/atlas/jazz-blues.svg)
 
 </details>
 
 <details>
-<summary><strong>Soul / Funk / R&amp;B</strong> · 6 genres · 15 track assignments</summary>
+<summary><strong>Soul / Funk / R&amp;B</strong> · 5 genres · 14 track assignments</summary>
 
 ![Soul / Funk / R&B genre atlas](assets/atlas/soul-funk-r-b.svg)
 
@@ -159,7 +197,7 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Afrobeat / Latin</strong> · 1 genre · 1 track assignment</summary>
+<summary><strong>Afrobeat / Latin</strong> · 2 genres · 2 track assignments</summary>
 
 ![Afrobeat / Latin genre atlas](assets/atlas/afrobeat-latin.svg)
 
@@ -173,30 +211,23 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Pop / Songwriter</strong> · 9 genres · 41 track assignments</summary>
+<summary><strong>Pop / Songwriter</strong> · 5 genres · 38 track assignments</summary>
 
 ![Pop / Songwriter genre atlas](assets/atlas/pop-songwriter.svg)
 
 </details>
 
 <details>
-<summary><strong>Hip-Hop / Rap</strong> · 5 genres · 13 track assignments</summary>
+<summary><strong>Hip-Hop / Rap</strong> · 3 genres · 11 track assignments</summary>
 
 ![Hip-Hop / Rap genre atlas](assets/atlas/hip-hop-rap.svg)
 
 </details>
 
 <details>
-<summary><strong>Experimental / Noise</strong> · 4 genres · 21 track assignments</summary>
+<summary><strong>Experimental / Noise</strong> · 3 genres · 19 track assignments</summary>
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
-
-</details>
-
-<details>
-<summary><strong>Other</strong> · 3 genres · 3 track assignments</summary>
-
-![Other genre atlas](assets/atlas/other.svg)
 
 </details>
 
