@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-09-16 06:44 UTC._
+_Last updated 2026-09-16 06:51 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
