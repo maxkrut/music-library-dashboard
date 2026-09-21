@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-09-16 06:55 UTC._
+_Last updated 2026-09-21 10:48 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -35,34 +35,34 @@ The ten most recently saved tracks in the library.
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6RrUexWtOLbuU8K3YxF7oh">Abode of the Perfect Soul</a></strong> — Dvne<br/><small>Voidkind · 2024 · progressive metal · Added 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2nhQeK6SU0RQaWiNSgOWCG">Sunflower</a></strong> — Show Me A Dinosaur<br/><small>Plantgazer · 2020 · blackgaze · Added 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7vuI7MKPrRX3vPbsft78qz">Tetrastructural Minds</a></strong> — Vektor<br/><small>Outer Isolation · 2011 · thrash metal · Added 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/5qiALau4qWnEDkzvgNGNxz">Heimsslit</a></strong> — Múr<br/><small>Múr · 2024 · post-rock · Added 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/0qArXHeVhAbDg9wqY3ETdD">Condities der Afstraffing</a></strong> — Fluisteraars<br/><small>Jacht der Mysteriën · 2026 · black metal · Added 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6XkwhigdKpVId9PjMjf6U0">Perdition&#x27;s Crossing (feat. David Eugene Edwards)</a></strong> — Wayfarer; David Eugene Edwards; 16 Horsepower; Wovenhand<br/><small>Perdition&#x27;s Crossing (feat. David Eugene Edwards) · 2026 · atmospheric black metal · Added 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2HTyvFSotgLiSX39LZtNVF">Carved in Stone MMXXVI</a></strong> — Saor<br/><small>Carved in Stone MMXXVI · 2026 · atmospheric black metal · Added 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2QkJUQDK3CiU0XzZFIWO54">Escape to Gondolin</a></strong> — Radagast<br/><small>Escape To Gondolin · 2026 · dungeon synth · Added 2026-09-18</small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/26ARKqLHu8wjEsOk3HOTpF">Stranger&#x27;s Land</a></strong> — Sunscorched<br/><small>Blood of the Badlands · 2026 · Added 2026-09-15</small></td>
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7g9qFFo27ppws6o2cVVBvz">Nousee Musta Lintu</a></strong> — Soulgrind<br/><small>Ad Pulchram Mortem · 2026 · Added 2026-09-14</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/29rdn1OUDNxLj5cM9sPiRy">Gutter Rats</a></strong> — Gallower<br/><small>Behold The Realm Of Darkness · 2020 · thrash metal · Added 2026-09-11</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6qQuUIq3vCHLY0kUG1Plis">Eldhaf</a></strong> — Múr<br/><small>Múr · 2024 · post-rock · Added 2026-09-09</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6hA9Rttkj87i57AYBi4HvT">Procession</a></strong> — Desiderii Marginis<br/><small>Procession · 2012 · dark ambient · Added 2026-09-09</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/0YY8l8V0lZmlOlCItEaa7o">Burnout</a></strong> — Facing Fear<br/><small>Burnout · 2026 · Added 2026-09-06</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6tcd56A4K9PATOVQZ3r51p">Bloodmoon</a></strong> — Kerrigan<br/><small>Bloodmoon · 2023 · heavy metal · Added 2026-09-06</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2kzvv1zUQRneozxjGbJE3R">Cimbrian Rites</a></strong> — Speedslut<br/><small>Cimbrian Rites · 2026 · speed metal · Added 2026-09-06</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4OfWZhSZTDFlVTyY3Axjj1">Ghosts Among The Obelisks</a></strong> — Wolves In The Throne Room<br/><small>Ghosts Among The Obelisks · 2026 · atmospheric black metal · Added 2026-09-05</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2FcdtGhl7pOdRdlIMKHSPF">Turn the Key</a></strong> — Chelsea Wolfe<br/><small>The Dark · 2026 · singer-songwriter · Added 2026-08-27</small></td>
 </tr>
 </tbody>
 </table>
@@ -103,21 +103,21 @@ Artist origins across release decades, using MusicBrainz, Wikidata and curated o
 Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.
 
 <details>
-<summary><strong>Metal</strong> · 48 genres · 931 track assignments</summary>
+<summary><strong>Metal</strong> · 48 genres · 937 track assignments</summary>
 
 ![Metal genre atlas](assets/atlas/metal.svg)
 
 </details>
 
 <details>
-<summary><strong>Rock / Psych / Prog</strong> · 53 genres · 604 track assignments</summary>
+<summary><strong>Rock / Psych / Prog</strong> · 53 genres · 605 track assignments</summary>
 
 ![Rock / Psych / Prog genre atlas](assets/atlas/rock-psych-prog.svg)
 
 </details>
 
 <details>
-<summary><strong>Electronic / Ambient</strong> · 31 genres · 197 track assignments</summary>
+<summary><strong>Electronic / Ambient</strong> · 31 genres · 198 track assignments</summary>
 
 ![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
 
@@ -131,7 +131,7 @@ Each artist is assigned to one dominant genre. Expand a group to explore its top
 </details>
 
 <details>
-<summary><strong>Folk / World</strong> · 17 genres · 64 track assignments</summary>
+<summary><strong>Folk / World</strong> · 17 genres · 65 track assignments</summary>
 
 ![Folk / World genre atlas](assets/atlas/folk-world.svg)
 
