@@ -1,160 +1,329 @@
-match_type,pattern,primary_genre,genres,priority,notes
-artist,Enslaved,black metal,black metal; progressive metal; viking metal,100,
-artist,Darkthrone,black metal,black metal; crust punk,100,
-artist,Opeth,progressive metal,progressive metal; death metal,100,
-artist,Ulver,experimental,experimental; black metal; electronic,100,
-artist,Shape Of Despair,funeral doom,funeral doom; doom metal,100,
-artist,Wardruna,nordic folk,nordic folk; dark folk,100,
-artist,The Flight of Sleipnir,stoner doom,stoner doom; folk metal,100,
-artist,Clark,electronic,electronic; idm,100,
-artist,Frank Zappa,art rock,art rock; jazz fusion; experimental rock,100,
-artist,The Quakes,psychobilly,psychobilly; rockabilly,100,
-artist,Lauge,ambient,ambient; downtempo,100,
-artist,My Dying Bride,doom metal,doom metal; gothic metal,100,
-artist,Alcest,blackgaze,blackgaze; shoegaze,100,
-artist,Biohazard,hardcore,hardcore; rap metal,100,
-artist,Carlo Domeniconi,classical,classical; guitar,100,
-album,Boards of Mongolia,dungeon synth,dungeon synth; ambient; experimental; synth,130,manual audit
-artist,BULLDOZER,speed metal,speed metal; black metal; thrash metal,130,manual audit
-artist,Century,heavy metal,heavy metal; traditional heavy metal; nwobhm; hard rock; speed metal,130,manual audit
-artist,KATZROAR,psychedelic rock,psychedelic rock; indie psych rock; experimental rock,130,manual audit
-artist,Meshuggah,progressive metal,progressive metal; djent; groove metal; technical metal; math metal; death metal,130,manual audit
-artist,Operation Ivy,ska punk,ska punk; punk rock; hardcore punk; ska,130,manual audit
-track,Party All the Time,synth-pop,synth-pop; funk; disco,130,manual audit
-artist,Sweven,progressive death metal,progressive death metal; psychedelic death metal; progressive metal; psychedelic rock,130,manual audit
-artist,Windows 96,vaporwave,vaporwave; synthwave; chillwave; electronic,130,manual audit
-artist,(Hed) P.E.,rapcore,rapcore; nu metal; rap metal; hard rock,130,manual audit
-album,With Sympathy,synth-pop,synth-pop; new wave; industrial,130,multi-track audit
-artist,The Gathering,gothic metal,gothic metal; doom metal; progressive rock; progressive metal,130,multi-track audit
-artist,Dolphin,alternative hip hop,alternative hip hop; alternative rock; electronic; trip hop,130,multi-track audit
-track,Mystery Mountain,progressive rock,progressive rock; jazz fusion; hard rock,130,multi-track audit
-track,Of a Lifetime,progressive rock,progressive rock; jazz fusion; hard rock,130,multi-track audit
-artist,The Streets,uk garage,uk garage; hip hop; uk hip hop,130,multi-track audit
-artist,Guano Apes,nu metal,nu metal; alternative rock; rap metal; post-grunge,130,multi-track audit
-artist,DIIV,shoegaze,shoegaze; dream pop; indie rock; post-punk,130,multi-track audit
-artist,The Cure,gothic rock,gothic rock; post-punk; new wave; alternative rock,130,multi-track audit
-artist,Captain Beyond,progressive rock,progressive rock; hard rock; heavy psych,130,multi-track audit
-artist,My Dying Bride,death-doom metal,death-doom metal; doom metal; gothic metal,130,multi-track audit
-artist,Saturnus,death-doom metal,death-doom metal; melodic doom metal; doom metal,130,multi-track audit
-artist,Biohazard,rap metal,rap metal; hardcore; crossover thrash,130,multi-track audit
-artist,Brendan Perry,neoclassical darkwave,neoclassical darkwave; world; folk; ambient,130,multi-track audit
-album,The Guitarist,classical guitar,classical guitar; classical,130,multi-track audit
-artist,3weekoldroses,alternative rock,alternative rock; indie rock,80,manual fallback
-artist,Angst Skvadron,black metal,black metal; avant-garde metal,80,manual fallback
-artist,Arc De Soleil,psychedelic rock,psychedelic rock; surf rock; instrumental rock,80,manual fallback
-artist,Ben Kenney,alternative rock,alternative rock; funk rock,80,manual fallback
-artist,Bernhard Joachim Hagen,classical,classical; lute,80,manual fallback
-artist,Björn Olsson,psychedelic rock,psychedelic rock; instrumental rock,80,manual fallback
-artist,Bossa Nova Covers,bossa nova,bossa nova; lounge,80,manual fallback
-artist,Bridge To Mars,hard rock,hard rock; progressive rock,80,manual fallback
-artist,Burning Shadows,heavy metal,heavy metal; power metal,80,manual fallback
-artist,Chained Saint,thrash metal,thrash metal; heavy metal,80,manual fallback
-artist,Coláiste Árainn Mhóir,irish folk,irish folk; folk,80,manual fallback
-artist,Den Stora Vilan,psychedelic rock,psychedelic rock; folk rock,80,manual fallback
-artist,Diane Hidy,classical,classical; piano,80,manual fallback
-artist,Diane Hidy & Keith Snell,classical,classical; piano,80,manual fallback
-artist,DJ Normal 4,breakbeat,breakbeat; electro; techno,80,manual fallback
-artist,Downface,alternative rock,alternative rock; post-grunge,80,manual fallback
-artist,Elyndrax,atmospheric black metal,atmospheric black metal; black metal,80,manual fallback
-artist,Fenriz Red Planet,heavy metal,heavy metal; hard rock,80,manual fallback
-artist,FERNDOM,dark ambient,dark ambient; neofolk,80,manual fallback
-artist,Genune,blackgaze,blackgaze; post-metal,80,manual fallback
-artist,Gilgareth,dungeon synth,dungeon synth; fantasy ambient,80,manual fallback
-artist,Gnostic,technical death metal,technical death metal; progressive metal,80,manual fallback
-artist,Golden Core,doom metal,doom metal; sludge metal,80,manual fallback
-artist,Golden Retriever,ambient,ambient; experimental,80,manual fallback
-artist,Gruesome Pledge,thrash metal,thrash metal; death metal,80,manual fallback
-artist,Gruzja,black metal,black metal; post-punk,80,manual fallback
-artist,Gryla,black metal,black metal,80,manual fallback
-artist,Highlonesome,alt-country,alt-country; americana,80,manual fallback
-artist,hodíla ízba,folk,folk; psychedelic folk,80,manual fallback
-artist,Iron Lamb,hard rock,hard rock; punk rock; heavy metal,80,manual fallback
-artist,JJ's Powerhouse,hard rock,hard rock,80,manual fallback
-artist,KATZROAR,dungeon synth,dungeon synth; dark ambient,80,manual fallback
-artist,Kellermensch,alternative rock,alternative rock; post-hardcore,80,manual fallback
-artist,Kitka,folk,folk; vocal; world,80,manual fallback
-artist,kuyaagui,ambient,ambient; electronic,80,manual fallback
-artist,Lars Fredrik Frøislie,progressive rock,progressive rock; symphonic prog,80,manual fallback
-artist,Liljevars Brann,black metal,black metal; nordic folk,80,manual fallback
-artist,Lindy-Fay Hella,nordic folk,nordic folk; dark folk,80,manual fallback
-artist,Mark Sholtez,jazz,jazz; singer-songwriter,80,manual fallback
-artist,Mason Ruffner,blues rock,blues rock,80,manual fallback
-artist,MINUALA,folk,folk; dark folk,80,manual fallback
-artist,Nahemah,progressive metal,progressive metal; melodic death metal,80,manual fallback
-artist,Nerthus,black metal,black metal,80,manual fallback
-artist,never easy,shoegaze,shoegaze; alternative rock,80,manual fallback
-artist,Nine Covens,black metal,black metal,80,manual fallback
-artist,Ningen Isu,doom metal,doom metal; hard rock; heavy metal,80,manual fallback
-artist,Norrfjällen,atmospheric black metal,atmospheric black metal; black metal,80,manual fallback
-artist,Nosłeep,dungeon synth,dungeon synth; dark ambient,80,manual fallback
-artist,Oromet,funeral doom,funeral doom; doom metal,80,manual fallback
-artist,Parasite,heavy metal,heavy metal; hard rock,80,manual fallback
-artist,Petlya Pristrastiya,post-punk,post-punk; alternative rock,80,manual fallback
-artist,Psilocybe Larvae,melodic death metal,melodic death metal; gothic metal,80,manual fallback
-artist,Relapsed,hardcore,hardcore; punk,80,manual fallback
-artist,Robert Hood,techno,techno; minimal techno,80,manual fallback
-artist,Rome In Monochrome,doomgaze,doomgaze; post-metal,80,manual fallback
-artist,Romuvos,folk metal,folk metal; pagan metal,80,manual fallback
-artist,Screammet,heavy metal,heavy metal,80,manual fallback
-artist,Seth Chapla,instrumental rock,instrumental rock; guitar,80,manual fallback
-artist,Skogen Brinner,hard rock,hard rock; psychedelic rock,80,manual fallback
-artist,Speedclaw,speed metal,speed metal; heavy metal,80,manual fallback
-artist,Stalwart,death metal,death metal; progressive death metal,80,manual fallback
-artist,Sun Dont Shine,shoegaze,shoegaze; alternative rock,80,manual fallback
-artist,Sweet Ermengarde,gothic rock,gothic rock,80,manual fallback
-artist,tenndril,electronic,electronic; techno,80,manual fallback
-artist,Tentosy,electronic,electronic; synthwave,80,manual fallback
-artist,The Great Wight Dread,electronic,electronic; soundtrack,80,manual fallback
-artist,The Mayan Factor,alternative rock,alternative rock; progressive rock,80,manual fallback
-artist,Tiger Lou,indie rock,indie rock; alternative rock,80,manual fallback
-artist,TodoMal,doom metal,doom metal; gothic metal,80,manual fallback
-artist,Ukć,post-rock,post-rock; blackgaze,80,manual fallback
-artist,Unni Løvlid,nordic folk,nordic folk; vocal,80,manual fallback
-artist,VED,psychedelic rock,psychedelic rock; krautrock,80,manual fallback
-artist,Vehje,nordic folk,nordic folk; folk,80,manual fallback
-artist,VHS Dreams,synthwave,synthwave; electronic,80,manual fallback
-artist,Viral,thrash metal,thrash metal; heavy metal,80,manual fallback
-artist,Vjaceslav Grochovskij,classical,classical; folk,80,manual fallback
-artist,Windows 96,vaporwave,vaporwave; synthwave,80,manual fallback
-artist,Yersin,hardcore,hardcore; crust punk,80,manual fallback
-artist,Ермак!,folk rock,folk rock; russian rock,80,manual fallback
-artist,Мужской вокальный ансамбль «Валаам»,choral,choral; orthodox chant; classical,80,manual fallback
-artist,40 Watt Sun,slowcore,slowcore; post-rock; alternative rock; doom metal,120,multi-track audit
-artist,Agalloch,atmospheric black metal,atmospheric black metal; folk metal; doom metal; black metal; post-metal,120,multi-track audit
-artist,Besvärjelsen,stoner doom,stoner doom; doom metal; stoner rock; psychedelic rock,120,multi-track audit
-artist,Daevar,stoner doom,stoner doom; doom metal; grunge; heavy psych,120,multi-track audit
-album,Polar Veil,black metal,black metal; folk rock; psychedelic rock; avant-garde black metal,125,multi-track audit
-album,When We Are Death,psychedelic folk rock,psychedelic folk rock; folk rock; psychedelic rock,125,multi-track audit
-artist,Lowen,progressive doom,progressive doom; doom metal; middle eastern folk; progressive metal,120,multi-track audit
-artist,Monolord,stoner doom,stoner doom; doom metal; stoner metal; psychedelic rock,120,multi-track audit
-artist,My Dying Bride,doom metal,doom metal; gothic metal; death-doom metal,120,multi-track audit
-artist,Obscure,heavy doom metal,heavy doom metal; doom metal; heavy metal; traditional doom metal; stoner doom,130,manual audit
-artist,Panopticon,atmospheric black metal,atmospheric black metal; black metal; americana; bluegrass; contemporary folk,120,multi-track audit
-artist,Primordial,pagan metal,pagan metal; celtic metal; black metal; folk metal,120,multi-track audit
-artist,Sleep,stoner doom,stoner doom; stoner metal; doom metal; stoner rock,120,multi-track audit
-artist,Swallow The Sun,death-doom metal,death-doom metal; doom metal; melodic death metal,120,multi-track audit
-artist,Windhand,stoner doom,stoner doom; doom metal; stoner metal; psychedelic rock,120,multi-track audit
-artist,Clark,idm,idm; electronic; glitch,120,multi-track audit
-artist,Carbon Based Lifeforms,psybient,psybient; ambient; downtempo; chill-out; electronic,120,multi-track audit
-album,Enclosed,psychedelic rock,psychedelic rock; blues rock; rock,125,multi-track audit
-artist,Brendan Perry,ambient,ambient; downtempo; neoclassical darkwave; world; folk,120,multi-track audit
-album,Lustuz Laþu Wōþuz Alu,dark folk,nordic folk; dark folk; world; ambient; experimental,125,multi-track audit
-artist,Hewer of Caves,dungeon synth,dungeon synth; medieval ambient; fantasy ambient; ambient,120,multi-track audit
-artist,Flickers from the Fen,dungeon synth,dungeon synth; comfy synth; fantasy synth; ambient,120,multi-track audit
-album,Harvest Songs and Rituals,dungeon synth,dungeon synth; ambient; folktronica; dark folk,125,multi-track audit
-artist,The Derek Trucks Band,blues rock,blues rock; jam band; southern rock; jazz fusion; soul,120,multi-track audit
-artist,Wishbone Ash,progressive rock,progressive rock; hard rock; folk rock; blues rock; art rock,120,multi-track audit
-artist,Phantogram,indietronica,indietronica; trip hop; electronic; indie pop; electropop,120,multi-track audit
-artist,Sweven,progressive death metal,progressive death metal; psychedelic death metal; progressive metal,120,multi-track audit
-artist,High Priest of Saturn,stoner doom,stoner doom; psychedelic rock; doom metal,120,multi-track audit
-artist,Svanfríður,progressive rock,progressive rock; heavy psych; hard rock,120,multi-track audit
-artist,Kino,post-punk,post-punk; new wave; russian rock,120,multi-track audit
-artist,Vanhelga,depressive black metal,depressive black metal; black metal; rock,120,multi-track audit
-artist,Puke,hardcore punk,hardcore punk; punk,120,multi-track audit
-artist,T.S.O.L.,hardcore punk,hardcore punk; punk rock; deathrock,120,multi-track audit
-artist,Testors,punk rock,punk rock; proto-punk; garage punk,120,multi-track audit
-artist,Vanilla Fudge,psychedelic rock,psychedelic rock; acid rock; hard rock; proto-prog,120,multi-track audit
-artist,Raketkanon,noise rock,noise rock; sludge metal; post-hardcore; experimental rock,120,multi-track audit
-artist,Sakis Tolis,gothic metal,gothic metal; black metal; melodic death metal,120,multi-track audit
-artist,Atoma,post-metal,post-metal; post-rock; ambient rock; atmospheric metal,120,multi-track audit
-artist,Counting Hours,melodic doom metal,melodic doom metal; death-doom metal; gothic metal,120,multi-track audit
+match_type,pattern,primary_genre,genres,priority,notes,genre_status
+artist,Enslaved,black metal,black metal; progressive metal; viking metal,100,2026-09-23 artist-level confirmation: the band's history describes a signature black/progressive sound and early Viking-metal roots; the secondary tags are not verified for every recording and specific exceptions take priority | https://enslaved.no/heritage/,
+artist,Darkthrone,black metal,black metal; crust punk,100,2026-09-23 artist-level confirmation: Peaceville describes the band as synonymous with black metal; the crust-punk secondary is a legacy default and is not verified for every release | https://peaceville.com/bands/darkthrone/,
+lead_artist_id,0ybFZ2Ab08V8hueghSXm6E,progressive metal,progressive metal; death metal,100,Legacy Opeth default; scoped to lead Spotify ID on 2026-09-22; release exceptions take precedence; not independently verified for every future recording,
+lead_artist_id,6bYFkBNvayh3nGqxcPp7Sv,experimental,experimental; black metal; electronic,100,Legacy Ulver default; scoped to lead Spotify ID on 2026-09-22; release exceptions take precedence; not independently verified for every future recording,
+artist,Shape Of Despair,funeral doom,funeral doom; doom metal,100,2026-09-23 artist-level confirmation: the label identifies the band as funeral doom; individual songs and the secondary tag were not separately verified | https://www.season-of-mist.com/bands/shape-of-despair/,
+artist,Wardruna,nordic folk,nordic folk; dark folk,100,2026-09-23 artist-level confirmation: the band's own catalogue centres Nordic traditions and instruments; dark-folk secondary is a broad descriptor | https://wardruna.bandcamp.com/music,
+artist,The Flight of Sleipnir,stoner doom,stoner doom; folk metal,100,2026-09-23 artist-level confirmation: the band's release tags and description combine stoner and doom; folk-metal secondary is not verified for every recording | https://theflightofsleipnir.bandcamp.com/album/natures-cadence,
+artist,Clark,electronic,electronic; idm,100,,
+artist,Frank Zappa,art rock,art rock; jazz fusion; experimental rock,100,,
+artist,The Quakes,psychobilly,psychobilly; rockabilly,100,,
+lead_artist_id,72Syhg4FIEracKDa3yumQY,ambient,ambient; downtempo,100,Legacy Lauge default; scoped to lead Spotify ID on 2026-09-22; release exceptions take precedence; not independently verified for every future recording,
+artist,My Dying Bride,doom metal,doom metal; gothic metal,100,,
+artist,Alcest,blackgaze,blackgaze; shoegaze,100,,
+artist,Biohazard,hardcore,hardcore; rap metal,100,,
+artist,Carlo Domeniconi,classical,classical; guitar,100,,
+album,Boards of Mongolia,dungeon synth,dungeon synth; ambient; experimental; synth,130,manual audit,
+artist,BULLDOZER,speed metal,speed metal; black metal; thrash metal,130,manual audit,
+lead_artist_id,0DiH2yz49jh3H1jYqXNs9Z,heavy metal,heavy metal; traditional heavy metal; nwobhm; hard rock; speed metal,130,Swedish Century rather than the French pop-rock namesake; the band's catalogue confirms heavy metal as primary while finer secondary tags remain legacy | https://centuryswe.bandcamp.com/album/the-conquest-of-time,
+lead_artist_id,14kEabF9MiQJW37PNuLGgJ,psychedelic rock,psychedelic rock; indie psych rock; experimental rock,130,Legacy KATZROAR default; scoped to lead Spotify ID on 2026-09-22; release exceptions take precedence; not independently verified for every future recording,
+artist,Meshuggah,progressive metal,progressive metal; djent; groove metal; technical metal; math metal; death metal,130,manual audit,
+artist,Operation Ivy,ska punk,ska punk; punk rock; hardcore punk; ska,130,manual audit,
+track,Party All the Time,synth-pop,synth-pop; funk; disco,130,manual audit,
+artist,Sweven,progressive death metal,progressive death metal; psychedelic death metal; progressive metal; psychedelic rock,130,manual audit,
+artist,Windows 96,vaporwave,vaporwave; synthwave; chillwave; electronic,130,manual audit,
+artist,(Hed) P.E.,rapcore,rapcore; nu metal; rap metal; hard rock,130,manual audit,
+album,With Sympathy,synth-pop,synth-pop; new wave; industrial,130,multi-track audit,
+lead_artist_id,2kO6zjt4a1OIqxOERhliEX,gothic metal,gothic metal; doom metal; progressive rock; progressive metal,130,Legacy The Gathering default; scoped to lead Spotify ID on 2026-09-22; release exceptions take precedence; not independently verified for every future recording,
+artist,Dolphin,alternative hip hop,alternative hip hop; alternative rock; electronic; trip hop,130,multi-track audit,
+track,Mystery Mountain,progressive rock,progressive rock; jazz fusion; hard rock,130,multi-track audit,
+track,Of a Lifetime,progressive rock,progressive rock; jazz fusion; hard rock,130,multi-track audit,
+artist,The Streets,uk garage,uk garage; hip hop; uk hip hop,130,multi-track audit,
+artist,Guano Apes,nu metal,nu metal; alternative rock; rap metal; post-grunge,130,multi-track audit,
+artist,DIIV,shoegaze,shoegaze; dream pop; indie rock; post-punk,130,multi-track audit,
+artist,The Cure,gothic rock,gothic rock; post-punk; new wave; alternative rock,130,multi-track audit,
+artist,Captain Beyond,progressive rock,progressive rock; hard rock; heavy psych,130,multi-track audit,
+artist,My Dying Bride,death-doom metal,death-doom metal; doom metal; gothic metal,130,multi-track audit,
+artist,Saturnus,death-doom metal,death-doom metal; melodic doom metal; doom metal,130,multi-track audit,
+artist,Biohazard,rap metal,rap metal; hardcore; crossover thrash,130,multi-track audit,
+artist,Brendan Perry,neoclassical darkwave,neoclassical darkwave; world; folk; ambient,130,multi-track audit,
+album,The Guitarist,classical guitar,classical guitar; classical,130,multi-track audit,
+artist,3weekoldroses,alternative rock,alternative rock; indie rock,80,manual fallback,
+artist,Angst Skvadron,black metal,black metal; avant-garde metal,80,manual fallback,
+artist,Arc De Soleil,psychedelic rock,psychedelic rock; surf rock; instrumental rock,80,manual fallback,
+artist,Ben Kenney,alternative rock,alternative rock; funk rock,80,manual fallback,
+artist,Bernhard Joachim Hagen,classical,classical; lute,80,manual fallback,
+artist,Björn Olsson,psychedelic rock,psychedelic rock; instrumental rock,80,manual fallback,
+artist,Bossa Nova Covers,bossa nova,bossa nova; lounge,80,manual fallback,
+artist,Bridge To Mars,hard rock,hard rock; progressive rock,80,manual fallback,
+artist,Burning Shadows,heavy metal,heavy metal; power metal,80,manual fallback,
+artist,Chained Saint,thrash metal,thrash metal; heavy metal,80,manual fallback,
+artist,Coláiste Árainn Mhóir,irish folk,irish folk; folk,80,manual fallback,
+artist,Den Stora Vilan,psychedelic rock,psychedelic rock; folk rock,80,manual fallback,
+artist,Diane Hidy,classical,classical; piano,80,manual fallback,
+artist,Diane Hidy & Keith Snell,classical,classical; piano,80,manual fallback,
+artist,DJ Normal 4,breakbeat,breakbeat; electro; techno,80,manual fallback,
+artist,Downface,alternative rock,alternative rock; post-grunge,80,manual fallback,
+artist,Elyndrax,atmospheric black metal,atmospheric black metal; black metal,80,manual fallback,
+artist,Fenriz Red Planet,heavy metal,heavy metal; hard rock,80,manual fallback,
+artist,FERNDOM,dark ambient,dark ambient; neofolk,80,manual fallback,
+artist,Genune,blackgaze,blackgaze; post-metal,80,manual fallback,
+artist,Gilgareth,dungeon synth,dungeon synth; fantasy ambient,80,manual fallback,
+artist,Gnostic,technical death metal,technical death metal; progressive metal,80,manual fallback,
+artist,Golden Core,doom metal,doom metal; sludge metal,80,manual fallback,
+artist,Golden Retriever,ambient,ambient; experimental,80,manual fallback,
+artist,Gruesome Pledge,thrash metal,thrash metal; death metal,80,manual fallback,
+artist,Gruzja,black metal,black metal; post-punk,80,manual fallback,
+artist,Gryla,black metal,black metal,80,manual fallback,
+artist,Highlonesome,alt-country,alt-country; americana,80,manual fallback,
+artist,hodíla ízba,folk,folk; psychedelic folk,80,manual fallback,
+artist,Iron Lamb,hard rock,hard rock; punk rock; heavy metal,80,manual fallback,
+artist,JJ's Powerhouse,hard rock,hard rock,80,manual fallback,
+artist,Kellermensch,alternative rock,alternative rock; post-hardcore,80,manual fallback,
+artist,Kitka,folk,folk; vocal; world,80,manual fallback,
+artist,kuyaagui,ambient,ambient; electronic,80,manual fallback,
+artist,Lars Fredrik Frøislie,progressive rock,progressive rock; symphonic prog,80,manual fallback,
+artist,Liljevars Brann,black metal,black metal; nordic folk,80,manual fallback,
+artist,Lindy-Fay Hella,nordic folk,nordic folk; dark folk,80,manual fallback,
+artist,Mark Sholtez,jazz,jazz; singer-songwriter,80,manual fallback,
+artist,Mason Ruffner,blues rock,blues rock,80,manual fallback,
+artist,MINUALA,folk,folk; dark folk,80,manual fallback,
+artist,Nahemah,progressive metal,progressive metal; melodic death metal,80,manual fallback,
+artist,Nerthus,black metal,black metal,80,manual fallback,
+artist,never easy,shoegaze,shoegaze; alternative rock,80,manual fallback,
+artist,Nine Covens,black metal,black metal,80,manual fallback,
+artist,Ningen Isu,doom metal,doom metal; hard rock; heavy metal,80,manual fallback,
+artist,Norrfjällen,atmospheric black metal,atmospheric black metal; black metal,80,manual fallback,
+artist,Nosłeep,dungeon synth,dungeon synth; dark ambient,80,manual fallback,
+artist,Oromet,funeral doom,funeral doom; doom metal,80,manual fallback,
+artist,Parasite,heavy metal,heavy metal; hard rock,80,manual fallback,
+artist,Petlya Pristrastiya,post-punk,post-punk; alternative rock,80,manual fallback,
+artist,Psilocybe Larvae,melodic death metal,melodic death metal; gothic metal,80,manual fallback,
+artist,Relapsed,hardcore,hardcore; punk,80,manual fallback,
+artist,Robert Hood,techno,techno; minimal techno,80,manual fallback,
+artist,Rome In Monochrome,doomgaze,doomgaze; post-metal,80,manual fallback,
+artist,Romuvos,folk metal,folk metal; pagan metal,80,manual fallback,
+artist,Screammet,heavy metal,heavy metal,80,manual fallback,
+artist,Seth Chapla,instrumental rock,instrumental rock; guitar,80,manual fallback,
+artist,Skogen Brinner,hard rock,hard rock; psychedelic rock,80,manual fallback,
+artist,Speedclaw,speed metal,speed metal; heavy metal,80,manual fallback,
+artist,Stalwart,death metal,death metal; progressive death metal,80,manual fallback,
+artist,Sweet Ermengarde,gothic rock,gothic rock,80,manual fallback,
+artist,tenndril,electronic,electronic; techno,80,manual fallback,
+artist,Tentosy,electronic,electronic; synthwave,80,manual fallback,
+artist,The Great Wight Dread,electronic,electronic; soundtrack,80,manual fallback,
+artist,The Mayan Factor,alternative rock,alternative rock; progressive rock,80,manual fallback,
+artist,Tiger Lou,indie rock,indie rock; alternative rock,80,manual fallback,
+artist,TodoMal,doom metal,doom metal; gothic metal,80,manual fallback,
+artist,Ukć,post-rock,post-rock; blackgaze,80,manual fallback,
+artist,Unni Løvlid,nordic folk,nordic folk; vocal,80,manual fallback,
+artist,VED,psychedelic rock,psychedelic rock; krautrock,80,manual fallback,
+artist,Vehje,nordic folk,nordic folk; folk,80,manual fallback,
+artist,VHS Dreams,synthwave,synthwave; electronic,80,manual fallback,
+artist,Viral,thrash metal,thrash metal; heavy metal,80,manual fallback,
+artist,Vjaceslav Grochovskij,classical,classical; folk,80,manual fallback,
+artist,Windows 96,vaporwave,vaporwave; synthwave,80,manual fallback,
+artist,Yersin,hardcore,hardcore; crust punk,80,manual fallback,
+artist,Ермак!,folk rock,folk rock; russian rock,80,manual fallback,
+artist,Мужской вокальный ансамбль «Валаам»,choral,choral; orthodox chant; classical,80,manual fallback,
+artist,40 Watt Sun,slowcore,slowcore; post-rock; alternative rock; doom metal,120,multi-track audit,
+artist,Agalloch,atmospheric black metal,atmospheric black metal; folk metal; doom metal; black metal; post-metal,120,multi-track audit,
+artist,Besvärjelsen,stoner doom,stoner doom; doom metal; stoner rock; psychedelic rock,120,multi-track audit,
+artist,Daevar,stoner doom,stoner doom; doom metal; grunge; heavy psych,120,multi-track audit,
+album,Polar Veil,black metal,black metal; folk rock; psychedelic rock; avant-garde black metal,125,multi-track audit,
+album,When We Are Death,psychedelic folk rock,psychedelic folk rock; folk rock; psychedelic rock,125,multi-track audit,
+artist,Lowen,progressive doom,progressive doom; doom metal; middle eastern folk; progressive metal,120,multi-track audit,
+artist,Monolord,stoner doom,stoner doom; doom metal; stoner metal; psychedelic rock,120,multi-track audit,
+artist,My Dying Bride,doom metal,doom metal; gothic metal; death-doom metal,120,multi-track audit,
+lead_artist_id,6UCGlnMvvNd2v8M7QLoi3L,heavy doom metal,heavy doom metal; doom metal; heavy metal; traditional doom metal; stoner doom,130,Norwegian Obscure on On Formaldehyde rather than the Spanish death-metal namesake; the review identifies heavy and doom elements while finer secondary tags remain legacy | https://metal-temple.com/review/obscure-on-formaldehyde/,
+artist,Panopticon,atmospheric black metal,atmospheric black metal; black metal; americana; bluegrass; contemporary folk,120,multi-track audit,
+artist,Primordial,pagan metal,pagan metal; celtic metal; black metal; folk metal,120,multi-track audit,
+artist,Sleep,stoner doom,stoner doom; stoner metal; doom metal; stoner rock,120,multi-track audit,
+lead_artist_id,0ulKlNlo0iPx5ZS6VMTHWQ,death-doom metal,death-doom metal; doom metal; melodic death metal,120,Legacy Swallow The Sun default; scoped to lead Spotify ID on 2026-09-22; release exceptions take precedence; not independently verified for every future recording,
+artist,Windhand,stoner doom,stoner doom; doom metal; stoner metal; psychedelic rock,120,multi-track audit,
+artist,Clark,idm,idm; electronic; glitch,120,2026-09-23 artist-level confirmation: Clark's own Steep Stims description explicitly uses IDM and electronic; glitch secondary is not verified for every release | https://clark.bandcamp.com/album/steep-stims,
+artist,Carbon Based Lifeforms,psybient,psybient; ambient; downtempo; chill-out; electronic,120,multi-track audit,
+album,Enclosed,psychedelic rock,psychedelic rock; blues rock; rock,125,multi-track audit,
+artist,Brendan Perry,ambient,ambient; downtempo; neoclassical darkwave; world; folk,120,multi-track audit,
+album,Lustuz Laþu Wōþuz Alu,dark folk,nordic folk; dark folk; world; ambient; experimental,125,multi-track audit,
+artist,Hewer of Caves,dungeon synth,dungeon synth; medieval ambient; fantasy ambient; ambient,120,multi-track audit,
+artist,Flickers from the Fen,dungeon synth,dungeon synth; comfy synth; fantasy synth; ambient,120,multi-track audit,
+album,Harvest Songs and Rituals,dungeon synth,dungeon synth; ambient; folktronica; dark folk,125,multi-track audit,
+artist,The Derek Trucks Band,blues rock,blues rock; jam band; southern rock; jazz fusion; soul,120,multi-track audit,
+artist,Wishbone Ash,progressive rock,progressive rock; hard rock; folk rock; blues rock; art rock,120,multi-track audit,
+artist,Phantogram,indietronica,indietronica; trip hop; electronic; indie pop; electropop,120,multi-track audit,
+artist,Sweven,progressive death metal,progressive death metal; psychedelic death metal; progressive metal,120,multi-track audit,
+artist,High Priest of Saturn,stoner doom,stoner doom; psychedelic rock; doom metal,120,multi-track audit,
+artist,Svanfríður,progressive rock,progressive rock; heavy psych; hard rock,120,multi-track audit,
+lead_artist_id,2jkl2xJVm71azWAgZKyf42,post-punk,post-punk; new wave; russian rock,120,Viktor Tsoi's Kino rather than the British prog namesake; Apple Music describes the band's post-punk sound while secondary tags remain legacy | https://music.apple.com/us/playlist/%D0%BA%D0%B8%D0%BD%D0%BE-%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B5/pl.978b9e3b4d6d4df58d00f3807cde1048?l=ru,
+artist,Vanhelga,depressive black metal,depressive black metal; black metal; rock,120,multi-track audit,
+artist,Puke,hardcore punk,hardcore punk; punk,120,multi-track audit,
+artist,T.S.O.L.,hardcore punk,hardcore punk; punk rock; deathrock,120,multi-track audit,
+artist,Testors,punk rock,punk rock; proto-punk; garage punk,120,multi-track audit,
+artist,Vanilla Fudge,psychedelic rock,psychedelic rock; acid rock; hard rock; proto-prog,120,multi-track audit,
+artist,Raketkanon,noise rock,noise rock; sludge metal; post-hardcore; experimental rock,120,multi-track audit,
+artist,Sakis Tolis,gothic metal,gothic metal; black metal; melodic death metal,120,multi-track audit,
+artist,Atoma,post-metal,post-metal; post-rock; ambient rock; atmospheric metal,120,multi-track audit,
+artist,Counting Hours,melodic doom metal,melodic doom metal; death-doom metal; gothic metal,120,multi-track audit,
+track_id,0jYQ2uSEPYIQZBPZqqhZp3,neofolk,neofolk; dark folk,300,2026-09-22 review: :Of The Wand And The Moon: / Lucifer | primary classification retained after source review; secondary tags not independently verified | https://ofthewandandthemoon.bandcamp.com/album/sonnenheim-2 | https://ofthewandandthemoon.bandcamp.com/,
+track_id,6OKPUhEborqvbJvjO8xFFI,sludge metal,sludge metal; post-hardcore; post-metal; doom metal; sludge,300,2026-09-22 review: Amenra / Mass Iiii | primary classification retained after source review; secondary tags not independently verified | https://www.metal1.info/metal-reviews/amenra-mass-iiii/,
+track_id,44C6FtOWJVhNdCxCiJtAPv,art rock,art rock; folk rock; jazz rock; russian rock; avant-folk,300,2026-09-22 review: Auktyon / Жопа | primary classification retained after source review; secondary tags not independently verified | https://open.spotify.com/intl-tr/artist/7pUNFHEe0MlfvvDG1dXH3m | https://en.wikipedia.org/wiki/Auktyon,
+track_id,1lXMWBKvO3AtoFPPOVj5ML,art rock,art rock; folk rock; jazz rock; russian rock; avant-folk,300,2026-09-22 review: Auktyon / Как я стал предателем | primary classification retained after source review; secondary tags not independently verified | https://open.spotify.com/intl-tr/artist/7pUNFHEe0MlfvvDG1dXH3m | https://en.wikipedia.org/wiki/Auktyon,
+track_id,4okYZwG2w0XKRs77OyriGP,art rock,art rock; folk rock; jazz rock; russian rock; avant-folk,300,2026-09-22 review: Auktyon / Как я стал предателем | primary classification retained after source review; secondary tags not independently verified | https://open.spotify.com/intl-tr/artist/7pUNFHEe0MlfvvDG1dXH3m | https://en.wikipedia.org/wiki/Auktyon,
+track_id,2JROvhj6nAjMJKG2421VCK,art rock,art rock; folk rock; jazz rock; russian rock; avant-folk,300,2026-09-22 review: Auktyon / Птица | primary classification retained after source review; secondary tags not independently verified | https://open.spotify.com/intl-tr/artist/7pUNFHEe0MlfvvDG1dXH3m | https://en.wikipedia.org/wiki/Auktyon,
+track_id,0lznmOabve1al78GuyMkc4,art rock,art rock; folk rock; jazz rock; russian rock; avant-folk,300,2026-09-22 review: Auktyon / Птица | primary classification retained after source review; secondary tags not independently verified | https://open.spotify.com/intl-tr/artist/7pUNFHEe0MlfvvDG1dXH3m | https://en.wikipedia.org/wiki/Auktyon,
+track_id,3CSpzkoL1XgDBZ1q9aDCUV,doo-wop,doo-wop; pop rock; pop soul,300,2026-09-22 review: Billy Joel / The Essential Billy Joel | primary classification retained after source review; secondary tags not independently verified | https://en.wikipedia.org/wiki/Uptown_Girl | https://www.billyjoel.com/song/uptown-girl-4/,
+track_id,5sbw5zIz9ck2pOEDXUR0QU,son cubano,son cubano; traditional Cuban; latin,300,2026-09-22 review: Buena Vista Social Club / Buena Vista Social Club | primary classification retained after source review; secondary tags not independently verified | https://www.worldcircuit.co.uk/artists/buena-vista-social-club/ | https://www.buenavistasocialclub.com/albums/buena-vista-social-club/,
+track_id,0q7UiPCcSoFltcvsvaDSOX,black metal,black metal; dungeon synth; atmospheric black metal; dark ambient; ambient black metal,300,2026-09-22 review: Burzum NEW / The Mound of Fire | primary classification retained after source review; secondary tags not independently verified | https://www.burzum.org/eng/discography/official/2025_the_mound_of_fire.shtml | https://burzum.org/eng/discography/official/2025_what_will_come.shtml | https://www.last.fm/music/Burzum/What%20Will%20Come (official release identity and recording-specific community tags),
+track_id,0mttNIHIq7c0z643lBYwhm,black metal,black metal; dungeon synth; atmospheric black metal; dark ambient; ambient black metal,300,2026-09-22 review: Burzum NEW / What will come | primary classification retained after source review; secondary tags not independently verified | https://www.burzum.org/eng/discography/official/2025_the_mound_of_fire.shtml | https://burzum.org/eng/discography/official/2025_what_will_come.shtml | https://www.last.fm/music/Burzum/What%20Will%20Come (official release identity and recording-specific community tags),
+track_id,4BHhJ5lU7B6O7AoTB59LEX,speed metal,speed metal; rock; thrash metal; death metal; black metal,300,2026-09-22 review: BÜTCHER / 666 Goats Carry My Chariot | primary classification retained after source review; secondary tags not independently verified | https://osmoseproductions.bandcamp.com/album/666-goats-carry-my-chariot,
+track_id,4mYZuC2hzt4K307VcPHwjH,post-bop,post-bop; contemporary jazz; nu jazz,300,2026-09-22 review: Christian Scott aTunde Adjuah / Anthem | primary classification retained after source review; secondary tags not independently verified | https://concord.com/concord-albums/christian-scott-anthem/ (modern jazz family confirmed; post-bop retained as existing finer label),
+track_id,6Q3hLAsdCLFKvVBuj7mLs1,post-bop,post-bop; contemporary jazz; nu jazz,300,2026-09-22 review: Christian Scott aTunde Adjuah / Anthem | primary classification retained after source review; secondary tags not independently verified | https://concord.com/concord-albums/christian-scott-anthem/ (modern jazz family confirmed; post-bop retained as existing finer label),
+track_id,6MMOGw03jPe3J8z4DqlbGO,psychobilly,psychobilly,300,2026-09-22 review: Demented Are Go / Hellucifernation | primary classification retained after source review; secondary tags not independently verified | https://en.wikipedia.org/wiki/Demented_Are_Go,
+track_id,3NLNi9kG2mrDVO3HDUzmF9,psychobilly,psychobilly,300,2026-09-22 review: Demented Are Go / The Best Of... (2004 Version) | primary classification retained after source review; secondary tags not independently verified | https://en.wikipedia.org/wiki/Demented_Are_Go,
+track_id,0YC1SrY8urb9sbwcUj3MaK,psychobilly,psychobilly,300,2026-09-22 review: Demented Are Go / Welcome Back To Insanity Hall | primary classification retained after source review; secondary tags not independently verified | https://en.wikipedia.org/wiki/Demented_Are_Go,
+track_id,3wa3Weotu81VcL3wGqxh7f,progressive metal,progressive metal; progressive rock; ambient; progressive; post-metal,300,2026-09-22 review: Devin Townsend Band / Accelerated Evolution | primary classification retained after source review; secondary tags not independently verified | https://devintownsend.bandcamp.com/album/accelerated-evolution | https://hevydevy.com/discography/accelerated-evolution/,
+track_id,3LHda8vKJRDhOL6wNtp9XI,progressive metal,progressive metal; progressive rock; ambient; progressive; post-metal,300,2026-09-22 review: Devin Townsend Band / Accelerated Evolution | primary classification retained after source review; secondary tags not independently verified | https://devintownsend.bandcamp.com/album/accelerated-evolution | https://hevydevy.com/discography/accelerated-evolution/,
+track_id,7JuqNiRZcLsPqa33eMFwyP,jazz-funk,jazz-funk; jazz fusion; funk; soul; disco; r&b,300,2026-09-22 review: Dexter Wansel / Life on Mars | primary classification retained after source review; secondary tags not independently verified | https://www.allmusic.com/album/mw0000964191,
+track_id,7e3X68cctVmvsQFRKKAj8c,singer-songwriter,singer-songwriter; jazz; electronica; worldbeat; medieval,300,"2026-09-22 review: Eivør / Segl Live in Concert (Live at Nordic House, Faroe Islands, Sep 2020) | primary classification retained after source review; secondary tags not independently verified | https://eivor.bandcamp.com/track/stirdur-saknur (broad singer-songwriter label retained for live rendition; studio release described as electro folk pop)",
+track_id,6hXdDxSd0GsRIRgkVLbuzx,hard rock,hard rock; heavy metal; speed metal; rock and roll,300,2026-09-22 review: FLY! / Bowie Knife | primary classification retained after source review; secondary tags not independently verified | https://dyingvictimsproductions.bandcamp.com/album/or-die,
+track_id,2oSurc3FKyPDaoVpdbb1N9,psychedelic funk,psychedelic funk; neo-psychedelia; psychedelic rock; psychedelic jazz; world fusion; krautrock,300,2026-09-22 review: Glass Beams / Mirage | primary classification retained after source review; secondary tags not independently verified | https://glassbeams.bandcamp.com/album/mirage (primary label retained within the release's psych / Indian / disco fusion),
+track_id,71W0xiGpPZchQF4M3QUVwu,alt-country,alt-country; alternative rock; folk rock; country rock; americana,300,2026-09-22 review: Grant Lee Buffalo / Live At the Royal Festival Hall | primary classification retained after source review; secondary tags not independently verified | https://en.wikipedia.org/wiki/Grant_Lee_Buffalo (broad artist style; live arrangement not independently classified),
+track_id,1Si3Uo5rPF85YbtoNvwWaY,siberian punk,siberian punk; punk rock; psychedelic rock; noise rock; garage rock,300,"2026-09-22 review: Grazhdanskaya Oborona / The Best, Pt. 2 | primary classification retained after source review; secondary tags not independently verified | https://ru.wikipedia.org/wiki/Гражданская_оборона_(группа) (broad Siberian punk scene label retained; these recordings also carry psychedelic rock)",
+track_id,1MNoaPv7HGoYbZfeAbzPVZ,siberian punk,siberian punk; psychedelic rock; punk rock,300,"2026-09-22 review: Grazhdanskaya Oborona / The Best, Pt. 2 | primary classification retained after source review; secondary tags not independently verified | https://ru.wikipedia.org/wiki/Гражданская_оборона_(группа) (broad Siberian punk scene label retained; these recordings also carry psychedelic rock)",
+track_id,1ZKzq94JUCdB7gJNChmJ8F,blues rock,blues rock,300,"2026-09-22 review: James Luther Dickinson / I'm Just Dead, I'm Not Gone | primary classification retained after source review; secondary tags not independently verified | https://www.normanrecords.com/records/158451-james-luther-dickinson-north-mississippi-im-just-dead-im-not",
+track_id,533kRGcnzayZm0wOn4TI3J,singer-songwriter,singer-songwriter; rock and indie,300,2026-09-22 review: Joan As Police Woman / Real Life | primary classification retained after source review; secondary tags not independently verified | https://www.musicglue.com/joan-as-police-woman/about (broad singer-songwriter label retained; soul influences confirmed),
+track_id,1bdwq9uYcFg3VuH8hRuKtn,singer-songwriter,singer-songwriter; rock and indie,300,2026-09-22 review: Joan As Police Woman / The Deep Field | primary classification retained after source review; secondary tags not independently verified | https://www.musicglue.com/joan-as-police-woman/about (broad singer-songwriter label retained; soul influences confirmed),
+track_id,0maHapexDOaOjaoZ0Yvo63,russian rock,russian rock; singer-songwriter; acoustic rock; bard rock,300,2026-09-22 review: Konstantin Nikolsky / Мне только снится жизнь моя | primary classification retained after source review; secondary tags not independently verified | https://ru.wikipedia.org/wiki/Мне_только_снится_жизнь_моя,
+track_id,7o78fAVjxA1TpRtAtV5w5w,alternative rock,alternative rock; folk rock; pop rock,300,2026-09-22 review: Manna / Sister | primary classification retained after source review; secondary tags not independently verified | https://www.allmusic.com/album/sister-mw0001596269 | https://music.apple.com/us/song/454694863 (Pop/Rock family and Finnish performer confirmed; finer existing label retained),
+track_id,1rPbbNTiHpZQdmgTczywVN,electro metal,electro metal; trip hop; progressive metal; rock,300,2026-09-22 review: Naïve / The End | primary classification retained after source review; secondary tags not independently verified | https://naive.bandcamp.com/album/the-end | https://naive.bandcamp.com/album/remixes,
+track_id,2mudgghqD6tEuUwMCJvXlc,krautrock,krautrock; progressive rock; psychedelic rock; hard rock; jazz rock,300,2026-09-22 review: Nosferatu / Krautrock Essentials | primary classification retained after source review; secondary tags not independently verified | https://www.allmusic.com/album/nosferatu-mw0000839183,
+track_id,4H0CetjSTGodZdf8IwE88T,rock,rock; jazz; experimental; avant-garde,300,2026-09-22 review: Omar Rodríguez-López Quintet / The Apocalypse Inside Of An Orange | primary classification retained after source review; secondary tags not independently verified | https://en.wikipedia.org/wiki/The_Apocalypse_Inside_of_an_Orange (broad rock label retained; jazz fusion and psychedelic rock album),
+track_id,5t3w2oRxvGqkzrz5m4fMMm,gothic rock,gothic rock; post-punk; goth rock; hard rock; electronic,300,2026-09-22 review: Sisters of Mercy / Some Girls Wander by Mistake | primary classification retained after source review; secondary tags not independently verified | https://www.rhino.com/article/now-available-the-sisters-of-mercy-some-girls-wander-by-mistake,
+track_id,7egYV3kDFiYw09fwnaCI9i,gothic rock,gothic rock; post-punk; goth rock; hard rock; electronic,300,2026-09-22 review: Sisters of Mercy / Some Girls Wander by Mistake | primary classification retained after source review; secondary tags not independently verified | https://www.rhino.com/article/now-available-the-sisters-of-mercy-some-girls-wander-by-mistake,
+track_id,41YXZ3medfYHpNpjTXrmAm,gothic rock,gothic rock; post-punk; goth rock; hard rock; electronic,300,2026-09-22 review: Sisters of Mercy / Some Girls Wander by Mistake | primary classification retained after source review; secondary tags not independently verified | https://www.rhino.com/article/now-available-the-sisters-of-mercy-some-girls-wander-by-mistake,
+track_id,7sesNXHb5NdVXmCtm6f9qo,world fusion,world fusion; jazz; instrumental,300,2026-09-22 review: Soulfly / Ritual | primary classification retained after source review; secondary tags not independently verified | https://www.kerrang.com/max-cavalera-soulfly-track-by-track (instrumental fusion confirmed by composer; this recording is not the album's usual metal style),
+track_id,6qoM5rqwYkAej4xuREtKa4,afrobeat,afrobeat; funk; soul; jazz; psychedelic rock,300,2026-09-22 review: The Budos Band / V | primary classification retained after source review; secondary tags not independently verified | https://thebudosband.bandcamp.com/album/the-budos-band-v (Ethiopian rhythms / afro-soul / fuzz rock fusion; existing primary retained),
+track_id,0ZrDGDbnwW5WPXNMamfkRH,black metal,black metal,300,2026-09-22 review: Weald & Woe / Blood Upon the Blade | primary classification retained after source review; secondary tags not independently verified | https://wealdandwoe.bandcamp.com/album/far-from-the-light-of-heaven,
+track_id,4pG41oVPVexrDlwnvT2xtt,psychedelic rock,psychedelic rock; folk rock; progressive rock; blues rock,300,2026-09-22 review: Wolf People / Ruins | primary classification retained after source review; secondary tags not independently verified | https://jagjaguwar.com/release/JAG279/,
+track_id,2CBLNXy6B72bp1jZC9ksGS,blackened doom metal,blackened doom metal; heavy metal; psychedelic rock,300,2026-09-22 audit: Behrosth / Liquid Midnight | https://behrosth.bandcamp.com/album/liquid-midnight,
+lead_artist_id,0gTqi1zdqD9s6islG2wLKC,progressive rock,progressive rock; atmospheric rock,200,2026-09-22 audit: Airbag / * | https://www.karismarecords.no/blog/prog-rock-sales-campaign/,
+lead_artist_id,5b4d1sad2FNXIOYef3vTDg,death-doom metal,death-doom metal; funeral doom metal; melodic doom metal,200,2026-09-22 audit: Clouds / * | https://cloudsofficial.bandcamp.com/album/doliu-2,
+track_id,09uVTKAKTHnLKDZHfwfLTI,drone metal,drone metal; psychedelic rock,300,2026-09-22 audit: Earth / Live at Third Man | https://earthseattle.com/earth-live-at-third-man-records-2017,
+track_id,7zYsOalHgRYxUpUsCVpjKI,psychedelic rock,psychedelic rock; doom metal; heavy psych,300,2026-09-22 audit: Black Lung / Dark Waves | https://blacklungband.bandcamp.com/album/dark-waves,
+track_id,3VcAiUnvhm8yEDO9A6mE9m,post-hardcore,post-hardcore; post-metal; punk rock,300,2026-09-22 audit: Brutus / Nest | https://www.sargenthouse.com/news/blog/6031534/brutus,
+lead_artist_id,18MzhLZN3Xr2Y0wRuuYb8X,stoner rock,stoner rock; heavy psych; space rock,200,"2026-09-22 audit: I, Captain / * | https://icaptain.bandcamp.com/album/kemisk-v-lf-rd",
+track_id,4PcLtqyPyV4Lyah8HKXKuR,heavy metal,heavy metal; black metal,300,2026-09-22 audit: I / Between Two Worlds | https://www.metal-archives.com/albums/I/Between_Two_Worlds/413751,
+track_id,4XjblkFClZyRUiHrFD2HgM,psychedelic rock,psychedelic rock,300,2026-09-22 audit: Art / The Island Years | https://open.spotify.com/artist/6roGjVKhwDsDJLF1XFGD9w,
+track_id,2F5Vve3LbM699FQOls04OP,heavy metal,heavy metal; progressive rock,300,2026-09-22 audit: Legend / From the Fjords | https://www.metalcrypt.com/reviews/2922/legend-us-from-the-fjords-review,
+lead_artist_id,64vNIhiqTanqaY1VJucSAS,progressive rock,progressive rock; jazz fusion,200,2026-09-22 audit: U.K. / * | https://music.apple.com/us/album/u-k/724148107,
+track_id,1FTw1aQ2yVuDjaAh9QLl6d,doom metal,doom metal,300,2026-09-22 audit: Warning / Watching from a Distance | https://warningdoom.bandcamp.com/album/watching-from-a-distance,
+track_id,1nkKAfNfirdm8PJoziYCDz,dark electronica,dark electronica; experimental,300,"2026-09-22 audit: Thief / Bleed, Memory | https://thief-official.bandcamp.com/track/bleed-memory-2",
+track_id,2HG2X7OlaNW25C8Ii1qovT,dark electronica,dark electronica; experimental,300,"2026-09-22 audit: Thief / Bleed, Memory | https://thief-official.bandcamp.com/track/bleed-memory-2",
+lead_artist_id,6H8YKAQ8UXrcsK4ORs1qOq,progressive doom metal,progressive doom metal; post-metal; stoner metal,200,2026-09-22 audit: Alkymist / * | https://alkymist.bandcamp.com/album/unnderr,
+track_id,32B4DCTnt8bBJWeLJzseCM,darkwave,darkwave; synth-punk; dark pop,300,2026-09-22 audit: Kælan Mikla / Undir Köldum | https://kaelanmikla.bandcamp.com/music,
+track_id,3cHTq4lFccHLfeAOmTsF56,sludge metal,sludge metal; doom metal; alternative rock,300,2026-09-22 audit: Thou / May Our Chambers Be Full | https://thou.bandcamp.com/album/may-our-chambers-be-full,
+track_id,7hoaK7WIFRhMfgbRoWyGo7,sludge metal,sludge metal; doom metal; alternative rock,300,2026-09-22 audit: Thou / Hollywood | https://thou.bandcamp.com/album/may-our-chambers-be-full,
+track_id,1GIhB8rXkcjYtvOtgm5LtL,experimental rock,experimental rock; jazz rock; stoner rock,300,2026-09-22 audit: Fused Trio / Cotton Curd Candy | https://fusedtrio.bandcamp.com/album/cotton-curd-candy,
+track_id,25Q2WPmAYFgC2dgLqfCvt5,dark ambient,dark ambient; drone,300,2026-09-22 audit: N / Birka | https://www.dronerecords.de/download/DRONEREC_FULLSTOCK_A-Z-10.2018.pdf,
+track_id,4wgDHxplr4mf2Mh703U3Ky,heavy metal,heavy metal,300,2026-09-22 audit: Randy / Shadows Are Falling | https://www.eatmetalrecords.com/shop/product_info.php?products_id=30826,
+track_id,2EZRzPydf4N1ju7DSZXG7i,doom metal,doom metal; heavy metal,300,2026-09-22 audit: Mercy / King Doom | https://nuclearwarnowproductions.bandcamp.com/album/witchburner,
+track_id,0PkOxGLjcZhk5BARQJGUEa,psychedelic rock,psychedelic rock; stoner rock; doom metal; folk,300,2026-09-22 audit: TOŃ / Wdech | https://wszyscytoniemy.bandcamp.com/track/wdech-wydech,
+track_id,0RKoB6qynVFb3qFYYualk5,psychedelic rock,psychedelic rock; stoner rock; doom metal; folk,300,2026-09-22 audit: TOŃ / Wdech | https://wszyscytoniemy.bandcamp.com/track/wdech-wydech,
+track_id,2G6kWqULGBMqGdpTUc5FQ4,folk,folk; electronic; experimental,300,2026-09-22 audit: Комонь / Из-за лесу | https://www.qobuz.com/us-en/album/-/awdm6bq8qvzu9,
+track_id,4bL8poSHJGxHCTnrWqTmRb,folk,folk; electronic; experimental,300,2026-09-22 audit: Комонь / Из-за лесу | https://www.qobuz.com/us-en/album/-/awdm6bq8qvzu9,
+track_id,5qrxwp3kZfVwvijNAn0O73,progressive rock,progressive rock; progressive metal; psychedelic rock,300,2026-09-22 audit: Dark Suns / Everchild | https://dark-suns.bandcamp.com/album/everchild,
+track_id,1cSWc2kX4z39L5uFdGcjFP,atmospheric rock,atmospheric rock; progressive rock; trip hop,300,2026-09-22 audit: The Gathering / How to Measure a Planet | https://centurymedia.bandcamp.com/album/how-to-measure-a-planet-deluxe-edition,
+lead_artist_id,78g6smnwV3vOv8woRJAvQT,progressive rock,progressive rock,200,2026-09-22 audit: Advent Horizon / * | https://adventhorizon.bandcamp.com/music,
+lead_artist_id,5AcMFeCeyficrfgd11i258,atmospheric black metal,atmospheric black metal; raw black metal; dungeon synth,200,2026-09-22 audit: Aftoktonia / * | https://aftoktonia.bandcamp.com/album/through-nebulae-of-the-empyrean-aether,
+track_id,3L41mK3ctZjjvG0EV4QonL,progressive breaks,progressive breaks; breakbeat; electronic,300,2026-09-22 audit: Amalomu / Solar Drift | https://amalomu.bandcamp.com/album/solar-drift,
+lead_artist_id,56TXBqxg34LL3EqFqwS3EX,dark ambient,dark ambient; industrial ambient,200,2026-09-22 audit: Desiderii Marginis / * | https://desiderii.bandcamp.com/album/procession,
+lead_artist_id,6e8ISIsI7UQZPyEorefAhK,symphonic black metal,symphonic black metal,200,2026-09-22 audit: Dimmu Borgir / * | https://www.nuclearblast.com/pages/dimmu-borgir,
+track_id,0YY8l8V0lZmlOlCItEaa7o,heavy metal,heavy metal,300,2026-09-22 audit: Facing Fear / Burnout | https://heavymetalonline.com.br/facing-fear-escancara-a-exaustao-das-ruas-no-novo-single-burnout/,
+track_id,4s0DbR4wt8AadGDlQbPepm,heavy metal,heavy metal; power metal; thrash metal,300,2026-09-22 audit: Iced Earth / The Dark Saga | https://icedearth.com/albums/the-dark-saga/,
+track_id,3AxT0zo6lNVrpM3OfiEagr,ambient,ambient,300,2026-09-22 audit: JYRANTE / Sleeping With The Stars | https://music.apple.com/us/artist/jyrante/1803632756,
+track_id,3YTA4Y3qWmPEauQ5MIbbKJ,ambient,ambient,300,2026-09-22 audit: JYRANTE / Below The Surface | https://music.apple.com/us/album/below-the-surface-ep/6769029681,
+lead_artist_id,0CQRSCmHE64huljQ84y04l,heavy metal,heavy metal,200,2026-09-22 audit: Kerrigan / * | https://kerriganheavymetal.bandcamp.com/album/bloodmoon,
+lead_artist_id,5EfO063u0RoH2Bz9kbsPzO,post-metal,post-metal; progressive metal; post-rock,200,2026-09-22 audit: Múr / * | https://murofficialband.bandcamp.com/track/m-r,
+lead_artist_id,5uSY4FF3dZMCVSkZslKCHi,hard rock,hard rock; heavy metal,200,2026-09-22 audit: Michael Schenker Group / * | https://en.wikipedia.org/wiki/Michael_Schenker_Group,
+track_id,2pq2AZD8SRHGiizeU5F2dj,speed metal,speed metal; blackened heavy metal,300,2026-09-22 audit: Torpor / Armoured Skeleton | https://dyingvictimsproductions.bandcamp.com/album/ungeon-escent,
+track_id,6A8OuzYyWXkEX8NSKpxdA6,psychedelic rock,psychedelic rock; heavy psych; stoner rock,300,2026-09-22 audit: The Tower / Hic Abundant Leones | https://thetowercult.bandcamp.com/album/hic-abundant-leones,
+lead_artist_id,2valAzrV6xeHL0weVnIAp8,dark folk,dark folk; neofolk,200,2026-09-22 audit: Wolcensmen / * | https://wolcensmen.bandcamp.com/album/fire-in-the-white-stone,
+lead_artist_id,5BRYgBsgRLxSlO3xqDfjei,metal,metal,200,2026-09-22 audit: Zeromind / * | https://www.zeromindmusic.com/,
+track_id,3PW3xh6bSuKY0Pn3l7Kvxt,speed metal,speed metal; heavy metal,300,2026-09-22 audit: Ranger / Speed & Violence | https://deadrhetoric.com/reviews/ranger-speed-violence-spinefarm/,
+track_id,3URDRmbYUolxE7oRaKCO0i,indie folk,indie folk; indie rock,300,2026-09-22 audit: Westhead / And Just Like That | https://westhead.bandcamp.com/album/and-just-like-that-2,
+track_id,6Yxs4fI4s2i75VbBcMxHyr,acoustic rock,acoustic rock; alternative rock; comedy rock,300,2026-09-22 audit: Anthony Kapfer / Cats Using Toilets | https://anthonykapfer.bandcamp.com/album/cats-using-toilets,
+track_id,4QXPuYRElPzO9UipjIfBfQ,trip-hop,trip-hop; electronic; synthpop,300,2026-09-22 audit: Linda / Песни тибетских лам | https://lindamuzik.bandcamp.com/album/--2,
+track_id,0TOLxJTPhAkvqg9GfnjstG,new age,new age,300,2026-09-22 audit: Albert Wenmo / Mineral | https://music.apple.com/us/album/ave-adagio-single/1841311270 (broad artist style; Mineral-specific subgenre remains unverified),
+track_id,5tHch2cB9kCw71HuFqCMJm,acoustic rock,acoustic rock,300,2026-09-22 audit: Marc Giugni / M&M Acoustic Band live at Kompass Pub | https://music.amazon.co.uk/artists/B00MO2P6RY/marc-giugni (broad style inferred from acoustic cover repertoire),
+track_id,3lh79sOeXM7PNgV318Bruc,folk,folk; contemporary folk,300,2026-09-22 audit: Pete Seeger / Rainbow Race | https://folklife.si.edu/legacy-honorees/pete-seeger/smithsonian,
+track_id,3VDOfj5wim52SCywY2sCA8,psychedelic rock,psychedelic rock; garage rock; hard rock,300,2026-09-22 audit: Roky Erickson / The Evil One | https://en.wikipedia.org/wiki/The_Evil_One,
+track_id,6j3MV00Th0QpqSEUYAmmyz,black metal,black metal; dark metal,300,2026-09-22 audit: Lighthouse / New England Folk Tales | https://lighthouseofficial.bandcamp.com/track/1692,
+lead_artist_id,4nqmTWHyNzL8LqwSwoRmuZ,hardcore punk,hardcore punk; metallic hardcore,200,2026-09-22 audit: Southpaw FLHC / * | https://www.spinefarmrecords.com/586/artists/southpaw-flhc,
+track_id,2UTpZhFg9tnzChSHHcoqBq,soundtrack,soundtrack; folk; electronic,300,2026-09-22 audit: Baba Yaga Team / Василиса | https://open.spotify.com/embed/album/1cXqKRLOUWJ9DUvZnIwaMt,
+lead_artist_id,5hoptaRu8ODzliYbFfCsPA,black metal,black metal; psychedelic rock,200,2026-09-22 audit: Negative Plane / * | https://www.chroniclesofchaos.com/articles.aspx?id=2-6286,
+track_id,3oRuCzqdduzZ2CBhAtv8zO,modern classical,modern classical; ambient,300,"2026-09-22 audit: Luke Howard / Sun, Cloud | https://www.lukehoward.com/music/solo/",
+track_id,7g9qFFo27ppws6o2cVVBvz,gothic black metal,gothic black metal; black metal; doom metal; pagan metal,300,2026-09-22 audit: Soulgrind / Ad Pulchram Mortem | https://soulgrind.bandcamp.com/album/ad-pulchram-mortem,
+lead_artist_id,4WVPxlxGHpV5kPwr0WmDkN,speed metal,speed metal; thrash metal,200,2026-09-22 audit: Speedslut / * | https://speedslut.bandcamp.com/album/cimbrian-rites,
+track_id,23kjPqyALlZVJ7TEpKnYhx,synthpop,synthpop; electronic; art pop,300,2026-09-22 audit: Ulver / The Assassination of Julius Caesar | https://ulver.bandcamp.com/album/the-assassination-of-julius-caesar,
+track_id,3ws6pM9Yv57MVZxcj5i7mJ,synthpop,synthpop; electronic; art pop,300,2026-09-22 audit: Ulver / The Assassination of Julius Caesar | https://ulver.bandcamp.com/album/the-assassination-of-julius-caesar,
+track_id,4qpIOuAJ2MjYTOnrFSQti8,synthpop,synthpop; electronic; art pop,300,2026-09-22 audit: Ulver / The Assassination of Julius Caesar | https://ulver.bandcamp.com/album/the-assassination-of-julius-caesar,
+track_id,5MKTAR6n1OcpLSK4uKSOQJ,synthpop,synthpop; electronic; art pop,300,2026-09-22 audit: Ulver / The Assassination of Julius Caesar | https://ulver.bandcamp.com/album/the-assassination-of-julius-caesar,
+track_id,5bu0yhV03nzMrjsqOfHgAF,synthpop,synthpop; electronic; art pop,300,2026-09-22 audit: Ulver / The Assassination of Julius Caesar | https://ulver.bandcamp.com/album/the-assassination-of-julius-caesar,
+track_id,6dascGYKBt7QV3j0EqUgbZ,synthpop,synthpop; electronic; art pop,300,2026-09-22 audit: Ulver / The Assassination of Julius Caesar | https://ulver.bandcamp.com/album/the-assassination-of-julius-caesar,
+track_id,5KY4Km7rllwWovNNU8hhPt,synthpop,synthpop; electronic; art rock,300,2026-09-22 audit: Ulver / Flowers of Evil | https://ulver.bandcamp.com/album/flowers-of-evil,
+track_id,4y8GmSvRn26bR7TTp4qhWW,alternative rock,alternative rock; folk,300,2026-09-22 audit: Chelsea Wolfe / Cold | https://chelseawolfe.bandcamp.com/album/the-dark,
+track_id,2FcdtGhl7pOdRdlIMKHSPF,alternative rock,alternative rock; folk,300,2026-09-22 audit: Chelsea Wolfe / The Dark | https://chelseawolfe.bandcamp.com/album/the-dark,
+track_id,0SnqtELl1vwb3xytPxfso3,soul,soul; psychedelic soul,300,2026-09-22 audit: Curtis Harding / Face Your Fear | https://curtisharding.bandcamp.com/album/face-your-fear,
+track_id,0fp8XEUc9Yxxd1Ago0VgyA,funk,funk; soul,300,2026-09-22 audit: Maceo And The Macks / Funky Good Time | https://en.wikipedia.org/wiki/Cross_the_Track_(We_Better_Go_Back),
+track_id,25rmulFJwUrYY2C5SGuTTS,industrial metal,industrial metal; industrial punk,300,2026-09-22 audit: Lard / The Last Temptation of Reid | https://alternativetentacles.com/products/the-last-temptation-of-reid,
+track_id,3eRhhZJCbpwJ4vVnu6wkYa,witch house,witch house; darkwave; electronic,300,2026-09-22 audit: SIVERNOT / Меланхолия | https://untitledburial.bandcamp.com/album/--3,
+track_id,2QslhSobUJwOWQnvyIpyef,ambient,ambient; electronic,300,2026-09-22 audit: Klaus Schulze / The Dark Side of the Moog | https://www.allmusic.com/album/dark-side-of-the-moog-9-mw0001268280,
+track_id,34Hhq6GATWK9TAVlH1W1vm,metal,metal,300,2026-09-22 audit: Begotten / Buried | https://music.apple.com/us/artist/begotten/930409747,
+track_id,6cHrPKckZAZ0o3jQrKs2hB,black punk metal,black punk metal; speed metal; hardcore punk,300,2026-09-22 audit: Zorn / Return to Castle Death | https://sorrystaterecords.bandcamp.com/album/return-to-castle-death,
+track_id,3RqSumsXLQC1JhCKGhUQZt,black metal,black metal,300,2026-09-22 audit: Avolia / Falls Upon The Earth | https://music.apple.com/us/album/falls-upon-the-earth/1790740141 | https://strahmusic.com/artist/avolia/,
+track_id,2L32tvX6I73xToPvqFMi9k,rock,rock,300,2026-09-22 audit: Amber Creek / Don't Run Away | https://music.apple.com/us/artist/amber-creek/1441222160,
+track_id,5ghjITRLO7yAGefZQFxoHZ,gothic doom metal,gothic doom metal; death metal; black metal,300,2026-09-22 audit: KASPARIAN / UNDER THE SIBERIAN STARS | https://www.castlerock.ru/rockblog/novosti-roka/znakomimsya-s-proektom-kasparian/,
+track_id,2tmXjm8eTpr4DlczGw8FL7,progressive black metal,progressive black metal,300,2026-09-22 audit: U.K.Ć. / Coming Out - Love & Hate Diaries | https://theogoniarecords.bandcamp.com/album/coming-out-love-hate-diaries,
+track_id,3dVSAiXRkETggzsxDYgh9J,rock,rock,300,2026-09-22 audit: Fred de Boer / The Now Pantheon | https://www.shazam.com/artist/fred-de-boer/1832183758,
+track_id,0WZejGb0ftnSgYJ6lq6N7J,pop rock,pop rock,300,2026-09-22 audit: I AM NOT AFRAID ANYMORE / Ive hurt | https://mediatheques.agglo-larochelle.fr/doc/MUSICME/oai-1301588820-9815/ive-hurt-for-so-long-but-im-still-here (broad Pop/Rock catalog category; exact subgenre unverified),
+track_id,769XQEGGDPXFxoXFwzcFkf,folk,folk; brass band,300,2026-09-22 audit: Banda Peña Kali / Banda Peña Kali | https://bandapenakali.fr/ (traditional southwestern French/Basque festive brass repertoire),
+track_id,4YWZLoV31cFndKj9Hd39zy,folk,folk; country,300,2026-09-22 audit: Amenra / Songs of Townes Van Zandt | https://www.qobuz.com/gb-en/album/black-crow-blues-amenra/lagb7x1dxscvb | https://myproudmountain.bandcamp.com/track/amenra-black-crow-blues,
+track_id,0Fs7jajFWWfBcC4Mox3m7p,folk,folk; acoustic rock,300,2026-09-22 audit: Chelsea Wolfe / Birth of Violence | https://chelseawolfe.bandcamp.com/album/birth-of-violence,
+track_id,2UALJFCBhcFuknbnbOrN7E,folk,folk; acoustic rock,300,2026-09-22 audit: Chelsea Wolfe / Sing Songs Together | https://chelseawolfe.bandcamp.com/track/fight-like-gods,
+track_id,4qGchgaW78B1Z9kmF9lt2w,folk,folk; acoustic rock,300,2026-09-22 audit: Chelsea Wolfe / Anhedonia | https://chelseawolfe.bandcamp.com/track/anhedonia-feat-emma-ruth-rundle,
+track_id,4xTLNgK0TlFqEiHWaD3oIn,industrial metal,industrial metal,300,2026-09-22 audit: Bong-Ra / Cold World | https://bong-ra.bandcamp.com/track/cold-world-godflesh (review confirmed this recording; artist also has a breakcore catalog),
+track_id,1T3a3zqx9cSw9IOKB0505T,black metal,black metal,300,2026-09-22 audit: Impious Vesper / Memoria Mortuorum | https://open.spotify.com/artist/5cR0BwrbCX84C3pevW0YZO | https://www.metal-archives.com/bands/Impious_Vesper/3540464307 (the Italian quartet; not the Swedish band Impious),
+track_id,4G2ghZczj9HjGvUTEpn62d,acid jazz,acid jazz; electronica; trip hop,300,2026-09-22 audit: Red Snapper / Prince Blimey | https://www.allmusic.com/album/prince-blimey-mw0000968323 | https://warprecords.bandcamp.com/track/crusoe-takes-a-trip,
+track_id,76nPiuy1rkMFQqWDFaScP4,soundtrack,soundtrack; gothic rock,300,2026-09-22 audit: Chelsea Wolfe / Oui Oui Marie | https://shop.a24films.com/products/x-original-motion-picture-soundtrack | https://www.thefader.com/2022/03/11/-chelsea-wolfe-x-score-a24-oui-oui-marie (gothic ballad cover for the film X),
+track_id,1Yg1pftEFPMsATyNfkuGYX,electronic,electronic,300,2026-09-22 audit: heks / Protestantisk Fanatiker | https://distrokid.com/hyperfollow/heks3/protestantisk-fanatiker-london-fields-darkwave | https://voicesoftheainur.bandcamp.com/album/vota-161-heksej-ger (broad family retained for the Darkwave version; removed tags inherited from another Heks),
+lead_artist_id,5HCmYx7K5dk5s2iPBVqsov,epic doom metal,epic doom metal,200,2026-09-22 audit: Fvneral Fvkk / * | https://musicbrainz.org/artist/f89bf83b-2942-4b5a-8090-75ec56ed77f4,
+lead_artist_id,3mJCmX2022lM57gZGfiX3N,black thrash metal,black thrash metal,200,2026-09-22 audit: Gallower / * | https://musicbrainz.org/artist/fb454573-99c6-4fcd-88dc-390ee80b49e5,
+lead_artist_id,4NRQBSmWmKRsqDbNdGeSbb,dungeon synth,dungeon synth,200,2026-09-22 audit: Paths of the Eternal / * | https://musicbrainz.org/artist/e408326f-f6ff-41f6-aa33-2ab37419c025,
+lead_artist_id,1lr16k61dxeMTMkwMjg4k8,dungeon synth,dungeon synth,200,2026-09-22 audit: Radagast / * | https://musicbrainz.org/artist/6d3b817c-829f-44f9-b3ee-9bb33613db8f,
+lead_artist_id,5lqyPWmAivV75tII5Vxpet,atmospheric black metal,atmospheric black metal,200,2026-09-22 audit: Wolves In The Throne Room / * | https://musicbrainz.org/artist/e9452446-7702-4853-96ce-5dfe6748d3fb,
+track_id,6BmP6002CTrzUs4IpTKkir,jazz fusion,jazz fusion; electronic rock; electronic,300,2026-09-22 audit: Doug Spears / Shattered | https://dougspears.bandcamp.com/track/shattered-3 (artist tags electronic; electric fusion; electric rock; fusion music) | https://music.apple.com/us/album/shattered/1778768671 (Fusion catalog category; same 295728 ms recording; another catalog edition is broadly tagged New Age),
+track_id,6wllY4h6leMu11I15Rp9OS,,,300,2026-09-22 review hold: Blacko Bandito | public Spotify recording/profile confirmed; no reliable recording genre found; legacy MusicBrainz match Blacko rejected | https://open.spotify.com/track/6wllY4h6leMu11I15Rp9OS | https://open.spotify.com/artist/1ZcU46lAYmyhZ7kbUnbazE | preserve raw labels but exclude them from genre statistics until evidence supports a replacement,unverified
+track_id,6XnBQsit5gKELfjliuJonX,,,300,2026-09-22 review hold: Con Tó Music | public Spotify recording/profile confirmed; no reliable recording genre found; legacy MusicBrainz match Various Artists rejected | https://open.spotify.com/track/6XnBQsit5gKELfjliuJonX | https://open.spotify.com/artist/3xJISWM0IlVHtLkzDgQ6R5 | preserve raw labels but exclude them from genre statistics until evidence supports a replacement,unverified
+track_id,7jtvuEmzCbbtsajBL1SOyS,,,300,2026-09-22 review hold: Hayden Bacon | public Spotify recording/profile confirmed; no reliable recording genre found; legacy MusicBrainz match Hayden rejected | https://open.spotify.com/track/7jtvuEmzCbbtsajBL1SOyS | https://open.spotify.com/artist/7JEB70mitODzHpAv5vuOJQ | preserve raw labels but exclude them from genre statistics until evidence supports a replacement,unverified
+album_id,4FmI0F5GvvR1M9RURWnJV9,progressive rock,progressive rock,300,2026-09-22 release audit: Opeth / Damnation | Release-specific progressive-rock period; remove death-metal artist-default tags | https://shop.nuclearblast.com/collections/opeth,
+album_id,2bVYeA0BEb0Rtj94ECaahK,progressive rock,progressive rock,300,2026-09-22 release audit: Opeth / Heritage (Special Edition) | Release-specific progressive-rock period; remove death-metal artist-default tags | https://shop.nuclearblast.com/collections/opeth,
+album_id,0DLImjuzdrOBQKtYLlf3C5,progressive rock,progressive rock,300,2026-09-22 release audit: Opeth / Pale Communion | Release-specific progressive-rock period; remove death-metal artist-default tags | https://shop.nuclearblast.com/collections/opeth,
+track_id,5mY8mY7DSfuqVbY2psq3Cg,progressive rock,progressive rock; hard rock,310,2026-09-22 release audit: Opeth / Sorceress (Sorceress) | Title track from the progressive-rock album; no death-metal default | https://en.wikipedia.org/wiki/Sorceress_(Opeth_album),
+track_id,0fBPwRmfNmOdpNcxOoli9Q,acoustic rock,acoustic rock; progressive rock,310,2026-09-22 release audit: Opeth / Harvest (Blackwater Park) | Harvest is the acoustic ballad exception on Blackwater Park | https://www.loudersound.com/features/opeth-band-history-interview-2012,
+track_id,3HLMacwudGsPVWfMoCxt3P,acoustic rock,acoustic rock; progressive rock,310,"2026-09-22 release audit: Opeth / Madrigal (My Arms, Your Hearse) | Acoustic interlude/ballad exception within a metal album; broad acoustic-rock label | https://www.metal-archives.com/reviews/Opeth/My_Arms%2C_Your_Hearse/140/ | https://www.seaoftranquility.org/reviews.php?id=3425&op=showcontent",
+track_id,1I98CzExh9HtZjt3Akz1q4,acoustic rock,acoustic rock; progressive rock,310,"2026-09-22 release audit: Opeth / Credence (My Arms, Your Hearse) | Acoustic interlude/ballad exception within a metal album; broad acoustic-rock label | https://www.metal-archives.com/reviews/Opeth/My_Arms%2C_Your_Hearse/140/ | https://www.seaoftranquility.org/reviews.php?id=3425&op=showcontent",
+track_id,2YFBPyaL3r6aCtB4zNM4oW,progressive rock,progressive rock,310,"2026-09-22 release audit: Opeth / Windowpane (The Roundhouse Tapes) | Live rendition of the Damnation composition; broad progressive-rock label, not a claim about the entire live album | https://shop.nuclearblast.com/collections/opeth",
+track_id,0QKePbwi7LoHpfQfKLSmYa,hard rock,hard rock,310,"2026-09-22 release audit: Sun Dont Shine / Coming Down (Coming Down) | Official identity and hard-rock description; former EYE AM, not a shoegaze namesake | https://sundontshineband.com/",
+track_id,4TJvON3l2YCajvz2qRJqq2,acoustic rock,acoustic rock,310,"2026-09-22 release audit: Swallow The Sun / 66,50'N,28,40'E (Songs from the North I, II & III) | Disc II is the acoustic part; rule deliberately does not cover metal discs I and III | https://centurymedia.bandcamp.com/album/songs-from-the-north-i-ii-iii",
+track_id,0NogO7yZ7zigIOplvtT15O,acoustic rock,acoustic rock,310,"2026-09-22 release audit: Swallow The Sun / Before the Summer Dies (Songs from the North I, II & III) | Disc II is the acoustic part; rule deliberately does not cover metal discs I and III | https://centurymedia.bandcamp.com/album/songs-from-the-north-i-ii-iii",
+track_id,5eJ0DG8hnSZkSixPVQvNDl,atmospheric rock,atmospheric rock; alternative rock,310,2026-09-22 release audit: The Gathering / Saturnine (If_then_else) | Saturnine belongs to the atmospheric/electro-influenced rock period; remove early gothic/doom-metal defaults | https://centurymedia.bandcamp.com/album/if-then-else,
+track_id,0ORryQQGPzNlomh9NK8kGP,post-rock,post-rock; alternative rock; progressive rock,310,2026-09-22 release audit: Liminal Sky; Ulver / A Solitary Future (All Tomorrow's Darkness) | Artist describes the release as post-rock; guest credit Ulver does not establish black metal | https://liminalskyband.bandcamp.com/album/all-tomorrows-darkness,
+track_id,3UNCEvaaYCbIRgWMsXyjnz,experimental rock,experimental rock; electronic; psychedelic rock,310,2026-09-22 release audit: Ulver / Glammer Hammer (ATGCLVLSSCAP) | Artist describes improvised rock and electronic soundscapes | https://ulver.bandcamp.com/album/atgclvlsscap,
+album_id,4KtV5xkPNeBKgcxa3veOV6,electronic,electronic; ambient; drone,300,"2026-09-22 release audit: Ulver / Hexahedron (Live at Henie Onstad Kunstsenter) | Electronic improvisation and ambient drone, not the early black-metal period | https://ulver.bandcamp.com/album/hexahedron-live-at-henie-onstad-kunstsenter | https://daily.bandcamp.com/lists/ulver-album-guide",
+track_id,574MLPVscmDsoddVAnZnCV,synthpop,synthpop; electronic,310,2026-09-22 release audit: Ulver / A Fearful Symmetry (Hexahedron (Live at Henie Onstad Kunstsenter)) | Review explicitly identifies A Fearful Symmetry as the synthpop piece within Hexahedron | https://daily.bandcamp.com/lists/ulver-album-guide,
+track_id,4S2VhqDf0gmvgxRIGYvi4j,ambient,ambient; electronic,310,2026-09-22 release audit: Ulver / Eos (Shadows of the Sun) | Ambient/electronic album-specific classification; remove black metal | https://ulver.bandcamp.com/album/shadows-of-the-sun | https://daily.bandcamp.com/lists/ulver-album-guide,
+track_id,6au2fZwhT0a3j1Celi9A6Q,ambient,ambient; electronic; glitch,310,"2026-09-22 release audit: Ulver / Not Saved (Teachings in Silence) | Not Saved on the experimental ambient/glitch compilation, not early metal recordings | https://artrock.pl/recenzje/52199/ulver_teachings_in_silence.html | https://www.jester-records.com/ulver/ulver_catalogue.html",
+track_id,5RAoyT13o2KEVM0n57mOFZ,electronic,electronic; idm; ambient,310,2026-09-22 release audit: Ulver / They're Coming! The Birds! (They're Coming! The Birds!) | Single included on Neverland; artist describes instrumental IDM/post-rock and ambient textures | https://ulver.bandcamp.com/track/theyre-coming-the-birds | https://ulver.bandcamp.com/album/neverland,
+track_id,5KiR2KbifUOCkuzprZ65hG,synthpop,synthpop; electronic; art pop,310,"2026-09-22 release audit: Ulver; Nils Petter Molvær / Forgive Us (Forgive Us) | Liminal Animals single with Molvaer on trumpet; synthpop/art-pop period, not black metal | https://houseofmythology.com/storage/press-releases/271/Ulver-LiminalAnimals-PR.pdf | https://thesoundvault.info/p/ulver-forgive-us-feat-nils-petter",
+track_id,3kElsqAAsXufjGoislH6nT,folk,folk; americana; bluegrass,310,2026-09-22 release audit: Panopticon / Tamarack's Gold Returns (Autumn Eternal) | Opening acoustic instrumental; metal tracks on the same album retain separate classifications | https://www.nocleansinging.com/2015/07/13/panopticon-autumn-eternal/ | https://thetruepanopticon.bandcamp.com/track/tamaracks-gold-returns,
+track_id,6KXJ4eONbfOR0g60x1ui86,dungeon synth,dungeon synth,310,2026-09-22 release audit: Old Sorcery / In a Forest Trapped (Realms of Magickal Sorrow) | Remove unsupported black-metal secondary tags from the dungeon-synth recording | https://oldsorcery.bandcamp.com/album/realms-of-magickal-sorrow,
+track_id,3XM2ormuVHvn3tQvTQoy3J,drum and bass,drum and bass,310,2026-09-22 release audit: Adam F / Circles - 7'' Edit (Rave Classics) | Circles edit; remove unrelated hip-hop/R&B/dancehall secondary tags | https://djmag.com/features/how-adam-fs-circles-became-one-of-drum-bass-all-time-anthems,
+track_id,1W5nfM97f6cFM6ac6OdrBL,ambient,ambient; electronic,310,2026-09-22 release audit: Ulver / Solitude (Sweet Leaf - A Stoner Rock Salute to Black Sabbath) | Compilation credits identify the Ulver cover; ambient/electronic classification inferred from the Shadows of the Sun rendition; mastering identity not independently verified | https://cleorecs.com/products/sweet-leaf-a-stoner-rock-salute-to-black-sabbath-cd | https://ulver.bandcamp.com/track/solitude | https://daily.bandcamp.com/lists/ulver-album-guide,
+track_id,72NIrP4zxsKlX5BiP5b8R4,neofolk,neofolk,310,"2026-09-22 release audit: Agalloch / Kneel to the Cross (Of Stone, Wind, & Pillor) | Acoustic-led Sol Invictus cover; broad neofolk classification, retaining awareness of heavier arrangement elements | https://www.metal-archives.com/reviews/Agalloch/Of_Stone%2C_Wind%2C_and_Pillor/1151/Planetsabbath/2516106 | https://www.metal-archives.com/reviews/Agalloch/Of_Stone%2C_Wind%2C_and_Pillor/1151/linkavitch/154734",
+track_id,6hR6iOYzs5tf2rrhHL3liO,synthpop,synthpop; new wave,310,2026-09-22 release audit: Alyans / На Заре (На заре (Part 1)) | Na Zare recording from the synthpop/new-wave period; remove later folk-rock attribution | https://alliance2.bandcamp.com/album/1987,
+track_id,4D9si74tOV1VMekTxgnN9S,heavy metal,heavy metal,310,2026-09-22 release audit: Ian Gillan; Tony Iommi; Jason Newsted; Nicko McBrain; Linde Lindström; Jon Lord / Out of My Mind (Out of My Mind / Holy Water) | WhoCares collaboration; retain release genre and remove unrelated electronic/progressive-rock tags | https://en.wikipedia.org/wiki/Out_of_My_Mind_/_Holy_Water,
+track_id,5CKwsEAhZogWhqWbGYQ4Da,ambient,ambient; drone,310,2026-09-22 release audit: Fionnlagh; Lauge / Between Layers (Between Layers) | Recording-specific artist description/tags replace inherited Lauge guest default | https://fionnlagh.bandcamp.com/track/between-layers,
+track_id,7jbhRrAkFFNWsxta99xOI1,psychedelic rock,psychedelic rock,310,2026-09-22 release audit: Free Whenever; KATZROAR / Inside Out (Inside Out) | Recording-specific psychedelic-groove/alternative-psychedelia tags; broad psychedelic-rock label replaces inherited guest rule | https://freewhenever.bandcamp.com/track/inside-out,
+track_id,7uNk8ooelGnfV060aEIvMS,sea shanty,sea shanty; traditional folk,320,2026-09-23 recording audit: Enslaved; Storm Weather Shanty Choir / Fire Marengo | The label explicitly identifies this collaboration as a traditional sea shanty | https://www.nuclearblast.com/blogs/news/enslaved-reveal-sea-shanties-fire-marengo-anna-lovinda,

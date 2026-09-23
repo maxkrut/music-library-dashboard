@@ -1,0 +1,29 @@
+name: Check dashboard
+
+on:
+  pull_request:
+  push:
+    paths:
+      - 'scripts/**'
+      - 'tests/**'
+      - 'data/*.csv'
+      - 'requirements-dev.txt'
+      - '.github/workflows/**'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m pytest tests -q
+      - name: Build dashboard without private data or credentials
+        run: python scripts/build_readme.py --input data/tracks.example.csv --output .codex-tmp/example/README.md --cache-dir .codex-tmp/empty-cache
+      - name: Validate generated links and SVGs
+        run: python scripts/validate_dashboard.py .codex-tmp/example/README.md

@@ -151,7 +151,7 @@ def test_recent_liked_layout_is_mobile_friendly() -> None:
     assert "<thead>" not in rendered
     assert rendered.count("<td") == 1
     assert "Track</a></strong> — Artist" in rendered
-    assert "Album · 2026 · ambient · Added 2026-07-10" in rendered
+    assert "Album · 2026 · ambient · Liked 2026-07-10" in rendered
     assert "<small><small>" not in rendered
 
 

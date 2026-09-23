@@ -8,12 +8,16 @@ on:
     paths:
       - data/country_overrides.csv
       - data/genre_rules.csv
-      - scripts/backfill_countries_musicbrainz.py
-      - scripts/build_readme.py
-      - scripts/export_spotify.py
-      - scripts/apply_genre_rules.py
-      - scripts/enrich_genres_musicbrainz.py
+      - data/artist_genre_profiles.csv
+      - data/musicbrainz_identity_exclusions.csv
+      - 'scripts/**'
+      - 'tests/**'
+      - requirements-dev.txt
       - .github/workflows/update-readme.yml
+
+concurrency:
+  group: update-public-dashboard
+  cancel-in-progress: false
 
 jobs:
   update-readme:
@@ -48,6 +52,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Check code before touching private data
+        run: |
+          python -m pip install -r requirements-dev.txt
+          python -m pytest tests -q
+
       - name: Restore private track data
         run: |
           test -f .private-data/data/tracks.csv || { echo "Private repo must contain data/tracks.csv"; exit 1; }
@@ -58,6 +67,9 @@ jobs:
           if [ -f .private-data/.cache/musicbrainz-release-groups.json ]; then cp .private-data/.cache/musicbrainz-release-groups.json .cache/musicbrainz-release-groups.json; fi
           if [ -f .private-data/.cache/spotify-top-items.json ]; then cp .private-data/.cache/spotify-top-items.json .cache/spotify-top-items.json; fi
           if [ -f .private-data/.cache/spotify-recently-played.json ]; then cp .private-data/.cache/spotify-recently-played.json .cache/spotify-recently-played.json; fi
+          for name in spotify-export.json dashboard-history.json; do
+            if [ -f ".private-data/.cache/$name" ]; then cp ".private-data/.cache/$name" ".cache/$name"; fi
+          done
 
       - name: Export Spotify metadata
         if: env.SPOTIFY_CLIENT_ID != '' && env.SPOTIFY_CLIENT_SECRET != '' && env.SPOTIFY_REFRESH_TOKEN != ''
@@ -72,8 +84,13 @@ jobs:
       - name: Apply genre rules
         run: python scripts/apply_genre_rules.py --overwrite
 
+      - name: Audit every artist and genre assignment
+        run: python scripts/audit_genres.py
+
       - name: Build public artifacts
-        run: python scripts/build_readme.py
+        run: |
+          python scripts/build_readme.py
+          python scripts/validate_dashboard.py README.md
 
       - name: Commit private data updates
         run: |
@@ -84,6 +101,9 @@ jobs:
           if [ -f .cache/musicbrainz-release-groups.json ]; then cp .cache/musicbrainz-release-groups.json .private-data/.cache/musicbrainz-release-groups.json; fi
           if [ -f .cache/spotify-top-items.json ]; then cp .cache/spotify-top-items.json .private-data/.cache/spotify-top-items.json; fi
           if [ -f .cache/spotify-recently-played.json ]; then cp .cache/spotify-recently-played.json .private-data/.cache/spotify-recently-played.json; fi
+          for name in spotify-export.json dashboard-history.json genre-audit.json; do
+            if [ -f ".cache/$name" ]; then cp ".cache/$name" ".private-data/.cache/$name"; fi
+          done
           cd .private-data
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -93,6 +113,9 @@ jobs:
           if [ -f .cache/musicbrainz-release-groups.json ]; then git add -f .cache/musicbrainz-release-groups.json; fi
           if [ -f .cache/spotify-top-items.json ]; then git add -f .cache/spotify-top-items.json; fi
           if [ -f .cache/spotify-recently-played.json ]; then git add -f .cache/spotify-recently-played.json; fi
+          for name in spotify-export.json dashboard-history.json genre-audit.json; do
+            if [ -f ".cache/$name" ]; then git add -f ".cache/$name"; fi
+          done
           git diff --cached --quiet || git commit -m "Update private Spotify track data"
           git push
 
@@ -105,7 +128,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md data/genre_rules.csv data/country_overrides.csv
+          git add README.md data/genre_rules.csv data/country_overrides.csv data/artist_genre_profiles.csv data/musicbrainz_identity_exclusions.csv
           if [ -d assets ]; then git add -A assets; fi
           git diff --cached --quiet || git commit -m "Update public Spotify library dashboard"
           git push

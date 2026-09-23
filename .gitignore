@@ -5,3 +5,6 @@
 __pycache__/
 *.pyc
 data/tracks.csv
+.pytest_cache/
+.codex-tmp/
+tmp/

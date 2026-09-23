@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Iterable
 
 from file_utils import atomic_text_writer
+import dashboard_insights as insights
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +29,8 @@ ATLAS_DIR = ASSETS_DIR / "atlas"
 MUSICBRAINZ_ARTIST_CACHE = ROOT / ".cache" / "musicbrainz-artists.json"
 SPOTIFY_TOP_ITEMS_CACHE = ROOT / ".cache" / "spotify-top-items.json"
 SPOTIFY_RECENTLY_PLAYED_CACHE = ROOT / ".cache" / "spotify-recently-played.json"
+EXPORT_METADATA_CACHE = ROOT / ".cache" / "spotify-export.json"
+HISTORY_CACHE = ROOT / ".cache" / "dashboard-history.json"
 COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
 README_TITLE = "Spotify Library Dashboard"
 REPO_DESCRIPTION = "Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries."
@@ -144,6 +147,12 @@ COUNTRY_MARKERS = {
 }
 
 GENRE_ALIASES = {
+    "electro-pop": "electropop",
+    "stoner doom": "stoner doom metal",
+    "post black": "post-black metal",
+    "trip-hop": "trip hop",
+    "neo-folk": "neofolk",
+    "singer songwriter": "singer-songwriter",
     "80s thrash metal": "thrash metal",
     "acid-jazz": "acid jazz",
     "alt-country": "alternative country",
@@ -219,6 +228,11 @@ GENRE_PREFIX_ALIASES = (
 
 TrackRow = dict[str, str]
 RankedRows = list[tuple[str, int]]
+ARTIST_GENRE_PROFILES_CSV = ROOT / "data" / "artist_genre_profiles.csv"
+
+# One group can have more than one Spotify artist profile. These IDs are the
+# two Amenra profiles present in the local export; combine their catalogue votes.
+LEAD_ARTIST_ID_ALIASES = {"2VsSkHuQ6VE98qPkqybOaG": "0N1jE1EIrhZjvQSfuLupUu"}
 
 
 class SafeHtml(str):
@@ -313,6 +327,7 @@ SUPER_GENRE_RULES = [
             "junkanoo",
             "calypso",
             "liedermacher",
+            "sea shanty",
         ),
     ),
     ("Jazz / Blues", ("jazz", "blues", "bossa nova", "post-bop", "swing", "dark jazz")),
@@ -345,6 +360,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build README dashboard from a tracks CSV.")
     parser.add_argument("--input", type=Path, default=TRACKS_CSV)
     parser.add_argument("--output", type=Path, default=README)
+    parser.add_argument("--cache-dir", type=Path, default=ROOT / ".cache", help="Private input caches; use an empty directory for an isolated example build.")
     parser.add_argument(
         "--allow-empty",
         action="store_true",
@@ -508,6 +524,14 @@ def added_date(row: dict[str, str]) -> str:
     return (row.get("latest_added_at") or row.get("first_added_at") or "").strip()
 
 
+def liked_date(row: TrackRow) -> str:
+    if row.get("liked_at"):
+        return row["liked_at"].strip()
+    sources = {value.casefold() for value in split_values(row.get("sources", ""))}
+    # Legacy combined dates cannot identify when a multi-source track was liked.
+    return added_date(row) if sources == {"liked"} else ""
+
+
 def parse_iso_date(value: str) -> datetime | None:
     text = value.strip()
     if len(text) < 10:
@@ -535,10 +559,14 @@ def decade_label(value: str) -> str:
 
 
 def effective_genres(row: dict[str, str]) -> list[str]:
+    if norm(row.get("genre_status") or "") == "unverified":
+        return []
     return canonical_genres(split_values(row.get("genres") or row.get("spotify_genres") or ""))
 
 
 def effective_primary_genre(row: dict[str, str]) -> str:
+    if norm(row.get("genre_status") or "") == "unverified":
+        return ""
     primary = (row.get("primary_genre") or "").strip()
     if primary:
         return canonical_genre(primary)
@@ -550,17 +578,21 @@ def all_artists(row: dict[str, str]) -> list[str]:
     return split_artist_names(row.get("artist_names", ""))
 
 
+def lead_artist_key(row: TrackRow) -> str:
+    ids = split_values(row.get("artist_ids", ""))
+    artists = all_artists(row)
+    return LEAD_ARTIST_ID_ALIASES.get(ids[0], ids[0]) if ids else (artists[0] if artists else "")
+
+
 def row_assigned_genre(row: TrackRow, artist_genres: dict[str, str]) -> str:
-    for artist in all_artists(row):
-        genre = artist_genres.get(artist)
-        if genre:
-            return genre
-    return dominant_row_genre(row)
+    if norm(row.get("genre_status") or "") == "unverified":
+        return ""
+    return artist_genres.get(lead_artist_key(row), dominant_row_genre(row))
 
 
 def row_super_genre(row: TrackRow, artist_genres: dict[str, str]) -> str:
     genre = row_assigned_genre(row, artist_genres)
-    return super_genre(genre) if genre else "Other"
+    return super_genre(genre) if genre else "Unclassified"
 
 
 def count_rows_by_artist(rows: Iterable[TrackRow]) -> RankedRows:
@@ -648,6 +680,20 @@ def genre_marker_matches(genre: str, marker: str) -> bool:
 
 @lru_cache(maxsize=4096)
 def super_genre(genre: str) -> str:
+    genre = canonical_genre(genre)
+    special = {
+        "electropop": "Electronic / Ambient", "disco": "Electronic / Ambient",
+        "progressive breaks": "Electronic / Ambient",
+        "witch house": "Electronic / Ambient", "progressive electronic": "Electronic / Ambient",
+        "ska punk": "Punk / Hardcore", "punk rock": "Punk / Hardcore",
+        "pop punk": "Punk / Hardcore", "post-punk": "Punk / Hardcore",
+        "psychedelic funk": "Soul / Funk / R&B", "psychedelic soul": "Soul / Funk / R&B",
+        "dub": "Reggae / Ska", "dancehall": "Reggae / Ska",
+        "yacht rock": "Rock / Psych / Prog", "zeuhl": "Rock / Psych / Prog",
+        "minimalism": "Classical / Score", "new age": "Electronic / Ambient",
+    }
+    if genre in special:
+        return special[genre]
     for label, markers in SUPER_GENRE_RULES:
         if any(genre_marker_matches(genre, marker) for marker in markers):
             return label
@@ -685,23 +731,49 @@ def build_artist_country_index(
 def artist_genre_assignments(
     tracks: list[TrackRow],
     genre_rows: RankedRows,
+    profiles: dict[str, tuple[str, str]] | None = None,
 ) -> dict[str, str]:
     genre_rank = {genre: index for index, (genre, _count) in enumerate(genre_rows)}
     artist_genres: defaultdict[str, Counter[str]] = defaultdict(Counter)
     for row in tracks:
         genre = dominant_row_genre(row)
-        if not genre:
+        artist = lead_artist_key(row)
+        if not genre or not artist:
             continue
-        for artist in all_artists(row):
-            artist_genres[artist][genre] += 1
+        artist_genres[artist][genre] += 1
 
     assignments: dict[str, str] = {}
     for artist, genre_counts in artist_genres.items():
+        top_vote = max(genre_counts.values())
+        is_tied = sum(count == top_vote for count in genre_counts.values()) > 1
+        if profiles and artist in profiles:
+            profile_genre, apply_when = profiles[artist]
+            if apply_when == "always" or (apply_when == "tie" and is_tied):
+                assignments[artist] = canonical_genre(profile_genre)
+                continue
         assignments[artist] = min(
             genre_counts,
             key=lambda genre: (-genre_counts[genre], genre_rank.get(genre, len(genre_rank)), genre),
         )
     return assignments
+
+
+def read_artist_genre_profiles(path: Path) -> dict[str, tuple[str, str]]:
+    if not path.exists():
+        return {}
+    with path.open("r", encoding="utf-8-sig", newline="") as file:
+        rows = list(csv.DictReader(file))
+    profiles: dict[str, tuple[str, str]] = {}
+    for row in rows:
+        artist_id = (row.get("artist_id") or "").strip()
+        genre = canonical_genre(row.get("primary_genre") or "")
+        apply_when = (row.get("apply_when") or "").strip()
+        if not artist_id or not genre or not (row.get("source_url") or "").strip() or apply_when not in {"tie", "always", "confirm"}:
+            raise ValueError(f"Incomplete artist genre profile for {artist_id or '[missing ID]'}")
+        if artist_id in profiles:
+            raise ValueError(f"Duplicate artist genre profile for {artist_id}")
+        profiles[artist_id] = (genre, apply_when)
+    return profiles
 
 
 def assigned_genre_rows(
@@ -710,12 +782,8 @@ def assigned_genre_rows(
 ) -> RankedRows:
     counts: Counter[str] = Counter()
     for row in tracks:
-        row_genres = {
-            artist_genres.get(artist)
-            for artist in all_artists(row)
-            if artist_genres.get(artist)
-        }
-        for genre in row_genres:
+        genre = row_assigned_genre(row, artist_genres)
+        if genre:
             counts[genre] += 1
     return top(counts, len(counts))
 
@@ -724,10 +792,10 @@ def recent_liked_items(tracks: list[TrackRow], limit: int = 20) -> list[SafeHtml
     liked_tracks = [
         row
         for row in tracks
-        if "liked" in {source.casefold() for source in split_values(row.get("sources", ""))}
+        if "liked" in {source.casefold() for source in split_values(row.get("sources", ""))} and liked_date(row)
     ]
     liked_tracks.sort(
-        key=lambda row: (added_date(row), row.get("track_name", ""), row.get("artist_names", "")),
+        key=lambda row: (liked_date(row), row.get("track_name", ""), row.get("artist_names", "")),
         reverse=True,
     )
     items: list[SafeHtml] = []
@@ -737,14 +805,14 @@ def recent_liked_items(tracks: list[TrackRow], limit: int = 20) -> list[SafeHtml
         title = f"<strong>{track}</strong>"
         if artist:
             title += f" — {artist}"
-        liked_date = date_label(added_date(row))
+        saved_on = date_label(liked_date(row))
         meta = " · ".join(
             part
             for part in (
                 row.get("album_name", "").strip(),
                 effective_year(row),
                 effective_primary_genre(row),
-                f"Added {liked_date}" if liked_date else "",
+                f"Liked {saved_on}" if saved_on else "",
             )
             if part
         )
@@ -867,22 +935,18 @@ def build_genre_stat_index(
     country_counts: defaultdict[str, Counter[str]] = defaultdict(Counter)
 
     for row in tracks:
-        artists_by_genre: dict[str, list[str]] = {}
-        for artist in all_artists(row):
-            genre = artist_genres.get(artist)
-            if genre:
-                artists_by_genre.setdefault(genre, []).append(artist)
-
+        genre = row_assigned_genre(row, artist_genres)
+        artists = all_artists(row)
+        if not genre or not artists:
+            continue
+        lead_artist = artists[0]
+        artist_counts[genre][lead_artist] += 1
         year = effective_year(row)
-        for genre, artists in artists_by_genre.items():
-            artist_counts[genre].update(artists)
-            if year.isdigit():
-                year_counts[genre][year] += 1
-            country_counter = country_counts[genre]
-            for artist in artists:
-                country = artist_countries.get(artist, "")
-                if country:
-                    country_counter[country] += 1
+        if year.isdigit():
+            year_counts[genre][year] += 1
+        country = artist_countries.get(lead_artist, "")
+        if country:
+            country_counts[genre][country] += 1
 
     genres = set(artist_counts) | set(year_counts) | set(country_counts)
     return {
@@ -920,6 +984,7 @@ GROUP_COLORS = {
     "Hip-Hop / Rap": "#6e668a",
     "Experimental / Noise": "#6f7772",
     "Other": "#8a8078",
+    "Unclassified": "#8a8078",
 }
 
 
@@ -1137,7 +1202,7 @@ def top_ranges_data(tracks: list[TrackRow], cache: dict[str, object]) -> tuple[s
     cached = cached_top_ranges(cache)
     if all(cached.get(time_range) for time_range in ("short_term", "medium_term", "long_term")):
         return "Spotify top artists", cached
-    return fallback_top_ranges(tracks)
+    return "No Spotify top data", {}
 
 
 def recently_played_track_ids(cache: dict[str, object]) -> list[str]:
@@ -1165,12 +1230,12 @@ def saved_vs_played_data(
     saved_counts = Counter(row_super_genre(row, artist_genres) for row in tracks)
     lookup = track_lookup(tracks)
     recent_ids = recently_played_track_ids(recently_played_cache)
-    source = "Spotify recently played" if recent_ids else "latest saved fallback"
+    source = "Spotify recently played" if recent_ids else "No listening history"
     if recent_ids:
         recent_rows = [lookup[track_id] for track_id in recent_ids if track_id in lookup]
         outside_library = sum(1 for track_id in recent_ids if track_id not in lookup)
     else:
-        recent_rows = sorted(tracks, key=lambda row: added_date(row), reverse=True)[:50]
+        recent_rows = []
         outside_library = 0
 
     played_counts = Counter(row_super_genre(row, artist_genres) for row in recent_rows)
@@ -1178,7 +1243,7 @@ def saved_vs_played_data(
         played_counts["Outside library"] += outside_library
     rediscovered = len({row.get("track_id", "") for row in recent_rows if row.get("track_id")})
     ignored = max(0, len(tracks) - rediscovered)
-    return source, top(saved_counts, 8), top(played_counts, 8), rediscovered, ignored
+    return source, top(saved_counts, len(saved_counts)), top(played_counts, len(played_counts)), rediscovered, ignored
 
 
 def svg_rank_column(
@@ -1593,7 +1658,7 @@ def range_delta_label(name: str, current: RankedRows, previous: RankedRows) -> s
         return f"down {abs(delta)}"
     return "same"
 
-def write_top_ranges_svg(path: Path, source: str, ranges: dict[str, RankedRows]) -> None:
+def write_top_ranges_svg(path: Path, source: str, ranges: dict[str, RankedRows], previous: dict[str, RankedRows] | None = None) -> None:
     width = 1200
     height = 608
     margin = 16
@@ -1617,9 +1682,10 @@ def write_top_ranges_svg(path: Path, source: str, ranges: dict[str, RankedRows])
         svg_text(width - margin - 16, margin + 35, source, size=15, weight=800, fill="#dfe8df", anchor="end"),
     ]
 
-    previous_rows: RankedRows = []
     for index, (key, title, accent) in enumerate(specs):
-        rows = ranges.get(key, [])[:15]
+        full_rows = ranges.get(key, [])
+        rows = full_rows[:15]
+        previous_rows = (previous or {}).get(key, [])
         x = margin + index * (card_width + gap)
         y = content_top
         parts.extend(
@@ -1634,7 +1700,7 @@ def write_top_ranges_svg(path: Path, source: str, ranges: dict[str, RankedRows])
             parts.append(svg_text(x + 18, y + 92, "No range data yet", size=14, fill="#6f7772"))
         for row_index, (name, _score) in enumerate(rows, start=1):
             row_y = y + 70 + (row_index - 1) * 28
-            tag = range_delta_label(name, rows, previous_rows)
+            tag = range_delta_label(name, full_rows, previous_rows) if previous_rows else ""
             parts.extend(
                 [
                     svg_text(x + 18, row_y, f"{row_index:02d}", size=10, weight=800, fill=accent),
@@ -1642,7 +1708,6 @@ def write_top_ranges_svg(path: Path, source: str, ranges: dict[str, RankedRows])
                     svg_text(x + card_width - 14, row_y, tag, size=10, weight=800, fill=accent, anchor="end"),
                 ]
             )
-        previous_rows = rows
 
     parts.append("</svg>")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1671,8 +1736,15 @@ def write_saved_vs_played_svg(
     gap = 112
     saved = dict(saved_rows)
     played = dict(played_rows)
-    groups = [group for group, _count in top(Counter(saved) + Counter(played), 8)]
-    max_count = max(list(saved.values()) + list(played.values()) + [1])
+    saved_total, played_total = sum(saved.values()), sum(played.values())
+    groups = sorted(saved.keys() | played.keys(), key=lambda group: (
+        -max(saved.get(group, 0) / max(saved_total, 1), played.get(group, 0) / max(played_total, 1)), group
+    ))
+    if len(groups) > 8:
+        remaining = groups[7:]
+        saved["Remaining groups"] = sum(saved.get(group, 0) for group in remaining)
+        played["Remaining groups"] = sum(played.get(group, 0) for group in remaining)
+        groups = groups[:7] + ["Remaining groups"]
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="Saved library versus recently played">',
@@ -1680,16 +1752,16 @@ def write_saved_vs_played_svg(
         f'<rect x="{margin}" y="{margin}" width="{width - margin * 2}" height="{header_height}" fill="#22382d"/>',
         svg_text(margin + 16, margin + 35, "Saved vs Played", size=28, weight=800, fill="#ffffff"),
         svg_text(width - margin - 16, margin + 35, source, size=15, weight=800, fill="#dfe8df", anchor="end"),
-        svg_text(chart_x, 104, "saved library", size=13, weight=800, fill="#557e64"),
-        svg_text(chart_x + bar_width + gap, 104, "recent plays", size=13, weight=800, fill="#526f92"),
+        svg_text(chart_x, 104, f"library share · {saved_total} tracks", size=13, weight=800, fill="#557e64"),
+        svg_text(chart_x + bar_width + gap, 104, f"listening share · {played_total} plays" if played_total else "No listening sample", size=13, weight=800, fill="#526f92"),
     ]
 
     for index, group in enumerate(groups):
         y = chart_y + index * row_height
         saved_count = saved.get(group, 0)
         played_count = played.get(group, 0)
-        saved_width = bar_width * saved_count / max_count
-        played_width = bar_width * played_count / max_count
+        saved_width = bar_width * saved_count / max(saved_total, 1)
+        played_width = bar_width * played_count / max(played_total, 1)
         parts.extend(
             [
                 svg_text(chart_x - 14, y + 15, trim_text_to_width(group_short_label(group), 140, size=12), size=12, anchor="end"),
@@ -1697,6 +1769,8 @@ def write_saved_vs_played_svg(
                 f'<rect x="{chart_x:.1f}" y="{y:.1f}" width="{saved_width:.1f}" height="18" fill="#557e64" fill-opacity="0.78"/>',
                 f'<rect x="{chart_x + bar_width + gap:.1f}" y="{y:.1f}" width="{bar_width}" height="18" fill="#d9ded7"/>',
                 f'<rect x="{chart_x + bar_width + gap:.1f}" y="{y:.1f}" width="{played_width:.1f}" height="18" fill="#526f92" fill-opacity="0.78"/>',
+                svg_text(chart_x + bar_width - 6, y + 13, f"{100 * saved_count / max(saved_total, 1):.1f}%", size=11, weight=800, anchor="end"),
+                svg_text(chart_x + 2 * bar_width + gap - 6, y + 13, f"{100 * played_count / played_total:.1f}%" if played_total else "n/a", size=11, weight=800, anchor="end"),
                 svg_text(
                     chart_x + bar_width + gap / 2,
                     y + 11,
@@ -1709,7 +1783,7 @@ def write_saved_vs_played_svg(
                 svg_text(
                     chart_x + bar_width + gap / 2,
                     y + 26,
-                    f"played {played_count}",
+                    f"played {played_count}" if played_total else "no data",
                     size=11,
                     weight=800,
                     fill="#526f92",
@@ -1723,8 +1797,8 @@ def write_saved_vs_played_svg(
         [
             f'<rect x="{margin}" y="{callout_y - 24}" width="568" height="42" fill="#fffefa" stroke="#c7d0c7"/>',
             f'<rect x="{616}" y="{callout_y - 24}" width="568" height="42" fill="#fffefa" stroke="#c7d0c7"/>',
-            svg_text(margin + 16, callout_y + 2, f"rediscovered: {rediscovered} recent library tracks", size=14, weight=800, fill="#557e64"),
-            svg_text(632, callout_y + 2, f"ignored favorites: {ignored} saved tracks outside this snapshot", size=14, weight=800, fill="#a96855"),
+            svg_text(margin + 16, callout_y + 2, f"Played in this sample: {rediscovered} unique library tracks" if played_total else "Listening data unavailable; saved tracks are not plays", size=14, weight=800, fill="#557e64"),
+            svg_text(632, callout_y + 2, f"Outside this sample: {ignored} library tracks" if played_total else "Connect a recently played snapshot to compare", size=14, weight=800, fill="#a96855"),
         ]
     )
 
@@ -1876,9 +1950,8 @@ def write_genre_group_svg(
 
 def replace_directory_after_success(target: Path, source: Path) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
-    for stale_backup in target.parent.glob(f".{target.name}.backup*"):
-        remove_tree_best_effort(stale_backup)
-    backup = target.parent / f".{target.name}.backup-{os.getpid()}"
+    # A leftover backup may be the only intact copy after a failed rollback.
+    backup = target.parent / f".{target.name}.backup-{os.getpid()}-{time.time_ns()}"
     target_was_moved = False
     try:
         if target.exists():
@@ -1889,7 +1962,7 @@ def replace_directory_after_success(target: Path, source: Path) -> None:
         if target_was_moved and backup.exists() and not target.exists():
             backup.rename(target)
         raise
-    finally:
+    else:
         remove_tree_best_effort(backup)
 
 
@@ -1941,9 +2014,12 @@ def genre_atlas(
         lines: list[str] = [
             "## Genre Atlas",
             "",
-            "Each artist is assigned to one dominant genre. Expand a group to explore its top genres, artists, release years and countries.",
+            "Each lead artist appears under one dominant genre: the most frequent primary genre among their recordings in this library. Source-linked artist profiles resolve ties and documented career-wide exceptions. Track totals follow the lead artist's category; release-specific genres remain in the underlying data.",
             "",
         ]
+        unclassified = sum(not row_assigned_genre(row, artist_genres) for row in tracks)
+        if unclassified:
+            lines.extend([f"{unclassified:,} tracks have no usable genre and are excluded from the atlas. They remain in library totals as Unclassified.", ""])
         group_order = [label for label, _markers in SUPER_GENRE_RULES] + ["Other"]
         card_index = 0
         generated_files: list[Path] = []
@@ -2017,7 +2093,8 @@ def listening_maps(
     countries, decades, matrix = country_decade_data(tracks, artist_countries)
     write_country_decade_svg(country_decade_path, countries, decades, matrix)
     top_source, top_ranges = top_ranges_data(tracks, top_cache)
-    write_top_ranges_svg(top_ranges_path, top_source, top_ranges)
+    previous = top_cache.get("previous", {})
+    write_top_ranges_svg(top_ranges_path, top_source, top_ranges, cached_top_ranges(previous) if isinstance(previous, dict) else {})
     played_source, saved_rows, played_rows, rediscovered, ignored = saved_vs_played_data(
         tracks,
         artist_genres,
@@ -2048,11 +2125,13 @@ def listening_maps(
         "",
         "### Short, Medium and Long Term",
         "",
+        "Rank changes compare each Spotify time range with the same range in the previous fetched snapshot. No movement badges appear before a baseline exists.",
+        "",
         md_image("Top items across time ranges", top_ranges_path, readme_dir),
         "",
         "### Saved vs Played",
         "",
-        "A comparison between the saved library and recently played music.",
+        "Genre proportions in the library and in the available listening sample. Each side totals 100%; repeated plays count separately. A missing listening sample is shown as unavailable.",
         "",
         md_image("Saved library versus recently played", saved_played_path, readme_dir),
         "",
@@ -2129,7 +2208,7 @@ def build_dashboard(
         )
     else:
         top_genres = top(genres, len(genres))
-        artist_genres = artist_genre_assignments(tracks, top_genres)
+        artist_genres = artist_genre_assignments(tracks, top_genres, read_artist_genre_profiles(ARTIST_GENRE_PROFILES_CSV))
         assigned_genres = assigned_genre_rows(tracks, artist_genres)
         top_countries = top(countries, 20)
         top_assigned_genres = assigned_genres[:20]
@@ -2175,11 +2254,14 @@ def build_dashboard(
             ]
         )
         lines.extend(top_songs_lines)
+        now = datetime.now(timezone.utc)
+        current = insights.snapshot(tracks, artist_countries, dict(Counter(row_super_genre(row, artist_genres) for row in tracks)), now)
+        lines.extend(insights.weekly_lines(current, insights.history_snapshots(HISTORY_CACHE)))
         lines.extend(
             [
                 "## Latest Liked Tracks",
                 "",
-                "The ten most recently saved tracks in the library.",
+                "The ten most recent known like dates. Legacy tracks with mixed playlist/like dates are excluded until the next Spotify export.",
                 "",
                 stacked_list(recent_liked_items(tracks, 10)),
                 "",
@@ -2191,6 +2273,13 @@ def build_dashboard(
         )
         lines.extend(listening_trend_lines)
         lines.extend(genre_atlas_lines)
+        lines.extend(insights.quality_lines(
+            tracks,
+            sum(bool(effective_primary_genre(row)) for row in tracks),
+            sum(bool(track_countries(row, artist_countries)) for row in tracks),
+            read_json(EXPORT_METADATA_CACHE), read_json(SPOTIFY_TOP_ITEMS_CACHE),
+            read_json(SPOTIFY_RECENTLY_PLAYED_CACHE), now,
+        ))
 
     lines.extend(
         [
@@ -2214,8 +2303,9 @@ def build_dashboard(
             "- `python scripts/backfill_countries_musicbrainz.py --fetch-missing-artists` backfills artist countries from MusicBrainz and Wikidata.",
             "- `python scripts/enrich_genres_musicbrainz.py` fills blank genres from cached MusicBrainz artist tags.",
             "- `python scripts/apply_genre_rules.py --overwrite` applies curated genre rules.",
+            "- `python scripts/audit_genres.py` checks every artist and records a private review report.",
             "- `python scripts/build_readme.py` regenerates the dashboard and SVG assets.",
-            "- Manual fields are preserved during export: `year`, `primary_genre`, `genres`, `rating`, `status`, `tags`, `notes`.",
+            "- Manual fields are preserved during export: `year`, `primary_genre`, `genres`, `genre_status`, `rating`, `status`, `tags`, `notes`.",
             "- Weekly GitHub Actions use a private data repository; the public repository contains only generated summaries and public rules.",
             "",
             "Create a Spotify app, run the local OAuth export once, store the full `data/tracks.csv` in a private data repository, then set public repository secrets described in `DATA.md`. GitHub Actions can refresh the public dashboard weekly without publishing the full CSV. Spotify user refresh tokens expire after six months; when the workflow reports `invalid_grant`, or after adding `user-top-read` / `user-read-recently-played`, reauthorize locally and update the `SPOTIFY_REFRESH_TOKEN` secret.",
@@ -2229,6 +2319,9 @@ def build_dashboard(
             f"- Data setup: {md_link('DATA.md', ROOT / 'DATA.md', readme_dir)}",
             f"- Track CSV example: {md_link('data/tracks.example.csv', ROOT / 'data' / 'tracks.example.csv', readme_dir)}",
             f"- Genre rules: {md_link('data/genre_rules.csv', ROOT / 'data' / 'genre_rules.csv', readme_dir)}",
+            f"- Artist genre profiles: {md_link('data/artist_genre_profiles.csv', ROOT / 'data' / 'artist_genre_profiles.csv', readme_dir)}",
+            f"- MusicBrainz identity exclusions: {md_link('data/musicbrainz_identity_exclusions.csv', ROOT / 'data' / 'musicbrainz_identity_exclusions.csv', readme_dir)}",
+            f"- Genre review: {md_link('GENRE_AUDIT.md', ROOT / 'GENRE_AUDIT.md', readme_dir)}",
             f"- Country overrides: {md_link('data/country_overrides.csv', ROOT / 'data' / 'country_overrides.csv', readme_dir)}",
             f"- README generator: {md_link('scripts/build_readme.py', ROOT / 'scripts' / 'build_readme.py', readme_dir)}",
             f"- Spotify exporter: {md_link('scripts/export_spotify.py', ROOT / 'scripts' / 'export_spotify.py', readme_dir)}",
@@ -2255,12 +2348,25 @@ def build_dashboard(
 
 
 def main() -> None:
+    global MUSICBRAINZ_ARTIST_CACHE, SPOTIFY_TOP_ITEMS_CACHE, SPOTIFY_RECENTLY_PLAYED_CACHE, EXPORT_METADATA_CACHE, HISTORY_CACHE
     args = parse_args()
+    cache_dir = resolve_repo_path(args.cache_dir)
+    MUSICBRAINZ_ARTIST_CACHE = cache_dir / "musicbrainz-artists.json"
+    SPOTIFY_TOP_ITEMS_CACHE = cache_dir / "spotify-top-items.json"
+    SPOTIFY_RECENTLY_PLAYED_CACHE = cache_dir / "spotify-recently-played.json"
+    EXPORT_METADATA_CACHE = cache_dir / "spotify-export.json"
+    HISTORY_CACHE = cache_dir / "dashboard-history.json"
     tracks_csv = resolve_repo_path(args.input)
     readme = resolve_repo_path(args.output)
     tracks = read_tracks(tracks_csv, allow_missing=args.allow_empty)
     readme.parent.mkdir(parents=True, exist_ok=True)
     write_text_lf(readme, build_dashboard(tracks, tracks_csv, readme))
+    if tracks_csv.resolve() == TRACKS_CSV.resolve() and readme.resolve() == README.resolve():
+        artist_names = {artist for row in tracks for artist in all_artists(row)}
+        countries = build_artist_country_index(artist_names, read_json(MUSICBRAINZ_ARTIST_CACHE), read_country_overrides(COUNTRY_OVERRIDES_CSV))
+        insights.save_snapshot(HISTORY_CACHE, insights.snapshot(
+            tracks, countries, dict(Counter(row_super_genre(row, {}) for row in tracks)), datetime.now(timezone.utc)
+        ))
     print(f"Wrote {readme}")
 
 

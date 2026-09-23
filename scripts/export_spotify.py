@@ -33,6 +33,7 @@ OAUTH_STATE_MAX_AGE_SECONDS = 10 * 60
 ARTIST_CACHE = CACHE_DIR / "spotify-artists.json"
 TOP_ITEMS_CACHE = CACHE_DIR / "spotify-top-items.json"
 RECENTLY_PLAYED_CACHE = CACHE_DIR / "spotify-recently-played.json"
+EXPORT_METADATA_CACHE = CACHE_DIR / "spotify-export.json"
 
 API_BASE = "https://api.spotify.com/v1"
 AUTH_URL = "https://accounts.spotify.com/authorize"
@@ -51,7 +52,7 @@ SPOTIFY_REAUTH_MESSAGE = (
     "into the `SPOTIFY_REFRESH_TOKEN` GitHub secret."
 )
 
-MANUAL_FIELDS = ["year", "primary_genre", "genres", "rating", "status", "tags", "notes"]
+MANUAL_FIELDS = ["year", "primary_genre", "genres", "genre_status", "rating", "status", "tags", "notes"]
 FIELDNAMES = [
     "track_id",
     "track_name",
@@ -62,6 +63,7 @@ FIELDNAMES = [
     "spotify_genres",
     "primary_genre",
     "genres",
+    "genre_status",
     "release_date",
     "duration_ms",
     "explicit",
@@ -76,6 +78,7 @@ FIELDNAMES = [
     "playlist_names",
     "first_added_at",
     "latest_added_at",
+    "liked_at",
     "rating",
     "status",
     "tags",
@@ -103,7 +106,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--force",
         action="store_true",
-        help="Allow debug or empty exports to overwrite the default data/tracks.csv.",
+        help="Allow intentional partial, empty, or substantially smaller exports to replace data/tracks.csv.",
     )
     parser.add_argument("--client-id", default=os.getenv("SPOTIFY_CLIENT_ID"))
     parser.add_argument("--client-secret", default=os.getenv("SPOTIFY_CLIENT_SECRET"))
@@ -790,6 +793,7 @@ def normalize_track(
         "playlist_names": playlist_name,
         "first_added_at": added_at,
         "latest_added_at": added_at,
+        "liked_at": added_at if source == "liked" else "",
         "rating": "",
         "status": "",
         "tags": "",
@@ -815,6 +819,7 @@ def merge_track(existing: dict[str, str], incoming: dict[str, str]) -> dict[str,
     ]
     merged["first_added_at"] = min(added_dates) if added_dates else ""
     merged["latest_added_at"] = max(latest_dates) if latest_dates else ""
+    merged["liked_at"] = existing.get("liked_at") or incoming.get("liked_at", "")
     return merged
 
 
@@ -867,8 +872,9 @@ def fetch_playlist_tracks_into(
                 return
     except SpotifyApiError as error:
         if error.status == 403:
-            print(f"Skipping playlist {playlist_name or playlist_id}: Spotify returned 403.", file=sys.stderr)
-            return
+            raise SpotifyApiError(
+                403, "Playlist unavailable; export is incomplete. Existing CSV was not replaced."
+            ) from error
         raise
 
 
@@ -946,6 +952,9 @@ def fetch_top_items_snapshot(client: SpotifyClient, args: argparse.Namespace) ->
             return
         raise
 
+    previous = read_json(TOP_ITEMS_CACHE, {})
+    if isinstance(previous, dict) and previous.get("fetched_at"):
+        snapshot["previous"] = {key: value for key, value in previous.items() if key != "previous"}
     write_json(TOP_ITEMS_CACHE, snapshot)
     log_progress(args, f"Wrote Spotify top items snapshot to {TOP_ITEMS_CACHE}.")
 
@@ -1172,6 +1181,8 @@ def apply_manual_fields(
 def apply_metadata_fallbacks(row: dict[str, str]) -> None:
     if not row.get("year"):
         row["year"] = row.get("spotify_year", "")
+    if (row.get("genre_status") or "").strip().casefold() == "unverified":
+        return
     if not row.get("genres"):
         row["genres"] = row.get("spotify_genres", "")
     if not row.get("primary_genre"):
@@ -1181,20 +1192,30 @@ def apply_metadata_fallbacks(row: dict[str, str]) -> None:
         row["genres"] = row["primary_genre"]
 
 
-def guard_default_output(args: argparse.Namespace, tracks: dict[str, dict[str, str]]) -> None:
+def guard_default_output(
+    args: argparse.Namespace,
+    tracks: dict[str, dict[str, str]],
+    previous_count: int = 0,
+) -> None:
     if args.force or not is_default_output(args.output):
         return
     if args.limit:
         raise SystemExit(
             "--limit is a debugging option; pass --output or --force to overwrite data/tracks.csv."
         )
-    if args.no_saved and args.no_playlists and not args.playlist_id:
+    if args.no_saved or args.no_playlists or args.playlist_id:
         raise SystemExit(
-            "No Spotify sources selected; pass --output or --force to overwrite data/tracks.csv."
+            "Partial sources selected; pass --output or --force to overwrite data/tracks.csv."
         )
     if not tracks:
         raise SystemExit(
             "Spotify export collected 0 tracks; pass --output or --force to overwrite data/tracks.csv."
+        )
+    if previous_count and len(tracks) < previous_count * 0.8:
+        raise SystemExit(
+            f"Export shrank from {previous_count} to {len(tracks)} tracks (>20%). "
+            "Existing CSV was not replaced; inspect the export with --output, "
+            "then use --force only for an intentional removal."
         )
 
 
@@ -1264,7 +1285,7 @@ def main() -> None:
         log_progress(args, f"Fetching playlist: {playlist_name or playlist_id}.")
         fetch_playlist_tracks_into(client, playlist_id, playlist_name, args.market, collected, args)
 
-    guard_default_output(args, collected)
+    guard_default_output(args, collected, len(manual_rows))
     if not args.no_top_items:
         log_progress(args, "Fetching Spotify top items snapshot.")
         fetch_top_items_snapshot(client, args)
@@ -1286,6 +1307,12 @@ def main() -> None:
     apply_manual_fields(collected, manual_rows)
     log_progress(args, f"Writing {len(collected)} tracks to CSV.")
     write_tracks(output_path, collected)
+    if is_default_output(output_path):
+        write_json(EXPORT_METADATA_CACHE, {
+            "fetched_at": datetime.now(timezone.utc).isoformat(),
+            "track_count": len(collected),
+            "complete_sources": not (args.limit or args.no_saved or args.no_playlists or args.playlist_id),
+        })
     print(f"Wrote {len(collected)} tracks to {output_path}")
 
 

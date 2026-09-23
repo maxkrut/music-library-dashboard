@@ -10,6 +10,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import unicodedata
 from collections import Counter
 from pathlib import Path
 from typing import Any, Iterable
@@ -23,6 +24,7 @@ CACHE_DIR = ROOT / ".cache"
 ARTIST_CACHE = CACHE_DIR / "musicbrainz-artists.json"
 RELEASE_GROUP_CACHE = CACHE_DIR / "musicbrainz-release-groups.json"
 GENRE_CACHE = CACHE_DIR / "musicbrainz-genres.json"
+IDENTITY_EXCLUSIONS_CSV = ROOT / "data" / "musicbrainz_identity_exclusions.csv"
 API_BASE = "https://musicbrainz.org/ws/2"
 DEFAULT_USER_AGENT = "myfavmusic-genre-enricher/1.0 (personal local metadata script)"
 CACHE_CHECKPOINT_INTERVAL = 25
@@ -255,6 +257,12 @@ def norm(value: str) -> str:
     return " ".join(value.casefold().strip().split())
 
 
+def identity_name(value: str) -> str:
+    """Compare harmless typography variants, without fuzzy prefix matching."""
+    value = unicodedata.normalize("NFKC", value).translate(str.maketrans({"’": "'", "‘": "'", "‐": "-", "‑": "-", "–": "-", "—": "-"}))
+    return norm(value)
+
+
 class MusicBrainzClient:
     def __init__(self, user_agent: str, delay: float, retries: int) -> None:
         self.user_agent = user_agent
@@ -347,9 +355,14 @@ def query_artist(client: MusicBrainzClient, artist_name: str, min_score: int) ->
         return {"matched": False, "query": artist_name, "tags": []}
 
     viable = [candidate for candidate in candidates if int(candidate.get("score") or 0) >= min_score]
-    exact = [candidate for candidate in viable if norm(candidate.get("name", "")) == norm(artist_name)]
-    pool = exact or viable
-    selected = max(pool, key=lambda candidate: (tag_score(candidate), int(candidate.get("score") or 0))) if pool else candidates[0]
+    exact = [candidate for candidate in viable if identity_name(candidate.get("name", "")) == identity_name(artist_name)]
+    if len(exact) != 1:
+        return {
+            "matched": False, "query": artist_name, "tags": [],
+            "reason": "ambiguous name" if exact else "no exact artist match",
+            "candidates": [{"id": item.get("id"), "name": item.get("name"), "disambiguation": item.get("disambiguation", "")} for item in (exact or viable)],
+        }
+    selected = exact[0]
     if int(selected.get("score") or 0) < min_score:
         return {
             "matched": False,
@@ -401,16 +414,22 @@ def query_release_group(
             candidates.append(candidate)
         if candidates and any((candidate.get("tags") or []) for candidate in candidates):
             break
-    viable = [candidate for candidate in candidates if int(candidate.get("score") or 0) >= min_score]
-    if not viable:
-        return {"matched": False, "query": f"{artist_name} | {album_name}", "tags": []}
-    selected = max(viable, key=lambda candidate: (tag_score(candidate), int(candidate.get("score") or 0)))
+    viable = [candidate for candidate in candidates if int(candidate.get("score") or 0) >= min_score
+              and norm(candidate.get("title", "")) == norm(album_name)
+              and any(norm(credit.get("artist", {}).get("name", "")) == norm(artist_name)
+                      for credit in candidate.get("artist-credit", []) if isinstance(credit, dict))]
+    if len(viable) != 1:
+        return {"matched": False, "query": f"{artist_name} | {album_name}", "tags": [],
+                "reason": "ambiguous release group" if viable else "no exact release group match"}
+    selected = viable[0]
     return {
         "matched": True,
         "query": f"{artist_name} | {album_name}",
         "release_group_id": selected.get("id", ""),
         "score": int(selected.get("score") or 0),
         "title": selected.get("title", ""),
+        "artist_name": artist_name,
+        "identity_verified": True,
         "tags": selected.get("tags", []) or [],
         "fetched_at": int(time.time()),
     }
@@ -452,6 +471,8 @@ def ranked_genres_from_tags(
     weighted: Counter[str] = Counter()
     first_seen: dict[str, int] = {}
     for index, tag in enumerate(tags):
+        if int(tag.get("count") or 0) < 0:
+            continue
         name = tag.get("name", "")
         if not is_genre_tag(name, musicbrainz_genres):
             continue
@@ -474,6 +495,8 @@ def artist_names_from_rows(rows: list[dict[str, str]], overwrite: bool) -> list[
     seen: set[str] = set()
     artists: list[str] = []
     for row in rows:
+        if norm(row.get("genre_status") or "") == "unverified":
+            continue
         if not overwrite and (row.get("primary_genre") or row.get("genres")):
             continue
         for artist in split_semicolon(row.get("artist_names", "")):
@@ -484,16 +507,39 @@ def artist_names_from_rows(rows: list[dict[str, str]], overwrite: bool) -> list[
     return artists
 
 
+def read_identity_exclusions(path: Path) -> dict[str, set[str]]:
+    if not path.exists():
+        return {}
+    exclusions: dict[str, set[str]] = {}
+    with path.open("r", encoding="utf-8-sig", newline="") as file:
+        for row in csv.DictReader(file):
+            spotify_id = (row.get("spotify_artist_id") or "").strip()
+            musicbrainz_id = (row.get("musicbrainz_artist_id") or "").strip()
+            if not spotify_id or not musicbrainz_id:
+                raise ValueError("Incomplete MusicBrainz identity exclusion")
+            exclusions.setdefault(spotify_id, set()).add(musicbrainz_id)
+    return exclusions
+
+
 def row_genres(
     row: dict[str, str],
     artist_cache: dict[str, Any],
     musicbrainz_genres: set[str],
     max_genres: int,
+    identity_exclusions: dict[str, set[str]] | None = None,
 ) -> list[str]:
+    if norm(row.get("genre_status") or "") == "unverified":
+        return []
     weighted: Counter[str] = Counter()
     first_seen: dict[str, int] = {}
+    artist_ids = split_semicolon(row.get("artist_ids", ""))
     for artist_index, artist in enumerate(split_semicolon(row.get("artist_names", ""))):
         artist_data = artist_cache.get(norm(artist), {})
+        spotify_id = artist_ids[artist_index] if artist_index < len(artist_ids) else ""
+        if artist_data.get("artist_id") in (identity_exclusions or {}).get(spotify_id, set()):
+            continue
+        if not artist_data.get("matched") or (not artist_data.get("identity_verified") and identity_name(artist_data.get("name", "")) != identity_name(artist)):
+            continue
         for genre_index, genre in enumerate(ranked_genres_for_artist(artist_data, musicbrainz_genres, max_genres)):
             first_seen.setdefault(genre, artist_index * 100 + genre_index)
             weighted[genre] += max_genres - genre_index
@@ -524,6 +570,7 @@ def main() -> None:
         write_cache=not args.dry_run,
     )
     artist_cache = read_json(artist_cache_path, {})
+    identity_exclusions = read_identity_exclusions(IDENTITY_EXCLUSIONS_CSV)
     release_group_cache = read_json(release_group_cache_path, {})
 
     artists = artist_names_from_rows(rows, args.overwrite)
@@ -558,13 +605,15 @@ def main() -> None:
     fetched_release_groups = 0
     changed = 0
     for row in rows:
+        if norm(row.get("genre_status") or "") == "unverified":
+            continue
         if not args.overwrite:
             if complete_existing_genres(row):
                 changed += 1
                 continue
             if row.get("primary_genre") and row.get("genres"):
                 continue
-        genres = row_genres(row, artist_cache, musicbrainz_genres, args.max_genres)
+        genres = row_genres(row, artist_cache, musicbrainz_genres, args.max_genres, identity_exclusions)
         if not genres:
             release_key = release_group_cache_key(row)
             release_data = release_group_cache.get(release_key)
@@ -583,7 +632,7 @@ def main() -> None:
                     and not args.dry_run
                 ):
                     write_json(release_group_cache_path, release_group_cache)
-            if release_data:
+            if release_data and release_data.get("identity_verified"):
                 genres = ranked_genres_from_tags(
                     release_data.get("tags", []) or [],
                     musicbrainz_genres,
@@ -597,7 +646,7 @@ def main() -> None:
             row["genres"] = join_unique(genres)
         changed += 1
 
-    remaining = sum(1 for row in rows if not (row.get("genres") or row.get("spotify_genres")))
+    remaining = sum(1 for row in rows if norm(row.get("genre_status") or "") == "unverified" or not (row.get("genres") or row.get("spotify_genres")))
     print(f"Fetched {fetched} MusicBrainz artist records.")
     print(f"Filled genres for {changed} tracks.")
     print(f"Tracks still without effective genres: {remaining}.")

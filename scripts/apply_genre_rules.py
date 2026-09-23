@@ -12,7 +12,7 @@ from file_utils import atomic_text_writer
 ROOT = Path(__file__).resolve().parents[1]
 TRACKS_CSV = ROOT / "data" / "tracks.csv"
 RULES_CSV = ROOT / "data" / "genre_rules.csv"
-VALID_MATCH_TYPES = {"artist", "album", "track", "playlist", "source"}
+VALID_MATCH_TYPES = {"artist", "album", "track", "playlist", "source", "artist_id", "lead_artist_id", "album_id", "track_id"}
 REQUIRED_RULE_FIELDS = {
     "match_type",
     "pattern",
@@ -59,6 +59,12 @@ def wildcard_match(pattern: str, value: str) -> bool:
 
 
 def row_values(row: dict[str, str], match_type: str) -> list[str]:
+    if match_type == "lead_artist_id":
+        return split_values(row.get("artist_ids", ""))[:1]
+    if match_type == "artist_id":
+        return split_values(row.get("artist_ids", ""))
+    if match_type in {"album_id", "track_id"}:
+        return [row.get(match_type, "")]
     if match_type == "artist":
         return split_values(row.get("artist_names", ""))
     if match_type == "album":
@@ -78,8 +84,22 @@ def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
         return list(reader.fieldnames or []), list(reader)
 
 
+def rule_matches(row: dict[str, str], rule: dict[str, str]) -> bool:
+    match_type = norm(rule.get("match_type", ""))
+    pattern = rule.get("pattern", "").strip()
+    values = row_values(row, match_type)
+    # Spotify identifiers are opaque and case-sensitive, unlike display names.
+    if match_type.endswith("_id"):
+        return bool(pattern) and pattern in values
+    return any(wildcard_match(pattern, value) for value in values)
+
+
 def rule_has_content(rule: dict[str, str]) -> bool:
     return any((value or "").strip() for value in rule.values())
+
+
+def rule_marks_unverified(rule: dict[str, str]) -> bool:
+    return norm(rule.get("genre_status") or "") == "unverified"
 
 
 def validate_rule_schema(fieldnames: list[str], path: Path) -> None:
@@ -98,6 +118,11 @@ def validate_rule(rule: dict[str, str], line_number: int) -> None:
     if match_type not in VALID_MATCH_TYPES:
         valid = ", ".join(sorted(VALID_MATCH_TYPES))
         raise ValueError(f"Invalid genre rule match_type {match_type!r} on line {line_number}; expected one of: {valid}")
+    status = norm(rule.get("genre_status") or "")
+    if status not in {"", "unverified"}:
+        raise ValueError(f"Invalid genre_status {status!r} on line {line_number}")
+    if status == "unverified" and (rule.get("primary_genre", "").strip() or rule.get("genres", "").strip()):
+        raise ValueError(f"Unverified rule on line {line_number} must not assign genres")
 
 
 def rule_priority(rule: dict[str, str]) -> int:
@@ -144,42 +169,48 @@ def apply_rules_to_row(
     rules: list[dict[str, str]],
     overwrite: bool,
 ) -> bool:
+    # A review hold is an explicit decision about trust, not a genre replacement.
+    # It preserves the old values for review and wins over lower-priority rules.
+    winner = next((rule for rule in rules if rule_matches(row, rule)
+                   and (rule_marks_unverified(rule) or rule.get("primary_genre", "").strip() or rule.get("genres", "").strip())), None)
+    if winner and rule_marks_unverified(winner):
+        changed = row.get("genre_status") != "unverified"
+        row["genre_status"] = "unverified"
+        return changed
+    if norm(row.get("genre_status") or "") == "unverified" and not overwrite:
+        return False
     if not overwrite and complete_existing_genres(row):
         return True
     if not overwrite and row.get("primary_genre") and row.get("genres"):
         return False
 
-    for rule in rules:
-        match_type = norm(rule.get("match_type", ""))
-        pattern = rule.get("pattern", "")
-        values = row_values(row, match_type)
-        if not any(wildcard_match(pattern, value) for value in values):
-            continue
+    if not winner:
+        return False
+    primary = winner.get("primary_genre", "").strip()
+    genres = winner.get("genres", "").strip()
+    if not primary and genres:
+        primary = split_values(genres)[0] if split_values(genres) else ""
+    if not genres and primary:
+        genres = primary
 
-        primary = rule.get("primary_genre", "").strip()
-        genres = rule.get("genres", "").strip()
-        if not primary and genres:
-            primary = split_values(genres)[0] if split_values(genres) else ""
-        if not genres and primary:
-            genres = primary
-        if not primary and not genres:
-            continue
-
-        changed = False
-        if primary and (overwrite or not row.get("primary_genre")):
-            if row.get("primary_genre") != primary:
-                row["primary_genre"] = primary
-                changed = True
-        if genres and (overwrite or not row.get("genres")):
-            if row.get("genres") != genres:
-                row["genres"] = genres
-                changed = True
-        return changed
-
-    return False
+    changed = False
+    if row.get("genre_status"):
+        row["genre_status"] = ""
+        changed = True
+    if primary and (overwrite or not row.get("primary_genre")):
+        if row.get("primary_genre") != primary:
+            row["primary_genre"] = primary
+            changed = True
+    if genres and (overwrite or not row.get("genres")):
+        if row.get("genres") != genres:
+            row["genres"] = genres
+            changed = True
+    return changed
 
 
 def write_tracks(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> None:
+    if "genre_status" not in fieldnames and any(row.get("genre_status") for row in rows):
+        fieldnames = [*fieldnames, "genre_status"]
     with atomic_text_writer(path, newline="") as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
