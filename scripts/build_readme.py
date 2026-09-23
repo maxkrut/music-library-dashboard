@@ -691,6 +691,7 @@ def super_genre(genre: str) -> str:
         "dub": "Reggae / Ska", "dancehall": "Reggae / Ska",
         "yacht rock": "Rock / Psych / Prog", "zeuhl": "Rock / Psych / Prog",
         "minimalism": "Classical / Score", "new age": "Electronic / Ambient",
+        "power electronics": "Experimental / Noise",
     }
     if genre in special:
         return special[genre]
@@ -2321,7 +2322,6 @@ def build_dashboard(
             f"- Genre rules: {md_link('data/genre_rules.csv', ROOT / 'data' / 'genre_rules.csv', readme_dir)}",
             f"- Artist genre profiles: {md_link('data/artist_genre_profiles.csv', ROOT / 'data' / 'artist_genre_profiles.csv', readme_dir)}",
             f"- MusicBrainz identity exclusions: {md_link('data/musicbrainz_identity_exclusions.csv', ROOT / 'data' / 'musicbrainz_identity_exclusions.csv', readme_dir)}",
-            f"- Genre review: {md_link('GENRE_AUDIT.md', ROOT / 'GENRE_AUDIT.md', readme_dir)}",
             f"- Country overrides: {md_link('data/country_overrides.csv', ROOT / 'data' / 'country_overrides.csv', readme_dir)}",
             f"- README generator: {md_link('scripts/build_readme.py', ROOT / 'scripts' / 'build_readme.py', readme_dir)}",
             f"- Spotify exporter: {md_link('scripts/export_spotify.py', ROOT / 'scripts' / 'export_spotify.py', readme_dir)}",

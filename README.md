@@ -260,7 +260,6 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 - Genre rules: [`data/genre_rules.csv`](data/genre_rules.csv)
 - Artist genre profiles: [`data/artist_genre_profiles.csv`](data/artist_genre_profiles.csv)
 - MusicBrainz identity exclusions: [`data/musicbrainz_identity_exclusions.csv`](data/musicbrainz_identity_exclusions.csv)
-- Genre review: [`GENRE_AUDIT.md`](GENRE_AUDIT.md)
 - Country overrides: [`data/country_overrides.csv`](data/country_overrides.csv)
 - README generator: [`scripts/build_readme.py`](scripts/build_readme.py)
 - Spotify exporter: [`scripts/export_spotify.py`](scripts/export_spotify.py)

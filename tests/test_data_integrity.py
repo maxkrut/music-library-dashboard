@@ -241,6 +241,7 @@ def test_private_audit_checks_source_linked_confirmation_against_vote(monkeypatc
     ("blackened doom metal", "Metal"),
     ("progressive breaks", "Electronic / Ambient"),
     ("sea shanty", "Folk / World"),
+    ("power electronics", "Experimental / Noise"),
 ])
 def test_genre_family_mapping(genre, family):
     assert dashboard.super_genre(genre) == family
