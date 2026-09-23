@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-09-23 05:51 UTC._
+_Last updated 2026-09-23 06:01 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -63,7 +63,7 @@ The ten most recent known like dates. Legacy tracks with mixed playlist/like dat
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2QkJUQDK3CiU0XzZFIWO54">Escape to Gondolin</a></strong> — Radagast<br/><small>Escape To Gondolin · 2026 · dungeon synth · Liked 2026-09-18</small></td>
 </tr>
 <tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/26ARKqLHu8wjEsOk3HOTpF">Stranger&#x27;s Land</a></strong> — Sunscorched<br/><small>Blood of the Badlands · 2026 · Liked 2026-09-15</small></td>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/26ARKqLHu8wjEsOk3HOTpF">Stranger&#x27;s Land</a></strong> — Sunscorched<br/><small>Blood of the Badlands · 2026 · black metal · Liked 2026-09-15</small></td>
 </tr>
 <tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7g9qFFo27ppws6o2cVVBvz">Nousee Musta Lintu</a></strong> — Soulgrind<br/><small>Ad Pulchram Mortem · 2026 · gothic black metal · Liked 2026-09-14</small></td>
@@ -108,17 +108,17 @@ Artist origins across release decades, using MusicBrainz, Wikidata and curated o
 
 Each lead artist appears under one dominant genre: the most frequent primary genre among their recordings in this library. Source-linked artist profiles resolve ties and documented career-wide exceptions. Track totals follow the lead artist's category; release-specific genres remain in the underlying data.
 
-5 tracks have no usable genre and are excluded from the atlas. They remain in library totals as Unclassified.
+3 tracks have no usable genre and are excluded from the atlas. They remain in library totals as Unclassified.
 
 <details>
-<summary><strong>Metal</strong> · 55 genres · 950 track assignments</summary>
+<summary><strong>Metal</strong> · 55 genres · 951 track assignments</summary>
 
 ![Metal genre atlas](assets/atlas/metal.svg)
 
 </details>
 
 <details>
-<summary><strong>Rock / Psych / Prog</strong> · 53 genres · 608 track assignments</summary>
+<summary><strong>Rock / Psych / Prog</strong> · 53 genres · 609 track assignments</summary>
 
 ![Rock / Psych / Prog genre atlas](assets/atlas/rock-psych-prog.svg)
 
@@ -195,16 +195,9 @@ Each lead artist appears under one dominant genre: the most frequent primary gen
 </details>
 
 <details>
-<summary><strong>Experimental / Noise</strong> · 3 genres · 4 track assignments</summary>
+<summary><strong>Experimental / Noise</strong> · 4 genres · 5 track assignments</summary>
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
-
-</details>
-
-<details>
-<summary><strong>Other</strong> · 1 genre · 1 track assignment</summary>
-
-![Other genre atlas](assets/atlas/other.svg)
 
 </details>
 
@@ -212,11 +205,11 @@ Each lead artist appears under one dominant genre: the most frequent primary gen
 
 | Source / coverage | Status |
 | --- | --- |
-| Library export | 2026-09-23 05:51 UTC · current |
-| Spotify top artists | 2026-09-23 05:51 UTC · current |
-| Recently played snapshot | 2026-09-23 05:51 UTC · current |
+| Library export | 2026-09-23 06:01 UTC · current |
+| Spotify top artists | 2026-09-23 06:01 UTC · current |
+| Recently played snapshot | 2026-09-23 06:01 UTC · current |
 | Listening sample | 2026-09-20 17:30 – 2026-09-22 21:19 UTC; 50 plays |
-| Tracks with a usable genre | 2,024 / 2,029 (99.8%) |
+| Tracks with a usable genre | 2,026 / 2,029 (99.9%) |
 | Tracks awaiting genre confirmation | 3 |
 | Tracks with a known artist country | 1,962 / 2,029 (96.7%) |
 
