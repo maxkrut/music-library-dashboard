@@ -2,7 +2,7 @@
 
 Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
 
-_Last updated 2026-09-23 05:50 UTC._
+_Last updated 2026-09-23 05:51 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -39,34 +39,34 @@ The ten most recent known like dates. Legacy tracks with mixed playlist/like dat
 <table width="100%" cellpadding="8" cellspacing="0">
 <tbody>
 <tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6RrUexWtOLbuU8K3YxF7oh">Abode of the Perfect Soul</a></strong> — Dvne<br/><small>Voidkind · 2024 · progressive metal · Liked 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2nhQeK6SU0RQaWiNSgOWCG">Sunflower</a></strong> — Show Me A Dinosaur<br/><small>Plantgazer · 2020 · blackgaze · Liked 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7vuI7MKPrRX3vPbsft78qz">Tetrastructural Minds</a></strong> — Vektor<br/><small>Outer Isolation · 2011 · thrash metal · Liked 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/5qiALau4qWnEDkzvgNGNxz">Heimsslit</a></strong> — Múr<br/><small>Múr · 2024 · post-metal · Liked 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/0qArXHeVhAbDg9wqY3ETdD">Condities der Afstraffing</a></strong> — Fluisteraars<br/><small>Jacht der Mysteriën · 2026 · black metal · Liked 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6XkwhigdKpVId9PjMjf6U0">Perdition&#x27;s Crossing (feat. David Eugene Edwards)</a></strong> — Wayfarer; David Eugene Edwards; 16 Horsepower; Wovenhand<br/><small>Perdition&#x27;s Crossing (feat. David Eugene Edwards) · 2026 · atmospheric black metal · Liked 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2HTyvFSotgLiSX39LZtNVF">Carved in Stone MMXXVI</a></strong> — Saor<br/><small>Carved in Stone MMXXVI · 2026 · atmospheric black metal · Liked 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2QkJUQDK3CiU0XzZFIWO54">Escape to Gondolin</a></strong> — Radagast<br/><small>Escape To Gondolin · 2026 · dungeon synth · Liked 2026-09-18</small></td>
+</tr>
+<tr>
+<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/26ARKqLHu8wjEsOk3HOTpF">Stranger&#x27;s Land</a></strong> — Sunscorched<br/><small>Blood of the Badlands · 2026 · Liked 2026-09-15</small></td>
+</tr>
+<tr>
 <td align="left" valign="top"><strong><a href="https://open.spotify.com/track/7g9qFFo27ppws6o2cVVBvz">Nousee Musta Lintu</a></strong> — Soulgrind<br/><small>Ad Pulchram Mortem · 2026 · gothic black metal · Liked 2026-09-14</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/29rdn1OUDNxLj5cM9sPiRy">Gutter Rats</a></strong> — Gallower<br/><small>Behold The Realm Of Darkness · 2020 · black thrash metal · Liked 2026-09-11</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6qQuUIq3vCHLY0kUG1Plis">Eldhaf</a></strong> — Múr<br/><small>Múr · 2024 · post-metal · Liked 2026-09-09</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6hA9Rttkj87i57AYBi4HvT">Procession</a></strong> — Desiderii Marginis<br/><small>Procession · 2012 · dark ambient · Liked 2026-09-09</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/0YY8l8V0lZmlOlCItEaa7o">Burnout</a></strong> — Facing Fear<br/><small>Burnout · 2026 · heavy metal · Liked 2026-09-06</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6tcd56A4K9PATOVQZ3r51p">Bloodmoon</a></strong> — Kerrigan<br/><small>Bloodmoon · 2023 · heavy metal · Liked 2026-09-06</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2kzvv1zUQRneozxjGbJE3R">Cimbrian Rites</a></strong> — Speedslut<br/><small>Cimbrian Rites · 2026 · speed metal · Liked 2026-09-06</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/4OfWZhSZTDFlVTyY3Axjj1">Ghosts Among The Obelisks</a></strong> — Wolves In The Throne Room<br/><small>Ghosts Among The Obelisks · 2026 · atmospheric black metal · Liked 2026-09-05</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/2FcdtGhl7pOdRdlIMKHSPF">Turn the Key</a></strong> — Chelsea Wolfe<br/><small>The Dark · 2026 · alternative rock · Liked 2026-08-27</small></td>
-</tr>
-<tr>
-<td align="left" valign="top"><strong><a href="https://open.spotify.com/track/6cHrPKckZAZ0o3jQrKs2hB">Kill Him With Poison</a></strong> — Zorn<br/><small>Return to Castle Death · 2026 · black punk metal · Liked 2026-08-26</small></td>
 </tr>
 </tbody>
 </table>
@@ -108,52 +108,52 @@ Artist origins across release decades, using MusicBrainz, Wikidata and curated o
 
 Each lead artist appears under one dominant genre: the most frequent primary genre among their recordings in this library. Source-linked artist profiles resolve ties and documented career-wide exceptions. Track totals follow the lead artist's category; release-specific genres remain in the underlying data.
 
-3 tracks have no usable genre and are excluded from the atlas. They remain in library totals as Unclassified.
+5 tracks have no usable genre and are excluded from the atlas. They remain in library totals as Unclassified.
 
 <details>
-<summary><strong>Metal</strong> · 57 genres · 945 track assignments</summary>
+<summary><strong>Metal</strong> · 55 genres · 950 track assignments</summary>
 
 ![Metal genre atlas](assets/atlas/metal.svg)
 
 </details>
 
 <details>
-<summary><strong>Rock / Psych / Prog</strong> · 51 genres · 611 track assignments</summary>
+<summary><strong>Rock / Psych / Prog</strong> · 53 genres · 608 track assignments</summary>
 
 ![Rock / Psych / Prog genre atlas](assets/atlas/rock-psych-prog.svg)
 
 </details>
 
 <details>
-<summary><strong>Electronic / Ambient</strong> · 30 genres · 191 track assignments</summary>
+<summary><strong>Electronic / Ambient</strong> · 35 genres · 196 track assignments</summary>
 
 ![Electronic / Ambient genre atlas](assets/atlas/electronic-ambient.svg)
 
 </details>
 
 <details>
-<summary><strong>Punk / Hardcore</strong> · 14 genres · 82 track assignments</summary>
+<summary><strong>Punk / Hardcore</strong> · 14 genres · 81 track assignments</summary>
 
 ![Punk / Hardcore genre atlas](assets/atlas/punk-hardcore.svg)
 
 </details>
 
 <details>
-<summary><strong>Folk / World</strong> · 15 genres · 78 track assignments</summary>
+<summary><strong>Folk / World</strong> · 15 genres · 77 track assignments</summary>
 
 ![Folk / World genre atlas](assets/atlas/folk-world.svg)
 
 </details>
 
 <details>
-<summary><strong>Jazz / Blues</strong> · 9 genres · 28 track assignments</summary>
+<summary><strong>Jazz / Blues</strong> · 11 genres · 25 track assignments</summary>
 
 ![Jazz / Blues genre atlas](assets/atlas/jazz-blues.svg)
 
 </details>
 
 <details>
-<summary><strong>Soul / Funk / R&amp;B</strong> · 6 genres · 14 track assignments</summary>
+<summary><strong>Soul / Funk / R&amp;B</strong> · 7 genres · 15 track assignments</summary>
 
 ![Soul / Funk / R&B genre atlas](assets/atlas/soul-funk-r-b.svg)
 
@@ -181,23 +181,30 @@ Each lead artist appears under one dominant genre: the most frequent primary gen
 </details>
 
 <details>
-<summary><strong>Pop / Songwriter</strong> · 5 genres · 24 track assignments</summary>
+<summary><strong>Pop / Songwriter</strong> · 7 genres · 25 track assignments</summary>
 
 ![Pop / Songwriter genre atlas](assets/atlas/pop-songwriter.svg)
 
 </details>
 
 <details>
-<summary><strong>Hip-Hop / Rap</strong> · 3 genres · 10 track assignments</summary>
+<summary><strong>Hip-Hop / Rap</strong> · 4 genres · 11 track assignments</summary>
 
 ![Hip-Hop / Rap genre atlas](assets/atlas/hip-hop-rap.svg)
 
 </details>
 
 <details>
-<summary><strong>Experimental / Noise</strong> · 2 genres · 3 track assignments</summary>
+<summary><strong>Experimental / Noise</strong> · 3 genres · 4 track assignments</summary>
 
 ![Experimental / Noise genre atlas](assets/atlas/experimental-noise.svg)
+
+</details>
+
+<details>
+<summary><strong>Other</strong> · 1 genre · 1 track assignment</summary>
+
+![Other genre atlas](assets/atlas/other.svg)
 
 </details>
 
@@ -205,13 +212,13 @@ Each lead artist appears under one dominant genre: the most frequent primary gen
 
 | Source / coverage | Status |
 | --- | --- |
-| Library export | Unavailable |
-| Spotify top artists | 2026-07-11 06:53 UTC · stale |
-| Recently played snapshot | 2026-07-11 06:53 UTC · stale |
-| Listening sample | 2026-07-09 12:23 – 2026-07-10 11:01 UTC; 50 plays |
-| Tracks with a usable genre | 2,017 / 2,020 (99.9%) |
+| Library export | 2026-09-23 05:51 UTC · current |
+| Spotify top artists | 2026-09-23 05:51 UTC · current |
+| Recently played snapshot | 2026-09-23 05:51 UTC · current |
+| Listening sample | 2026-09-20 17:30 – 2026-09-22 21:19 UTC; 50 plays |
+| Tracks with a usable genre | 2,024 / 2,029 (99.8%) |
 | Tracks awaiting genre confirmation | 3 |
-| Tracks with a known artist country | 1,933 / 2,020 (95.7%) |
+| Tracks with a known artist country | 1,962 / 2,029 (96.7%) |
 
 Coverage measures completeness, not verification of every genre or country. Build time above is separate from source freshness.
 
