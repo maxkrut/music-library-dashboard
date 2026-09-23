@@ -32,8 +32,8 @@ SPOTIFY_RECENTLY_PLAYED_CACHE = ROOT / ".cache" / "spotify-recently-played.json"
 EXPORT_METADATA_CACHE = ROOT / ".cache" / "spotify-export.json"
 HISTORY_CACHE = ROOT / ".cache" / "dashboard-history.json"
 COUNTRY_OVERRIDES_CSV = ROOT / "data" / "country_overrides.csv"
-README_TITLE = "Spotify Library Dashboard"
-REPO_DESCRIPTION = "Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries."
+README_TITLE = "Spotify README Dashboard · Template"
+REPO_DESCRIPTION = "Create your own Spotify music dashboard in a GitHub README. A Python template with automatic updates, genre maps, favorite albums and private source data."
 
 
 def write_text_lf(path: Path, content: str) -> None:
@@ -2186,6 +2186,24 @@ def build_dashboard(
         "",
         REPO_DESCRIPTION,
         "",
+        f"**[Create your own dashboard](https://github.com/maxkrut/spotify-readme-dashboard/generate)** · {md_link('Setup guide', ROOT / 'SETUP.md', readme_dir)} · [Live dashboard](#live-dashboard) · {md_link('MIT License', ROOT / 'LICENSE', readme_dir)}",
+        "",
+        "For developers who love music: publish your library, explore artist genres and countries, and follow changes in your taste. Python generates the charts; GitHub Actions refreshes them weekly. No separate web server is needed.",
+        "",
+        "## Quick start",
+        "",
+        "1. Choose **Use this template → Create a new repository** and clone your copy.",
+        "2. Create your own Spotify app and run the local export once.",
+        "3. Store the exported CSV in a separate **private** GitHub repository.",
+        "4. Add your Spotify and private repository credentials as GitHub Actions secrets.",
+        "5. Run **Actions → Update public README → Run workflow** to publish your dashboard.",
+        "",
+        f"Follow the {md_link('step-by-step setup guide', ROOT / 'SETUP.md', readme_dir)} for prerequisites, commands and the exact secrets to add. You can also preview the included example without Spotify credentials.",
+        "",
+        "## Live dashboard",
+        "",
+        "The dashboard below shows this repository owner's library. In a new copy, the first successful update replaces the inherited example with your own music.",
+        "",
         f"_Last updated {generated_at}._",
         "",
         "No audio files are included: this repository publishes generated summaries from a private CSV archive.",
@@ -2195,15 +2213,7 @@ def build_dashboard(
     if not tracks:
         lines.extend(
             [
-                "## Setup",
-                "",
-                "1. Create a Spotify app and add `http://127.0.0.1:8888/callback` as a redirect URI.",
-                "2. Copy `.env.example` to `.env` and fill `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET`.",
-                "3. Run `python scripts/export_spotify.py --verbose --skip-genres`.",
-                "4. Run `python scripts/apply_genre_rules.py`.",
-                "5. Run `python scripts/build_readme.py`.",
-                "",
-                "For weekly GitHub Actions updates, add `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and `SPOTIFY_REFRESH_TOKEN` as repository secrets.",
+                f"No library has been imported yet. Follow the {md_link('setup guide', ROOT / 'SETUP.md', readme_dir)} to generate your first dashboard.",
                 "",
             ]
         )
@@ -2317,6 +2327,7 @@ def build_dashboard(
             "<summary>Data</summary>",
             "",
             "- Source table: private `data/tracks.csv` fetched during the weekly workflow and not published in this repository.",
+            f"- First-time setup: {md_link('SETUP.md', ROOT / 'SETUP.md', readme_dir)}",
             f"- Data setup: {md_link('DATA.md', ROOT / 'DATA.md', readme_dir)}",
             f"- Track CSV example: {md_link('data/tracks.example.csv', ROOT / 'data' / 'tracks.example.csv', readme_dir)}",
             f"- Genre rules: {md_link('data/genre_rules.csv', ROOT / 'data' / 'genre_rules.csv', readme_dir)}",

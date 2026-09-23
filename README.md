@@ -1,6 +1,24 @@
-# Spotify Library Dashboard
+# Spotify README Dashboard · Template
 
-Self-updating Spotify listening dashboard with taste trends, genre and country maps, recent favorites, and privacy-safe public summaries.
+Create your own Spotify music dashboard in a GitHub README. A Python template with automatic updates, genre maps, favorite albums and private source data.
+
+**[Create your own dashboard](https://github.com/maxkrut/spotify-readme-dashboard/generate)** · [Setup guide](SETUP.md) · [Live dashboard](#live-dashboard) · [MIT License](LICENSE)
+
+For developers who love music: publish your library, explore artist genres and countries, and follow changes in your taste. Python generates the charts; GitHub Actions refreshes them weekly. No separate web server is needed.
+
+## Quick start
+
+1. Choose **Use this template → Create a new repository** and clone your copy.
+2. Create your own Spotify app and run the local export once.
+3. Store the exported CSV in a separate **private** GitHub repository.
+4. Add your Spotify and private repository credentials as GitHub Actions secrets.
+5. Run **Actions → Update public README → Run workflow** to publish your dashboard.
+
+Follow the [step-by-step setup guide](SETUP.md) for prerequisites, commands and the exact secrets to add. You can also preview the included example without Spotify credentials.
+
+## Live dashboard
+
+The dashboard below shows this repository owner's library. In a new copy, the first successful update replaces the inherited example with your own music.
 
 _Last updated 2026-09-23 06:01 UTC._
 
@@ -248,6 +266,7 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 <summary>Data</summary>
 
 - Source table: private `data/tracks.csv` fetched during the weekly workflow and not published in this repository.
+- First-time setup: [SETUP.md](SETUP.md)
 - Data setup: [`DATA.md`](DATA.md)
 - Track CSV example: [`data/tracks.example.csv`](data/tracks.example.csv)
 - Genre rules: [`data/genre_rules.csv`](data/genre_rules.csv)

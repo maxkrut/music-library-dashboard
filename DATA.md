@@ -1,5 +1,7 @@
 # Data Setup
 
+New to the template? Start with the [step-by-step setup guide](SETUP.md). This document is the reference for data files, genre rules and dashboard calculations.
+
 This public repository publishes the generated dashboard, code, genre rules, artist genre profiles, identity exclusions, and country overrides.
 The full Spotify export is kept out of the public repository.
 
