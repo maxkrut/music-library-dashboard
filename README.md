@@ -2,7 +2,7 @@
 
 Create your own Spotify music dashboard in a GitHub README. A Python template with automatic updates, genre maps, favorite albums and private source data.
 
-**[Create your own dashboard](https://github.com/maxkrut/spotify-readme-dashboard/generate)** · [Setup guide](SETUP.md) · [Live dashboard](#live-dashboard) · [MIT License](LICENSE)
+**[Create your own dashboard](https://github.com/maxkrut/spotify-readme-dashboard/generate)** · [`Setup guide`](SETUP.md) · [Live dashboard](#live-dashboard) · [`MIT License`](LICENSE)
 
 For developers who love music: publish your library, explore artist genres and countries, and follow changes in your taste. Python generates the charts; GitHub Actions refreshes them weekly. No separate web server is needed.
 
@@ -14,13 +14,13 @@ For developers who love music: publish your library, explore artist genres and c
 4. Add your Spotify and private repository credentials as GitHub Actions secrets.
 5. Run **Actions → Update public README → Run workflow** to publish your dashboard.
 
-Follow the [step-by-step setup guide](SETUP.md) for prerequisites, commands and the exact secrets to add. You can also preview the included example without Spotify credentials.
+Follow the [`step-by-step setup guide`](SETUP.md) for prerequisites, commands and the exact secrets to add. You can also preview the included example without Spotify credentials.
 
 ## Live dashboard
 
 The dashboard below shows this repository owner's library. In a new copy, the first successful update replaces the inherited example with your own music.
 
-_Last updated 2026-09-23 06:01 UTC._
+_Last updated 2026-09-23 10:34 UTC._
 
 No audio files are included: this repository publishes generated summaries from a private CSV archive.
 
@@ -223,9 +223,9 @@ Each lead artist appears under one dominant genre: the most frequent primary gen
 
 | Source / coverage | Status |
 | --- | --- |
-| Library export | 2026-09-23 06:01 UTC · current |
-| Spotify top artists | 2026-09-23 06:01 UTC · current |
-| Recently played snapshot | 2026-09-23 06:01 UTC · current |
+| Library export | 2026-09-23 10:34 UTC · current |
+| Spotify top artists | 2026-09-23 10:34 UTC · current |
+| Recently played snapshot | 2026-09-23 10:34 UTC · current |
 | Listening sample | 2026-09-20 17:30 – 2026-09-22 21:19 UTC; 50 plays |
 | Tracks with a usable genre | 2,026 / 2,029 (99.9%) |
 | Tracks awaiting genre confirmation | 3 |
@@ -266,7 +266,7 @@ Create a Spotify app, run the local OAuth export once, store the full `data/trac
 <summary>Data</summary>
 
 - Source table: private `data/tracks.csv` fetched during the weekly workflow and not published in this repository.
-- First-time setup: [SETUP.md](SETUP.md)
+- First-time setup: [`SETUP.md`](SETUP.md)
 - Data setup: [`DATA.md`](DATA.md)
 - Track CSV example: [`data/tracks.example.csv`](data/tracks.example.csv)
 - Genre rules: [`data/genre_rules.csv`](data/genre_rules.csv)
